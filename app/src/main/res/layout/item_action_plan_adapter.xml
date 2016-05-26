@@ -4,7 +4,7 @@
     android:layout_height="80dp">
 
     <TextView
-        android:id="@+id/action_plan_title"
+        android:id="@+id/activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_vertical"
@@ -14,7 +14,7 @@
         android:textSize="24sp" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/activity_completed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center_vertical"

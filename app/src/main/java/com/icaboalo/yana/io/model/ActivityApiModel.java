@@ -5,10 +5,10 @@ import java.io.Serializable;
 /**
  * Created by icaboalo on 26/05/16.
  */
-public class ActionPlan implements Serializable{
+public class ActivityApiModel implements Serializable{
 
 //  CONSTRUCTORS
-    public ActionPlan(String name, String description) {
+    public ActivityApiModel(String name, String description) {
         this.mName = name;
         this.mDescription = description;
     }
