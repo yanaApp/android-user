@@ -20,7 +20,7 @@ import java.util.ArrayList;
  */
 public class ActionPlanFragment extends Fragment {
 
-    RecyclerView mActionPlanRecycler;
+    RecyclerView mActivityRecycler;
 
     @Nullable
     @Override
@@ -31,13 +31,25 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mActionPlanRecycler = (RecyclerView) view.findViewById(R.id.action_plan_recycler);
+        mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
+        setUpActivityRecycler(createList());
+    }
+
+    ArrayList<ActivityApiModel> createList(){
+        ArrayList<ActivityApiModel> activityList = new ArrayList<>();
+        activityList.add(new ActivityApiModel("Sonreír antes de levantarse", ""));
+        activityList.add(new ActivityApiModel("Desayunar", ""));
+        activityList.add(new ActivityApiModel("Bañarse", ""));
+        activityList.add(new ActivityApiModel("Comer", ""));
+        activityList.add(new ActivityApiModel("Lammarle a un ser querido", ""));
+        activityList.add(new ActivityApiModel("Cenar", ""));
+        return activityList;
     }
 
     void setUpActivityRecycler(ArrayList<ActivityApiModel> activityList){
         ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mActionPlanRecycler.setAdapter(activityRecyclerAdapter);
-        mActionPlanRecycler.setLayoutManager(linearLayoutManager);
+        mActivityRecycler.setAdapter(activityRecyclerAdapter);
+        mActivityRecycler.setLayoutManager(linearLayoutManager);
     }
 }
