@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">YANA</string>
+    <string name="error_empty_field">This field is required.</string>
 </resources>
