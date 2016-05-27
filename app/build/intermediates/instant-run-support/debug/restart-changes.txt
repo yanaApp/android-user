@@ -1,0 +1,1 @@
+CHANGED,/Users/icaboalo/Documents/develop/AndroidStudioProjects/YANA/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/icaboalo/yana/ui/fragment/ActionPlanFragment.class
