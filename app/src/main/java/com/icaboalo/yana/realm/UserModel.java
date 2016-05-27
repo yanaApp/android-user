@@ -11,9 +11,18 @@ import io.realm.annotations.PrimaryKey;
 public class UserModel extends RealmObject {
     @PrimaryKey
     private long id;
-    private String user_name;
-    private String email;
-    private String phone_number;
-    private String password;
+    private String nUser_name;
+    private String nEmail;
+    private String nPhone_number;
+
+    public String getnPassword() {
+        return nPassword;
+    }
+
+    public void setnPassword(String nPassword) {
+        this.nPassword = nPassword;
+    }
+
+    private String nPassword;
 
 }

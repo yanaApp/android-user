@@ -8,12 +8,20 @@ import io.realm.annotations.PrimaryKey;
  * Created by saul on 27/05/16.
  */
 public class ActionPlanModel extends RealmObject{
-    @PrimaryKey
-    private int id;
-    private RealmList<DayModel> days;
+    public int getnId() {
+        return nId;
+    }
 
-    public ActionPlanModel(int id){
-        this.id = id;
+    public void setnId(int nId) {
+        this.nId = nId;
+    }
+
+    @PrimaryKey
+    private int nId;
+    private RealmList<DayModel> nDays;
+
+    public ActionPlanModel(int nId){
+        this.nId = nId;
 
     }
 
