@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,14 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
+import com.icaboalo.yana.ui.adapter.OnDialogButtonClick;
 import com.icaboalo.yana.ui.adapter.OnViewHolderClick;
 
 import java.util.ArrayList;
+
+import static com.icaboalo.yana.R.string.label_activity_complete;
 
 /**
  * Created by icaboalo on 26/05/16.
@@ -25,6 +28,13 @@ import java.util.ArrayList;
 public class ActionPlanFragment extends Fragment {
 
     RecyclerView mActivityRecycler;
+    OnDialogButtonClick mDialogButtonClick;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mDialogButtonClick = (OnDialogButtonClick) context;
+    }
 
     @Nullable
     @Override
@@ -71,19 +81,15 @@ public class ActionPlanFragment extends Fragment {
         activityDetailDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                mDialogButtonClick.onPositiveClick(dialog, activity, 1);
             }
         });
         activityDetailDialog.setNeutralButton("COMPLETE", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                setActivityComplete(activity);
+                mDialogButtonClick.onNeutralClick(dialog, activity, label_activity_complete);
             }
         });
         activityDetailDialog.show();
-    }
-
-    void setActivityComplete(ActivityApiModel activity){
-        activity.setCompleted(true);
     }
 }

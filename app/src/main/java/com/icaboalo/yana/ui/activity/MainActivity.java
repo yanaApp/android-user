@@ -1,5 +1,8 @@
 package com.icaboalo.yana.ui.activity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -8,10 +11,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.ui.adapter.OnDialogButtonClick;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.util.VUtil;
 
-public class MainActivity extends AppCompatActivity {
+import static com.icaboalo.yana.R.string.label_activity_complete;
+
+public class MainActivity extends AppCompatActivity implements OnDialogButtonClick{
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -44,5 +51,27 @@ public class MainActivity extends AppCompatActivity {
 
     void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    @Override
+    public void onPositiveClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onNeutralClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
+        switch (labelResource){
+            case label_activity_complete:
+                Intent goToCompleteActivity = new Intent(MainActivity.this, LoginActivity.class);
+                goToCompleteActivity.putExtra(getString(R.string.extra_activity), ((ActivityApiModel) object).getmId());
+                startActivity(goToCompleteActivity);
+                break;
+        }
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onNegativeClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
+        dialog.dismiss();
     }
 }
