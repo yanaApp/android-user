@@ -13,5 +13,8 @@ public class DayModel extends RealmObject{
     private String date;
     private RealmList<ActivityModel> activities;
 
-
+    public DayModel(long id, String date){
+        this.id = id;
+        this.date = date;
+    }
 }
