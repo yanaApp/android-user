@@ -9,11 +9,11 @@ import io.realm.annotations.PrimaryKey;
  */
 public class DayModel extends RealmObject{
     @PrimaryKey
-    private long id;
+    private int id;
     private String date;
     private RealmList<ActivityModel> activities;
 
-    public DayModel(long id, String date){
+    public DayModel(int id, String date){
         this.id = id;
         this.date = date;
     }
