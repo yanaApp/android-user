@@ -21,17 +21,19 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     Context mContext;
     ArrayList<ActivityApiModel> mActivityList;
     LayoutInflater mInflater;
+    OnViewHolderClick viewHolderClick;
 
-    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList) {
+    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList, OnViewHolderClick onViewHolderClick) {
         this.mContext = context;
         this.mActivityList = activityList;
+        this.viewHolderClick = onViewHolderClick;
         this.mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_action_plan_adapter, parent, false);
-        return new ActivityViewHolder(view, R.id.activity_title, R.id.activity_completed);
+        return new ActivityViewHolder(view, R.id.activity_title, R.id.activity_completed, viewHolderClick);
     }
 
     @Override
@@ -47,14 +49,24 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         return mActivityList.size();
     }
 
-    class ActivityViewHolder extends RecyclerView.ViewHolder{
+    class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mActivityTitle;
         CheckBox mCompletedCheckbox;
-        public ActivityViewHolder(View itemView, int activityTitleId, int activityCompletedId) {
+        OnViewHolderClick viewHolderClick;
+
+
+        public ActivityViewHolder(View itemView, int activityTitleId, int activityCompletedId, OnViewHolderClick onViewHolderClick) {
             super(itemView);
-            mActivityTitle = (TextView) itemView.findViewById(activityTitleId);
-            mCompletedCheckbox = (CheckBox) itemView.findViewById(activityCompletedId);
+            this.mActivityTitle = (TextView) itemView.findViewById(activityTitleId);
+            this.mCompletedCheckbox = (CheckBox) itemView.findViewById(activityCompletedId);
+            this.viewHolderClick = onViewHolderClick;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            viewHolderClick.onClick(v, getAdapterPosition());
         }
     }
 }

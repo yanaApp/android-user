@@ -1,17 +1,21 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
+import com.icaboalo.yana.ui.adapter.OnViewHolderClick;
 
 import java.util.ArrayList;
 
@@ -47,9 +51,39 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void setUpActivityRecycler(ArrayList<ActivityApiModel> activityList){
-        ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList);
+        ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnViewHolderClick() {
+            @Override
+            public void onClick(View view, int position) {
+                ActivityApiModel activity = createList().get(position);
+                showDialog(activity);
+            }
+        });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mActivityRecycler.setAdapter(activityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
+    }
+
+    void showDialog(final ActivityApiModel activity){
+        AlertDialog.Builder activityDetailDialog = new AlertDialog.Builder(getActivity());
+        activityDetailDialog.setTitle(activity.getName());
+        activityDetailDialog.setMessage(activity.getDescription());
+        activityDetailDialog.setCancelable(false);
+        activityDetailDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        activityDetailDialog.setNeutralButton("COMPLETE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                setActivityComplete(activity);
+            }
+        });
+        activityDetailDialog.show();
+    }
+
+    void setActivityComplete(ActivityApiModel activity){
+        activity.setCompleted(true);
     }
 }

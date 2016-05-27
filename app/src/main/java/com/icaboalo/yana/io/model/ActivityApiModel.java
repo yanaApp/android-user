@@ -14,12 +14,17 @@ public class ActivityApiModel implements Serializable{
     }
 
 //  PROPERTIES
+    int mId;
     String mName;
     String mDescription;
     boolean mCompleted = false;
 
 
 //  GETTERS
+    public int getmId() {
+        return mId;
+    }
+
     public String getName() {
         return mName;
     }
