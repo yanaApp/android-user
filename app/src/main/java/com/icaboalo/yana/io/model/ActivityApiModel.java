@@ -16,6 +16,7 @@ public class ActivityApiModel implements Serializable{
 //  PROPERTIES
     int mId;
     String mName;
+    String mImage = "";
     String mDescription;
     boolean mCompleted = false;
 
@@ -27,6 +28,10 @@ public class ActivityApiModel implements Serializable{
 
     public String getName() {
         return mName;
+    }
+
+    public String getmImage() {
+        return mImage;
     }
 
     public String getDescription() {

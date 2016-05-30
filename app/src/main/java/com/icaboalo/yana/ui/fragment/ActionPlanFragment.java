@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
-import com.icaboalo.yana.ui.adapter.OnDialogButtonClick;
-import com.icaboalo.yana.ui.adapter.OnViewHolderClick;
+import com.icaboalo.yana.util.OnDialogButtonClick;
+import com.icaboalo.yana.util.OnViewHolderClick;
 
 import java.util.ArrayList;
 

@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
-import com.icaboalo.yana.ui.adapter.OnDialogButtonClick;
+import com.icaboalo.yana.util.OnDialogButtonClick;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.util.VUtil;
 

@@ -1,24 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="100dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="16dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingTop="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:background="#ffffff"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/activity_image"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:gravity="center_vertical"
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp" />
 
     <TextView
+        android:layout_toRightOf="@id/activity_image"
         android:id="@+id/activity_title"
+        android:layout_marginLeft="16dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|center_vertical"
-        android:padding="16dp"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:singleLine="true"
         android:text="Title"
         android:textSize="24sp" />
 
     <CheckBox
+        android:layout_alignParentRight="true"
         android:id="@+id/activity_completed"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|center_vertical"
-        android:clickable="false"
-        android:padding="16dp" />
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:clickable="false" />
 
-</FrameLayout>
+</RelativeLayout>

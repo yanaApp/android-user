@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.util.OnViewHolderClick;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by icaboalo on 26/05/16.
@@ -33,7 +37,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_action_plan_adapter, parent, false);
-        return new ActivityViewHolder(view, R.id.activity_title, R.id.activity_completed, viewHolderClick);
+        return new ActivityViewHolder(view, R.id.activity_title, R.id.activity_image, R.id.activity_completed, viewHolderClick);
     }
 
     @Override
@@ -42,6 +46,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         holder.mActivityTitle.setText(activity.getName());
         holder.mCompletedCheckbox.setChecked(activity.isCompleted());
+        holder.setImage(activity.getmImage());
     }
 
     @Override
@@ -53,15 +58,23 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         TextView mActivityTitle;
         CheckBox mCompletedCheckbox;
+        CircleImageView mActivityImage;
         OnViewHolderClick viewHolderClick;
 
 
-        public ActivityViewHolder(View itemView, int activityTitleId, int activityCompletedId, OnViewHolderClick onViewHolderClick) {
+        public ActivityViewHolder(View itemView, int activityTitleId, int activityImageId, int activityCompletedId, OnViewHolderClick onViewHolderClick) {
             super(itemView);
             this.mActivityTitle = (TextView) itemView.findViewById(activityTitleId);
             this.mCompletedCheckbox = (CheckBox) itemView.findViewById(activityCompletedId);
+            this.mActivityImage = (CircleImageView) itemView.findViewById(activityImageId);
             this.viewHolderClick = onViewHolderClick;
             itemView.setOnClickListener(this);
+        }
+
+        void setImage(String url){
+            if (!url.isEmpty() || url != null){
+                Picasso.with(mContext).load(url).into(mActivityImage);
+            }
         }
 
         @Override

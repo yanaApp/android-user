@@ -1,4 +1,4 @@
-package com.icaboalo.yana.ui.adapter;
+package com.icaboalo.yana.util;
 
 import android.content.DialogInterface;
 import android.support.annotation.Nullable;

@@ -9,6 +9,10 @@ import io.realm.annotations.PrimaryKey;
  * Created by saul on 27/05/16.
  */
 public class UserModel extends RealmObject {
+
+    public UserModel() {
+    }
+
     @PrimaryKey
     private long id;
     private String nUser_name;

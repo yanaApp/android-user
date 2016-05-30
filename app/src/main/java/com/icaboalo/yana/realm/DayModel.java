@@ -8,6 +8,10 @@ import io.realm.annotations.PrimaryKey;
  * Created by saul on 27/05/16.
  */
 public class DayModel extends RealmObject{
+
+    public DayModel() {
+    }
+
     @PrimaryKey
     private int nId;
     private String nDate;
