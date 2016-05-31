@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
@@ -52,7 +53,7 @@ public class ActionPlanFragment extends Fragment {
     ArrayList<ActivityApiModel> createList(){
         ArrayList<ActivityApiModel> activityList = new ArrayList<>();
         activityList.add(new ActivityApiModel("Sonreír antes de levantarse", ""));
-        activityList.add(new ActivityApiModel("Desayunar", ""));
+        activityList.add(new ActivityApiModel("Desayunar", "Esta es tu primer comida del día! lorem ipsum lorem ipsum whatever lol."));
         activityList.add(new ActivityApiModel("Bañarse", ""));
         activityList.add(new ActivityApiModel("Comer", ""));
         activityList.add(new ActivityApiModel("Lammarle a un ser querido", ""));
@@ -65,7 +66,7 @@ public class ActionPlanFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 ActivityApiModel activity = createList().get(position);
-                showDialog(activity);
+                //Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -73,23 +74,4 @@ public class ActionPlanFragment extends Fragment {
         mActivityRecycler.setLayoutManager(linearLayoutManager);
     }
 
-    void showDialog(final ActivityApiModel activity){
-        AlertDialog.Builder activityDetailDialog = new AlertDialog.Builder(getActivity());
-        activityDetailDialog.setTitle(activity.getName());
-        activityDetailDialog.setMessage(activity.getDescription());
-        activityDetailDialog.setCancelable(false);
-        activityDetailDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDialogButtonClick.onPositiveClick(dialog, activity, 1);
-            }
-        });
-        activityDetailDialog.setNeutralButton("COMPLETE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDialogButtonClick.onNeutralClick(dialog, activity, label_activity_complete);
-            }
-        });
-        activityDetailDialog.show();
-    }
 }

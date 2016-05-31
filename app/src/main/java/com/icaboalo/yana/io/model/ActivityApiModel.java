@@ -18,7 +18,7 @@ public class ActivityApiModel implements Serializable{
     String mName;
     String mImage = "";
     String mDescription;
-    boolean mCompleted = false;
+    boolean mCompleted = true;
 
 
 //  GETTERS

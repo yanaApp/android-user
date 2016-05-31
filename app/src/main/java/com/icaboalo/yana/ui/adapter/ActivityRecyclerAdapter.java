@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
@@ -26,6 +28,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     ArrayList<ActivityApiModel> mActivityList;
     LayoutInflater mInflater;
     OnViewHolderClick viewHolderClick;
+    private int nExpandedPosition = -1;
+
 
     public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList, OnViewHolderClick onViewHolderClick) {
         this.mContext = context;
@@ -37,16 +41,27 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_action_plan_adapter, parent, false);
-        return new ActivityViewHolder(view, R.id.activity_title, R.id.activity_image, R.id.activity_completed, viewHolderClick);
+        return new ActivityViewHolder(view, viewHolderClick);
     }
 
     @Override
     public void onBindViewHolder(ActivityViewHolder holder, int position) {
         ActivityApiModel activity = mActivityList.get(position);
 
-        holder.mActivityTitle.setText(activity.getName());
-        holder.mCompletedCheckbox.setChecked(activity.isCompleted());
-        holder.setImage(activity.getmImage());
+
+        //holder.setImage(activity.getmImage());
+
+        if (position == nExpandedPosition) {
+            holder.mExpandedLayout.setVisibility(View.VISIBLE);
+            holder.mNormalLayout.setVisibility(View.GONE);
+        } else {
+            holder.mExpandedLayout.setVisibility(View.GONE);
+            holder.mNormalLayout.setVisibility(View.VISIBLE);
+        }
+
+        holder.setTitle(activity.getName());
+        holder.setChecked(activity.isCompleted());
+        holder.setDescription(activity.getDescription());
     }
 
     @Override
@@ -56,30 +71,74 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView mActivityTitle;
+        TextView mActivityTitle, mActivityDescription;
         CheckBox mCompletedCheckbox;
+        RelativeLayout mNormalLayout, mExpandedLayout;
         CircleImageView mActivityImage;
         OnViewHolderClick viewHolderClick;
 
-
-        public ActivityViewHolder(View itemView, int activityTitleId, int activityImageId, int activityCompletedId, OnViewHolderClick onViewHolderClick) {
+        public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick) {
             super(itemView);
-            this.mActivityTitle = (TextView) itemView.findViewById(activityTitleId);
-            this.mCompletedCheckbox = (CheckBox) itemView.findViewById(activityCompletedId);
-            this.mActivityImage = (CircleImageView) itemView.findViewById(activityImageId);
-            this.viewHolderClick = onViewHolderClick;
+            mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
+            mExpandedLayout = (RelativeLayout) itemView.findViewById(R.id.expanded_layout);
+            viewHolderClick = onViewHolderClick;
             itemView.setOnClickListener(this);
         }
 
         void setImage(String url){
-            if (!url.isEmpty() || url != null){
-                Picasso.with(mContext).load(url).into(mActivityImage);
+            int[] imageIds = {R.id.activity_image, R.id.activity_image_expanded};
+            for (int id: imageIds){
+                mActivityImage = (CircleImageView) itemView.findViewById(id);
+                if (!url.isEmpty()){
+                    Picasso.with(mContext).load(url).into(mActivityImage);
+                }
+                else{
+                    mActivityImage.setImageDrawable(null);
+                }
+            }
+        }
+
+        void setTitle(String text){
+            int[] titleIds = {R.id.activity_title, R.id.activity_title_expanded};
+            for (int id: titleIds){
+                mActivityTitle = (TextView) itemView.findViewById(id);
+                mActivityTitle.setText(text);
+            }
+        }
+
+        void setDescription(String description){
+            mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description_expanded);
+            mActivityDescription.setText(description);
+        }
+
+        void setChecked(boolean check){
+            int[] checkIds = {R.id.activity_completed, R.id.activity_completed_expanded};
+            for (int id: checkIds){
+                mCompletedCheckbox = (CheckBox) itemView.findViewById(id);
+                mCompletedCheckbox.setChecked(check);
             }
         }
 
         @Override
         public void onClick(View v) {
             viewHolderClick.onClick(v, getAdapterPosition());
+
+            // Check for an expanded view, collapse if you find one
+            if (nExpandedPosition >= 0) {
+                int prev = nExpandedPosition;
+                notifyItemChanged(prev);
+            }
+
+            if (nExpandedPosition == getAdapterPosition()){
+                nExpandedPosition = -1;
+                notifyItemChanged(getAdapterPosition());
+            }
+            else{
+                // Set the current position to "expanded"
+                nExpandedPosition = getAdapterPosition();
+                notifyItemChanged(nExpandedPosition);
+            }
+
         }
     }
 }
