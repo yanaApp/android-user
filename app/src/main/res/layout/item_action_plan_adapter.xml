@@ -1,42 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingBottom="16dp"
-    android:paddingLeft="40dp"
-    android:paddingRight="40dp"
-    android:paddingTop="16dp">
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:background="#ffffff"
-        android:src="@mipmap/ic_launcher"
-        android:id="@+id/activity_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:gravity="center_vertical"
-        app:civ_border_color="#000000"
-        app:civ_border_width="2dp" />
+    <RelativeLayout
+        android:id="@+id/normal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="16dp">
 
-    <TextView
-        android:layout_toRightOf="@id/activity_image"
-        android:id="@+id/activity_title"
-        android:layout_marginLeft="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:singleLine="true"
-        android:text="Title"
-        android:textSize="24sp" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/activity_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_color="#000000"
+            app:civ_border_width="2dp" />
 
-    <CheckBox
-        android:layout_alignParentRight="true"
-        android:id="@+id/activity_completed"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:clickable="false" />
+        <TextView
+            android:id="@+id/activity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/activity_image"
+            android:layout_toRightOf="@+id/activity_image"
+            android:singleLine="true"
+            android:text="Title"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <CheckBox
+            android:id="@+id/activity_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:clickable="false" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/expanded_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
+        android:paddingTop="16dp"
+        android:visibility="visible">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/activity_image_expanded"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_color="#000000"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/activity_title_expanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/activity_image_expanded"
+            android:layout_toRightOf="@id/activity_image_expanded"
+            android:singleLine="true"
+            android:text="Title"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/activity_description_expanded"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_title_expanded"
+            android:layout_marginLeft="16dp"
+            android:layout_toEndOf="@id/activity_image_expanded"
+            android:layout_toRightOf="@+id/activity_image_expanded"
+            android:text="Description..." />
+
+        <CheckBox
+            android:id="@+id/activity_completed_expanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical" />
+    </RelativeLayout>
+</LinearLayout>
