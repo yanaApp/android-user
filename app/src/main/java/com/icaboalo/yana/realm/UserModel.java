@@ -14,52 +14,51 @@ public class UserModel extends RealmObject {
     }
 
     @PrimaryKey
-    private long id;
-    private String nUser_name;
-    private String nEmail;
-    private String nPhone_number;
-    private String nPassword;
+    private int id;
+    private String userName;
+    private String email;
+    private String phoneNumber;
+    private String password;
 
-    public String getnPassword() {
-        return nPassword;
-    }
-
-    public void setnPassword(String nPassword) {
-        this.nPassword = nPassword;
-    }
-
-    public String getnPhone_number() {
-        return nPhone_number;
-    }
-
-    public void setnPhone_number(String nPhone_number) {
-        this.nPhone_number = nPhone_number;
-    }
-
-    public String getnEmail() {
-        return nEmail;
-    }
-
-    public void setnEmail(String nEmail) {
-        this.nEmail = nEmail;
-    }
-
-    public String getnUser_name() {
-        return nUser_name;
-    }
-
-    public void setnUser_name(String nUser_name) {
-        this.nUser_name = nUser_name;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}
 
 

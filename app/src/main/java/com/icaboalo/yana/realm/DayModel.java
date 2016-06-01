@@ -13,31 +13,31 @@ public class DayModel extends RealmObject{
     }
 
     @PrimaryKey
-    private int nId;
-    private String nDate;
-    private String nActivity;
+    private int id;
+    private String date;
+    private String activity;
 
-    public int getnId() {
-        return nId;
+    public int getId() {
+        return id;
     }
 
-    public void setnId(int nId) {
-        this.nId = nId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getnDate() {
-        return nDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setnDate(String nDate) {
-        this.nDate = nDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getnActivity() {
-        return nActivity;
+    public String getActivity() {
+        return activity;
     }
 
-    public void setnActivity(String nActivity) {
-        this.nActivity = nActivity;
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 }

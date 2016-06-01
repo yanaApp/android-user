@@ -8,40 +8,40 @@ import io.realm.annotations.PrimaryKey;
  */
 public class ActivityModel extends RealmObject{
     @PrimaryKey
-    private int nId;
-    private int nActivityNumber;
-    private String nActivityName;
-    private String nActivityDescription;
+    private int id;
+    private int activityNumber;
+    private String activityName;
+    private String activityDescription;
 
-    public int getnId() {
-        return nId;
+    public int getId() {
+        return id;
     }
 
-    public void setnId(int nId) {
-        this.nId = nId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getnActivityNumber() {
-        return nActivityNumber;
+    public int getActivityNumber() {
+        return activityNumber;
     }
 
-    public void setnActivityNumber(int nActivityNumber) {
-        this.nActivityNumber = nActivityNumber;
+    public void setActivityNumber(int activityNumber) {
+        this.activityNumber = activityNumber;
     }
 
-    public String getnActivityName() {
-        return nActivityName;
+    public String getActivityName() {
+        return activityName;
     }
 
-    public void setnActivityName(String nActivityName) {
-        this.nActivityName = nActivityName;
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 
-    public String getnActivityDescription() {
-        return nActivityDescription;
+    public String getActivityDescription() {
+        return activityDescription;
     }
 
-    public void setnActivityDescription(String nActivityDescription) {
-        this.nActivityDescription = nActivityDescription;
+    public void setActivityDescription(String activityDescription) {
+        this.activityDescription = activityDescription;
     }
 }

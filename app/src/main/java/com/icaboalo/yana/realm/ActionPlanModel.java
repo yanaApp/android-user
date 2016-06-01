@@ -11,11 +11,23 @@ public class ActionPlanModel extends RealmObject{
 
 
     @PrimaryKey
-    private int nId;
-    private int nDay;
+    private int id;
+    private int day;
 
-    public int getnId() {
-        return nId;
+
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
 }
