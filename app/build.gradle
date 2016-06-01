@@ -37,5 +37,3 @@ buildscript {
     }
     dependencies {
         classpath "io.realm:realm-gradle-plugin:1.0.0"
-    }
-}
