@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,9 +49,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     public void onBindViewHolder(ActivityViewHolder holder, int position) {
         ActivityApiModel activity = mActivityList.get(position);
 
-
-        //holder.setImage(activity.getmImage());
-
         if (position == nExpandedPosition) {
             holder.mExpandedLayout.setVisibility(View.VISIBLE);
             holder.mNormalLayout.setVisibility(View.GONE);
@@ -60,7 +58,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         }
 
         holder.setTitle(activity.getName());
-        holder.setChecked(activity.isCompleted());
         holder.setDescription(activity.getDescription());
     }
 
@@ -72,9 +69,9 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mActivityTitle, mActivityDescription;
-        CheckBox mCompletedCheckbox;
         RelativeLayout mNormalLayout, mExpandedLayout;
         CircleImageView mActivityImage;
+        ImageView mEmotionImage;
         OnViewHolderClick viewHolderClick;
 
         public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick) {
@@ -85,7 +82,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             itemView.setOnClickListener(this);
         }
 
-        void setImage(String url){
+        void setActivityImage(String url){
             int[] imageIds = {R.id.activity_image, R.id.activity_image_expanded};
             for (int id: imageIds){
                 mActivityImage = (CircleImageView) itemView.findViewById(id);
@@ -94,6 +91,35 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                 }
                 else{
                     mActivityImage.setImageDrawable(null);
+                }
+            }
+        }
+
+        void setEmotionImage(int answer){
+            int[] imageIds = {R.id.image_emotion, R.id.image_emotion_expanded};
+            for (int id: imageIds){
+                mEmotionImage = (ImageView) itemView.findViewById(id);
+                if (answer > 0){
+                    switch (answer){
+                        case 1:
+                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            break;
+                        case 2:
+                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            break;
+                        case 3:
+                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            break;
+                        case 4:
+                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            break;
+                        case 5:
+                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            break;
+                    }
+                }
+                else{
+                    mEmotionImage.setImageDrawable(null);
                 }
             }
         }
@@ -109,14 +135,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         void setDescription(String description){
             mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description_expanded);
             mActivityDescription.setText(description);
-        }
-
-        void setChecked(boolean check){
-            int[] checkIds = {R.id.activity_completed, R.id.activity_completed_expanded};
-            for (int id: checkIds){
-                mCompletedCheckbox = (CheckBox) itemView.findViewById(id);
-                mCompletedCheckbox.setChecked(check);
-            }
         }
 
         @Override

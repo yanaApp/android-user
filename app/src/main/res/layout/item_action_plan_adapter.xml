@@ -38,16 +38,13 @@
             android:text="Title"
             android:textSize="20sp" />
 
-        <CheckBox
-            android:id="@+id/activity_completed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+        <ImageView
+            android:id="@+id/image_emotion"
+            android:src="@mipmap/ic_launcher"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:clickable="false" />
-
+            android:layout_width="32dp"
+            android:layout_height="32dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -92,13 +89,12 @@
             android:layout_toRightOf="@+id/activity_image_expanded"
             android:text="Description..." />
 
-        <CheckBox
-            android:id="@+id/activity_completed_expanded"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+        <ImageView
+            android:id="@+id/image_emotion_expanded"
+            android:src="@mipmap/ic_launcher"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical" />
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
     </RelativeLayout>
 </LinearLayout>
