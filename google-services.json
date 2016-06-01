@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "465015485948",
+    "firebase_url": "https://first-project-79cde.firebaseio.com",
+    "project_id": "first-project-79cde",
+    "storage_bucket": "first-project-79cde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465015485948:android:0ae3bd4e73c677d7",
+        "android_client_info": {
+          "package_name": "com.icaboalo.yana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465015485948-b1ub2gmfjsmi3undq699h2g5cuomvgvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsz0agk87yUVxJf2jN8cWo-JVYLoj8N2Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
