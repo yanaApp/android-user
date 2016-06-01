@@ -10,7 +10,7 @@ import io.realm.annotations.PrimaryKey;
 public class ActionPlanModel extends RealmObject{
     @PrimaryKey
     private int nId;
-    private RealmList<DayModel> nDays;
+    private int nDay;
 
     public int getnId() {
         return nId;
@@ -20,17 +20,11 @@ public class ActionPlanModel extends RealmObject{
         this.nId = nId;
     }
 
-    public RealmList<DayModel> getnDays() {
-        return nDays;
+    public int getnDay() {
+        return nDay;
     }
 
-    public void setnDays(RealmList<DayModel> nDays) {
-        this.nDays = nDays;
+    public void setnDay(int nDay) {
+        this.nDay = nDay;
     }
-
-    public ActionPlanModel(int nId){
-        this.nId = nId;
-
-    }
-
 }

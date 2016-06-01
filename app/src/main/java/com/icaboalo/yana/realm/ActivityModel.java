@@ -12,7 +12,14 @@ public class ActivityModel extends RealmObject{
     private int nActivityNumber;
     private String nActivityName;
     private String nActivityDescription;
-    private boolean nActivityStatus;
+
+    public int getnId() {
+        return nId;
+    }
+
+    public void setnId(int nId) {
+        this.nId = nId;
+    }
 
     public int getnActivityNumber() {
         return nActivityNumber;
@@ -20,31 +27,6 @@ public class ActivityModel extends RealmObject{
 
     public void setnActivityNumber(int nActivityNumber) {
         this.nActivityNumber = nActivityNumber;
-    }
-
-    public String getnActivityDescription() {
-        return nActivityDescription;
-    }
-
-    public void setnActivityDescription(String nActivityDescription) {
-        this.nActivityDescription = nActivityDescription;
-    }
-
-    public boolean isnActivityStatus() {
-        return nActivityStatus;
-    }
-
-    public void setnActivityStatus(boolean nActivityStatus) {
-        this.nActivityStatus = nActivityStatus;
-    }
-
-    public int getnId() {
-
-        return nId;
-    }
-
-    public void setnId(int nId) {
-        this.nId = nId;
     }
 
     public String getnActivityName() {
@@ -55,5 +37,11 @@ public class ActivityModel extends RealmObject{
         this.nActivityName = nActivityName;
     }
 
+    public String getnActivityDescription() {
+        return nActivityDescription;
+    }
 
+    public void setnActivityDescription(String nActivityDescription) {
+        this.nActivityDescription = nActivityDescription;
+    }
 }

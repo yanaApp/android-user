@@ -16,28 +16,12 @@ public class UserModel extends RealmObject {
     private String nPhone_number;
     private String nPassword;
 
-    public long getId() {
-        return id;
+    public String getnPassword() {
+        return nPassword;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getnUser_name() {
-        return nUser_name;
-    }
-
-    public void setnUser_name(String nUser_name) {
-        this.nUser_name = nUser_name;
-    }
-
-    public String getnEmail() {
-        return nEmail;
-    }
-
-    public void setnEmail(String nEmail) {
-        this.nEmail = nEmail;
+    public void setnPassword(String nPassword) {
+        this.nPassword = nPassword;
     }
 
     public String getnPhone_number() {
@@ -48,11 +32,30 @@ public class UserModel extends RealmObject {
         this.nPhone_number = nPhone_number;
     }
 
-    public String getnPassword() {
-        return nPassword;
+    public String getnEmail() {
+        return nEmail;
     }
 
-    public void setnPassword(String nPassword) {
-        this.nPassword = nPassword;
+    public void setnEmail(String nEmail) {
+        this.nEmail = nEmail;
     }
-}
+
+    public String getnUser_name() {
+        return nUser_name;
+    }
+
+    public void setnUser_name(String nUser_name) {
+        this.nUser_name = nUser_name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
+
+
