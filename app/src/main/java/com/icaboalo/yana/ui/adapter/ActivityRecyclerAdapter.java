@@ -28,21 +28,22 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     Context mContext;
     ArrayList<ActivityApiModel> mActivityList;
     LayoutInflater mInflater;
-    OnViewHolderClick viewHolderClick;
+    OnViewHolderClick viewHolderClick, mEmotionImageClick;
     private int nExpandedPosition = -1;
 
 
-    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList, OnViewHolderClick onViewHolderClick) {
+    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList, OnViewHolderClick onViewHolderClick, OnViewHolderClick emotionImageClick) {
         this.mContext = context;
         this.mActivityList = activityList;
         this.viewHolderClick = onViewHolderClick;
+        this.mEmotionImageClick = emotionImageClick;
         this.mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_action_plan_adapter, parent, false);
-        return new ActivityViewHolder(view, viewHolderClick);
+        return new ActivityViewHolder(view, viewHolderClick, mEmotionImageClick);
     }
 
     @Override
@@ -59,6 +60,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         holder.setTitle(activity.getName());
         holder.setDescription(activity.getDescription());
+        holder.setEmotionImage(activity.getAnswer());
     }
 
     @Override
@@ -72,13 +74,14 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         RelativeLayout mNormalLayout, mExpandedLayout;
         CircleImageView mActivityImage;
         ImageView mEmotionImage;
-        OnViewHolderClick viewHolderClick;
+        OnViewHolderClick viewHolderClick, mEmotionImageClick;
 
-        public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick) {
+        public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick, OnViewHolderClick imageClick) {
             super(itemView);
-            mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
-            mExpandedLayout = (RelativeLayout) itemView.findViewById(R.id.expanded_layout);
-            viewHolderClick = onViewHolderClick;
+            this.mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
+            this.mExpandedLayout = (RelativeLayout) itemView.findViewById(R.id.expanded_layout);
+            this.viewHolderClick = onViewHolderClick;
+            this.mEmotionImageClick = imageClick;
             itemView.setOnClickListener(this);
         }
 
@@ -102,7 +105,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                 if (answer > 0){
                     switch (answer){
                         case 1:
-                            Picasso.with(mContext).load(answer).into(mEmotionImage);
+                            Picasso.with(mContext).load(R.mipmap.ic_launcher).into(mEmotionImage);
                             break;
                         case 2:
                             Picasso.with(mContext).load(answer).into(mEmotionImage);
@@ -122,6 +125,12 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     mEmotionImage.setImageDrawable(null);
                 }
             }
+            mEmotionImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mEmotionImageClick.onClick(v, getAdapterPosition());
+                }
+            });
         }
 
         void setTitle(String text){

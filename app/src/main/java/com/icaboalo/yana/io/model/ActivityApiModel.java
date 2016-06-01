@@ -18,7 +18,7 @@ public class ActivityApiModel implements Serializable{
     String mName;
     String mImage = "";
     String mDescription;
-    boolean mCompleted = true;
+    int mAnswer = 0;
 
 
 //  GETTERS
@@ -38,8 +38,8 @@ public class ActivityApiModel implements Serializable{
         return mDescription;
     }
 
-    public boolean isCompleted() {
-        return mCompleted;
+    public int getAnswer() {
+        return mAnswer;
     }
 
 //  SETTERS
@@ -51,7 +51,7 @@ public class ActivityApiModel implements Serializable{
         this.mDescription = mDescription;
     }
 
-    public void setCompleted(boolean mCompleted) {
-        this.mCompleted = mCompleted;
+    public void setanswer(int answer) {
+        this.mAnswer = answer;
     }
 }

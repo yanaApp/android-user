@@ -40,11 +40,12 @@
 
         <ImageView
             android:id="@+id/image_emotion"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="32dp"
-            android:layout_height="32dp" />
+            android:clickable="false"
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -91,10 +92,10 @@
 
         <ImageView
             android:id="@+id/image_emotion_expanded"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_width="48dp"
-            android:layout_height="48dp" />
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
 </LinearLayout>
