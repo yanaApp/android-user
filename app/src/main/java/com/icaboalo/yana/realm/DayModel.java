@@ -15,7 +15,7 @@ public class DayModel extends RealmObject{
     @PrimaryKey
     private int nId;
     private String nDate;
-    private RealmList<ActivityModel> nActivities;
+    private String nActivity;
 
     public int getnId() {
         return nId;
@@ -33,16 +33,11 @@ public class DayModel extends RealmObject{
         this.nDate = nDate;
     }
 
-    public RealmList<ActivityModel> getnActivities() {
-        return nActivities;
+    public String getnActivity() {
+        return nActivity;
     }
 
-    public void setnActivities(RealmList<ActivityModel> nActivities) {
-        this.nActivities = nActivities;
-    }
-
-    public DayModel(int nId, String nDate){
-        this.nId = nId;
-        this.nDate = nDate;
+    public void setnActivity(String nActivity) {
+        this.nActivity = nActivity;
     }
 }
