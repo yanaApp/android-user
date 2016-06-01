@@ -1,5 +1,7 @@
 package com.icaboalo.yana.io.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -9,15 +11,24 @@ public class ActivityApiModel implements Serializable{
 
 //  CONSTRUCTORS
     public ActivityApiModel(String name, String description) {
-        this.mName = name;
+        this.mTitle = name;
         this.mDescription = description;
     }
 
 //  PROPERTIES
+    @SerializedName("id")
     int mId;
-    String mName;
+
+    @SerializedName("title")
+    String mTitle;
+
+    @SerializedName("image")
     String mImage = "";
+
+    @SerializedName("description")
     String mDescription;
+
+    @SerializedName("answer")
     int mAnswer = 0;
 
 
@@ -26,8 +37,8 @@ public class ActivityApiModel implements Serializable{
         return mId;
     }
 
-    public String getName() {
-        return mName;
+    public String getTitle() {
+        return mTitle;
     }
 
     public String getmImage() {
@@ -43,8 +54,8 @@ public class ActivityApiModel implements Serializable{
     }
 
 //  SETTERS
-    public void setName(String mName) {
-        this.mName = mName;
+    public void setTitle(String mName) {
+        this.mTitle = mName;
     }
 
     public void setDescription(String mDescription) {

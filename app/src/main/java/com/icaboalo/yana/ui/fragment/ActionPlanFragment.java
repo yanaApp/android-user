@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,9 +74,12 @@ public class ActionPlanFragment extends Fragment {
 
         RealmResults<ActivityModel> results = query.findAll();
 
+        Log.d("RESULTS", results.toString());
+
         ArrayList<ActivityModel> activities = new ArrayList<>();
         for (ActivityModel activity: results){
             activities.add(activity);
+            Log.d("ACTIVITY", activity.getTitle());
         }
         return activities;
     }

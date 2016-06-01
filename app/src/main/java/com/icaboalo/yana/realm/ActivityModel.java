@@ -1,5 +1,7 @@
 package com.icaboalo.yana.realm;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -7,12 +9,24 @@ import io.realm.annotations.PrimaryKey;
  * Created by saul on 27/05/16.
  */
 public class ActivityModel extends RealmObject{
+
+
     @PrimaryKey
+    @SerializedName("id")
     private int id;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("day")
     private DayModel day;
+
+    @SerializedName("answer")
     private int answer = 0;
+
 
     public int getId() {
         return id;

@@ -2,6 +2,7 @@ package com.icaboalo.yana.ui.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,18 +14,28 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.util.OnDialogButtonClick;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.util.VUtil;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import io.realm.Realm;
+import io.realm.RealmList;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.icaboalo.yana.R.string.label_activity_complete;
 
@@ -38,7 +49,12 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VUtil.checkForToken(this);
+        if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
+            Intent goToLogin = new Intent(this, LoginActivity.class);
+            startActivity(goToLogin);
+            finish();
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -62,27 +78,40 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
         mNavigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(new ActionPlanFragment());
-        saveSampleActivities();
+        getActivities();
     }
 
     void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-    void saveSampleActivities(){
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        for (int i = 0; i < 10; i++) {
-            ActivityModel activity = new ActivityModel();
-            activity.setId(i+1);
-            activity.setTitle("Sonrie");
-            activity.setDescription("Es importante soreir en tu dia");
-            activity.setAnswer(1);
+    void getActivities(){
+        Call<ArrayList<ActivityApiModel>> call = ApiClient.getApiService().getActivities(VUtil.getToken(this));
+        call.enqueue(new Callback<ArrayList<ActivityApiModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ActivityApiModel>> call, Response<ArrayList<ActivityApiModel>> response) {
+                if (response.isSuccessful()){
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    for (ActivityApiModel activityApi: response.body()){
+                        ActivityModel activity = new ActivityModel();
+                        activity.setId(activityApi.getmId());
+                        activity.setTitle(activityApi.getTitle());
+                        activity.setDescription(activityApi.getDescription());
+                        activity.setAnswer(activityApi.getAnswer());
+                        realm.copyToRealmOrUpdate(activity);
+                        Log.d("ACTIVITY", activity.getTitle());
+                    }
+                    realm.commitTransaction();
+                }
+            }
 
-            realm.copyToRealmOrUpdate(activity);
+            @Override
+            public void onFailure(Call<ArrayList<ActivityApiModel>> call, Throwable t) {
 
-        }
-        realm.commitTransaction();
+            }
+        });
+
     }
 
     @Override
@@ -127,11 +156,13 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
             case R.id.nav_manage:
                 break;
             case R.id.nav_send:
+                SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
+                sharedPreferences.edit().clear().apply();
                 break;
 
         }
 
-        replaceFragment(fragment);
+//        replaceFragment(fragment);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
