@@ -3,6 +3,10 @@ package com.icaboalo.yana.util;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
+import android.view.View;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.ui.activity.LoginActivity;
@@ -21,3 +25,4 @@ public class VUtil {
         }
     }
 }
+

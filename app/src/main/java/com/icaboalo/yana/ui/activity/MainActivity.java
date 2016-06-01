@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.util.OnDialogButtonClick;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
+    FABToolbarLayout mFabToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,14 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mFabToolbarLayout = (FABToolbarLayout) findViewById(R.id.fabtoolbar);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabtoolbar_fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                mFabToolbarLayout.show();
             }
         });
 
@@ -65,7 +69,9 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else if (mFabToolbarLayout.isShown()){
+            mFabToolbarLayout.hide();
+        } else{
             super.onBackPressed();
         }
     }
