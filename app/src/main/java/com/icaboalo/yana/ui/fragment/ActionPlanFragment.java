@@ -15,11 +15,16 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
 import com.icaboalo.yana.util.OnDialogButtonClick;
 import com.icaboalo.yana.util.OnViewHolderClick;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 import static com.icaboalo.yana.R.string.label_activity_complete;
 
@@ -47,31 +52,32 @@ public class ActionPlanFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
-        setUpActivityRecycler(createList());
+        setUpActivityRecycler(getFromRealm());
     }
 
-    ArrayList<ActivityApiModel> createList(){
-        ArrayList<ActivityApiModel> activityList = new ArrayList<>();
-        activityList.add(new ActivityApiModel("Sonreír antes de levantarse", ""));
-        activityList.add(new ActivityApiModel("Desayunar", "Esta es tu primer comida del día! lorem ipsum lorem ipsum whatever lol."));
-        activityList.add(new ActivityApiModel("Bañarse", ""));
-        activityList.add(new ActivityApiModel("Comer", ""));
-        activityList.add(new ActivityApiModel("Lammarle a un ser querido", ""));
-        activityList.add(new ActivityApiModel("Cenar", ""));
-        return activityList;
-    }
-
-    void setUpActivityRecycler(ArrayList<ActivityApiModel> activityList){
+    void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
         ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnViewHolderClick() {
             @Override
             public void onClick(View view, int position) {
-                ActivityApiModel activity = createList().get(position);
-                //Toast.makeText(getActivity(), "View", Toast.LENGTH_SHORT).show();
+                ActivityModel activity = activityList.get(position);
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mActivityRecycler.setAdapter(activityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
+    }
+
+    ArrayList<ActivityModel> getFromRealm(){
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
+
+        RealmResults<ActivityModel> results = query.findAll();
+
+        ArrayList<ActivityModel> activities = new ArrayList<>();
+        for (ActivityModel activity: results){
+            activities.add(activity);
+        }
+        return activities;
     }
 
 }

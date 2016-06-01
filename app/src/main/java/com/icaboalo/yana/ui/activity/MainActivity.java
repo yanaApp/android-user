@@ -19,9 +19,12 @@ import android.view.View;
 import com.github.fafaldo.fabtoolbar.widget.FABToolbarLayout;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.util.OnDialogButtonClick;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.util.VUtil;
+
+import io.realm.Realm;
 
 import static com.icaboalo.yana.R.string.label_activity_complete;
 
@@ -59,10 +62,27 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
         mNavigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(new ActionPlanFragment());
+        saveSampleActivities();
     }
 
     void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    void saveSampleActivities(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        for (int i = 0; i < 10; i++) {
+            ActivityModel activity = new ActivityModel();
+            activity.setId(i+1);
+            activity.setTitle("Sonrie");
+            activity.setDescription("Es importante soreir en tu dia");
+            activity.setAnswer(1);
+
+            realm.copyToRealmOrUpdate(activity);
+
+        }
+        realm.commitTransaction();
     }
 
     @Override

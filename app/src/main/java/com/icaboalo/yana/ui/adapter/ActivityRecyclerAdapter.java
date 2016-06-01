@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.util.OnViewHolderClick;
 import com.squareup.picasso.Picasso;
 
@@ -26,13 +27,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecyclerAdapter.ActivityViewHolder> {
 
     Context mContext;
-    ArrayList<ActivityApiModel> mActivityList;
+    ArrayList<ActivityModel> mActivityList;
     LayoutInflater mInflater;
     OnViewHolderClick viewHolderClick;
     private int nExpandedPosition = -1;
 
 
-    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityApiModel> activityList, OnViewHolderClick onViewHolderClick) {
+    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityModel> activityList, OnViewHolderClick onViewHolderClick) {
         this.mContext = context;
         this.mActivityList = activityList;
         this.viewHolderClick = onViewHolderClick;
@@ -47,7 +48,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
     @Override
     public void onBindViewHolder(ActivityViewHolder holder, int position) {
-        ActivityApiModel activity = mActivityList.get(position);
+        ActivityModel activity = mActivityList.get(position);
 
         if (position == nExpandedPosition) {
             holder.mExpandedLayout.setVisibility(View.VISIBLE);
@@ -57,7 +58,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             holder.mNormalLayout.setVisibility(View.VISIBLE);
         }
 
-        holder.setTitle(activity.getName());
+        holder.setTitle(activity.getTitle());
         holder.setDescription(activity.getDescription());
         holder.setEmotionImage(activity.getAnswer());
     }
