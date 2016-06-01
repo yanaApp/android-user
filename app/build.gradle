@@ -34,6 +34,9 @@ dependencies {
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    //FABToolbar
+    compile 'com.github.fafaldo:fab-toolbar:1.2.0'
+
 
 }
 
