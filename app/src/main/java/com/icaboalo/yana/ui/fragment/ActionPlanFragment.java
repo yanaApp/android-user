@@ -72,6 +72,7 @@ public class ActionPlanFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 Toast.makeText(getActivity(), "Image", Toast.LENGTH_SHORT).show();
+                
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
