@@ -9,9 +9,10 @@ import io.realm.annotations.PrimaryKey;
 public class ActivityModel extends RealmObject{
     @PrimaryKey
     private int id;
-    private int activityNumber;
-    private String activityName;
-    private String activityDescription;
+    private String title;
+    private String description;
+    private DayModel day;
+    private int answer = 0;
 
     public int getId() {
         return id;
@@ -21,27 +22,35 @@ public class ActivityModel extends RealmObject{
         this.id = id;
     }
 
-    public int getActivityNumber() {
-        return activityNumber;
+    public String getTitle() {
+        return title;
     }
 
-    public void setActivityNumber(int activityNumber) {
-        this.activityNumber = activityNumber;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getActivityName() {
-        return activityName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setActivityName(String activityName) {
-        this.activityName = activityName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getActivityDescription() {
-        return activityDescription;
+    public DayModel getDay() {
+        return day;
     }
 
-    public void setActivityDescription(String activityDescription) {
-        this.activityDescription = activityDescription;
+    public void setDay(DayModel day) {
+        this.day = day;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
     }
 }

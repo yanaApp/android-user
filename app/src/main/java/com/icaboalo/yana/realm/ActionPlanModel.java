@@ -13,6 +13,7 @@ public class ActionPlanModel extends RealmObject{
     @PrimaryKey
     private int id;
     private int day;
+    private UserModel user;
 
 
     public int getId() {
@@ -29,5 +30,13 @@ public class ActionPlanModel extends RealmObject{
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public UserModel getUser() {
+        return user;
+    }
+
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 }

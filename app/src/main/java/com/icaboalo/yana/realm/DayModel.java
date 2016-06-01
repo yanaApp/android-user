@@ -15,7 +15,9 @@ public class DayModel extends RealmObject{
     @PrimaryKey
     private int id;
     private String date;
-    private String activity;
+    private int number;
+    private ActionPlanModel actionPlan;
+    private int answer = 0;
 
     public int getId() {
         return id;
@@ -33,11 +35,27 @@ public class DayModel extends RealmObject{
         this.date = date;
     }
 
-    public String getActivity() {
-        return activity;
+    public int getNumber() {
+        return number;
     }
 
-    public void setActivity(String activity) {
-        this.activity = activity;
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public ActionPlanModel getActionPlan() {
+        return actionPlan;
+    }
+
+    public void setActionPlan(ActionPlanModel actionPlan) {
+        this.actionPlan = actionPlan;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
     }
 }
