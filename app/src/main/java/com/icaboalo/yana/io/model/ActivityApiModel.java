@@ -10,6 +10,9 @@ import java.io.Serializable;
 public class ActivityApiModel implements Serializable{
 
 //  CONSTRUCTORS
+    public ActivityApiModel() {
+    }
+
     public ActivityApiModel(String name, String description) {
         this.mTitle = name;
         this.mDescription = description;
@@ -30,6 +33,9 @@ public class ActivityApiModel implements Serializable{
 
     @SerializedName("answer")
     int mAnswer = 0;
+
+    @SerializedName("day")
+    int mDay;
 
 
 //  GETTERS
@@ -53,6 +59,10 @@ public class ActivityApiModel implements Serializable{
         return mAnswer;
     }
 
+    public int getDay(){
+        return mDay;
+    }
+
 //  SETTERS
     public void setTitle(String mName) {
         this.mTitle = mName;
@@ -64,5 +74,9 @@ public class ActivityApiModel implements Serializable{
 
     public void setanswer(int answer) {
         this.mAnswer = answer;
+    }
+
+    public void setDay(int day){
+        this.mDay = day;
     }
 }
