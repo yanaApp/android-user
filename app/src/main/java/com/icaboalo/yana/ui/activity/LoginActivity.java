@@ -17,6 +17,8 @@ import com.icaboalo.yana.realm.UserModel;
 
 import java.io.IOException;
 import java.security.PrivilegedAction;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,8 +64,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().putString(PrefConstants.tokenPref, "Token " + response.body().getToken()).apply();
-                    Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(goToMain);
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(goToMain);
+                            finish();
+                        }
+                    }, 1000);
                 }else{
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());

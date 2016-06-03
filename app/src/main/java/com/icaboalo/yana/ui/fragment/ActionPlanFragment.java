@@ -78,12 +78,11 @@ public class ActionPlanFragment extends Fragment {
 
         RealmResults<ActivityModel> results = query.findAll();
 
-        Log.d("RESULTS", results.toString());
+        Log.d("REALM_RESULTS", results.toString());
 
         ArrayList<ActivityModel> activities = new ArrayList<>();
         for (ActivityModel activity: results){
             activities.add(activity);
-            Log.d("ACTIVITY", activity.getTitle());
         }
         return activities;
     }

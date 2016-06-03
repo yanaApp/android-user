@@ -41,7 +41,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     void checkForToken(){
-        if (VUtil.getToken(this).isEmpty()){
+        if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
             Intent goToLogin = new Intent(this, LoginActivity.class);
             startActivity(goToLogin);
             finish();

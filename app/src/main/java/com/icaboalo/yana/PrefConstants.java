@@ -7,4 +7,7 @@ public class PrefConstants {
 
     public static final String authFile = "AUTH";
     public static final String tokenPref = "TOKEN";
+
+    public static final String tutorialFile = "TUTORIAL";
+    public static final String isTutorialCompleted = "isCompleted";
 }
