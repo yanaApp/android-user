@@ -32,9 +32,4 @@
         tools:context="com.icaboalo.yana.ui.activity.MainActivity"
         tools:showIn="@layout/app_bar_drawer"/>
 
-
-    <include layout="@layout/fab_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 </android.support.design.widget.CoordinatorLayout>

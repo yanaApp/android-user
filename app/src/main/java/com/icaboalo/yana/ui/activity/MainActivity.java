@@ -39,11 +39,10 @@ import retrofit2.Response;
 
 import static com.icaboalo.yana.R.string.label_activity_complete;
 
-public class MainActivity extends AppCompatActivity implements OnDialogButtonClick, NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
-    FABToolbarLayout mFabToolbarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +57,6 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFabToolbarLayout = (FABToolbarLayout) findViewById(R.id.fabtoolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabtoolbar_fab);
-        assert fab != null;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                mFabToolbarLayout.show();
-            }
-        });
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -118,26 +107,9 @@ public class MainActivity extends AppCompatActivity implements OnDialogButtonCli
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else if (mFabToolbarLayout.isShown()){
-            mFabToolbarLayout.hide();
         } else{
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void onPositiveClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onNeutralClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
-        dialog.dismiss();
-    }
-
-    @Override
-    public void onNegativeClick(DialogInterface dialog, @Nullable Object object, int labelResource) {
-        dialog.dismiss();
     }
 
     @Override

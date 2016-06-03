@@ -4,98 +4,171 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/normal_layout"
+    <android.support.v7.widget.CardView
+        android:elevation="4dp"
+        app:cardCornerRadius="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingTop="16dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/activity_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="#ffffff"
-            android:gravity="center_vertical"
-            android:src="@mipmap/ic_launcher"
-            app:civ_border_color="#000000"
-            app:civ_border_width="2dp" />
-
-        <TextView
-            android:id="@+id/activity_title"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/normal_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/activity_image"
-            android:layout_toRightOf="@+id/activity_image"
-            android:singleLine="true"
-            android:text="Title"
-            android:textSize="20sp" />
+            android:paddingBottom="16dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="16dp">
 
-        <ImageView
-            android:id="@+id/image_emotion"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:clickable="false"
-            android:src="@mipmap/ic_launcher" />
-    </RelativeLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/activity_image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp" />
 
-    <RelativeLayout
-        android:id="@+id/expanded_layout"
+            <TextView
+                android:id="@+id/activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="36dp"
+                android:layout_marginStart="36dp"
+                android:layout_toEndOf="@+id/activity_image"
+                android:layout_toRightOf="@+id/activity_image"
+                android:singleLine="true"
+                android:text="Title"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/image_emotion"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:src="@mipmap/ic_launcher" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingTop="16dp"
-        android:visibility="visible">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/activity_image_expanded"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="#ffffff"
-            android:gravity="center_vertical"
-            android:src="@mipmap/ic_launcher"
-            app:civ_border_color="#000000"
-            app:civ_border_width="2dp" />
-
-        <TextView
-            android:id="@+id/activity_title_expanded"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/expanded_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/activity_image_expanded"
-            android:layout_toRightOf="@id/activity_image_expanded"
-            android:singleLine="true"
-            android:text="Title"
-            android:textSize="24sp" />
+            android:paddingBottom="16dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:paddingTop="16dp"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/activity_description_expanded"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/activity_title_expanded"
-            android:layout_marginLeft="16dp"
-            android:layout_toEndOf="@id/activity_image_expanded"
-            android:layout_toRightOf="@+id/activity_image_expanded"
-            android:text="Description..." />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/activity_image_expanded"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp" />
 
-        <ImageView
-            android:id="@+id/image_emotion_expanded"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/activity_title_expanded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/activity_image_expanded"
+                android:layout_toRightOf="@id/activity_image_expanded"
+                android:singleLine="true"
+                android:text="Title"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/activity_description_expanded"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_title_expanded"
+                android:layout_marginLeft="16dp"
+                android:layout_toEndOf="@id/activity_image_expanded"
+                android:layout_toRightOf="@+id/activity_image_expanded"
+                android:text="Description..." />
+
+            <ImageView
+                android:id="@+id/image_emotion_expanded"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_alignTop="@+id/activity_description_expanded"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <View
+                android:layout_below="@id/activity_image_expanded"
+                android:layout_marginTop="8dp"
+                android:id="@+id/divider"
+                android:background="#000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_below="@id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/very_sad"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/very_sad_32" />
+
+                <ImageView
+                    android:id="@+id/sad"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/sad_32" />
+
+                <ImageView
+                    android:id="@+id/normal"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/normal_32" />
+
+                <ImageView
+                    android:id="@+id/happy"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/happy_32" />
+
+                <ImageView
+                    android:id="@+id/very_happy"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/very_happy_32" />
+            </LinearLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
 </LinearLayout>
