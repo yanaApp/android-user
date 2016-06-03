@@ -1,6 +1,7 @@
 package com.icaboalo.yana.ui.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,7 +73,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mActivityTitle, mActivityDescription;
-        RelativeLayout mNormalLayout, mExpandedLayout;
+        CardView mNormalLayout, mExpandedLayout;
         CircleImageView mActivityImage;
         ImageView mEmotionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage;
         OnViewHolderClick viewHolderClick;
@@ -80,8 +81,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick, OnEmotionSelected onEmotionSelected) {
             super(itemView);
-            this.mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
-            this.mExpandedLayout = (RelativeLayout) itemView.findViewById(R.id.expanded_layout);
+            this.mNormalLayout = (CardView) itemView.findViewById(R.id.normal_card);
+            this.mExpandedLayout = (CardView) itemView.findViewById(R.id.expanded_card);
             this.mVerySadImage = (ImageView) itemView.findViewById(R.id.very_sad);
             this.mSadImage = (ImageView) itemView.findViewById(R.id.sad);
             this.mNormalImage = (ImageView) itemView.findViewById(R.id.normal);

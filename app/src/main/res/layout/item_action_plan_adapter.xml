@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingLeft="16dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp"
+    android:paddingTop="14dp">
 
     <android.support.v7.widget.CardView
-        android:elevation="4dp"
-        app:cardCornerRadius="2dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/normal_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="2dp">
+
         <RelativeLayout
-            android:id="@+id/normal_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
@@ -58,12 +60,15 @@
     </android.support.v7.widget.CardView>
 
 
-
     <android.support.v7.widget.CardView
+        app:cardUseCompatPadding="true"
+        android:id="@+id/expanded_card"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="4dp">
+
         <RelativeLayout
-            android:id="@+id/expanded_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="16dp"
@@ -108,24 +113,24 @@
                 android:id="@+id/image_emotion_expanded"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@mipmap/ic_launcher"
-                android:layout_alignTop="@+id/activity_description_expanded"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignTop="@+id/activity_description_expanded"
+                android:src="@mipmap/ic_launcher" />
 
             <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:layout_below="@id/activity_image_expanded"
                 android:layout_marginTop="8dp"
-                android:id="@+id/divider"
-                android:background="#000"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:background="#000" />
 
             <LinearLayout
-                android:layout_marginTop="8dp"
-                android:layout_below="@id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/divider"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <ImageView
