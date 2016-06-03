@@ -56,41 +56,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(new ActionPlanFragment());
-        getActivities();
     }
 
     void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-    void getActivities(){
-        Call<ArrayList<ActivityApiModel>> call = ApiClient.getApiService().getActivities(VUtil.getToken(this));
-        call.enqueue(new Callback<ArrayList<ActivityApiModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<ActivityApiModel>> call, Response<ArrayList<ActivityApiModel>> response) {
-                if (response.isSuccessful()){
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-                    for (ActivityApiModel activityApi: response.body()){
-                        ActivityModel activity = new ActivityModel();
-                        activity.setId(activityApi.getmId());
-                        activity.setTitle(activityApi.getTitle());
-                        activity.setDescription(activityApi.getDescription());
-                        activity.setAnswer(activityApi.getAnswer());
-                        realm.copyToRealmOrUpdate(activity);
-                        Log.d("ACTIVITY", activity.getTitle());
-                    }
-                    realm.commitTransaction();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<ActivityApiModel>> call, Throwable t) {
-
-            }
-        });
-
-    }
 
     @Override
     public void onBackPressed() {
