@@ -1,10 +1,12 @@
 package com.icaboalo.yana.io;
 
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,11 +25,11 @@ public interface ApiService {
     Call<UserModel> login(@Body UserModel user);
 
     @GET("day/")
-    Call<ArrayList<DayModel>> getDays();
+    Call<List<DayModel>> getDays();
 
     @GET("activity/")
-    Call<ArrayList<ActivityApiModel>> getActivities(@Header("Authorization") String token);
+    Call<List<ActivityModel>> getActivities(@Header("Authorization") String token);
 
     @PUT("activity/{id}/")
-    Call<ActivityApiModel> putActivity(@Header("Authorization") String token, @Body ActivityApiModel activity, @Path("id") int activityId);
+    Call<ActivityModel> putActivity(@Header("Authorization") String token, @Body ActivityApiModel activity, @Path("id") int activityId);
 }

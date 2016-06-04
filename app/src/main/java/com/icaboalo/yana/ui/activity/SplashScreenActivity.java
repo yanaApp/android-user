@@ -12,7 +12,9 @@ import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.util.VUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,33 +44,35 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     void checkForToken(){
         if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
-            if (VUtil.isTutorialCompleted(this)){
+            //if (VUtil.isTutorialCompleted(this)){
                 Intent goToLogin = new Intent(this, LoginActivity.class);
                 startActivity(goToLogin);
                 Log.d("INTENT", "login");
                 finish();
-            }else {
-                Intent goToTutorial = new Intent(this, TutorialActivity.class);
-                startActivity(goToTutorial);
-                Log.d("INTENT", "tutorial");
-                finish();
-            }
+            //}
+            //else {
+            //    Intent goToTutorial = new Intent(this, TutorialActivity.class);
+            //    startActivity(goToTutorial);
+            //    Log.d("INTENT", "tutorial");
+            //    finish();
+            //}
         } else {
             getActivitiesAPI();
         }
     }
 
     void getActivitiesAPI(){
-        Call<ArrayList<ActivityApiModel>> call = ApiClient.getApiService().getActivities(VUtil.getToken(this));
-        call.enqueue(new Callback<ArrayList<ActivityApiModel>>() {
+        Call<List<ActivityModel>> call = ApiClient.getApiService().getActivities(VUtil.getToken(this));
+        call.enqueue(new Callback<List<ActivityModel>>() {
             @Override
-            public void onResponse(Call<ArrayList<ActivityApiModel>> call, Response<ArrayList<ActivityApiModel>> response) {
+            public void onResponse(Call<List<ActivityModel>> call, Response<List<ActivityModel>> response) {
                 if (response.isSuccessful()){
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
-                    for (ActivityApiModel activityApi: response.body()){
+                    Log.d("REQUEST", "success");
+                    for (ActivityModel activityApi: response.body()){
                         ActivityModel activity = new ActivityModel();
-                        activity.setId(activityApi.getmId());
+                        activity.setId(activityApi.getId());
                         activity.setTitle(activityApi.getTitle());
                         activity.setDescription(activityApi.getDescription());
                         activity.setAnswer(activityApi.getAnswer());
@@ -80,12 +84,18 @@ public class SplashScreenActivity extends AppCompatActivity {
                     startActivity(goToMain);
                     Log.d("INTENT", "main");
                     finish();
+                } else {
+                    try {
+                        Log.d("RETROFIT_ERROR", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<ActivityApiModel>> call, Throwable t) {
-
+            public void onFailure(Call<List<ActivityModel>> call, Throwable t) {
+                Log.d("RETROFIT_FAILURE", t.toString());
             }
         });
 

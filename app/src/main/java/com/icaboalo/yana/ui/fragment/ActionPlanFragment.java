@@ -101,10 +101,10 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void updateActivity(ActivityApiModel activity, int activityId){
-        Call<ActivityApiModel> call = ApiClient.getApiService().putActivity(VUtil.getToken(getActivity()), activity, activityId);
-        call.enqueue(new Callback<ActivityApiModel>() {
+        Call<ActivityModel> call = ApiClient.getApiService().putActivity(VUtil.getToken(getActivity()), activity, activityId);
+        call.enqueue(new Callback<ActivityModel>() {
             @Override
-            public void onResponse(Call<ActivityApiModel> call, Response<ActivityApiModel> response) {
+            public void onResponse(Call<ActivityModel> call, Response<ActivityModel> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(getActivity(), "Updated", Toast.LENGTH_SHORT).show();
                 } else {
@@ -117,7 +117,7 @@ public class ActionPlanFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ActivityApiModel> call, Throwable t) {
+            public void onFailure(Call<ActivityModel> call, Throwable t) {
 
             }
         });
