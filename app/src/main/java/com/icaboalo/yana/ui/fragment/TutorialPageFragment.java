@@ -116,7 +116,6 @@ public class TutorialPageFragment extends Fragment {
                         Log.d("INTENT", "action plan test");
                         Intent goToTest = new Intent();
                         startActivity(goToTest);
-                        getActivity().getSharedPreferences(PrefConstants.tutorialFile, Context.MODE_PRIVATE).edit().putBoolean(PrefConstants.isTutorialCompleted, true).apply();
                         getActivity().finish();
                     }
                 });

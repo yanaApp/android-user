@@ -2,11 +2,13 @@ package com.icaboalo.yana.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -54,15 +56,14 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         if (position == nExpandedPosition) {
             holder.mExpandedLayout.setVisibility(View.VISIBLE);
-            holder.mNormalLayout.setVisibility(View.GONE);
         } else {
             holder.mExpandedLayout.setVisibility(View.GONE);
-            holder.mNormalLayout.setVisibility(View.VISIBLE);
         }
 
         holder.setTitle(activity.getTitle());
-        holder.setDescription(activity.getDescription());
+        //holder.setDescription(activity.getDescription());
         holder.setEmotionImage(activity.getAnswer());
+        holder.mActivityColor.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
     }
 
     @Override
@@ -73,21 +74,23 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mActivityTitle, mActivityDescription;
-        CardView mNormalLayout, mExpandedLayout;
-        CircleImageView mActivityImage;
+        View mActivityColor;
+        LinearLayout mExpandedLayout;
+        RelativeLayout mNormalLayout;
         ImageView mEmotionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage;
         OnViewHolderClick viewHolderClick;
         OnEmotionSelected mEmotionSelected;
 
         public ActivityViewHolder(View itemView, OnViewHolderClick onViewHolderClick, OnEmotionSelected onEmotionSelected) {
             super(itemView);
-            this.mNormalLayout = (CardView) itemView.findViewById(R.id.normal_card);
-            this.mExpandedLayout = (CardView) itemView.findViewById(R.id.expanded_card);
+            this.mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
+            this.mExpandedLayout = (LinearLayout) itemView.findViewById(R.id.expanded_layout);
             this.mVerySadImage = (ImageView) itemView.findViewById(R.id.very_sad);
             this.mSadImage = (ImageView) itemView.findViewById(R.id.sad);
             this.mNormalImage = (ImageView) itemView.findViewById(R.id.normal);
             this.mHappyImage = (ImageView) itemView.findViewById(R.id.happy);
             this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.very_happy);
+            this.mActivityColor = itemView.findViewById(R.id.activity_color);
             mVerySadImage.setOnClickListener(this);
             mSadImage.setOnClickListener(this);
             mNormalImage.setOnClickListener(this);
@@ -105,64 +108,46 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             });
         }
 
-        void setActivityImage(String url){
-            int[] imageIds = {R.id.activity_image, R.id.activity_image_expanded};
-            for (int id: imageIds){
-                mActivityImage = (CircleImageView) itemView.findViewById(id);
-                if (!url.isEmpty()){
-                    Picasso.with(mContext).load(url).into(mActivityImage);
-                }
-                else{
-                    mActivityImage.setImageDrawable(null);
-                }
-            }
-        }
-
         void setEmotionImage(int answer){
-            int[] imageIds = {R.id.image_emotion, R.id.image_emotion_expanded};
-            for (int id: imageIds){
-                mEmotionImage = (ImageView) itemView.findViewById(id);
-                if (answer > 0){
-                    switch (answer){
-                        case 1:
-                            Picasso.with(mContext).load(R.drawable.very_sad_32).into(mEmotionImage);
-                            break;
+            mEmotionImage = (ImageView) itemView.findViewById(R.id.image_emotion);
+            if (answer > 0){
+                switch (answer){
+                    case 1:
+                        Picasso.with(mContext).load(R.drawable.very_sad_32).into(mEmotionImage);
+                        break;
 
-                        case 2:
-                            Picasso.with(mContext).load(R.drawable.sad_32).into(mEmotionImage);
-                            break;
+                    case 2:
+                        Picasso.with(mContext).load(R.drawable.sad_32).into(mEmotionImage);
+                        break;
 
-                        case 3:
-                            Picasso.with(mContext).load(R.drawable.normal_32).into(mEmotionImage);
-                            break;
+                    case 3:
+                        Picasso.with(mContext).load(R.drawable.normal_32).into(mEmotionImage);
+                        break;
 
-                        case 4:
-                            Picasso.with(mContext).load(R.drawable.happy_32).into(mEmotionImage);
-                            break;
+                    case 4:
+                        Picasso.with(mContext).load(R.drawable.happy_32).into(mEmotionImage);
+                        break;
 
-                        case 5:
-                            Picasso.with(mContext).load(R.drawable.very_happy_32).into(mEmotionImage);
-                            break;
+                    case 5:
+                        Picasso.with(mContext).load(R.drawable.very_happy_32).into(mEmotionImage);
+                        break;
 
-                    }
-                }
-                else{
-                    mEmotionImage.setImageDrawable(null);
                 }
             }
+            else{
+                mEmotionImage.setImageDrawable(null);
+            }
+
         }
 
         void setTitle(String text){
-            int[] titleIds = {R.id.activity_title, R.id.activity_title_expanded};
-            for (int id: titleIds){
-                mActivityTitle = (TextView) itemView.findViewById(id);
+                mActivityTitle = (TextView) itemView.findViewById(R.id.activity_title);
                 mActivityTitle.setText(text);
-            }
         }
 
         void setDescription(String description){
-            mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description_expanded);
-            mActivityDescription.setText(description);
+            //mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description_expanded);
+            //mActivityDescription.setText(description);
         }
 
         @Override

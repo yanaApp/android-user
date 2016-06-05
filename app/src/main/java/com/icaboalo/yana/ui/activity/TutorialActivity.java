@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -47,14 +48,23 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
 
+        assert loginButton != null;
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("INTENT", "login");
+                Intent goToLogin = new Intent(TutorialActivity.this, LoginActivity.class);
+                startActivity(goToLogin);
+                finish();
+            }
+        });
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == 4){
-                    assert loginButton != null;
                     loginButton.animate().translationY(0).setDuration(1000);
                 } else{
-                    assert loginButton != null;
                     loginButton.animate().translationY(loginButton.getHeight()).setDuration(200);
                 }
             }
