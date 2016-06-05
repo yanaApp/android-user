@@ -15,14 +15,14 @@
             android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ui.activity.LoginActivity" />
-        <activity android:name=".ui.activity.SplashScreenActivity">
+        <activity android:name=".ui.activity.SplashScreenActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.TutorialActivity"></activity>
+        <activity android:name=".ui.activity.TutorialActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

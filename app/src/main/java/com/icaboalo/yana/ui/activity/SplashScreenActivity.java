@@ -44,18 +44,18 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     void checkForToken(){
         if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
-            //if (VUtil.isTutorialCompleted(this)){
+            if (VUtil.isTutorialCompleted(this)){
                 Intent goToLogin = new Intent(this, LoginActivity.class);
                 startActivity(goToLogin);
                 Log.d("INTENT", "login");
                 finish();
-            //}
-            //else {
-            //    Intent goToTutorial = new Intent(this, TutorialActivity.class);
-            //    startActivity(goToTutorial);
-            //    Log.d("INTENT", "tutorial");
-            //    finish();
-            //}
+            }
+            else {
+                Intent goToTutorial = new Intent(this, TutorialActivity.class);
+                startActivity(goToTutorial);
+                Log.d("INTENT", "tutorial");
+                finish();
+            }
         } else {
             getActivitiesAPI();
         }

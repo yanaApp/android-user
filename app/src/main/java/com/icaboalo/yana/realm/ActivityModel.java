@@ -22,8 +22,8 @@ public class ActivityModel extends RealmObject{
     @SerializedName("description")
     private String description;
 
-    @SerializedName("day")
-    private DayModel day;
+    //@SerializedName("day")
+    //private DayModel day;
 
     @SerializedName("answer")
     private int answer = 0;
@@ -56,13 +56,13 @@ public class ActivityModel extends RealmObject{
         this.description = description;
     }
 
-    public DayModel getDay() {
-        return day;
-    }
+    //public DayModel getDay() {
+    //    return day;
+    //}
 
-    public void setDay(DayModel day) {
-        this.day = day;
-    }
+    //public void setDay(DayModel day) {
+    //    this.day = day;
+    //}
 
     public int getAnswer() {
         return answer;

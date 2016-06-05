@@ -61,17 +61,13 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().putString(PrefConstants.tokenPref, "Token " + response.body().getToken()).apply();
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(goToMain);
-                            finish();
-                        }
-                    }, 1000);
+                    Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(goToMain);
+                    finish();
+
                 }else{
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());

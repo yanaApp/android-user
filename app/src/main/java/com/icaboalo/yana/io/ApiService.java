@@ -5,7 +5,6 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -23,6 +22,9 @@ public interface ApiService {
 
     @POST("login/")
     Call<UserModel> login(@Body UserModel user);
+
+    @GET("me/")
+    Call<UserModel> getMe(@Header("Authorization") String token);
 
     @GET("day/")
     Call<List<DayModel>> getDays();
