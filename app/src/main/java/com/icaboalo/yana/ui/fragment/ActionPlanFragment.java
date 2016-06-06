@@ -16,6 +16,7 @@ import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
+import com.icaboalo.yana.util.DividerItemDecorator;
 import com.icaboalo.yana.util.OnEmotionSelected;
 import com.icaboalo.yana.util.OnViewHolderClick;
 import com.icaboalo.yana.util.VUtil;
@@ -70,6 +71,7 @@ public class ActionPlanFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mActivityRecycler.setAdapter(activityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
+        //mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     ArrayList<ActivityModel> getActivitiesFromRealm(){

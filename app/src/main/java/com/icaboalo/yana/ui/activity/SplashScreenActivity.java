@@ -96,6 +96,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<ActivityModel>> call, Throwable t) {
                 Log.d("RETROFIT_FAILURE", t.toString());
+                Intent goToMain = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(goToMain);
+                Log.d("INTENT", "main");
+                finish();
             }
         });
 

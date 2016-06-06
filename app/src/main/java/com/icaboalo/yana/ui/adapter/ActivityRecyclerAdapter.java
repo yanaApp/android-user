@@ -60,10 +60,17 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             holder.mExpandedLayout.setVisibility(View.GONE);
         }
 
+        if (position == mActivityList.size() -1){
+            holder.mItemDivider.setVisibility(View.GONE);
+        }
+
         holder.setTitle(activity.getTitle());
-        //holder.setDescription(activity.getDescription());
+        holder.setDescription(activity.getDescription());
         holder.setEmotionImage(activity.getAnswer());
-        holder.mActivityColor.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+
+        if (activity.getDescription().isEmpty() || activity.getDescription() == null){
+            holder.mActivityColor.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+        }
     }
 
     @Override
@@ -74,7 +81,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView mActivityTitle, mActivityDescription;
-        View mActivityColor;
+        View mActivityColor, mItemDivider;
         LinearLayout mExpandedLayout;
         RelativeLayout mNormalLayout;
         ImageView mEmotionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage;
@@ -91,6 +98,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             this.mHappyImage = (ImageView) itemView.findViewById(R.id.happy);
             this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.very_happy);
             this.mActivityColor = itemView.findViewById(R.id.activity_color);
+            this.mItemDivider = itemView.findViewById(R.id.item_divider);
             mVerySadImage.setOnClickListener(this);
             mSadImage.setOnClickListener(this);
             mNormalImage.setOnClickListener(this);
@@ -146,8 +154,13 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         }
 
         void setDescription(String description){
-            //mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description_expanded);
-            //mActivityDescription.setText(description);
+            mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description);
+            if (description.isEmpty() || description == null){
+                mActivityDescription.setVisibility(View.GONE);
+            } else {
+                mActivityDescription.setVisibility(View.VISIBLE);
+                mActivityDescription.setText(description);
+            }
         }
 
         @Override
