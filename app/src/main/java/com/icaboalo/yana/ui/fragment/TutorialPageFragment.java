@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.ui.activity.RegisterActivity;
 import com.squareup.picasso.Picasso;
 
 import java.security.PrivilegedAction;
@@ -114,7 +115,7 @@ public class TutorialPageFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("INTENT", "action plan test");
-                        Intent goToTest = new Intent();
+                        Intent goToTest = new Intent(getActivity(), RegisterActivity.class);
                         startActivity(goToTest);
                         getActivity().finish();
                     }

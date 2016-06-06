@@ -48,12 +48,12 @@ public class ActionPlanFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
-        setUpActivityRecycler(getActivitiesFromRealm());
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        setUpActivityRecycler(getActivitiesFromRealm());
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
