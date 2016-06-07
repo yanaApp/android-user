@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
+import com.icaboalo.yana.io.MockClient;
+import com.icaboalo.yana.io.model.ContactMockModel;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.adapter.ContactRecyclerAdapter;
 import com.icaboalo.yana.util.VUtil;
@@ -62,7 +64,6 @@ public class ContactsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupContactRecycler(getContactsFromRealm());
     }
 
     @Override
@@ -199,7 +200,6 @@ public class ContactsFragment extends Fragment {
                     realm.beginTransaction();
                     realm.copyToRealmOrUpdate(response.body());
                     realm.commitTransaction();
-                    setupContactRecycler(getContactsFromRealm());
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
@@ -212,6 +212,38 @@ public class ContactsFragment extends Fragment {
             @Override
             public void onFailure(Call<ContactModel> call, Throwable t) {
                 Log.d("RETROFIT_FAILURE", t.toString());
+            }
+        });
+    }
+
+    void getContactsMock(){
+        Call<ArrayList<ContactMockModel>> call = MockClient.getApiService().getContacts();
+        call.enqueue(new Callback<ArrayList<ContactMockModel>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ContactMockModel>> call, Response<ArrayList<ContactMockModel>> response) {
+                if (response.isSuccessful()){
+                    ArrayList<ContactModel> contactList = new ArrayList<ContactModel>();
+                    for (ContactMockModel contact: response.body()){
+                        ContactModel model = new ContactModel();
+                        model.setId(contact.getId());
+                        model.setName(contact.getName());
+                        model.setPhoneNumber(contact.getPhoneNumber());
+                        model.setValidated(contact.isValidated());
+                        contactList.add(model);
+                    }
+                    setupContactRecycler(contactList);
+                } else {
+                    try {
+                        Log.d("RETROFIT_ERROR", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ContactMockModel>> call, Throwable t) {
+
             }
         });
     }

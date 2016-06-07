@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Mayela Guerra",
+    "phone_number": "5539777292",
+    "is_validated": false
+  },
+  {
+    "id": 2,
+    "name": "Mayela Campos",
+    "phone_number": "5544992547",
+    "is_validated": true
+  }
+]
