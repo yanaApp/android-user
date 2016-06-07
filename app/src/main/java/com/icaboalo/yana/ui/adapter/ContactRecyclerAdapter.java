@@ -60,9 +60,9 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
 
         void setValidated(boolean isValidated){
             if (isValidated){
-                Picasso.with(mContext).load(R.mipmap.ic_launcher).into(mIsValidated);
+                Picasso.with(mContext).load(R.drawable.check_validated_64).into(mIsValidated);
             } else {
-                Picasso.with(mContext).load(R.drawable.ic_done_white_24dp).into(mIsValidated);
+                Picasso.with(mContext).load(R.drawable.check_64).into(mIsValidated);
             }
         }
     }

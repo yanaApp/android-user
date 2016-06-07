@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/is_contact_validated"
-        android:src="@drawable/ic_done_white_24dp"
+        android:src="@drawable/check_64"
         android:layout_width="48dp"
         android:layout_height="48dp" />
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
 import com.icaboalo.yana.ui.activity.RegisterActivity;
 import com.squareup.picasso.Picasso;
 
@@ -101,7 +102,7 @@ public class TutorialPageFragment extends Fragment {
                 mDescription.setText("Apoyate de una red de contactos que te respalde en esta etapa de tu vida.");
                 break;
             case 2:
-                Picasso.with(getActivity()).load(R.drawable.pie_char_128).into(mTutorialImage);
+                Picasso.with(getActivity()).load(R.drawable.pie_chart_128).into(mTutorialImage);
                 mTitle.setText("Monitorea tu progreso");
                 mDescription.setText("El historial te permite revisar tus avances día con día.");
                 break;
@@ -115,7 +116,7 @@ public class TutorialPageFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("INTENT", "action plan test");
-                        Intent goToTest = new Intent(getActivity(), RegisterActivity.class);
+                        Intent goToTest = new Intent(getActivity(), AutoEvaluationActivity.class);
                         startActivity(goToTest);
                         getActivity().finish();
                     }

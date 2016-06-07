@@ -103,7 +103,6 @@ public class ContactsFragment extends Fragment {
                                     null, null);
                             phones.moveToFirst();
                             cNumber = phones.getString(phones.getColumnIndex("data1"));
-                            System.out.println("number is:"+cNumber);
                             phones.close();
                         }
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
@@ -114,12 +113,9 @@ public class ContactsFragment extends Fragment {
                             contact.setName(name);
                             contact.setPhoneNumber(cNumber);
 
+                            Toast.makeText(getActivity(), contact.getName() + " " + contact.getPhoneNumber(), Toast.LENGTH_SHORT).show();
+                            Log.d("CONTACT", contact.getName() + " " + contact.getPhoneNumber());
                             saveContactAPI(VUtil.getToken(getActivity()), contact);
-                            Toast.makeText(getActivity(), name + " " + cNumber, Toast.LENGTH_SHORT).show();
-                            Realm realm = Realm.getDefaultInstance();
-                            realm.beginTransaction();
-                            realm.copyToRealmOrUpdate(contact);
-                            realm.commitTransaction();
                         }
                     }
                     c.close();
@@ -154,7 +150,7 @@ public class ContactsFragment extends Fragment {
                     case ItemTouchHelper.END:
                         Toast.makeText(getActivity(), "Removed " + contactList.get(position).getName(), Toast.LENGTH_SHORT).show();
                         removeContactFromRealm(contactList.get(position).getId());
-                        //contactRecyclerAdapter.notifyItemRemoved(position);
+                        contactRecyclerAdapter.notifyItemRemoved(position);
                         break;
                     case ItemTouchHelper.START:
                         Toast.makeText(getActivity(), "Notified " + contactList.get(position).getName(), Toast.LENGTH_SHORT).show();

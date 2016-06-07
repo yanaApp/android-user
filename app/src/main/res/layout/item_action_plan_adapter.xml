@@ -44,7 +44,7 @@
             android:layout_marginBottom="24dp"
             android:layout_marginLeft="48dp"
             android:layout_marginTop="16dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/information_outline_circular_pressed_64" />
 
         <ImageView
             android:id="@+id/image_emotion"
@@ -92,7 +92,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="48dp"
             android:layout_marginStart="48dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/information_outline_circular_64" />
 
         <TextView
             android:id="@+id/activity_description"
@@ -142,19 +142,21 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="48dp"
-            android:layout_marginStart="48dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/checkmark_outlined_circular_64" />
 
         <ImageView
             android:id="@+id/very_sad"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/emotion_icon"
-            android:layout_toRightOf="@id/emotion_icon"
+            android:layout_marginEnd="4dp"
+            android:layout_toLeftOf="@id/sad"
+            android:layout_toStartOf="@id/sad"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             android:scaleType="centerInside"
             android:src="@drawable/very_sad_32" />
 
@@ -163,10 +165,12 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/very_sad"
-            android:layout_toRightOf="@id/very_sad"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_toLeftOf="@id/normal"
+            android:layout_toStartOf="@id/normal"
             android:scaleType="centerInside"
             android:src="@drawable/sad_32" />
 
@@ -175,10 +179,12 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/sad"
-            android:layout_toRightOf="@id/sad"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_toLeftOf="@id/happy"
+            android:layout_toStartOf="@id/happy"
             android:scaleType="centerInside"
             android:src="@drawable/normal_32" />
 
@@ -187,10 +193,12 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/normal"
-            android:layout_toRightOf="@id/normal"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_toLeftOf="@id/very_happy"
+            android:layout_toStartOf="@id/very_happy"
             android:scaleType="centerInside"
             android:src="@drawable/happy_32" />
 
@@ -199,11 +207,13 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/happy"
-            android:layout_toRightOf="@id/happy"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
             android:scaleType="centerInside"
+            android:layout_toLeftOf="@id/emotion_icon"
+            android:layout_toStartOf="@id/emotion_icon"
             android:src="@drawable/very_happy_32" />
     </RelativeLayout>
 

@@ -36,6 +36,6 @@ public interface ApiService {
     @PUT("activity/{id}/")
     Call<ActivityModel> putActivity(@Header("Authorization") String token, @Body ActivityModel activity, @Path("id") int activityId);
 
-    @POST("contact")
+    @POST("contact/")
     Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactModel contactModel);
 }
