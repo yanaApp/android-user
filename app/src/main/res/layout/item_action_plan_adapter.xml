@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,121 +9,203 @@
 
 
     <RelativeLayout
-        android:paddingRight="40dp"
-        android:paddingEnd="40dp"
         android:id="@+id/normal_layout"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="100dp"
+        android:paddingEnd="48dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="48dp"
+        android:paddingStart="0dp">
 
         <View
             android:id="@+id/activity_color"
-            android:background="#FFC107"
             android:layout_width="5dp"
-            android:layout_height="80dp"/>
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#FFC107" />
 
         <TextView
             android:id="@+id/activity_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
-            android:layout_toEndOf="@+id/activity_color"
-            android:layout_toRightOf="@+id/activity_color"
-            android:layout_centerVertical="true"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="48dp"
+            android:paddingStart="48dp"
             android:singleLine="true"
             android:text="Title"
             android:textSize="20sp" />
 
         <ImageView
-            android:layout_centerVertical="true"
+            android:id="@+id/image_description"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
             android:id="@+id/image_emotion"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:clickable="false"
             android:src="@mipmap/ic_launcher" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/expanded_layout"
+    <RelativeLayout
+        android:id="@+id/description_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:layout_below="@id/normal_layout"
+        android:orientation="vertical"
+        android:paddingEnd="48dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="48dp"
+        android:paddingStart="0dp">
 
         <View
-            android:background="@color/colorAccent"
+            android:id="@+id/description_divider"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:background="#FFC107" />
+
+        <View
+            android:id="@+id/activity_color_description"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#FFC107" />
+
+        <ImageView
+            android:id="@+id/icon_description"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/activity_description"
-            android:text="Description..."
-            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/icon_description"
+            android:layout_toRightOf="@id/icon_description"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:text="Description..." />
 
 
-        <LinearLayout
-            android:paddingLeft="18dp"
-            android:paddingRight="18dp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+    </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/very_sad"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/very_sad_32" />
-
-            <ImageView
-                android:id="@+id/sad"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/sad_32" />
-
-            <ImageView
-                android:id="@+id/normal"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/normal_32" />
-
-            <ImageView
-                android:id="@+id/happy"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/happy_32" />
-
-            <ImageView
-                android:id="@+id/very_happy"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/very_happy_32" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="48dp"
-        android:id="@+id/item_divider"
-        android:background="#EEEEF0"
+    <RelativeLayout
+        android:id="@+id/emotion_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"/>
+        android:layout_height="51dp"
+        android:layout_below="@id/description_layout"
+        android:orientation="vertical"
+        android:paddingEnd="48dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="48dp"
+        android:paddingStart="0dp">
+
+        <View
+            android:id="@+id/emotion_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:background="#FFC107" />
+
+        <View
+            android:id="@+id/activity_color_emotion"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="#FFC107" />
+
+        <ImageView
+            android:id="@+id/emotion_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/very_sad"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/emotion_icon"
+            android:layout_toRightOf="@id/emotion_icon"
+            android:scaleType="centerInside"
+            android:src="@drawable/very_sad_32" />
+
+        <ImageView
+            android:id="@+id/sad"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/very_sad"
+            android:layout_toRightOf="@id/very_sad"
+            android:scaleType="centerInside"
+            android:src="@drawable/sad_32" />
+
+        <ImageView
+            android:id="@+id/normal"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/sad"
+            android:layout_toRightOf="@id/sad"
+            android:scaleType="centerInside"
+            android:src="@drawable/normal_32" />
+
+        <ImageView
+            android:id="@+id/happy"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/normal"
+            android:layout_toRightOf="@id/normal"
+            android:scaleType="centerInside"
+            android:src="@drawable/happy_32" />
+
+        <ImageView
+            android:id="@+id/very_happy"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/happy"
+            android:layout_toRightOf="@id/happy"
+            android:scaleType="centerInside"
+            android:src="@drawable/very_happy_32" />
+    </RelativeLayout>
 
 
-
-
-</LinearLayout>
+</RelativeLayout>

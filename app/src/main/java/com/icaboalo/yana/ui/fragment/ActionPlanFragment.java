@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -39,6 +41,10 @@ public class ActionPlanFragment extends Fragment {
 
     RecyclerView mActivityRecycler;
 
+    public ActionPlanFragment() {
+        setHasOptionsMenu(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,12 +64,7 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
-        final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnViewHolderClick() {
-            @Override
-            public void onClick(View view, int position) {
-                ActivityModel activity = activityList.get(position);
-            }
-        }, new OnEmotionSelected() {
+        final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
             @Override
             public void onSelect(int emotionId) {
                 updateActivity(getActivityFromRealm(emotionId), emotionId);
@@ -72,7 +73,7 @@ public class ActionPlanFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mActivityRecycler.setAdapter(activityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
-        //mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     ArrayList<ActivityModel> getActivitiesFromRealm(){
@@ -90,20 +91,20 @@ public class ActionPlanFragment extends Fragment {
         return activities;
     }
 
-    ActivityApiModel getActivityFromRealm(int activityId){
+    ActivityModel getActivityFromRealm(int activityId){
         Realm realm = Realm.getDefaultInstance();
         RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
         ActivityModel result = query.equalTo("id", activityId).findAll().get(0);
-        ActivityApiModel activity = new ActivityApiModel();
+        ActivityModel activity = new ActivityModel();
+        activity.setId(result.getId());
         activity.setTitle(result.getTitle());
         activity.setDescription(result.getDescription());
-        activity.setanswer(result.getAnswer());
-        activity.setDay(1);
-
+        activity.setAnswer(result.getAnswer());
+        activity.setDay_id(1);
         return activity;
     }
 
-    void updateActivity(ActivityApiModel activity, int activityId){
+    void updateActivity(ActivityModel activity, int activityId){
         Call<ActivityModel> call = ApiClient.getApiService().putActivity(VUtil.getToken(getActivity()), activity, activityId);
         call.enqueue(new Callback<ActivityModel>() {
             @Override

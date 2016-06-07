@@ -2,6 +2,7 @@ package com.icaboalo.yana.io;
 
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 
@@ -33,5 +34,8 @@ public interface ApiService {
     Call<List<ActivityModel>> getActivities(@Header("Authorization") String token);
 
     @PUT("activity/{id}/")
-    Call<ActivityModel> putActivity(@Header("Authorization") String token, @Body ActivityApiModel activity, @Path("id") int activityId);
+    Call<ActivityModel> putActivity(@Header("Authorization") String token, @Body ActivityModel activity, @Path("id") int activityId);
+
+    @POST("contact")
+    Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactModel contactModel);
 }
