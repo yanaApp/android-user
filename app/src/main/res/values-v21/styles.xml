@@ -8,6 +8,12 @@
         <item name="android:colorBackground">@color/background_material_white</item>
     </style>
 
+    <style name="AppTheme.ProgressBarGreen" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:progressBackgroundTint">@color/pink</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

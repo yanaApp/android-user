@@ -31,7 +31,8 @@
             android:name=".ui.activity.TutorialActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.RegisterActivity" />
-        <activity android:name=".ui.activity.AutoEvaluationActivity"></activity>
+        <activity android:name=".ui.activity.AutoEvaluationActivity" />
+        <activity android:name=".ui.activity.EvaluationActivity"></activity>
     </application>
 
 </manifest>

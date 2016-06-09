@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 
@@ -19,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     TextInputEditText mFullNameInput, mUsernameInput, mEmailInput, mPasswordInput;
     Button mRegisterButton;
-    TextView mLogin;
+    TextView mLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +34,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         assert mRegisterButton != null;
         mRegisterButton.setOnClickListener(this);
 
-        mLogin = (TextView) findViewById(R.id.login_button);
-        mRegisterButton.setOnClickListener(this);
+        mLoginButton = (TextView) findViewById(R.id.login_button);
+        mLoginButton.setOnClickListener(this);
     }
 
     @Override

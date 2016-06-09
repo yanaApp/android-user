@@ -27,6 +27,7 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.ContactsFragment;
+import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ContactsFragment();
                 break;
             case R.id.nav_slideshow:
+                fragment = new ProgressFragment();
                 break;
             case R.id.nav_manage:
                 break;
