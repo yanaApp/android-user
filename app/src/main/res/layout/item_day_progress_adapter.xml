@@ -8,6 +8,7 @@
     android:paddingLeft="32dp"
     android:paddingRight="32dp"
     android:paddingStart="32dp"
+    android:background="@color/white"
     android:paddingTop="20dp">
 
     <TextView

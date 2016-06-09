@@ -2,8 +2,12 @@ package com.icaboalo.yana.realm;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -16,12 +20,20 @@ public class ActionPlanModel extends RealmObject{
     @SerializedName("id")
     private int id;
 
+    @SerializedName("category")
+    private String category;
+
+    @SerializedName("initial_date")
+    private String initialDate;
+
+    @SerializedName("final_date")
+    private String finalDate;
+
     @SerializedName("user")
     private UserModel user;
 
-    @SerializedName("user")
-    private int user_id;
-
+    @SerializedName("is_active")
+    private boolean isActive;
 
     public int getId() {
         return id;
@@ -39,11 +51,35 @@ public class ActionPlanModel extends RealmObject{
         this.user = user;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getCategory() {
+        return category;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(String initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public String getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(String finalDate) {
+        this.finalDate = finalDate;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

@@ -100,7 +100,6 @@ public class ActionPlanFragment extends Fragment {
         activity.setTitle(result.getTitle());
         activity.setDescription(result.getDescription());
         activity.setAnswer(result.getAnswer());
-        activity.setDay_id(1);
         return activity;
     }
 

@@ -2,6 +2,9 @@ package com.icaboalo.yana.realm;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
@@ -28,10 +31,6 @@ public class DayModel extends RealmObject{
 
     @SerializedName("answer")
     private int answer = 0;
-
-    @Ignore
-    @SerializedName("action_plan")
-    private int actionPlanId;
 
     public int getId() {
         return id;
@@ -73,11 +72,4 @@ public class DayModel extends RealmObject{
         this.answer = answer;
     }
 
-    public int getActionPlanId() {
-        return actionPlanId;
-    }
-
-    public void setActionPlanId(int actionPlanId) {
-        this.actionPlanId = actionPlanId;
-    }
 }

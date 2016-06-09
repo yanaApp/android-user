@@ -38,8 +38,8 @@ dependencies {
     compile 'com.github.fafaldo:fab-toolbar:1.2.0'
 
 //    retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.0.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
 //  ViewPagerIndicator
     compile 'com.pacioianu.david:ink-page-indicator:1.1.1'

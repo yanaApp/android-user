@@ -55,24 +55,32 @@ public class ProgressFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mCompleted.setText("" + getCompletedActivitiesFromRealm());
-        mIncomplete.setText("" + getIncompleteActivitiesFromRealm());
+        mCompleted.setText("" + getCompletedActivitiesFromRealm(null));
+        mIncomplete.setText("" + getIncompleteActivitiesFromRealm(null));
 
-        mCompletedProgress.setMax(getCompletedActivitiesFromRealm() + getIncompleteActivitiesFromRealm());
-        mCompletedProgress.setProgress(getCompletedActivitiesFromRealm());
+        mCompletedProgress.setMax(getCompletedActivitiesFromRealm(null) + getIncompleteActivitiesFromRealm(null));
+        mCompletedProgress.setProgress(getCompletedActivitiesFromRealm(null));
 
         setupDayProcessRecycler(getDaysFromRealm());
 
     }
 
-    int getCompletedActivitiesFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
-        return realm.where(ActivityModel.class).greaterThan("answer", 0).findAll().size();
+    int getCompletedActivitiesFromRealm(@Nullable DayModel day){
+        if (day == null){
+            Realm realm = Realm.getDefaultInstance();
+            return realm.where(ActivityModel.class).greaterThan("answer", 0).findAll().size();
+        } else {
+            return 0;
+        }
     }
 
-    int getIncompleteActivitiesFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
-        return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
+    int getIncompleteActivitiesFromRealm(@Nullable DayModel day){
+        if (day == null){
+            Realm realm = Realm.getDefaultInstance();
+            return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
+        } else {
+            return 0;
+        }
     }
 
     ArrayList<DayModel> getDaysFromRealm(){
@@ -83,6 +91,14 @@ public class ProgressFragment extends Fragment {
         for (DayModel day: results){
             dayList.add(day);
         }
+        DayModel day1 = new DayModel();
+        day1.setNumber(1);
+        day1.setDate("7 de Junio 2016");
+        dayList.add(day1);
+        DayModel day2 = new DayModel();
+        day2.setNumber(2);
+        day2.setDate("8 de Junio 2016");
+        dayList.add(day2);
         return dayList;
     }
 
