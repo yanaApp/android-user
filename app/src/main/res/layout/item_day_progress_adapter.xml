@@ -11,13 +11,14 @@
     android:paddingTop="20dp">
 
     <TextView
-        android:textSize="15sp"
+        android:id="@+id/day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Día 1  |  7 de Junio 2016" />
+        android:text="Día 1  |  7 de Junio 2016"
+        android:textSize="15sp" />
 
     <LinearLayout
         android:layout_width="160dp"
@@ -34,40 +35,41 @@
             android:background="@color/colorAccent" />
 
         <TextView
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
             android:id="@+id/completed_count"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:text="4"
+            android:textSize="16sp" />
 
         <View
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
             android:background="@color/pink" />
 
         <TextView
-            android:layout_marginLeft="5dp"
             android:id="@+id/incomplete_count"
-            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2" />
+            android:layout_marginLeft="5dp"
+            android:text="2"
+            android:textSize="16sp" />
 
         <View
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
             android:layout_width="10dp"
             android:layout_height="10dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
             android:background="@color/orange" />
 
         <ImageView
-            android:layout_marginLeft="5dp"
-            android:src="@drawable/happy_32"
+            android:id="@+id/emotion_average_image"
             android:layout_width="16dp"
-            android:layout_height="16dp"/>
+            android:layout_height="16dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/happy_32" />
     </LinearLayout>
 </RelativeLayout>

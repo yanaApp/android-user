@@ -104,7 +104,7 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/emotion_image"
+                android:id="@+id/emotion_average_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

@@ -3,6 +3,7 @@ package com.icaboalo.yana.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +16,14 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.DayModel;
+import com.icaboalo.yana.ui.adapter.DayProgressRecyclerAdapter;
+import com.icaboalo.yana.util.DividerItemDecorator;
+
+import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by icaboalo on 08/06/16.
@@ -40,7 +46,7 @@ public class ProgressFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mCompleted = (TextView) view.findViewById(R.id.completed_text);
         mIncomplete = (TextView) view.findViewById(R.id.incomplete_text);
-        mEmotionImage = (ImageView) view.findViewById(R.id.emotion_image);
+        mEmotionImage = (ImageView) view.findViewById(R.id.emotion_average_image);
         mCompletedProgress = (ProgressBar) view.findViewById(R.id.completed_progress_bar);
         mDayProgressRecycler = (RecyclerView) view.findViewById(R.id.day_progress_recycler);
     }
@@ -55,6 +61,8 @@ public class ProgressFragment extends Fragment {
         mCompletedProgress.setMax(getCompletedActivitiesFromRealm() + getIncompleteActivitiesFromRealm());
         mCompletedProgress.setProgress(getCompletedActivitiesFromRealm());
 
+        setupDayProcessRecycler(getDaysFromRealm());
+
     }
 
     int getCompletedActivitiesFromRealm(){
@@ -67,8 +75,22 @@ public class ProgressFragment extends Fragment {
         return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
     }
 
-    void getDaysFromRealm(){
+    ArrayList<DayModel> getDaysFromRealm(){
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<DayModel> query = realm.where(DayModel.class).equalTo("", "");
+        RealmResults<DayModel> results = realm.where(DayModel.class).findAll();
+        Log.d("REALM_RESULTS", results.toString());
+        ArrayList<DayModel> dayList = new ArrayList<>();
+        for (DayModel day: results){
+            dayList.add(day);
+        }
+        return dayList;
+    }
+
+    void setupDayProcessRecycler(ArrayList<DayModel> dayList){
+        DayProgressRecyclerAdapter dayProgressRecyclerAdapter = new DayProgressRecyclerAdapter(getActivity(), dayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
+        mDayProgressRecycler.setLayoutManager(linearLayoutManager);
+        mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 }

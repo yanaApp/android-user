@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.util.OnEmotionSelected;
+import com.icaboalo.yana.util.VUtil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         holder.setTitle(activity.getTitle());
         holder.setDescription(activity.getDescription());
-        holder.setEmotionImage(activity.getAnswer());
+        VUtil.setEmotionImage(mContext, activity.getAnswer(), holder.mEmotionImage);
 
         if (activity.getTitle().equals("Baño")) {
             holder.setActivityColor(mContext.getResources().getColor(R.color.colorAccent));
