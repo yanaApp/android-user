@@ -18,6 +18,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
 import com.icaboalo.yana.util.DividerItemDecorator;
 import com.icaboalo.yana.util.OnEmotionSelected;
@@ -25,7 +26,10 @@ import com.icaboalo.yana.util.OnViewHolderClick;
 import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -60,14 +64,15 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setUpActivityRecycler(getActivitiesFromRealm());
+        setUpActivityRecycler(getActivitiesFromRealm(getCurrentDay()));
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
         final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
             @Override
             public void onSelect(int emotionId) {
-                updateActivity(getActivityFromRealm(emotionId), emotionId);
+                Log.d("SELECTED", getActivityFromRealm(emotionId).toString());
+                updateActivity(VUtil.getToken(getActivity()), getActivityFromRealm(emotionId).getAnswer(), emotionId);
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -76,9 +81,17 @@ public class ActionPlanFragment extends Fragment {
         mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
-    ArrayList<ActivityModel> getActivitiesFromRealm(){
+    DayModel getCurrentDay(){
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
+
         Realm realm = Realm.getDefaultInstance();
-        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
+        return realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
+    }
+
+    ArrayList<ActivityModel> getActivitiesFromRealm(DayModel currentDay){
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class).equalTo("day.date", currentDay.getDate());
 
         RealmResults<ActivityModel> results = query.findAll();
 
@@ -100,16 +113,20 @@ public class ActionPlanFragment extends Fragment {
         activity.setTitle(result.getTitle());
         activity.setDescription(result.getDescription());
         activity.setAnswer(result.getAnswer());
+        activity.setDay(result.getDay());
         return activity;
     }
 
-    void updateActivity(ActivityModel activity, int activityId){
-        Call<ActivityModel> call = ApiClient.getApiService().putActivity(VUtil.getToken(getActivity()), activity, activityId);
-        call.enqueue(new Callback<ActivityModel>() {
+    void updateActivity(String token, int answer, int activityId){
+        Log.d("UPDATE", "Started");
+        HashMap<String, Integer> answerDict = new HashMap<>();
+        answerDict.put("answer", answer);
+        Call<ActivityApiModel> call = ApiClient.getApiService().updateActivity(token, answerDict, activityId);
+        call.enqueue(new Callback<ActivityApiModel>() {
             @Override
-            public void onResponse(Call<ActivityModel> call, Response<ActivityModel> response) {
+            public void onResponse(Call<ActivityApiModel> call, Response<ActivityApiModel> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getActivity(), "Updated", Toast.LENGTH_SHORT).show();
+                    Log.d("RETROFIT_SUCESS", response.body().toString());
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
@@ -120,8 +137,8 @@ public class ActionPlanFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ActivityModel> call, Throwable t) {
-
+            public void onFailure(Call<ActivityApiModel> call, Throwable t) {
+                Log.d("RETROFIT_FAILURE", t.toString());
             }
         });
     }

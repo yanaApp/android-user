@@ -1,5 +1,6 @@
 package com.icaboalo.yana.io;
 
+import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.ContactModel;
@@ -7,6 +8,7 @@ import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -14,6 +16,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -35,8 +38,8 @@ public interface ApiService {
     @GET("activity/")
     Call<List<ActivityModel>> getActivities(@Header("Authorization") String token);
 
-    @PUT("activity/{id}/")
-    Call<ActivityModel> putActivity(@Header("Authorization") String token, @Body ActivityModel activity, @Path("id") int activityId);
+    @PATCH("activity/{id}/")
+    Call<ActivityApiModel> updateActivity(@Header("Authorization") String token, @Body HashMap<String, Integer> answer, @Path("id") int activityId);
 
     @POST("contact/")
     Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactModel contactModel);
