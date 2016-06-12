@@ -1,44 +1,75 @@
 package com.icaboalo.yana.realm;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by saul on 27/05/16.
  */
 public class DayModel extends RealmObject{
+
+
     @PrimaryKey
-    private int nId;
-    private String nDate;
-    private RealmList<ActivityModel> nActivities;
+    @SerializedName("id")
+    private int id;
 
-    public int getnId() {
-        return nId;
+    @SerializedName("date")
+    private String date;
+
+    @SerializedName("day_number")
+    private int number;
+
+    @SerializedName("action_plan")
+    private ActionPlanModel actionPlan;
+
+    @SerializedName("answer")
+    private int answer = 0;
+
+    public int getId() {
+        return id;
     }
 
-    public void setnId(int nId) {
-        this.nId = nId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getnDate() {
-        return nDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setnDate(String nDate) {
-        this.nDate = nDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public RealmList<ActivityModel> getnActivities() {
-        return nActivities;
+    public int getNumber() {
+        return number;
     }
 
-    public void setnActivities(RealmList<ActivityModel> nActivities) {
-        this.nActivities = nActivities;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public DayModel(int nId, String nDate){
-        this.nId = nId;
-        this.nDate = nDate;
+    public ActionPlanModel getActionPlan() {
+        return actionPlan;
     }
+
+    public void setActionPlan(ActionPlanModel actionPlan) {
+        this.actionPlan = actionPlan;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
 }

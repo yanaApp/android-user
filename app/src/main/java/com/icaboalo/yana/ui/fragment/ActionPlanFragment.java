@@ -1,26 +1,45 @@
 package com.icaboalo.yana.ui.fragment;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
-import com.icaboalo.yana.ui.adapter.OnDialogButtonClick;
-import com.icaboalo.yana.ui.adapter.OnViewHolderClick;
+import com.icaboalo.yana.util.DividerItemDecorator;
+import com.icaboalo.yana.util.OnEmotionSelected;
+import com.icaboalo.yana.util.OnViewHolderClick;
+import com.icaboalo.yana.util.VUtil;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
-import static com.icaboalo.yana.R.string.label_activity_complete;
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by icaboalo on 26/05/16.
@@ -28,12 +47,10 @@ import static com.icaboalo.yana.R.string.label_activity_complete;
 public class ActionPlanFragment extends Fragment {
 
     RecyclerView mActivityRecycler;
-    OnDialogButtonClick mDialogButtonClick;
+    TextView mActivityDate;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mDialogButtonClick = (OnDialogButtonClick) context;
+    public ActionPlanFragment() {
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -46,50 +63,90 @@ public class ActionPlanFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
-        setUpActivityRecycler(createList());
+        mActivityDate = (TextView) view.findViewById(R.id.activity_date);
     }
 
-    ArrayList<ActivityApiModel> createList(){
-        ArrayList<ActivityApiModel> activityList = new ArrayList<>();
-        activityList.add(new ActivityApiModel("Sonreír antes de levantarse", ""));
-        activityList.add(new ActivityApiModel("Desayunar", ""));
-        activityList.add(new ActivityApiModel("Bañarse", ""));
-        activityList.add(new ActivityApiModel("Comer", ""));
-        activityList.add(new ActivityApiModel("Lammarle a un ser querido", ""));
-        activityList.add(new ActivityApiModel("Cenar", ""));
-        return activityList;
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mActivityDate.setText(Html.fromHtml("<b>Día " + getCurrentDay().getNumber() + "</b>  |  " + getCurrentDay().getDate()));
+        setUpActivityRecycler(getActivitiesFromRealm(getCurrentDay()));
     }
 
-    void setUpActivityRecycler(ArrayList<ActivityApiModel> activityList){
-        ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnViewHolderClick() {
+    void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
+        final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
             @Override
-            public void onClick(View view, int position) {
-                ActivityApiModel activity = createList().get(position);
-                showDialog(activity);
+            public void onSelect(final ActivityModel activity, final int previousAnswer, int newAnswer) {
+                Log.d("SELECTED", activity.toString());
+                Snackbar.make(getView(), "Changed emotion from " + previousAnswer + " to " + newAnswer, Snackbar.LENGTH_LONG).setAction("Undo", null).show();
+                updateActivity(VUtil.getToken(getActivity()), newAnswer, activity.getId());
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mActivityRecycler.setAdapter(activityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
+        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
-    void showDialog(final ActivityApiModel activity){
-        AlertDialog.Builder activityDetailDialog = new AlertDialog.Builder(getActivity());
-        activityDetailDialog.setTitle(activity.getName());
-        activityDetailDialog.setMessage(activity.getDescription());
-        activityDetailDialog.setCancelable(false);
-        activityDetailDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDialogButtonClick.onPositiveClick(dialog, activity, 1);
-            }
-        });
-        activityDetailDialog.setNeutralButton("COMPLETE", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                mDialogButtonClick.onNeutralClick(dialog, activity, label_activity_complete);
-            }
-        });
-        activityDetailDialog.show();
+    DayModel getCurrentDay(){
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
+
+        Realm realm = Realm.getDefaultInstance();
+        return realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
     }
+
+    ArrayList<ActivityModel> getActivitiesFromRealm(DayModel currentDay){
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class).equalTo("day.date", currentDay.getDate());
+
+        RealmResults<ActivityModel> results = query.findAll();
+
+        Log.d("REALM_RESULTS", results.toString());
+
+        ArrayList<ActivityModel> activities = new ArrayList<>();
+        for (ActivityModel activity: results){
+            activities.add(activity);
+        }
+        return activities;
+    }
+
+    ActivityModel getActivityFromRealm(int activityId){
+        Realm realm = Realm.getDefaultInstance();
+        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
+        ActivityModel result = query.equalTo("id", activityId).findAll().get(0);
+        ActivityModel activity = new ActivityModel();
+        activity.setId(result.getId());
+        activity.setTitle(result.getTitle());
+        activity.setDescription(result.getDescription());
+        activity.setAnswer(result.getAnswer());
+        activity.setDay(result.getDay());
+        return activity;
+    }
+
+    void updateActivity(String token, int answer, int activityId){
+        HashMap<String, Integer> answerDict = new HashMap<>();
+        answerDict.put("answer", answer);
+        Call<ActivityApiModel> call = ApiClient.getApiService().updateActivity(token, answerDict, activityId);
+        call.enqueue(new Callback<ActivityApiModel>() {
+            @Override
+            public void onResponse(Call<ActivityApiModel> call, Response<ActivityApiModel> response) {
+                if (response.isSuccessful()){
+                    Log.d("RETROFIT_SUCCESS", "success");
+                } else {
+                    try {
+                        Log.d("RETROFIT_ERROR", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ActivityApiModel> call, Throwable t) {
+                Log.d("RETROFIT_FAILURE", t.toString());
+            }
+        });
+    }
+
 }

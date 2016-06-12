@@ -1,59 +1,70 @@
 package com.icaboalo.yana.realm;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by saul on 27/05/16.
  */
 public class ActivityModel extends RealmObject{
+
+
     @PrimaryKey
-    private int nId;
-    private int nActivityNumber;
-    private String nActivityName;
-    private String nActivityDescription;
-    private boolean nActivityStatus;
+    @SerializedName("id")
+    private int id;
 
-    public int getnActivityNumber() {
-        return nActivityNumber;
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("day")
+    private DayModel day;
+
+    @SerializedName("answer")
+    private int answer = 0;
+
+    public int getId() {
+        return id;
     }
 
-    public void setnActivityNumber(int nActivityNumber) {
-        this.nActivityNumber = nActivityNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getnActivityDescription() {
-        return nActivityDescription;
+    public String getTitle() {
+        return title;
     }
 
-    public void setnActivityDescription(String nActivityDescription) {
-        this.nActivityDescription = nActivityDescription;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public boolean isnActivityStatus() {
-        return nActivityStatus;
+    public String getDescription() {
+        return description;
     }
 
-    public void setnActivityStatus(boolean nActivityStatus) {
-        this.nActivityStatus = nActivityStatus;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getnId() {
-
-        return nId;
+    public DayModel getDay() {
+        return day;
     }
 
-    public void setnId(int nId) {
-        this.nId = nId;
+    public void setDay(DayModel day) {
+        this.day = day;
     }
 
-    public String getnActivityName() {
-        return nActivityName;
+    public int getAnswer() {
+        return answer;
     }
 
-    public void setnActivityName(String nActivityName) {
-        this.nActivityName = nActivityName;
+    public void setAnswer(int answer) {
+        this.answer = answer;
     }
-
-
 }

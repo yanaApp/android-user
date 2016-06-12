@@ -14,6 +14,10 @@ public class FragmentPagerModel {
         this.title = title;
     }
 
+    public FragmentPagerModel(Fragment pager) {
+        this.pager = pager;
+    }
+
     public Fragment getPager() {
         return pager;
     }

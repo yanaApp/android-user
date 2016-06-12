@@ -1,52 +1,59 @@
 package com.icaboalo.yana.io.model;
 
+import com.google.gson.annotations.SerializedName;
+import com.icaboalo.yana.realm.DayModel;
+
 import java.io.Serializable;
+
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by icaboalo on 26/05/16.
  */
 public class ActivityApiModel implements Serializable{
 
-//  CONSTRUCTORS
-    public ActivityApiModel(String name, String description) {
-        this.mName = name;
-        this.mDescription = description;
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("answer")
+    private int answer = 0;
+
+
+    public int getId() {
+        return id;
     }
 
-//  PROPERTIES
-    int mId;
-    String mName;
-    String mDescription;
-    boolean mCompleted = false;
-
-
-//  GETTERS
-    public int getmId() {
-        return mId;
-    }
-
-    public String getName() {
-        return mName;
+    public String getTitle() {
+        return title;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
-    public boolean isCompleted() {
-        return mCompleted;
+    public int getAnswer() {
+        return answer;
     }
 
-//  SETTERS
-    public void setName(String mName) {
-        this.mName = mName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setDescription(String mDescription) {
-        this.mDescription = mDescription;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setCompleted(boolean mCompleted) {
-        this.mCompleted = mCompleted;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
     }
 }
