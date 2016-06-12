@@ -57,51 +57,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         } else {
-            getActivitiesAPI();
+            Intent goToMain = new Intent(SplashScreenActivity.this, MainActivity.class);
+            startActivity(goToMain);
+            Log.d("INTENT", "main");
+            finish();
         }
-    }
-
-    void getActivitiesAPI(){
-        Call<List<ActivityModel>> call = ApiClient.getApiService().getActivities(VUtil.getToken(this));
-        call.enqueue(new Callback<List<ActivityModel>>() {
-            @Override
-            public void onResponse(Call<List<ActivityModel>> call, Response<List<ActivityModel>> response) {
-                if (response.isSuccessful()){
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-                    Log.d("REQUEST", "success");
-                    for (ActivityModel activityApi: response.body()){
-                        ActivityModel activity = new ActivityModel();
-                        activity.setId(activityApi.getId());
-                        activity.setTitle(activityApi.getTitle());
-                        activity.setDescription(activityApi.getDescription());
-                        activity.setAnswer(activityApi.getAnswer());
-                        realm.copyToRealmOrUpdate(activity);
-                    }
-                    realm.commitTransaction();
-
-                    Intent goToMain = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    startActivity(goToMain);
-                    Log.d("INTENT", "main");
-                    finish();
-                } else {
-                    try {
-                        Log.d("RETROFIT_ERROR", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<ActivityModel>> call, Throwable t) {
-                Log.d("RETROFIT_FAILURE", t.toString());
-                Intent goToMain = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(goToMain);
-                Log.d("INTENT", "main");
-                finish();
-            }
-        });
-
     }
 }

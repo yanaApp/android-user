@@ -10,6 +10,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.io.ApiClient;
+import com.icaboalo.yana.io.model.UserApiModel;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.icaboalo.yana.R.string.error_empty_field;
 import static com.icaboalo.yana.R.string.error_invalid_email;
@@ -53,10 +61,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 } else if (mPasswordInput.getText().toString().isEmpty() || mPasswordInput.getText().toString().length() < 2){
                     mPasswordInput.setError(getString(error_empty_field));
                 } else {
-                    Log.d("INTENT", "main");
-                    Intent goToMain = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(goToMain);
-                    finish();
+                    UserApiModel user = new UserApiModel();
+                    user.setUserName(mUsernameInput.getText().toString());
+                    user.setPassword(mPasswordInput.getText().toString());
+                    user.setEmail(mEmailInput.getText().toString());
+                    userRegisterAPI(user);
                 }
                 break;
             case R.id.login_button:
@@ -66,5 +75,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 finish();
                 break;
         }
+    }
+
+    void userRegisterAPI(UserApiModel user){
+        Call<UserApiModel> call = ApiClient.getApiService().userRegister(user);
+        call.enqueue(new Callback<UserApiModel>() {
+            @Override
+            public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
+                if (response.isSuccessful()){
+                    Log.d("RETROFIT_SUCCESS", "success");
+                    Log.d("INTENT", "main");
+                    Intent goToMain = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(goToMain);
+                    finish();
+                } else {
+                    try {
+                        Log.d("RETROFIT_ERROR", response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserApiModel> call, Throwable t) {
+                Log.d("RETROFIT_FAILURE", t.toString());
+            }
+        });
     }
 }

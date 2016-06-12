@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.DayModel;
+import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
 
@@ -21,11 +22,15 @@ public class DayProgressRecyclerAdapter extends RecyclerView.Adapter<DayProgress
 
     Context mContext;
     ArrayList<DayModel> mDayList;
+    ArrayList<Integer> mCompletedActivities, mIncompleteActivities, mEmotionAverage;
     LayoutInflater mInflater;
 
-    public DayProgressRecyclerAdapter(Context context, ArrayList<DayModel> dayList) {
+    public DayProgressRecyclerAdapter(Context context, ArrayList<DayModel> dayList, ArrayList<Integer> completedActivities, ArrayList<Integer> incompleteActivities, ArrayList<Integer> emotionAverage) {
         this.mContext = context;
         this.mDayList = dayList;
+        this.mCompletedActivities = completedActivities;
+        this.mIncompleteActivities = incompleteActivities;
+        this.mEmotionAverage = emotionAverage;
         this.mInflater = LayoutInflater.from(context);
     }
 
@@ -38,7 +43,13 @@ public class DayProgressRecyclerAdapter extends RecyclerView.Adapter<DayProgress
     @Override
     public void onBindViewHolder(DayProgressViewHolder holder, int position) {
         DayModel day = mDayList.get(position);
+        int completed = mCompletedActivities.get(position);
+        int incomplete = mIncompleteActivities.get(position);
+        int emotion = mEmotionAverage.get(position);
         holder.setDayText(day.getNumber(), day.getDate());
+        holder.mCompletedCount.setText("" + completed);
+        holder.mIncompleteCount.setText("" + incomplete);
+        VUtil.setEmotionImage(mContext, emotion, holder.mEmotionAverage);
     }
 
     @Override

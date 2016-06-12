@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                                 activity.setId(responseActivity.getId());
                                 activity.setTitle(responseActivity.getTitle());
                                 activity.setDescription(responseActivity.getDescription());
+                                activity.setAnswer(responseActivity.getAnswer());
                                 activity.setDay(day);
 
                                 Log.d(TAG, "onResponse: " + activity.toString());

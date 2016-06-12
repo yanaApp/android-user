@@ -60,4 +60,32 @@ public class UserApiModel {
     public ArrayList<ActionPlanApiModel> getActionPlanList() {
         return actionPlanList;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setActionPlanList(ArrayList<ActionPlanApiModel> actionPlanList) {
+        this.actionPlanList = actionPlanList;
+    }
 }

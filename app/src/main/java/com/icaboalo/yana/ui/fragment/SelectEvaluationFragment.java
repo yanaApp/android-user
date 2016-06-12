@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.ui.activity.LoginActivity;
 import com.icaboalo.yana.ui.activity.MainActivity;
 import com.icaboalo.yana.ui.activity.RegisterActivity;
 
@@ -38,7 +39,7 @@ public class SelectEvaluationFragment extends Fragment {
         mEvaluationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToRegister = new Intent(getActivity(), RegisterActivity.class);
+                Intent goToRegister = new Intent(getActivity(), LoginActivity.class);
                 startActivity(goToRegister);
                 getActivity().finish();
             }

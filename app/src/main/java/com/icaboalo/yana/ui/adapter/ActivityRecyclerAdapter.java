@@ -174,41 +174,41 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             ActivityModel activity = mActivityList.get(getAdapterPosition());
             switch (v.getId()) {
                 case R.id.very_sad:
-                    activity.setAnswer(1);
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 1);
                     setEmotionImage(1);
-                    mEmotionSelected.onSelect(activity.getId());
+                    activity.setAnswer(1);
                     notifyItemChanged(getAdapterPosition());
                     emotionExpand();
                     break;
 
                 case R.id.sad:
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 2);
                     activity.setAnswer(2);
                     setEmotionImage(2);
-                    mEmotionSelected.onSelect(activity.getId());
                     notifyItemChanged(getAdapterPosition());
                     emotionExpand();
                     break;
 
                 case R.id.normal:
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 3);
                     activity.setAnswer(3);
                     setEmotionImage(3);
-                    mEmotionSelected.onSelect(activity.getId());
                     notifyItemChanged(getAdapterPosition());
                     emotionExpand();
                     break;
 
                 case R.id.happy:
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 4);
                     activity.setAnswer(4);
                     setEmotionImage(4);
-                    mEmotionSelected.onSelect(activity.getId());
                     notifyItemChanged(getAdapterPosition());
                     emotionExpand();
                     break;
 
                 case R.id.very_happy:
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 5);
                     activity.setAnswer(5);
                     setEmotionImage(5);
-                    mEmotionSelected.onSelect(activity.getId());
                     notifyItemChanged(getAdapterPosition());
                     emotionExpand();
                     break;

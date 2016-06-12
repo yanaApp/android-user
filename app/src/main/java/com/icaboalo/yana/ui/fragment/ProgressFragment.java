@@ -18,8 +18,10 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.DayProgressRecyclerAdapter;
 import com.icaboalo.yana.util.DividerItemDecorator;
+import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 
 import io.realm.Realm;
 import io.realm.RealmQuery;
@@ -60,27 +62,41 @@ public class ProgressFragment extends Fragment {
 
         mCompletedProgress.setMax(getCompletedActivitiesFromRealm(null) + getIncompleteActivitiesFromRealm(null));
         mCompletedProgress.setProgress(getCompletedActivitiesFromRealm(null));
+        VUtil.setEmotionImage(getActivity(), getEmotionAverageFromRealm(null), mEmotionImage);
 
         setupDayProcessRecycler(getDaysFromRealm());
+        getEmotionAverageFromRealm(null);
 
     }
 
     int getCompletedActivitiesFromRealm(@Nullable DayModel day){
+        Realm realm = Realm.getDefaultInstance();
         if (day == null){
-            Realm realm = Realm.getDefaultInstance();
             return realm.where(ActivityModel.class).greaterThan("answer", 0).findAll().size();
         } else {
-            return 0;
+            return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.date", day.getDate()).findAll().size();
         }
     }
 
     int getIncompleteActivitiesFromRealm(@Nullable DayModel day){
+        Realm realm = Realm.getDefaultInstance();
         if (day == null){
-            Realm realm = Realm.getDefaultInstance();
             return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
         } else {
-            return 0;
+            return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.date", day.getDate()).findAll().size();
         }
+    }
+
+    int getEmotionAverageFromRealm(@Nullable DayModel day){
+        Realm realm = Realm.getDefaultInstance();
+        if (day == null){
+            double results = realm.where(ActivityModel.class).average("answer");
+            return (int) Math.round(results);
+        } else {
+            double results = realm.where(ActivityModel.class).equalTo("day.date", day.getDate()).average("answer");
+            return (int) Math.round(results);
+        }
+
     }
 
     ArrayList<DayModel> getDaysFromRealm(){
@@ -91,19 +107,21 @@ public class ProgressFragment extends Fragment {
         for (DayModel day: results){
             dayList.add(day);
         }
-        DayModel day1 = new DayModel();
-        day1.setNumber(1);
-        day1.setDate("7 de Junio 2016");
-        dayList.add(day1);
-        DayModel day2 = new DayModel();
-        day2.setNumber(2);
-        day2.setDate("8 de Junio 2016");
-        dayList.add(day2);
         return dayList;
     }
 
     void setupDayProcessRecycler(ArrayList<DayModel> dayList){
-        DayProgressRecyclerAdapter dayProgressRecyclerAdapter = new DayProgressRecyclerAdapter(getActivity(), dayList);
+        ArrayList<Integer> completedActivities = new ArrayList<>();
+        ArrayList<Integer> incompleteActivities = new ArrayList<>();
+        ArrayList<Integer> emotionAverage = new ArrayList<>();
+        for (DayModel day: dayList){
+            completedActivities.add(getCompletedActivitiesFromRealm(day));
+            incompleteActivities.add(getIncompleteActivitiesFromRealm(day));
+            emotionAverage.add(getEmotionAverageFromRealm(day));
+
+        }
+
+        DayProgressRecyclerAdapter dayProgressRecyclerAdapter = new DayProgressRecyclerAdapter(getActivity(), dayList, completedActivities, incompleteActivities, emotionAverage);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
         mDayProgressRecycler.setLayoutManager(linearLayoutManager);

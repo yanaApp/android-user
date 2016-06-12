@@ -80,7 +80,7 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
             case R.id.continue_button:
                 if (mAnswer != 0){
                     if (mQuestionPosition == mQuestionList.length -1){
-                        Intent goToRegister = new Intent(EvaluationActivity.this, RegisterActivity.class);
+                        Intent goToRegister = new Intent(EvaluationActivity.this, LoginActivity.class);
                         startActivity(goToRegister);
                         finish();
                     } else {

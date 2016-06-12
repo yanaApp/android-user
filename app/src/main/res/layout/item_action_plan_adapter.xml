@@ -103,8 +103,6 @@
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/icon_description"
             android:layout_toRightOf="@id/icon_description"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
             android:text="Description..." />
 
 

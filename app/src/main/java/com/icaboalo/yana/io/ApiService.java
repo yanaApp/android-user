@@ -29,6 +29,9 @@ public interface ApiService {
     @POST("login/")
     Call<UserModel> login(@Body UserModel user);
 
+    @POST("user/register/")
+    Call<UserApiModel> userRegister(@Body UserApiModel user);
+
     @GET("me/")
     Call<ArrayList<UserApiModel>> getMe(@Header("Authorization") String token);
 

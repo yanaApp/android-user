@@ -2,16 +2,19 @@ package com.icaboalo.yana.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icaboalo.yana.R;
@@ -44,6 +47,7 @@ import retrofit2.Response;
 public class ActionPlanFragment extends Fragment {
 
     RecyclerView mActivityRecycler;
+    TextView mActivityDate;
 
     public ActionPlanFragment() {
         setHasOptionsMenu(true);
@@ -59,20 +63,23 @@ public class ActionPlanFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
+        mActivityDate = (TextView) view.findViewById(R.id.activity_date);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mActivityDate.setText(Html.fromHtml("<b>Día " + getCurrentDay().getNumber() + "</b>  |  " + getCurrentDay().getDate()));
         setUpActivityRecycler(getActivitiesFromRealm(getCurrentDay()));
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
         final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
             @Override
-            public void onSelect(int emotionId) {
-                Log.d("SELECTED", getActivityFromRealm(emotionId).toString());
-                updateActivity(VUtil.getToken(getActivity()), getActivityFromRealm(emotionId).getAnswer(), emotionId);
+            public void onSelect(final ActivityModel activity, final int previousAnswer, int newAnswer) {
+                Log.d("SELECTED", activity.toString());
+                Snackbar.make(getView(), "Changed emotion from " + previousAnswer + " to " + newAnswer, Snackbar.LENGTH_LONG).setAction("Undo", null).show();
+                updateActivity(VUtil.getToken(getActivity()), newAnswer, activity.getId());
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -118,7 +125,6 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void updateActivity(String token, int answer, int activityId){
-        Log.d("UPDATE", "Started");
         HashMap<String, Integer> answerDict = new HashMap<>();
         answerDict.put("answer", answer);
         Call<ActivityApiModel> call = ApiClient.getApiService().updateActivity(token, answerDict, activityId);
@@ -126,7 +132,7 @@ public class ActionPlanFragment extends Fragment {
             @Override
             public void onResponse(Call<ActivityApiModel> call, Response<ActivityApiModel> response) {
                 if (response.isSuccessful()){
-                    Log.d("RETROFIT_SUCESS", response.body().toString());
+                    Log.d("RETROFIT_SUCCESS", "success");
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
