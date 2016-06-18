@@ -9,15 +9,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.DayProgressRecyclerAdapter;
 import com.icaboalo.yana.util.DividerItemDecorator;
+import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
@@ -33,6 +38,7 @@ import io.realm.RealmResults;
 public class ProgressFragment extends Fragment {
 
     TextView mCompleted, mIncomplete;
+    Spinner mActionPlanSpinner;
     ImageView mEmotionImage;
     ProgressBar mCompletedProgress;
     RecyclerView mDayProgressRecycler;
@@ -48,6 +54,7 @@ public class ProgressFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mCompleted = (TextView) view.findViewById(R.id.completed_text);
         mIncomplete = (TextView) view.findViewById(R.id.incomplete_text);
+        mActionPlanSpinner = (Spinner) view.findViewById(R.id.action_plan_spinner);
         mEmotionImage = (ImageView) view.findViewById(R.id.emotion_average_image);
         mCompletedProgress = (ProgressBar) view.findViewById(R.id.completed_progress_bar);
         mDayProgressRecycler = (RecyclerView) view.findViewById(R.id.day_progress_recycler);
@@ -57,67 +64,46 @@ public class ProgressFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mCompleted.setText("" + getCompletedActivitiesFromRealm(null));
-        mIncomplete.setText("" + getIncompleteActivitiesFromRealm(null));
+        mCompleted.setText("" + RealmUtils.getCompletedActivitiesFromRealm(null));
+        mIncomplete.setText("" + RealmUtils.getIncompleteActivitiesFromRealm(null));
 
-        mCompletedProgress.setMax(getCompletedActivitiesFromRealm(null) + getIncompleteActivitiesFromRealm(null));
-        mCompletedProgress.setProgress(getCompletedActivitiesFromRealm(null));
-        VUtil.setEmotionImage(getActivity(), getEmotionAverageFromRealm(null), mEmotionImage);
+        mCompletedProgress.setMax(RealmUtils.getCompletedActivitiesFromRealm(null) + RealmUtils.getIncompleteActivitiesFromRealm(null));
+        mCompletedProgress.setProgress(RealmUtils.getCompletedActivitiesFromRealm(null));
+        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(null), mEmotionImage);
 
-        setupDayProcessRecycler(getDaysFromRealm());
-        getEmotionAverageFromRealm(null);
+        setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm());
+        RealmUtils.getEmotionAverageFromRealm(null);
 
     }
 
-    int getCompletedActivitiesFromRealm(@Nullable DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            return realm.where(ActivityModel.class).greaterThan("answer", 0).findAll().size();
-        } else {
-            return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.date", day.getDate()).findAll().size();
+    void setupActionPlanSpinner(final ArrayList<ActionPlanModel> actionPlanList){
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
+        for (ActionPlanModel actionPlan: actionPlanList){
+            arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
         }
+        mActionPlanSpinner.setAdapter(arrayAdapter);
+        mActionPlanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setupDayProcessRecycler(RealmUtils.getDaysFromRealm(actionPlanList.get(position)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    int getIncompleteActivitiesFromRealm(@Nullable DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
-        } else {
-            return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.date", day.getDate()).findAll().size();
-        }
-    }
-
-    int getEmotionAverageFromRealm(@Nullable DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            double results = realm.where(ActivityModel.class).average("answer");
-            return (int) Math.round(results);
-        } else {
-            double results = realm.where(ActivityModel.class).equalTo("day.date", day.getDate()).average("answer");
-            return (int) Math.round(results);
-        }
-
-    }
-
-    ArrayList<DayModel> getDaysFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<DayModel> results = realm.where(DayModel.class).findAll();
-        Log.d("REALM_RESULTS", results.toString());
-        ArrayList<DayModel> dayList = new ArrayList<>();
-        for (DayModel day: results){
-            dayList.add(day);
-        }
-        return dayList;
-    }
 
     void setupDayProcessRecycler(ArrayList<DayModel> dayList){
         ArrayList<Integer> completedActivities = new ArrayList<>();
         ArrayList<Integer> incompleteActivities = new ArrayList<>();
         ArrayList<Integer> emotionAverage = new ArrayList<>();
         for (DayModel day: dayList){
-            completedActivities.add(getCompletedActivitiesFromRealm(day));
-            incompleteActivities.add(getIncompleteActivitiesFromRealm(day));
-            emotionAverage.add(getEmotionAverageFromRealm(day));
+            completedActivities.add(RealmUtils.getCompletedActivitiesFromRealm(day));
+            incompleteActivities.add(RealmUtils.getIncompleteActivitiesFromRealm(day));
+            emotionAverage.add(RealmUtils.getEmotionAverageFromRealm(day));
 
         }
 

@@ -1,13 +1,18 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -24,6 +29,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.adapter.ContactRecyclerAdapter;
+import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
@@ -62,7 +68,7 @@ public class ContactsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupContactRecycler(getContactsFromRealm());
+        setupContactRecycler(RealmUtils.getContactsFromRealm());
     }
 
     @Override
@@ -75,9 +81,7 @@ public class ContactsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_add_contact:
-                Log.d("INTENT", "pick contact");
-                Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-                startActivityForResult(pickContact, 1);
+                checkForContactsPermission();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -104,6 +108,8 @@ public class ContactsFragment extends Fragment {
                             phones.moveToFirst();
                             cNumber = phones.getString(phones.getColumnIndex("data1"));
                             phones.close();
+                        } else {
+                            Toast.makeText(getActivity(), "Selected contact doesn't has a saved phone number", Toast.LENGTH_SHORT).show();
                         }
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
@@ -121,6 +127,25 @@ public class ContactsFragment extends Fragment {
                     c.close();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d("REQUEST_CODE", "" + requestCode);
+        switch (requestCode){
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Log.d("INTENT", "pick contact");
+                    Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                    startActivityForResult(pickContact, 1);
+                } else {
+
+                }
+                return;
+            case 0:
+                return;
         }
     }
 
@@ -149,7 +174,7 @@ public class ContactsFragment extends Fragment {
                 switch (direction){
                     case ItemTouchHelper.END:
                         Toast.makeText(getActivity(), "Removed " + contactList.get(position).getName(), Toast.LENGTH_SHORT).show();
-                        removeContactFromRealm(contactList.get(position).getId());
+                        RealmUtils.removeContactFromRealm(contactList.get(position).getId());
                         contactRecyclerAdapter.notifyItemRemoved(position);
                         break;
                     case ItemTouchHelper.START:
@@ -162,28 +187,6 @@ public class ContactsFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(mContactRecycler);
     }
 
-    ArrayList<ContactModel> getContactsFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
-        RealmQuery<ContactModel> query = realm.where(ContactModel.class);
-        RealmResults<ContactModel> results =  query.findAll();
-
-        Log.d("REALM_RESULTS", results.toString());
-
-        ArrayList<ContactModel> contactList = new ArrayList<>();
-        for (ContactModel contact: results){
-            contactList.add(contact);
-        }
-
-        return contactList;
-    }
-
-    void removeContactFromRealm(int contactId){
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        ContactModel contact = realm.where(ContactModel.class).equalTo("id", contactId).findFirst();
-        contact.deleteFromRealm();
-        realm.commitTransaction();
-    }
 
     void saveContactAPI(String token, ContactModel contact){
         Call<ContactModel> call = ApiClient.getApiService().saveContact(token, contact);
@@ -195,7 +198,7 @@ public class ContactsFragment extends Fragment {
                     realm.beginTransaction();
                     realm.copyToRealmOrUpdate(response.body());
                     realm.commitTransaction();
-                    setupContactRecycler(getContactsFromRealm());
+                    setupContactRecycler(RealmUtils.getContactsFromRealm());
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
@@ -212,4 +215,35 @@ public class ContactsFragment extends Fragment {
         });
     }
 
+    void checkForContactsPermission(){
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.READ_CONTACTS)) {
+
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+            } else {
+
+                // No explanation needed, we can request the permission.
+
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.READ_CONTACTS},
+                        1);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            Log.d("INTENT", "pick contact");
+            Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+            startActivityForResult(pickContact, 1);
+        }
+    }
 }

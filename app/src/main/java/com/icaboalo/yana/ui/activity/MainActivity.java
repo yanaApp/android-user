@@ -1,12 +1,8 @@
 package com.icaboalo.yana.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -14,28 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.io.ApiClient;
-import com.icaboalo.yana.io.model.ActivityApiModel;
-import com.icaboalo.yana.realm.ActivityModel;
-import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.ContactsFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.VUtil;
-
-import java.util.ArrayList;
-
-import io.realm.Realm;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -84,18 +66,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = null;
 
         switch (id){
-            case R.id.nav_camera:
+            case R.id.nav_action_plan:
                 fragment = new ActionPlanFragment();
                 break;
-            case R.id.nav_gallery:
+            case R.id.nav_contacts:
                 fragment = new ContactsFragment();
                 break;
-            case R.id.nav_slideshow:
+            case R.id.nav_progress:
                 fragment = new ProgressFragment();
                 break;
-            case R.id.nav_manage:
+            case R.id.nav_profile:
                 break;
-            case R.id.nav_send:
+            case R.id.nav_log_out:
                 SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
                 break;
@@ -103,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         replaceFragment(fragment);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 

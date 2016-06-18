@@ -45,19 +45,46 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     }
 
     @Override
-    public void onBindViewHolder(ActivityViewHolder holder, int position) {
+    public void onBindViewHolder(ActivityViewHolder holder, final int position) {
         ActivityModel activity = mActivityList.get(position);
 
         if (position == emotionExpandedPosition) {
-            holder.mEmotionLayout.setVisibility(View.VISIBLE);
-            holder.mDescriptionLayout.setVisibility(View.GONE);
+            holder.showEmotions(true);
+            holder.showDescription(false);
         } else if (position == descriptionExpandedPosition) {
-            holder.mDescriptionLayout.setVisibility(View.VISIBLE);
-            holder.mEmotionLayout.setVisibility(View.GONE);
+            holder.showDescription(true);
+            holder.showEmotions(false);
         } else {
-            holder.mEmotionLayout.setVisibility(View.GONE);
-            holder.mDescriptionLayout.setVisibility(View.GONE);
+            holder.showEmotions(false);
+            holder.showDescription(false);
         }
+
+        holder.mEmotionImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                descriptionExpandedPosition = -1;
+                if (emotionExpandedPosition == position) {
+                    emotionExpandedPosition = -1;
+                } else {
+                    emotionExpandedPosition = position;
+                }
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.mDescriptionImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emotionExpandedPosition = -1;
+                if (descriptionExpandedPosition == position) {
+                    descriptionExpandedPosition = -1;
+                } else {
+                    descriptionExpandedPosition = position;
+                }
+                notifyDataSetChanged();
+            }
+        });
+
 
         holder.setTitle(activity.getTitle());
         holder.setDescription(activity.getDescription());
@@ -99,18 +126,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             mHappyImage.setOnClickListener(this);
             mVeryHappyImage.setOnClickListener(this);
             this.mEmotionSelected = onEmotionSelected;
-            this.mEmotionImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    emotionExpand();
-                }
-            });
-            this.mDescriptionImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    descriptionExpand();
-                }
-            });
         }
 
         void setEmotionImage(int answer) {
@@ -178,7 +193,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     setEmotionImage(1);
                     activity.setAnswer(1);
                     notifyItemChanged(getAdapterPosition());
-                    emotionExpand();
                     break;
 
                 case R.id.sad:
@@ -186,7 +200,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     activity.setAnswer(2);
                     setEmotionImage(2);
                     notifyItemChanged(getAdapterPosition());
-                    emotionExpand();
                     break;
 
                 case R.id.normal:
@@ -194,7 +207,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     activity.setAnswer(3);
                     setEmotionImage(3);
                     notifyItemChanged(getAdapterPosition());
-                    emotionExpand();
                     break;
 
                 case R.id.happy:
@@ -202,7 +214,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     activity.setAnswer(4);
                     setEmotionImage(4);
                     notifyItemChanged(getAdapterPosition());
-                    emotionExpand();
                     break;
 
                 case R.id.very_happy:
@@ -210,46 +221,22 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     activity.setAnswer(5);
                     setEmotionImage(5);
                     notifyItemChanged(getAdapterPosition());
-                    emotionExpand();
                     break;
             }
+            showEmotions(false);
             realm.copyToRealmOrUpdate(activity);
             realm.commitTransaction();
 
         }
 
-        void emotionExpand() {
-            // Check for an expanded view, collapse if you find one
-            if (emotionExpandedPosition >= 0) {
-                int prev = emotionExpandedPosition;
-                notifyItemChanged(prev);
-            }
-
-            if (emotionExpandedPosition == getAdapterPosition()) {
-                emotionExpandedPosition = -1;
-                notifyItemChanged(getAdapterPosition());
-            } else {
-                // Set the current position to "expanded"
-                emotionExpandedPosition = getAdapterPosition();
-                notifyItemChanged(emotionExpandedPosition);
-            }
+        public void showDescription(boolean show) {
+            int visibility = show ? View.VISIBLE : View.GONE;
+            mDescriptionLayout.setVisibility(visibility);
         }
 
-        void descriptionExpand() {
-            // Check for an expanded view, collapse if you find one
-            if (descriptionExpandedPosition >= 0) {
-                int prev = descriptionExpandedPosition;
-                notifyItemChanged(prev);
-            }
-
-            if (descriptionExpandedPosition == getAdapterPosition()) {
-                descriptionExpandedPosition = -1;
-                notifyItemChanged(getAdapterPosition());
-            } else {
-                // Set the current position to "expanded"
-                descriptionExpandedPosition = getAdapterPosition();
-                notifyItemChanged(descriptionExpandedPosition);
-            }
+        public void showEmotions(boolean show){
+            int visibility = show ? View.VISIBLE : View.GONE;
+            mEmotionLayout.setVisibility(visibility);
         }
     }
 }
