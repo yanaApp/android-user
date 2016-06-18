@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().putString(PrefConstants.tokenPref, "Token " + response.body().getToken()).apply();
                 }else{
+                    mProgressDialog.dismiss();
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
                     } catch (IOException e) {
@@ -97,7 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<UserModel> call, Throwable t) {
-
+                Log.d("RETROFIT_FAILURE", t.toString());
+                mProgressDialog.dismiss();
             }
         });
     }

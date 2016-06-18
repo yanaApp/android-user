@@ -223,9 +223,10 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     notifyItemChanged(getAdapterPosition());
                     break;
             }
-            showEmotions(false);
             realm.copyToRealmOrUpdate(activity);
             realm.commitTransaction();
+            showEmotions(false);
+            emotionExpandedPosition = -1;
 
         }
 
