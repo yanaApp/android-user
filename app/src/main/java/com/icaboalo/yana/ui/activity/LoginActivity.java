@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
     TextInputEditText mUsername, mPassword;
     Button mLogin;
+    ProgressDialog mProgressDialog;
     private static final String TAG = "LoginActivity";
 
     @Override
@@ -62,6 +64,9 @@ public class LoginActivity extends AppCompatActivity {
                     mPassword.setError(getString(R.string.error_empty_field));
                 }
                 else {
+                    mProgressDialog = new ProgressDialog(LoginActivity.this);
+                    mProgressDialog.setMessage(getString(R.string.progress_dialog_login));
+                    mProgressDialog.show();
                     UserModel user = new UserModel();
                     user.setUserName(mUsername.getText().toString());
                     user.setPassword(mPassword.getText().toString());
@@ -77,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {
+                    mProgressDialog.dismiss();
                     getMe("Token " + response.body().getToken());
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().putString(PrefConstants.tokenPref, "Token " + response.body().getToken()).apply();
