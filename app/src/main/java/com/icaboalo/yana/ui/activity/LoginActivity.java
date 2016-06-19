@@ -122,7 +122,10 @@ public class LoginActivity extends AppCompatActivity {
                     user.setPhoneNumber(responseUser.getPhoneNumber());
 
                     Log.d(TAG, "onResponse: " + user.toString());
-                    realm.copyToRealmOrUpdate(user);
+
+                    ArrayList<ActionPlanModel> actionPlanList = new ArrayList<ActionPlanModel>();
+                    ArrayList<DayModel> dayList = new ArrayList<DayModel>();
+                    ArrayList<ActivityModel> activityList = new ArrayList<ActivityModel>();
 
                     for (ActionPlanApiModel responseActionPlan: responseUser.getActionPlanList()){
 
@@ -135,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                         actionPlan.setActive(responseActionPlan.isActive());
 
                         Log.d(TAG, "onResponse: " + actionPlan.toString());
-                        realm.copyToRealmOrUpdate(actionPlan);
+                        actionPlanList.add(actionPlan);
 
                         for (DayApiModel responseDay: responseActionPlan.getDayList()){
 
@@ -147,7 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                             day.setDate(responseDay.getDate());
 
                             Log.d(TAG, "onResponse: " + day.toString());
-                            realm.copyToRealmOrUpdate(day);
+                            dayList.add(day);
 
                             for (ActivityApiModel responseActivity: responseDay.getActivityList()){
 
@@ -159,10 +162,15 @@ public class LoginActivity extends AppCompatActivity {
                                 activity.setDay(day);
 
                                 Log.d(TAG, "onResponse: " + activity.toString());
-                                realm.copyToRealmOrUpdate(activity);
+                                activityList.add(activity);
                             }
                         }
                     }
+
+                    realm.copyToRealmOrUpdate(user);
+                    realm.copyToRealmOrUpdate(actionPlanList);
+                    realm.copyToRealmOrUpdate(dayList);
+                    realm.copyToRealmOrUpdate(activityList);
                     realm.commitTransaction();
 
 

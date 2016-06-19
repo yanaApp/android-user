@@ -10,4 +10,7 @@ public class PrefConstants {
 
     public static final String tutorialFile = "TUTORIAL";
     public static final String isTutorialCompleted = "isCompleted";
+
+    public static final String profileFile = "PROFILE";
+    public static final String isProfileCompletedPref = "isCompleted";
 }

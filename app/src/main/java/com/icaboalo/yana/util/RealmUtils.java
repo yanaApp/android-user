@@ -7,6 +7,7 @@ import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.realm.DayModel;
+import com.icaboalo.yana.realm.UserModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -112,6 +113,12 @@ public class RealmUtils {
             activities.add(activity);
         }
         return activities;
+    }
+
+    public static UserModel getUser(){
+        Realm realm = Realm.getDefaultInstance();
+
+        return realm.where(UserModel.class).findFirst();
     }
 
     public static DayModel getCurrentDayFromRealm(){

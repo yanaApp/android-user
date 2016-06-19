@@ -16,6 +16,7 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.ContactsFragment;
+import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.VUtil;
 
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ProgressFragment();
                 break;
             case R.id.nav_profile:
+                fragment = new ProfileFragment();
                 break;
             case R.id.nav_log_out:
                 SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);

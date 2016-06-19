@@ -24,11 +24,23 @@ public class UserModel extends RealmObject {
     @SerializedName("username")
     private String userName;
 
+    @SerializedName("full_name")
+    private String fullName;
+
     @SerializedName("email")
     private String email;
 
     @SerializedName("phone_number")
     private String phoneNumber;
+
+    @SerializedName("birth_date")
+    private String birthDate;
+
+    @SerializedName("genre")
+    private String genre;
+
+    @SerializedName("location")
+    private String location;
 
     @Ignore
     @SerializedName("password")
@@ -52,6 +64,38 @@ public class UserModel extends RealmObject {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getEmail() {
