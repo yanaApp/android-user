@@ -20,6 +20,8 @@ import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.VUtil;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout mDrawerLayout;

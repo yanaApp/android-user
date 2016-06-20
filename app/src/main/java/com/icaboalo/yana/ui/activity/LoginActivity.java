@@ -83,9 +83,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
                 if (response.isSuccessful()) {
                     mProgressDialog.dismiss();
-                    getMe("Token " + response.body().getToken());
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().putString(PrefConstants.tokenPref, "Token " + response.body().getToken()).apply();
+                    Intent goToLoading = new Intent(LoginActivity.this, LoadingActivity.class);
+                    startActivity(goToLoading);
+                    finish();
                 }else{
                     mProgressDialog.dismiss();
                     try {
@@ -100,95 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<UserModel> call, Throwable t) {
                 Log.d("RETROFIT_FAILURE", t.toString());
                 mProgressDialog.dismiss();
-            }
-        });
-    }
-
-    void getMe(String token){
-        Call<ArrayList<UserApiModel>> call = ApiClient.getApiService().getMe(token);
-        call.enqueue(new Callback<ArrayList<UserApiModel>>() {
-            @Override
-            public void onResponse(Call<ArrayList<UserApiModel>> call, Response<ArrayList<UserApiModel>> response) {
-                if (response.isSuccessful()){
-
-                    UserApiModel responseUser = response.body().get(0);
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-
-                    UserModel user = new UserModel();
-                    user.setId(responseUser.getId());
-                    user.setUserName(responseUser.getUserName());
-                    user.setEmail(responseUser.getEmail());
-                    user.setPhoneNumber(responseUser.getPhoneNumber());
-
-                    Log.d(TAG, "onResponse: " + user.toString());
-
-                    ArrayList<ActionPlanModel> actionPlanList = new ArrayList<ActionPlanModel>();
-                    ArrayList<DayModel> dayList = new ArrayList<DayModel>();
-                    ArrayList<ActivityModel> activityList = new ArrayList<ActivityModel>();
-
-                    for (ActionPlanApiModel responseActionPlan: responseUser.getActionPlanList()){
-
-                        ActionPlanModel actionPlan = new ActionPlanModel();
-                        actionPlan.setId(responseActionPlan.getId());
-                        actionPlan.setCategory(responseActionPlan.getCategory());
-                        actionPlan.setInitialDate(responseActionPlan.getInitialDate());
-                        actionPlan.setFinalDate(responseActionPlan.getFinalDate());
-                        actionPlan.setUser(user);
-                        actionPlan.setActive(responseActionPlan.isActive());
-
-                        Log.d(TAG, "onResponse: " + actionPlan.toString());
-                        actionPlanList.add(actionPlan);
-
-                        for (DayApiModel responseDay: responseActionPlan.getDayList()){
-
-                            DayModel day = new DayModel();
-                            day.setId(responseDay.getId());
-                            day.setActionPlan(actionPlan);
-                            day.setAnswer(responseDay.getAnswer());
-                            day.setNumber(responseDay.getNumber());
-                            day.setDate(responseDay.getDate());
-
-                            Log.d(TAG, "onResponse: " + day.toString());
-                            dayList.add(day);
-
-                            for (ActivityApiModel responseActivity: responseDay.getActivityList()){
-
-                                ActivityModel activity = new ActivityModel();
-                                activity.setId(responseActivity.getId());
-                                activity.setTitle(responseActivity.getTitle());
-                                activity.setDescription(responseActivity.getDescription());
-                                activity.setAnswer(responseActivity.getAnswer());
-                                activity.setDay(day);
-
-                                Log.d(TAG, "onResponse: " + activity.toString());
-                                activityList.add(activity);
-                            }
-                        }
-                    }
-
-                    realm.copyToRealmOrUpdate(user);
-                    realm.copyToRealmOrUpdate(actionPlanList);
-                    realm.copyToRealmOrUpdate(dayList);
-                    realm.copyToRealmOrUpdate(activityList);
-                    realm.commitTransaction();
-
-
-                    Intent goToMain = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(goToMain);
-                    finish();
-                } else{
-                    try {
-                        Log.d("RETROFIT_ERROR", response.errorBody().string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<UserApiModel>> call, Throwable t) {
-                Log.d("RETROFIT_FAILURE", t.toString());
             }
         });
     }

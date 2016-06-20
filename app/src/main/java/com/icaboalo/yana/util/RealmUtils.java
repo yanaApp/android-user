@@ -31,6 +31,17 @@ public class RealmUtils {
         }
     }
 
+    public static int getCompletedActivitiesFromRealm(ArrayList<DayModel> dayList){
+        Realm realm = Realm.getDefaultInstance();
+        int count = 0;
+        for (DayModel day : dayList){
+            count += realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+        }
+
+        return count;
+
+    }
+
     public static int getIncompleteActivitiesFromRealm(@Nullable DayModel day){
         Realm realm = Realm.getDefaultInstance();
         if (day == null){
@@ -38,6 +49,16 @@ public class RealmUtils {
         } else {
             return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
         }
+    }
+
+    public static int getIncompleteActivitiesFromRealm(ArrayList<DayModel> dayList){
+        Realm realm = Realm.getDefaultInstance();
+        int count = 0;
+        for (DayModel day : dayList){
+            count += realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+        }
+
+        return count;
     }
 
     public static int getEmotionAverageFromRealm(@Nullable DayModel day){
@@ -52,24 +73,49 @@ public class RealmUtils {
 
     }
 
-    public static ArrayList<DayModel> getDaysFromRealm(@Nullable ActionPlanModel actionPlan){
+    public static ArrayList<DayModel> getDaysFromRealm(@Nullable ActionPlanModel actionPlan, boolean onlyCompleted){
         Realm realm = Realm.getDefaultInstance();
         if (actionPlan == null){
             RealmResults<DayModel> results = realm.where(DayModel.class).findAll();
             Log.d("REALM_RESULTS", results.toString());
-            ArrayList<DayModel> dayList = new ArrayList<>();
-            for (DayModel day: results){
-                dayList.add(day);
+            if (onlyCompleted){
+                DayModel currentDay = getCurrentDayFromRealm();
+                ArrayList<DayModel> dayList = new ArrayList<>();
+                for (DayModel day : results){
+                    dayList.add(day);
+                    if (day.getId() == currentDay.getId()){
+                        break;
+                    }
+                }
+                return dayList;
+            } else {
+                ArrayList<DayModel> dayList = new ArrayList<>();
+                for (DayModel day : results) {
+                    dayList.add(day);
+                }
+                return dayList;
             }
-            return dayList;
         } else {
             RealmResults<DayModel> results = realm.where(DayModel.class).equalTo("actionPlan.id", actionPlan.getId()).findAll();
             Log.d("REALM_RESULTS", results.toString());
-            ArrayList<DayModel> dayList = new ArrayList<>();
-            for (DayModel day: results){
-                dayList.add(day);
+
+            if (onlyCompleted){
+                DayModel currentDay = getCurrentDayFromRealm();
+                ArrayList<DayModel> dayList = new ArrayList<>();
+                for (DayModel day : results){
+                    dayList.add(day);
+                    if (day.getId() == currentDay.getId()){
+                        break;
+                    }
+                }
+                return dayList;
+            } else {
+                ArrayList<DayModel> dayList = new ArrayList<>();
+                for (DayModel day: results){
+                    dayList.add(day);
+                }
+                return dayList;
             }
-            return dayList;
         }
     }
 

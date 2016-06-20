@@ -57,10 +57,12 @@ public class ProfileFragment extends Fragment {
         mPhoneInput.setText(user.getPhoneNumber());
         mBirthDateInput.setText(user.getBirthDate());
 
-        if (user.getGenre().equals("man")){
-            mManButton.setChecked(true);
-        } else {
-            mWomanButton.setChecked(true);
+        if (user.getGenre() != null){
+            if (user.getGenre().equals("man")){
+                mManButton.setChecked(true);
+            } else {
+                mWomanButton.setChecked(true);
+            }
         }
     }
 }
