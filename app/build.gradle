@@ -44,6 +44,9 @@ dependencies {
 //  ViewPagerIndicator
     compile 'com.pacioianu.david:ink-page-indicator:1.1.1'
 
+//  Loading view
+    compile 'me.wangyuwei:LoadingiVew:1.0.3'
+
 
 }
 

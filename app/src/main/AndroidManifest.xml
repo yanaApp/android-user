@@ -32,7 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.AutoEvaluationActivity" />
-        <activity android:name=".ui.activity.EvaluationActivity"></activity>
+        <activity android:name=".ui.activity.EvaluationActivity" />
+        <activity android:name=".ui.activity.LoadingActivity"></activity>
     </application>
 
 </manifest>
