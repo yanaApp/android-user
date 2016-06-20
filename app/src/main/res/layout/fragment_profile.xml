@@ -1,237 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputLayout
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/full_name_input"
-                android:hint="NOMBRE COMPLETO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:paddingTop="10dp"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:maxLength="50"
-                android:singleLine="true"/>
-        </android.support.design.widget.TextInputLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:id="@+id/username_input"
-                android:hint="NOMBRE DE USUARIO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:paddingTop="10dp"
-                android:singleLine="true"/>
-        </android.support.design.widget.TextInputLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/email_input"
-                android:hint="CORREO ELECTRONICO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:paddingTop="10dp"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"/>
-        </android.support.design.widget.TextInputLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/phone_input"
-                android:hint="TELEFONO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:paddingTop="10dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:inputType="phone"
-                android:maxLength="50"
-                android:singleLine="true"/>
-        </android.support.design.widget.TextInputLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/birth_date_input"
-                android:hint="FECHA DE NACIMIENTO"
-                android:paddingTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:maxLength="50"
-                android:singleLine="true"/>
-        </android.support.design.widget.TextInputLayout>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
-
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:minHeight="70dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="GENERO" />
+            android:minHeight="70dp">
 
-        <RadioGroup
-            android:id="@+id/genre_group"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/full_name_input"
+                    android:hint="NOMBRE COMPLETO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:paddingTop="10dp"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:gravity="end"
+            android:minHeight="70dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:id="@+id/username_input"
+                    android:hint="NOMBRE DE USUARIO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:paddingTop="10dp"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="70dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/email_input"
+                    android:hint="CORREO ELECTRONICO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="10dp"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="70dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/phone_input"
+                    android:hint="TELEFONO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:paddingTop="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:inputType="phone"
+                    android:maxLength="50"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="70dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/birth_date_input"
+                    android:hint="FECHA DE NACIMIENTO"
+                    android:paddingTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:singleLine="true"/>
+            </android.support.design.widget.TextInputLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:minHeight="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/woman_button"
-                android:checked="true"
+            <TextView
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Femenino" />
+                android:layout_centerVertical="true"
+                android:text="GENERO" />
 
-            <RadioButton
-                android:id="@+id/man_button"
+            <RadioGroup
+                android:id="@+id/genre_group"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Masculino" />
-        </RadioGroup>
-    </RelativeLayout>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:gravity="end"
+                android:orientation="horizontal">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent" />
+                <RadioButton
+                    android:id="@+id/woman_button"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Femenino" />
 
-    <RelativeLayout
-        android:background="@color/white"
-        android:padding="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="70dp">
+                <RadioButton
+                    android:id="@+id/man_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masculino" />
+            </RadioGroup>
+        </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent" />
+
+        <RelativeLayout
+            android:background="@color/white"
+            android:padding="16dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:text="UBICACIÓN"
-            android:textSize="18sp" />
+            android:minHeight="70dp">
 
-        <EditText
-            android:inputType="phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:maxLength="30"
-            android:singleLine="true"
-            android:text="Ciudad de México" />
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="UBICACIÓN"
+                android:textSize="18sp" />
 
-</LinearLayout>
+            <EditText
+                android:inputType="phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="Ciudad de México" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>
