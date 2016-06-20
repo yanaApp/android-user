@@ -221,7 +221,7 @@ public class ContactsFragment extends Fragment {
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Should we show an explanation?
-            if (!ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     Manifest.permission.READ_CONTACTS)) {
 
                 // Show an expanation to the user *asynchronously* -- don't block

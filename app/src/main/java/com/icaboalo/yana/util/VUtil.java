@@ -24,6 +24,11 @@ public class VUtil {
         return sharedPrefs.getBoolean(PrefConstants.isTutorialCompleted, false);
     }
 
+    public static boolean isProfileComplete(Context context){
+        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.profileFile, Context.MODE_PRIVATE);
+        return sharedPrefs.getBoolean(PrefConstants.isProfileCompletedPref, false);
+    }
+
     public static void setEmotionImage(Context context, int answer, ImageView image) {
         if (answer > 0) {
             switch (answer) {

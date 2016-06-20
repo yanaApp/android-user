@@ -79,8 +79,6 @@ public class ActionPlanFragment extends Fragment {
             }
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
         mActivityRecycler.setAdapter(mActivityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
         mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
