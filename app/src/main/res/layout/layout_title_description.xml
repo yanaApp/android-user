@@ -5,32 +5,33 @@
     android:padding="32dp"
     android:orientation="vertical">
 
-
     <TextView
-        android:textAlignment="center"
-        android:text="Instrucciones"
-        android:textAllCaps="true"
         android:id="@+id/title"
-        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
         android:layout_above="@+id/description"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="16dp"
+        android:textSize="24sp"
+        android:text="AUTOEVALUACIÓN"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <TextView
-        android:layout_marginTop="32dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:text="A continuacion leerás unas frases \nque pudieran describir tu sentir. \nPor favor, especifica cuantas \nveces durante la semana pasada \nse ha sentido de la siguiente manera. "
         android:id="@+id/description"
+        android:textSize="16sp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_centerVertical="true"
-        android:layout_width="match_parent"
+        android:text="Antes de comenzar, por favor dinos con que situación te identificas mejor."
+        android:textAlignment="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
+        style="@style/AppTheme.ButtonBlue"
+        android:layout_alignParentBottom="true"
         android:id="@+id/continue_button"
         android:text="Continuar"
-        android:layout_alignParentBottom="true"
-        style="@style/AppTheme.ButtonBlue"
+        android:layout_marginBottom="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </RelativeLayout>
