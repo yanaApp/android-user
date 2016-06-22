@@ -2,6 +2,8 @@ package com.icaboalo.yana.ui.fragment;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,26 +12,23 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
 
 /**
  * Created by icaboalo on 08/06/16.
  */
 public class AutoEvaluationFragment extends Fragment implements View.OnClickListener {
 
-    CardView mOption1, mOption2, mOption3;
-    OnAnswerSelect mOnAnswerSelect;
+    LinearLayout mOption1, mOption2, mOption3;
+    Button mContinueButton;
+    int mAnswer = 0;
 
-    public interface OnAnswerSelect {
-        void onAnswerSelect(int answer);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mOnAnswerSelect = (OnAnswerSelect) context;
-    }
 
     @Nullable
     @Override
@@ -40,9 +39,10 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mOption1 = (CardView) view.findViewById(R.id.option_1);
-        mOption2 = (CardView) view.findViewById(R.id.option_2);
-        mOption3 = (CardView) view.findViewById(R.id.option_3);
+        mOption1 = (LinearLayout) view.findViewById(R.id.option_1);
+        mOption2 = (LinearLayout) view.findViewById(R.id.option_2);
+        mOption3 = (LinearLayout) view.findViewById(R.id.option_3);
+        mContinueButton = (Button) view.findViewById(R.id.continue_button);
     }
 
     @Override
@@ -51,29 +51,40 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
         mOption1.setOnClickListener(this);
         mOption2.setOnClickListener(this);
         mOption3.setOnClickListener(this);
+        mContinueButton.setOnClickListener(this);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.option_1:
-                v.setElevation(0);
-                mOption2.setElevation(16);
-                mOption3.setElevation(16);
-                mOnAnswerSelect.onAnswerSelect(1);
+                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
+                mAnswer = 1;
                 break;
+
             case R.id.option_2:
-                mOption1.setElevation(16);
-                v.setElevation(0);
-                mOption3.setElevation(16);
-                mOnAnswerSelect.onAnswerSelect(2);
+                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
+                mAnswer = 2;
                 break;
+
             case R.id.option_3:
-                mOption1.setElevation(16);
-                mOption2.setElevation(16);
-                v.setElevation(0);
-                mOnAnswerSelect.onAnswerSelect(3);
+                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
+                mAnswer = 3;
+                break;
+            case R.id.continue_button:
+                if (mAnswer == 0){
+                    Toast.makeText(getActivity(), "Please select one from the above", Toast.LENGTH_SHORT).show();
+                } else {
+                    ((AutoEvaluationActivity) getActivity()).nextFragment();
+                    SharedPreferences sharedPref = getActivity().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
+                    sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswer).apply();
+                }
                 break;
         }
     }

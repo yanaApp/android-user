@@ -84,9 +84,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()){
                     Log.d("RETROFIT_SUCCESS", "success");
-                    Log.d("INTENT", "main");
-                    Intent goToMain = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(goToMain);
+                    Intent goToLoading = new Intent(RegisterActivity.this, LoadingActivity.class);
+                    startActivity(goToLoading);
                     finish();
                 } else {
                     try {

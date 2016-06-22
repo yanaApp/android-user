@@ -1,6 +1,5 @@
 package com.icaboalo.yana.ui.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,13 +13,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
-import com.icaboalo.yana.ui.activity.RegisterActivity;
 import com.squareup.picasso.Picasso;
-
-import java.security.PrivilegedAction;
 
 /**
  * Created by icaboalo on 03/06/16.
@@ -61,7 +56,7 @@ public class TutorialPageFragment extends Fragment {
                 return inflater.inflate(R.layout.fragment_tutorial_page, container, false);
 
             case 4:
-                return inflater.inflate(R.layout.fragment_tutorial_final, container, false);
+                return inflater.inflate(R.layout.layout_title_description, container, false);
 
         }
 

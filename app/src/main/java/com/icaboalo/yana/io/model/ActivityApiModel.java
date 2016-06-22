@@ -24,6 +24,9 @@ public class ActivityApiModel implements Serializable{
     @SerializedName("answer")
     private int answer = 0;
 
+    @SerializedName("category")
+    private CategoryApiModel category;
+
 
     public int getId() {
         return id;
@@ -55,5 +58,13 @@ public class ActivityApiModel implements Serializable{
 
     public void setAnswer(int answer) {
         this.answer = answer;
+    }
+
+    public CategoryApiModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryApiModel category) {
+        this.category = category;
     }
 }

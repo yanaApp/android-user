@@ -1,7 +1,9 @@
 package com.icaboalo.yana.ui.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,9 +92,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         holder.setDescription(activity.getDescription());
         VUtil.setEmotionImage(mContext, activity.getAnswer(), holder.mEmotionImage);
 
-        if (activity.getTitle().equals("Baño")) {
-            holder.setActivityColor(mContext.getResources().getColor(R.color.colorAccent));
-        }
+        holder.setActivityColor(activity.getCategory().getColor());
+
     }
 
     @Override
@@ -173,11 +174,11 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             }
         }
 
-        void setActivityColor(int color) {
+        void setActivityColor(String color) {
             int[] activityColorIds = {R.id.activity_color, R.id.activity_color_description, R.id.activity_color_emotion, R.id.description_divider, R.id.emotion_divider};
             for (int id : activityColorIds) {
                 mActivityColor = itemView.findViewById(id);
-                mActivityColor.setBackgroundColor(color);
+                mActivityColor.setBackgroundColor(Color.parseColor(color));
 
             }
         }

@@ -12,6 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
+        android:weightSum="4"
         android:padding="32dp">
 
         <ProgressBar
@@ -22,106 +23,83 @@
             android:layout_height="wrap_content" />
 
         <TextView
+            android:layout_marginTop="15dp"
             android:id="@+id/question_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:text="Me molestaron cosas que usualmente no me molestan." />
+            android:textSize="18sp"
+            android:text="1. Las cosas no me satisfacen tanto." />
+
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="28dp"
-        android:layout_height="0dp"
         android:layout_weight="1"
+        android:padding="32dp"
+        android:layout_height="0dp"
         android:background="@color/colorAccent">
 
-        <View
+
+        <LinearLayout
             android:layout_centerVertical="true"
-            android:background="@color/white"
+            android:gravity="bottom"
             android:layout_width="match_parent"
-            android:layout_height="5dp"/>
+            android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/option_1"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <View
+                    android:id="@+id/option_1"
+                    android:background="@drawable/circle_orange"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <View
+                    android:id="@+id/option_2"
+                    android:background="@drawable/circle_white"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/option_2"
-            android:layout_marginLeft="100dp"
-            android:layout_marginStart="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+                <View
+                    android:id="@+id/option_3"
+                    android:background="@drawable/circle_white"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <View
+                    android:id="@+id/option_4"
+                    android:background="@drawable/circle_white"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"/>
 
-        <View
-            android:id="@+id/option_3"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="100dp"
-            android:layout_marginLeft="100dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            </LinearLayout>
+        </LinearLayout>
 
-        <View
-            android:id="@+id/option_4"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="@color/white"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
 
-        <TextView
-            android:textColor="@color/white"
-            android:text="Nunca"
-            android:layout_width="wrap_content"
-            android:textAlignment="center"
-            android:layout_below="@id/option_1"
-            android:layout_height="wrap_content" />
 
-        <TextView
-            android:textColor="@color/white"
-            android:text="Algunas \nveces"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/option_2"
-            android:layout_alignLeft="@+id/option_2"
-            android:layout_alignStart="@+id/option_2" />
 
-        <TextView
-            android:textColor="@color/white"
-            android:text="Muchas \nveces"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/option_3"
-            android:layout_alignLeft="@+id/option_3"
-            android:layout_alignStart="@+id/option_3" />
 
-        <TextView
-            android:textColor="@color/white"
-            android:text="Siempre"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/option_4"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
 
         <Button
             android:id="@+id/continue_button"

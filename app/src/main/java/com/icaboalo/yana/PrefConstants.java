@@ -13,4 +13,7 @@ public class PrefConstants {
 
     public static final String profileFile = "PROFILE";
     public static final String isProfileCompletedPref = "isCompleted";
+
+    public static final String evaluationFile = "EVALUATION";
+    public static final String evaluationPref = "NUMBER";
 }

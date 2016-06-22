@@ -11,10 +11,12 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActionPlanApiModel;
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.io.model.CategoryApiModel;
 import com.icaboalo.yana.io.model.DayApiModel;
 import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.realm.CategoryModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 import com.icaboalo.yana.util.VUtil;
@@ -61,6 +63,7 @@ public class LoadingActivity extends AppCompatActivity {
                     final ArrayList<ActionPlanModel> actionPlanList = new ArrayList<ActionPlanModel>();
                     final ArrayList<DayModel> dayList = new ArrayList<DayModel>();
                     final ArrayList<ActivityModel> activityList = new ArrayList<ActivityModel>();
+                    final ArrayList<CategoryModel> categoryList = new ArrayList<CategoryModel>();
 
                     for (ActionPlanApiModel responseActionPlan: responseUser.getActionPlanList()){
 
@@ -89,12 +92,22 @@ public class LoadingActivity extends AppCompatActivity {
 
                             for (ActivityApiModel responseActivity: responseDay.getActivityList()){
 
+                                CategoryModel category = new CategoryModel();
+                                category.setId(responseActivity.getCategory().getId());
+                                category.setName(responseActivity.getCategory().getName());
+                                category.setColor(responseActivity.getCategory().getColor());
+
+                                Log.d(TAG, "onResponse: " + category.getName() + category.getColor());
+
+                                categoryList.add(category);
+
                                 ActivityModel activity = new ActivityModel();
                                 activity.setId(responseActivity.getId());
                                 activity.setTitle(responseActivity.getTitle());
                                 activity.setDescription(responseActivity.getDescription());
                                 activity.setAnswer(responseActivity.getAnswer());
                                 activity.setDay(day);
+                                activity.setCategory(category);
 
                                 Log.d(TAG, "onResponse: " + activity.toString());
                                 activityList.add(activity);
@@ -102,12 +115,15 @@ public class LoadingActivity extends AppCompatActivity {
                         }
                     }
 
+                    Log.d(TAG, "onResponse: " + categoryList.size());
+
                     Realm.getDefaultInstance().executeTransactionAsync(new Realm.Transaction() {
                         @Override
                         public void execute(Realm realm) {
                             realm.copyToRealmOrUpdate(user);
                             realm.copyToRealmOrUpdate(actionPlanList);
                             realm.copyToRealmOrUpdate(dayList);
+                            realm.copyToRealmOrUpdate(categoryList);
                             realm.copyToRealmOrUpdate(activityList);
                         }
                     }, new Realm.Transaction.OnSuccess() {

@@ -17,6 +17,9 @@ public class CategoryModel extends RealmObject {
     @SerializedName("name")
     private String name;
 
+    @SerializedName("color")
+    private String color;
+
     public int getId() {
         return id;
     }
@@ -31,5 +34,13 @@ public class CategoryModel extends RealmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

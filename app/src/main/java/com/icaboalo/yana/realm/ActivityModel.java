@@ -28,6 +28,9 @@ public class ActivityModel extends RealmObject{
     @SerializedName("answer")
     private int answer = 0;
 
+    @SerializedName("category")
+    private CategoryModel category;
+
     public int getId() {
         return id;
     }
@@ -66,5 +69,13 @@ public class ActivityModel extends RealmObject{
 
     public void setAnswer(int answer) {
         this.answer = answer;
+    }
+
+    public CategoryModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryModel category) {
+        this.category = category;
     }
 }
