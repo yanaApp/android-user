@@ -90,7 +90,7 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
                 if (mAnswer != -1){
                     if (mQuestionPosition == mQuestionList.length -1){
                         SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);
-                        sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswerTotal).apply();git status
+                        sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswerTotal).apply();
                         Intent goToRegister = new Intent(EvaluationActivity.this, RegisterActivity.class);
                         startActivity(goToRegister);
                         finish();
