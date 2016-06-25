@@ -1,6 +1,7 @@
 package com.icaboalo.yana.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.UserApiModel;
@@ -65,6 +67,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     user.setUserName(mUsernameInput.getText().toString());
                     user.setPassword(mPasswordInput.getText().toString());
                     user.setEmail(mEmailInput.getText().toString());
+                    SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);
+                    user.setCategory(sharedPref.getInt(PrefConstants.evaluationPref, 0));
+                    user.setPhoneNumber("5539777292");
                     userRegisterAPI(user);
                 }
                 break;
@@ -84,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()){
                     Log.d("RETROFIT_SUCCESS", "success");
-                    Intent goToLoading = new Intent(RegisterActivity.this, LoadingActivity.class);
+                    Intent goToLoading = new Intent(RegisterActivity.this, MainActivity.class);
                     startActivity(goToLoading);
                     finish();
                 } else {

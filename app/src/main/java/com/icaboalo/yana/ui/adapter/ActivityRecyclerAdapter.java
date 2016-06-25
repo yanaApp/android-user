@@ -47,18 +47,26 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     }
 
     @Override
-    public void onBindViewHolder(ActivityViewHolder holder, final int position) {
+    public void onBindViewHolder(final ActivityViewHolder holder, final int position) {
         ActivityModel activity = mActivityList.get(position);
 
         if (position == emotionExpandedPosition) {
             holder.showEmotions(true);
             holder.showDescription(false);
+            holder.mDescriptionExpand.setVisibility(View.GONE);
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
+            holder.mEmotionImage.setVisibility(View.GONE);
+            holder.mDescriptionExpand.setText("Ver menos");
+            holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
         } else {
             holder.showEmotions(false);
             holder.showDescription(false);
+            holder.mDescriptionExpand.setVisibility(View.VISIBLE);
+            holder.mEmotionImage.setVisibility(View.VISIBLE);
+            holder.mDescriptionExpand.setText("Ver más");
+            holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
         }
 
         holder.mEmotionImage.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +82,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             }
         });
 
-        holder.mDescriptionImage.setOnClickListener(new View.OnClickListener() {
+        holder.mDescriptionExpand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 emotionExpandedPosition = -1;
@@ -103,15 +111,14 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
     class ActivityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView mActivityTitle, mActivityDescription;
+        TextView mActivityTitle, mActivityDescription, mDescriptionExpand;
         View mActivityColor;
-        RelativeLayout mNormalLayout, mDescriptionLayout, mEmotionLayout;
-        ImageView mEmotionImage, mDescriptionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage;
+        RelativeLayout mDescriptionLayout, mEmotionLayout;
+        ImageView mEmotionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage, mCancelImage;
         OnEmotionSelected mEmotionSelected;
 
         public ActivityViewHolder(View itemView, OnEmotionSelected onEmotionSelected) {
             super(itemView);
-            this.mNormalLayout = (RelativeLayout) itemView.findViewById(R.id.normal_layout);
             this.mDescriptionLayout = (RelativeLayout) itemView.findViewById(R.id.description_layout);
             this.mEmotionLayout = (RelativeLayout) itemView.findViewById(R.id.emotion_layout);
             this.mVerySadImage = (ImageView) itemView.findViewById(R.id.very_sad);
@@ -120,18 +127,24 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             this.mHappyImage = (ImageView) itemView.findViewById(R.id.happy);
             this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.very_happy);
             this.mEmotionImage = (ImageView) itemView.findViewById(R.id.image_emotion);
-            this.mDescriptionImage = (ImageView) itemView.findViewById(R.id.image_description);
+            this.mCancelImage = (ImageView) itemView.findViewById(R.id.cancel);
+            this.mDescriptionExpand = (TextView) itemView.findViewById(R.id.image_description);
             mVerySadImage.setOnClickListener(this);
             mSadImage.setOnClickListener(this);
             mNormalImage.setOnClickListener(this);
             mHappyImage.setOnClickListener(this);
             mVeryHappyImage.setOnClickListener(this);
+            mCancelImage.setOnClickListener(this);
             this.mEmotionSelected = onEmotionSelected;
         }
 
         void setEmotionImage(int answer) {
-            if (answer > 0) {
+            if (answer >= 0) {
                 switch (answer) {
+                    case 0:
+                        Picasso.with(mContext).load(R.drawable.cancel_outlined_circular_32).into(mEmotionImage);
+                        break;
+
                     case 1:
                         Picasso.with(mContext).load(R.drawable.very_sad_32).into(mEmotionImage);
                         break;
@@ -153,10 +166,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                         break;
 
                 }
-            } else {
-                mEmotionImage.setImageDrawable(null);
             }
-
         }
 
         void setTitle(String text) {
@@ -189,6 +199,13 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             realm.beginTransaction();
             ActivityModel activity = mActivityList.get(getAdapterPosition());
             switch (v.getId()) {
+                case R.id.cancel:
+                    mEmotionSelected.onSelect(activity, activity.getAnswer(), 0);
+                    setEmotionImage(0);
+                    activity.setAnswer(0);
+                    notifyItemChanged(getAdapterPosition());
+                    break;
+
                 case R.id.very_sad:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 1);
                     setEmotionImage(1);
