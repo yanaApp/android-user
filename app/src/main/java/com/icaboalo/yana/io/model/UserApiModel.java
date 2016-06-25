@@ -30,6 +30,9 @@ public class UserApiModel {
     @SerializedName("token")
     private String token;
 
+    @SerializedName("category")
+    private int category;
+
     @SerializedName("action_plan")
     private ArrayList<ActionPlanApiModel> actionPlanList;
 
@@ -87,5 +90,13 @@ public class UserApiModel {
 
     public void setActionPlanList(ArrayList<ActionPlanApiModel> actionPlanList) {
         this.actionPlanList = actionPlanList;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 }
