@@ -2,6 +2,7 @@ package com.icaboalo.yana.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,12 +55,16 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             holder.showEmotions(true);
             holder.showDescription(false);
             holder.mDescriptionExpand.setVisibility(View.GONE);
+//            holder.setActivityColorHeight(200);
+
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
             holder.mEmotionImage.setVisibility(View.GONE);
             holder.mDescriptionExpand.setText("Ver menos");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
+//            holder.setActivityColorHeight(200);
+
         } else {
             holder.showEmotions(false);
             holder.showDescription(false);
@@ -129,6 +134,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             this.mEmotionImage = (ImageView) itemView.findViewById(R.id.image_emotion);
             this.mCancelImage = (ImageView) itemView.findViewById(R.id.cancel);
             this.mDescriptionExpand = (TextView) itemView.findViewById(R.id.image_description);
+            mActivityColor = itemView.findViewById(R.id.activity_color);
             mVerySadImage.setOnClickListener(this);
             mSadImage.setOnClickListener(this);
             mNormalImage.setOnClickListener(this);
@@ -187,12 +193,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         }
 
         void setActivityColor(String color) {
-            int[] activityColorIds = {R.id.activity_color, R.id.activity_color_description, R.id.activity_color_emotion, R.id.emotion_divider};
-            for (int id : activityColorIds) {
-                mActivityColor = itemView.findViewById(id);
-                mActivityColor.setBackgroundColor(Color.parseColor(color));
-
-            }
+            mActivityColor.setBackgroundColor(Color.parseColor(color));
         }
 
         @Override
@@ -258,6 +259,14 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         public void showEmotions(boolean show){
             int visibility = show ? View.VISIBLE : View.GONE;
             mEmotionLayout.setVisibility(visibility);
+        }
+
+        public void setActivityColorHeight(int height){
+            ViewGroup.LayoutParams activityColorParams = mActivityColor.getLayoutParams();
+            Log.d("tag", "OLD HEIGHT " + activityColorParams.height + ", " + activityColorParams.width);
+            activityColorParams.height = itemView.getMeasuredHeight();
+            Log.d("tag", "NEW HEIGHT " + activityColorParams.height + ", " + activityColorParams.width);
+            mActivityColor.setLayoutParams(activityColorParams);
         }
     }
 }

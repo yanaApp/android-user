@@ -31,8 +31,7 @@
         android:id="@+id/image_description"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_below="@+id/description_layout"
-        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/emotion_layout"
         android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
         android:drawableLeft="@drawable/ic_keyboard_arrow_down_black_24dp"
@@ -64,13 +63,7 @@
         android:paddingRight="48dp"
         android:paddingStart="0dp">
 
-        <View
-            android:id="@+id/activity_color_description"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#FFC107" />
+
 
         <!--<ImageView-->
         <!--android:id="@+id/icon_description"-->
@@ -114,14 +107,6 @@
             android:layout_marginLeft="48dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="10dp"
-            android:background="#FFC107" />
-
-        <View
-            android:id="@+id/activity_color_emotion"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:background="#FFC107" />
 
         <ImageView
