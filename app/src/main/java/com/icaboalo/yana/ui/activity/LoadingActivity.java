@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
@@ -19,11 +21,15 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.CategoryModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.Realm;
 import me.wangyuwei.loadingview.LoadingView;
 import retrofit2.Call;
@@ -33,13 +39,25 @@ import retrofit2.Response;
 public class LoadingActivity extends AppCompatActivity {
 
     private static final String TAG = "LoadingActivity";
+    @Bind(R.id.rlLoading)
+    RelativeLayout rlLoading;
+    @Bind(R.id.rlLoadComplete)
+    RelativeLayout rlLoadComplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        ButterKnife.bind(this);
 
-        getMe(VUtil.getToken(this));
+        getMe(PrefUtils.getToken(this));
+    }
+
+    @OnClick(R.id.btContinue)
+    void goToMain(){
+        Intent goToMain = new Intent(LoadingActivity.this, MainActivity.class);
+        startActivity(goToMain);
+        finish();
     }
 
     void getMe(String token){
@@ -132,9 +150,7 @@ public class LoadingActivity extends AppCompatActivity {
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent goToMain = new Intent(LoadingActivity.this, MainActivity.class);
-                                    startActivity(goToMain);
-                                    finish();
+                                    showLoadingComplete();
                                 }
                             }, 10000);
                         }
@@ -154,4 +170,11 @@ public class LoadingActivity extends AppCompatActivity {
             }
         });
     }
+
+    void showLoadingComplete(){
+        rlLoading.setVisibility(View.GONE);
+        rlLoadComplete.setVisibility(View.VISIBLE);
+    }
+
+
 }

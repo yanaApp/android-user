@@ -4,30 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.icaboalo.yana.ui.activity.LoadingActivity">
 
-    <me.wangyuwei.loadingview.LoadingView
+    <RelativeLayout
+        android:id="@+id/rlLoading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        lv:lv_duration="15"
-        android:id="@+id/loading_view"
-        lv:lv_end_color="@color/pink"
-        lv:lv_external_radius="150dp"
-        lv:lv_internal_radius="10dp"
-        lv:lv_start_color="@color/colorAccent" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="80dp"
-        android:text="@string/downloading_contents"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        <me.wangyuwei.loadingview.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            lv:lv_duration="15"
+            android:id="@+id/loading_view"
+            lv:lv_end_color="@color/pink"
+            lv:lv_external_radius="150dp"
+            lv:lv_internal_radius="10dp"
+            lv:lv_start_color="@color/colorAccent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="80dp"
+            android:text="@string/downloading_contents"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/view_load_complete"/>
 
 </RelativeLayout>
