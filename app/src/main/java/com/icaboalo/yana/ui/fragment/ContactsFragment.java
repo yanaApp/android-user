@@ -2,6 +2,7 @@ package com.icaboalo.yana.ui.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -29,6 +31,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.adapter.ContactRecyclerAdapter;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -69,6 +72,20 @@ public class ContactsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupContactRecycler(RealmUtils.getContactsFromRealm());
+        if (PrefUtils.isContactsFirstTime(getActivity())){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setTitle("");
+            alertDialog.setMessage("Durante tu plan de acción podrás apoyarte de una red de contactos que trabajarán contigo durante tu proceso. Ellos tendrán un seguimiento de tu progreso y te apoyaran para salir adelante. Deberás elegir a aquellas personas en las que más confíes.");
+            alertDialog.setPositiveButton("VAMOS", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PrefUtils.setContactsFirstTime(getActivity(), false);
+                    dialog.dismiss();
+                }
+            });
+
+            alertDialog.show();
+        }
     }
 
     @Override
@@ -121,7 +138,7 @@ public class ContactsFragment extends Fragment {
 
                             Toast.makeText(getActivity(), contact.getName() + " " + contact.getPhoneNumber(), Toast.LENGTH_SHORT).show();
                             Log.d("CONTACT", contact.getName() + " " + contact.getPhoneNumber());
-                            saveContactAPI(VUtil.getToken(getActivity()), contact);
+                            saveContactAPI(PrefUtils.getToken(getActivity()), contact);
                         }
                     }
                     c.close();

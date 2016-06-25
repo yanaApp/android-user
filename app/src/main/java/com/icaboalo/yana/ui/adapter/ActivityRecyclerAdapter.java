@@ -166,6 +166,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                         break;
 
                 }
+            } else {
+                mEmotionImage.setImageDrawable(null);
             }
         }
 
@@ -185,7 +187,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         }
 
         void setActivityColor(String color) {
-            int[] activityColorIds = {R.id.activity_color, R.id.activity_color_description, R.id.activity_color_emotion, R.id.description_divider, R.id.emotion_divider};
+            int[] activityColorIds = {R.id.activity_color, R.id.activity_color_description, R.id.activity_color_emotion, R.id.emotion_divider};
             for (int id : activityColorIds) {
                 mActivityColor = itemView.findViewById(id);
                 mActivityColor.setBackgroundColor(Color.parseColor(color));

@@ -16,4 +16,8 @@ public class PrefConstants {
 
     public static final String evaluationFile = "EVALUATION";
     public static final String evaluationPref = "NUMBER";
+
+    public static final String firstTimeFile = "FIRST_TIME";
+    public static final String contactPref = "contact";
+    public static final String progressPref = "progress";
 }

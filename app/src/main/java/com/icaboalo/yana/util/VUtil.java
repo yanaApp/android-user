@@ -13,22 +13,6 @@ import com.squareup.picasso.Picasso;
  */
 public class VUtil {
 
-    public static String getToken(Context context){
-        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.authFile, Context.MODE_PRIVATE);
-        String token = sharedPrefs.getString(PrefConstants.tokenPref, "");
-        return token;
-    }
-
-    public static boolean isTutorialCompleted(Context context){
-        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.tutorialFile, Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean(PrefConstants.isTutorialCompleted, false);
-    }
-
-    public static boolean isProfileComplete(Context context){
-        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.profileFile, Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean(PrefConstants.isProfileCompletedPref, false);
-    }
-
     public static void setEmotionImage(Context context, int answer, ImageView image) {
         if (answer > 0) {
             switch (answer) {

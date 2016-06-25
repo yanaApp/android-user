@@ -8,13 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.UserModel;
 import com.icaboalo.yana.util.RealmUtils;
-
-import io.realm.Realm;
 
 /**
  * Created by icaboalo on 17/06/16.
@@ -35,7 +32,7 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mFullNameInput = (EditText) view.findViewById(R.id.full_name_input);
         mUsernameInput = (EditText) view.findViewById(R.id.username_input);
-        mEmailInput = (EditText) view.findViewById(R.id.email_input);
+        mEmailInput = (EditText) view.findViewById(R.id.etEmail);
         mPhoneInput = (EditText) view.findViewById(R.id.phone_input);
         mBirthDateInput = (EditText) view.findViewById(R.id.birth_date_input);
 

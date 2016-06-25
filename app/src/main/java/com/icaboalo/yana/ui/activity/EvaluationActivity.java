@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -13,9 +12,6 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-
-import static com.icaboalo.yana.R.color.orange;
-import static com.icaboalo.yana.R.color.white;
 
 public class EvaluationActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -47,7 +43,7 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
         mOption3.setOnClickListener(this);
         mOption4 = (TextView) findViewById(R.id.option_4);
         mOption4.setOnClickListener(this);
-        mContinueButton = (Button) findViewById(R.id.continue_button);
+        mContinueButton = (Button) findViewById(R.id.btContinue);
         mContinueButton.setOnClickListener(this);
     }
 
@@ -86,7 +82,7 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
                 mOption4.setBackground(getResources().getDrawable(R.drawable.circle_orange));
                 mAnswer = 3;
                 break;
-            case R.id.continue_button:
+            case R.id.btContinue:
                 if (mAnswer != -1){
                     if (mQuestionPosition == mQuestionList.length -1){
                         SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);

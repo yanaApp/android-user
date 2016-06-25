@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
@@ -21,6 +22,7 @@ import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
 import com.icaboalo.yana.util.DividerItemDecorator;
 import com.icaboalo.yana.util.OnEmotionSelected;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -133,7 +135,7 @@ public class ActionPlanFragment extends Fragment {
 
                     case DISMISS_EVENT_TIMEOUT:
                         Log.d("SNACKBAR", "timeout");
-                        updateActivity(VUtil.getToken(getActivity()), newAnswer, activity.getId());
+                        updateActivity(PrefUtils.getToken(getActivity()), newAnswer, activity.getId());
                         break;
                 }
             }

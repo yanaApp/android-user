@@ -1,14 +1,11 @@
 package com.icaboalo.yana.ui.fragment;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +39,7 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
         mOption1 = (LinearLayout) view.findViewById(R.id.option_1);
         mOption2 = (LinearLayout) view.findViewById(R.id.option_2);
         mOption3 = (LinearLayout) view.findViewById(R.id.option_3);
-        mContinueButton = (Button) view.findViewById(R.id.continue_button);
+        mContinueButton = (Button) view.findViewById(R.id.btContinue);
     }
 
     @Override
@@ -77,7 +74,7 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
                 mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
                 mAnswer = 3;
                 break;
-            case R.id.continue_button:
+            case R.id.btContinue:
                 if (mAnswer == 0){
                     Toast.makeText(getActivity(), "Please select one from the above", Toast.LENGTH_SHORT).show();
                 } else {

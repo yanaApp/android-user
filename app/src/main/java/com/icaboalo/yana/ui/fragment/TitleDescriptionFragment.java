@@ -43,7 +43,7 @@ public class TitleDescriptionFragment extends Fragment {
 
         mTitle = (TextView) view.findViewById(R.id.title);
         mDescription = (TextView) view.findViewById(R.id.description);
-        mContinueButton = (Button) view.findViewById(R.id.continue_button);
+        mContinueButton = (Button) view.findViewById(R.id.btContinue);
     }
 
     @Override

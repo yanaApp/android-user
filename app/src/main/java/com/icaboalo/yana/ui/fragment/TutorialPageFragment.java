@@ -69,7 +69,7 @@ public class TutorialPageFragment extends Fragment {
         mTutorialImage = (ImageView) view.findViewById(R.id.tutorial_image);
         mTitle = (TextView) view.findViewById(R.id.title);
         mDescription = (TextView) view.findViewById(R.id.description);
-        mContinue = (Button) view.findViewById(R.id.continue_button);
+        mContinue = (Button) view.findViewById(R.id.btContinue);
     }
 
     @Override

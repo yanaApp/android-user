@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -20,20 +22,26 @@ import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.ContactsFragment;
 import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    @Bind(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @Bind(R.id.navigation_view)
     NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
+        ButterKnife.bind(this);
+        if (PrefUtils.getToken(this).equals("TOKEN") || PrefUtils.getToken(this).isEmpty()){
             Intent goToLogin = new Intent(this, LoginActivity.class);
             startActivity(goToLogin);
             finish();
@@ -43,17 +51,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(new ActionPlanFragment());
 
-        if (!VUtil.isProfileComplete(this)){
+        if (!PrefUtils.isProfileComplete(this)){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Perfil no completo");
             alertDialog.setMessage("Por favor ayudanos a completar tu perfil para obtener más información");
@@ -67,6 +73,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                }
+            });
+            alertDialog.setNegativeButton("NO VOLVER A MOSTRAR", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PrefUtils.setProfileComplete(MainActivity.this, true);
                 }
             });
             alertDialog.show();
