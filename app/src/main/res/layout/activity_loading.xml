@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         lv:lv_duration="15"
         android:id="@+id/loading_view"
-        lv:lv_end_color="@color/orange"
+        lv:lv_end_color="@color/pink"
         lv:lv_external_radius="150dp"
         lv:lv_internal_radius="10dp"
         lv:lv_start_color="@color/colorAccent" />
@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="80dp"
-        android:text="Estamos descargando tus contenidos"
+        android:text="@string/downloading_contents"
         android:textAlignment="center"
         android:textSize="24sp" />
 
