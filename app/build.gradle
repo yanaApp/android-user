@@ -52,6 +52,18 @@ dependencies {
     compile 'me.wangyuwei:LoadingiVew:1.0.3'
 
 
+//    Side menu
+    compile 'com.yalantis:sidemenu:1.0'
+    compile ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
+        transitive = true;
+    }
+
+}
+
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
 }
 
 buildscript {
