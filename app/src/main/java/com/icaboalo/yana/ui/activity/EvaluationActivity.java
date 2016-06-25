@@ -21,7 +21,7 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
 
     ProgressBar mQuestionProgress;
     TextView mQuestion;
-    View mOption1, mOption2, mOption3, mOption4;
+    TextView mOption1, mOption2, mOption3, mOption4;
     Button mContinueButton;
     String[] mQuestionList;
     int mQuestionPosition = 0;
@@ -39,13 +39,13 @@ public class EvaluationActivity extends AppCompatActivity implements View.OnClic
         mQuestionProgress.setProgress(mQuestionPosition + 1);
         mQuestion = (TextView) findViewById(R.id.question_text);
         mQuestion.setText(mQuestionList[mQuestionPosition]);
-        mOption1 = findViewById(R.id.option_1);
+        mOption1 = (TextView) findViewById(R.id.option_1);
         mOption1.setOnClickListener(this);
-        mOption2 = findViewById(R.id.option_2);
+        mOption2 = (TextView) findViewById(R.id.option_2);
         mOption2.setOnClickListener(this);
-        mOption3 = findViewById(R.id.option_3);
+        mOption3 = (TextView) findViewById(R.id.option_3);
         mOption3.setOnClickListener(this);
-        mOption4 = findViewById(R.id.option_4);
+        mOption4 = (TextView) findViewById(R.id.option_4);
         mOption4.setOnClickListener(this);
         mContinueButton = (Button) findViewById(R.id.continue_button);
         mContinueButton.setOnClickListener(this);
