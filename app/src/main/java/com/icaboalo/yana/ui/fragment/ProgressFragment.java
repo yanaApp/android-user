@@ -1,8 +1,10 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.DayProgressRecyclerAdapter;
 import com.icaboalo.yana.util.DividerItemDecorator;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -58,7 +61,19 @@ public class ProgressFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm());
-
+        if (PrefUtils.isProgressFirstTime(getActivity())){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setMessage(getActivity().getString(R.string.cupcake_ipsum));
+            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+//                    PrefUtils.setProgressFirstTime(getActivity(), false);
+                    dialog.dismiss();
+                }
+            });
+            alertDialog.setCancelable(false);
+            alertDialog.show();
+        }
     }
 
     void setupActionPlanSpinner(final ArrayList<ActionPlanModel> actionPlanList){

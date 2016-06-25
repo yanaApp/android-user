@@ -79,11 +79,11 @@ public class ContactsFragment extends Fragment {
             alertDialog.setPositiveButton("VAMOS", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    PrefUtils.setContactsFirstTime(getActivity(), false);
+//                    PrefUtils.setContactsFirstTime(getActivity(), false);
                     dialog.dismiss();
                 }
             });
-
+            alertDialog.setCancelable(false);
             alertDialog.show();
         }
     }
