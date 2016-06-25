@@ -93,4 +93,7 @@
     <string name="action_contacts_title">Contacts</string>
     <string name="action_progress_title">Progress</string>
     <string name="action_log_out_title">Log out</string>
+    <string name="restore_password">Restore password</string>
+    <string name="email_input_hint">EMAIL</string>
+    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
 </resources>

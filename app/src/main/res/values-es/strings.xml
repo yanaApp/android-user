@@ -4,7 +4,7 @@
     <string name="action_settings">Ajustes</string>
     <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
     <string name="beck_title">INVENTARIO DE DEPRESIÓN DE BECK</string>
-    <string name="continue_button">Continar</string>
+    <string name="continue_button">Continuar</string>
     <string name="depression_description">La depresión es un trastorno mental frecuente, que se caracteriza por la presencia de tristeza, pérdida de interés o placer, sentimientos de culpa o falta de autoestima, trastornos de sueño o del apetito, sensación de cansancio y falta de concentración.</string>
     <string name="depression_title">LA DEPRESIÓN</string>
     <string name="error_empty_field">Este campo es necesario</string>
@@ -85,4 +85,7 @@
     <string name="action_profile_title">Perfil</string>
     <string name="action_progress_title">Progreso</string>
     <string name="action_log_out_title">Cerrar sesión</string>
+    <string name="restore_password">Restablecer contraseña</string>
+    <string name="email_input_hint">CORREO ELECTRONICO</string>
+    <string name="loading_complete">TODO LISTO, HEMOS DESCARGADO TU PLAN DE ACCIÓN</string>
 </resources>
