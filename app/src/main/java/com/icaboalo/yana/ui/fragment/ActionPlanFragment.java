@@ -1,5 +1,7 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -38,15 +40,19 @@ import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
 /**
  * Created by icaboalo on 26/05/16.
  */
-public class ActionPlanFragment extends Fragment {
+public class ActionPlanFragment extends Fragment implements ScreenShotable{
 
     RecyclerView mActivityRecycler;
     TextView mActivityDate;
     ActivityRecyclerAdapter mActivityRecyclerAdapter;
+
+    View containerView;
+    Bitmap bitmap;
 
     public ActionPlanFragment() {
         setHasOptionsMenu(true);
@@ -63,6 +69,8 @@ public class ActionPlanFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
         mActivityDate = (TextView) view.findViewById(R.id.activity_date);
+
+        containerView = view.findViewById(R.id.container_view);
     }
 
     @Override
@@ -142,4 +150,25 @@ public class ActionPlanFragment extends Fragment {
         }).show();
     }
 
+    @Override
+    public void takeScreenShot() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Bitmap bitmap = Bitmap.createBitmap(containerView.getWidth(),
+                        containerView.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                containerView.draw(canvas);
+                ActionPlanFragment.this.bitmap = bitmap;
+            }
+        };
+
+        thread.start();
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+//        return null;
+        return bitmap;
+    }
 }

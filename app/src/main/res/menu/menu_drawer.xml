@@ -6,20 +6,20 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_person_black_24dp"
+            android:icon="@drawable/ic_person_white_48dp"
             android:title="@string/action_profile_title" />
         <item
             android:id="@+id/nav_action_plan"
             android:checked="true"
-            android:icon="@drawable/ic_offline_pin_black_24dp"
+            android:icon="@drawable/ic_offline_pin_white_48dp"
             android:title="@string/action_action_plan_title" />
         <item
             android:id="@+id/nav_contacts"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/ic_people_white_48dp"
             android:title="@string/action_contacts_title" />
         <item
             android:id="@+id/nav_progress"
-            android:icon="@drawable/ic_poll_black_24dp"
+            android:icon="@drawable/ic_poll_white_48dp"
             android:title="@string/action_progress_title" />
 
     </group>
@@ -33,7 +33,7 @@
             android:title="Help" />
         <item
             android:id="@+id/nav_log_out"
-            android:icon="@drawable/ic_power_settings_new_black_24dp"
+            android:icon="@drawable/ic_power_settings_new_white_48dp"
             android:title="@string/action_log_out_title" />
     </group>
 

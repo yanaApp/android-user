@@ -1,6 +1,8 @@
 package com.icaboalo.yana.ui.fragment;
 
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,16 +30,21 @@ import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
 
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
+
 /**
  * Created by icaboalo on 08/06/16.
  */
-public class ProgressFragment extends Fragment {
+public class ProgressFragment extends Fragment implements ScreenShotable{
 
     TextView mCompleted, mIncomplete;
     Spinner mActionPlanSpinner;
     ImageView mEmotionImage;
     ProgressBar mCompletedProgress;
     RecyclerView mDayProgressRecycler;
+
+    View containerView;
+    Bitmap bitmap;
 
 
     @Nullable
@@ -55,6 +62,8 @@ public class ProgressFragment extends Fragment {
         mEmotionImage = (ImageView) view.findViewById(R.id.emotion_average_image);
         mCompletedProgress = (ProgressBar) view.findViewById(R.id.completed_progress_bar);
         mDayProgressRecycler = (RecyclerView) view.findViewById(R.id.day_progress_recycler);
+
+        containerView = view.findViewById(R.id.container_view);
     }
 
     @Override
@@ -127,5 +136,27 @@ public class ProgressFragment extends Fragment {
         mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
         mDayProgressRecycler.setLayoutManager(linearLayoutManager);
         mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+    }
+
+    @Override
+    public void takeScreenShot() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Bitmap bitmap = Bitmap.createBitmap(containerView.getWidth(),
+                        containerView.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                containerView.draw(canvas);
+                ProgressFragment.this.bitmap = bitmap;
+            }
+        };
+
+        thread.start();
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+//        return null;
+        return bitmap;
     }
 }

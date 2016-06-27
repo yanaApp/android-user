@@ -1,5 +1,7 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,13 +15,18 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.UserModel;
 import com.icaboalo.yana.util.RealmUtils;
 
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
+
 /**
  * Created by icaboalo on 17/06/16.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements ScreenShotable {
 
     EditText mFullNameInput, mUsernameInput, mEmailInput, mPhoneInput, mBirthDateInput;
     RadioButton mManButton, mWomanButton;
+
+    View containerView;
+    Bitmap bitmap;
 
     @Nullable
     @Override
@@ -38,6 +45,8 @@ public class ProfileFragment extends Fragment {
 
         mManButton = (RadioButton) view.findViewById(R.id.man_button);
         mWomanButton = (RadioButton) view.findViewById(R.id.woman_button);
+
+        containerView = view.findViewById(R.id.container_view);
     }
 
     @Override
@@ -61,5 +70,27 @@ public class ProfileFragment extends Fragment {
                 mWomanButton.setChecked(true);
             }
         }
+    }
+
+    @Override
+    public void takeScreenShot() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Bitmap bitmap = Bitmap.createBitmap(containerView.getWidth(),
+                        containerView.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                containerView.draw(canvas);
+                ProfileFragment.this.bitmap = bitmap;
+            }
+        };
+
+        thread.start();
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+//        return null;
+        return bitmap;
     }
 }

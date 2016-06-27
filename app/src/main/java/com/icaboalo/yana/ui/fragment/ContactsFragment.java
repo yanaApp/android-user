@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -44,13 +46,17 @@ import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import yalantis.com.sidemenu.interfaces.ScreenShotable;
 
 /**
  * Created by icaboalo on 05/06/16.
  */
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends Fragment implements ScreenShotable {
 
     RecyclerView mContactRecycler;
+
+    View containerView;
+    Bitmap bitmap;
 
     public ContactsFragment() {
         setHasOptionsMenu(true);
@@ -66,6 +72,8 @@ public class ContactsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContactRecycler = (RecyclerView) view.findViewById(R.id.contact_recycler);
+
+        containerView = view.findViewById(R.id.container_view);
     }
 
     @Override
@@ -167,8 +175,9 @@ public class ContactsFragment extends Fragment {
     }
 
     void setupContactRecycler(final ArrayList<ContactModel> contactList){
-        final ContactRecyclerAdapter contactRecyclerAdapter = new ContactRecyclerAdapter(getActivity(), contactList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        Activity activity = getActivity();
+        final ContactRecyclerAdapter contactRecyclerAdapter = new ContactRecyclerAdapter(activity, contactList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity);
 
         mContactRecycler.setAdapter(contactRecyclerAdapter);
         mContactRecycler.setLayoutManager(linearLayoutManager);
@@ -262,5 +271,27 @@ public class ContactsFragment extends Fragment {
             Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
             startActivityForResult(pickContact, 1);
         }
+    }
+
+    @Override
+    public void takeScreenShot() {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Bitmap bitmap = Bitmap.createBitmap(containerView.getWidth(),
+                        containerView.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                containerView.draw(canvas);
+                ContactsFragment.this.bitmap = bitmap;
+            }
+        };
+
+        thread.start();
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+//        return null;
+        return bitmap;
     }
 }
