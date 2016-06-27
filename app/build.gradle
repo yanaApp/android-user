@@ -1,6 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
+repositories {
+    maven {
+        url "https://jitpack.io"
+    }
+}
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -53,18 +60,12 @@ dependencies {
 
 
 //    Side menu
-    compile 'com.yalantis:sidemenu:1.0'
-    compile ('com.github.ozodrukh:CircularReveal:2.0.1@aar') {
-        transitive = true;
-    }
+//    compile 'com.yalantis:sidemenu:1.0'
+    compile project(':side-menu')
+    compile 'com.github.ozodrukh:CircularReveal:1.0.4'
 
 }
 
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
 
 buildscript {
     repositories {
