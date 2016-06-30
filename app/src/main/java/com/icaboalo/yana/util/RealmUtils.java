@@ -1,5 +1,6 @@
 package com.icaboalo.yana.util;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -22,13 +23,9 @@ import io.realm.RealmResults;
  */
 public class RealmUtils {
 
-    public static int getCompletedActivitiesFromRealm(@Nullable DayModel day){
+    public static int getCompletedActivitiesFromRealm(@NonNull DayModel day){
         Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            return realm.where(ActivityModel.class).greaterThan("answer", 0).findAll().size();
-        } else {
-            return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
-        }
+        return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
     }
 
     public static int getCompletedActivitiesFromRealm(ArrayList<DayModel> dayList){
@@ -42,13 +39,9 @@ public class RealmUtils {
 
     }
 
-    public static int getIncompleteActivitiesFromRealm(@Nullable DayModel day){
+    public static int getIncompleteActivitiesFromRealm(@NonNull DayModel day){
         Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            return realm.where(ActivityModel.class).equalTo("answer", 0).findAll().size();
-        } else {
-            return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
-        }
+        return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
     }
 
     public static int getIncompleteActivitiesFromRealm(ArrayList<DayModel> dayList){
@@ -61,16 +54,44 @@ public class RealmUtils {
         return count;
     }
 
-    public static int getEmotionAverageFromRealm(@Nullable DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        if (day == null){
-            double count = realm.where(ActivityModel.class).average("answer");
-            return (int) Math.round(count);
+    public static int getEmotionAverageFromRealm(@NonNull DayModel day){
+        int answerTotal = 0;
+        int answerCount = 0;
+        for (ActivityModel activity : getActivitiesFromRealm(day)){
+            int answer = activity.getAnswer();
+            if (answer > 0){
+                answerTotal += answer;
+                answerCount ++;
+            }
+        }
+        if (answerTotal != 0 || answerCount != 0){
+            double answerAverage = answerTotal / answerCount;
+            return (int) answerAverage;
         } else {
-            double count = realm.where(ActivityModel.class).equalTo("day.id", day.getId()).average("answer");
-            return (int) Math.round(count);
+            return 0;
         }
 
+    }
+
+    public static int getEmotionAverageFromRealm(@NonNull ActionPlanModel actionPlan){
+        for (DayModel day : getDaysFromRealm(actionPlan, true)){
+            int answerTotal = 0;
+            int answerCount = 0;
+            for (ActivityModel activity : getActivitiesFromRealm(day)){
+                int answer = activity.getAnswer();
+                if (answer > 0){
+                    answerTotal += answer;
+                    answerCount ++;
+                }
+            }
+            if (answerTotal != 0 || answerCount != 0){
+                double answerAverage = answerTotal / answerCount;
+                return (int) answerAverage;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
     }
 
     public static ArrayList<DayModel> getDaysFromRealm(@Nullable ActionPlanModel actionPlan, boolean onlyCompleted){

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     android:background="#fff"
+    android:layout_marginBottom="1dp"
     android:orientation="vertical">
 
     <View
@@ -28,6 +28,8 @@
         android:textSize="20sp" />
 
     <TextView
+        android:visibility="gone"
+        android:textColor="@color/gray"
         android:id="@+id/image_description"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
@@ -40,22 +42,23 @@
         android:text="Ver más" />
 
     <ImageView
+        android:layout_centerVertical="true"
         android:id="@+id/image_emotion"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/activity_title"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
-        android:background="@drawable/circle_black"
+        android:background="@drawable/circle_gray"
         android:clickable="false" />
 
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/description_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/activity_title"
         android:orientation="vertical"
         android:paddingEnd="48dp"
@@ -75,8 +78,10 @@
         <!--android:src="@drawable/information_outline_circular_64" />-->
 
         <TextView
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:id="@+id/activity_description"
-            android:layout_width="match_parent"
+            android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="48dp"
@@ -89,7 +94,9 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="visible"
         android:id="@+id/emotion_layout"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="61dp"
         android:layout_below="@id/description_layout"
@@ -100,6 +107,7 @@
         android:paddingStart="0dp">
 
         <View
+            android:visibility="invisible"
             android:id="@+id/emotion_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -127,7 +135,7 @@
         <View
             android:id="@+id/emotion_icon_divider"
             android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_below="@id/emotion_divider"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"

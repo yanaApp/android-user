@@ -85,7 +85,7 @@ public class ActionPlanFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         mActivityRecycler.setAdapter(mActivityRecyclerAdapter);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
-        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+//        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     void updateActivity(String token, int answer, int activityId){

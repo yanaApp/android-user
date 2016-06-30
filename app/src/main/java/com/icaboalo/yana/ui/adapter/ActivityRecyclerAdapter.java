@@ -2,7 +2,6 @@ package com.icaboalo.yana.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +42,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_action_plan_adapter, parent, false);
+        View view = mInflater.inflate(R.layout.item_activity_adapter, parent, false);
         return new ActivityViewHolder(view, mOnEmotionSelected);
     }
 
@@ -54,22 +53,21 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         if (position == emotionExpandedPosition) {
             holder.showEmotions(true);
             holder.showDescription(false);
+            holder.showActivityColorBar(false);
             holder.mDescriptionExpand.setVisibility(View.GONE);
-//            holder.setActivityColorHeight(200);
 
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
-            holder.mEmotionImage.setVisibility(View.GONE);
+            holder.showActivityColorBar(false);
             holder.mDescriptionExpand.setText("Ver menos");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
-//            holder.setActivityColorHeight(200);
 
         } else {
             holder.showEmotions(false);
             holder.showDescription(false);
+            holder.showActivityColorBar(true);
             holder.mDescriptionExpand.setVisibility(View.VISIBLE);
-            holder.mEmotionImage.setVisibility(View.VISIBLE);
             holder.mDescriptionExpand.setText("Ver más");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
         }
@@ -261,12 +259,10 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             mEmotionLayout.setVisibility(visibility);
         }
 
-        public void setActivityColorHeight(int height){
-            ViewGroup.LayoutParams activityColorParams = mActivityColor.getLayoutParams();
-            Log.d("tag", "OLD HEIGHT " + activityColorParams.height + ", " + activityColorParams.width);
-            activityColorParams.height = itemView.getMeasuredHeight();
-            Log.d("tag", "NEW HEIGHT " + activityColorParams.height + ", " + activityColorParams.width);
-            mActivityColor.setLayoutParams(activityColorParams);
+        public void showActivityColorBar(boolean show){
+            int visibility = show ? View.VISIBLE : View.GONE;
+            mActivityColor.setVisibility(visibility);
+
         }
     }
 }

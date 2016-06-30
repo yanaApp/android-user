@@ -107,7 +107,7 @@ public class ProgressFragment extends Fragment {
 
         mCompletedProgress.setMax(completedActivities + incompleteActivities);
         mCompletedProgress.setProgress(completedActivities);
-        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(null), mEmotionImage);
+        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(actionPlan), mEmotionImage);
     }
 
 
