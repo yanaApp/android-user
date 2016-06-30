@@ -51,11 +51,18 @@ dependencies {
 //  Loading view
     compile 'me.wangyuwei:LoadingiVew:1.0.3'
 
-
+//  Tour guide
+    compile ('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar'){
+        transitive=true
+    }
 }
 
 buildscript {
     repositories {
+        mavenCentral()
+        maven(){
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
         jcenter()
     }
     dependencies {
