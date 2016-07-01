@@ -10,12 +10,12 @@ import com.icaboalo.yana.PrefConstants;
  */
 public class PrefUtils {
 
-    private final int privateMode = Context.MODE_PRIVATE;
-    private final String authFile = PrefConstants.authFile;
-    private final String tutorialFile = PrefConstants.tutorialFile;
-    private final String profileFile = PrefConstants.profileFile;
-    private final String firstTimeFile = PrefConstants.firstTimeFile;
-    private final String tourFile = PrefConstants.tourFile;
+    private static final int privateMode = Context.MODE_PRIVATE;
+    private static final String authFile = PrefConstants.authFile;
+    private static final String tutorialFile = PrefConstants.tutorialFile;
+    private static final String profileFile = PrefConstants.profileFile;
+    private static final String firstTimeFile = PrefConstants.firstTimeFile;
+    private static final String tourFile = PrefConstants.tourFile;
 
     public static String getToken(Context context){
         SharedPreferences sharedPrefs = context.getSharedPreferences(authFile, privateMode);

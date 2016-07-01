@@ -1,19 +1,24 @@
 package com.icaboalo.yana.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.ui.activity.MainActivity;
 import com.icaboalo.yana.util.OnEmotionSelected;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 import com.squareup.picasso.Picasso;
 
@@ -53,20 +58,17 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         if (position == emotionExpandedPosition) {
             holder.showEmotions(true);
             holder.showDescription(false);
-            holder.showActivityColorBar(false);
             holder.mDescriptionExpand.setVisibility(View.GONE);
 
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
-            holder.showActivityColorBar(false);
             holder.mDescriptionExpand.setText("Ver menos");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
 
         } else {
             holder.showEmotions(false);
             holder.showDescription(false);
-            holder.showActivityColorBar(true);
             holder.mDescriptionExpand.setVisibility(View.VISIBLE);
             holder.mDescriptionExpand.setText("Ver más");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
@@ -99,6 +101,9 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         });
 
 
+        if (!PrefUtils.isActionPlanTourComplete(mContext) && position == mActivityList.size() -1){
+            holder.startTour();
+        }
         holder.setTitle(activity.getTitle());
         holder.setDescription(activity.getDescription());
         VUtil.setEmotionImage(mContext, activity.getAnswer(), holder.mEmotionImage);
@@ -119,6 +124,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         RelativeLayout mDescriptionLayout, mEmotionLayout;
         ImageView mEmotionImage, mVerySadImage, mSadImage, mNormalImage, mHappyImage, mVeryHappyImage, mCancelImage;
         OnEmotionSelected mEmotionSelected;
+
+        int mTourCount = 0;
 
         public ActivityViewHolder(View itemView, OnEmotionSelected onEmotionSelected) {
             super(itemView);
@@ -252,11 +259,23 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         public void showDescription(boolean show) {
             int visibility = show ? View.VISIBLE : View.GONE;
             mDescriptionLayout.setVisibility(visibility);
+            if (mDescriptionLayout.getVisibility() == View.VISIBLE){
+                showActivityColorBar(false);
+            } else {
+                showActivityColorBar(true);
+            }
         }
 
         public void showEmotions(boolean show){
             int visibility = show ? View.VISIBLE : View.GONE;
             mEmotionLayout.setVisibility(visibility);
+            if (mEmotionLayout.getVisibility() == View.VISIBLE){
+                mDescriptionExpand.setVisibility(View.GONE);
+                showActivityColorBar(false);
+            } else {
+                mDescriptionExpand.setVisibility(View.VISIBLE);
+                showActivityColorBar(true);
+            }
         }
 
         public void showActivityColorBar(boolean show){
@@ -264,5 +283,57 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             mActivityColor.setVisibility(visibility);
 
         }
+
+        void startTour(){
+            Activity activity = (MainActivity) mContext;
+            final ShowcaseView showcaseView = new ShowcaseView.Builder(activity)
+                    .setContentTitle("Welcome to your Action Plan")
+//                    .singleShot(42)
+                    .setStyle(R.style.CustomShowcase)
+                    .setContentText("We'll give you a brief tour around, so you can start by yourself.")
+                    .build();
+            showcaseView.setButtonText("Next");
+            showcaseView.overrideButtonClick(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "1", Toast.LENGTH_SHORT).show();
+                    switch (mTourCount){
+                        case 0:
+                            showcaseView.setTarget(new ViewTarget(mEmotionImage));
+                            showcaseView.setContentTitle("Press here");
+                            showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                            break;
+
+                        case 1:
+                            showEmotions(true);
+                            showcaseView.setShowcase(new ViewTarget(mEmotionLayout), true);
+                            showcaseView.setContentTitle("Emotions");
+                            showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                            break;
+
+                        case 2:
+                            showEmotions(false);
+                            showcaseView.setShowcase(new ViewTarget(mDescriptionExpand), true);
+                            showcaseView.setContentTitle("Press here");
+                            showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                            break;
+
+                        case 3:
+                            showDescription(true);
+                            showcaseView.setShowcase(new ViewTarget(mActivityDescription), true);
+                            showcaseView.setContentTitle("Description");
+                            showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                            break;
+
+                        case 4:
+                            showDescription(false);
+                            showcaseView.hide();
+                            break;
+                    }
+                    mTourCount ++;
+                }
+            });
+        }
+
     }
 }
