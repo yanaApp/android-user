@@ -6,28 +6,31 @@
 
 
     <LinearLayout
+        android:layout_gravity="bottom"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
+            android:layout_height="70dp">
 
             <android.support.design.widget.TextInputLayout
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:id="@+id/full_name_input"
                     android:hint="NOMBRE COMPLETO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:paddingTop="10dp"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
@@ -38,52 +41,23 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
+            android:layout_height="70dp">
 
             <android.support.design.widget.TextInputLayout
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
-                    android:id="@+id/username_input"
-                    android:hint="NOMBRE DE USUARIO"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:paddingTop="10dp"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent" />
-
-        <RelativeLayout
-            android:background="@color/white"
-            android:padding="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:id="@+id/etEmail"
                     android:hint="CORREO ELECTRONICO"
                     android:layout_width="match_parent"
@@ -92,7 +66,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
-                    android:paddingTop="10dp"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
@@ -100,26 +73,28 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
+            android:layout_height="70dp">
 
             <android.support.design.widget.TextInputLayout
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:id="@+id/phone_input"
                     android:hint="TELEFONO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:paddingTop="10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
@@ -131,23 +106,25 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
+            android:layout_height="70dp">
 
             <android.support.design.widget.TextInputLayout
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:id="@+id/birth_date_input"
                     android:hint="FECHA DE NACIMIENTO"
-                    android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -162,15 +139,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
-            android:minHeight="70dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:orientation="horizontal">
 
             <TextView
@@ -207,15 +184,15 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:background="@color/white"
-            android:padding="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="70dp">
+            android:layout_height="70dp">
 
             <TextView
                 android:layout_width="wrap_content"

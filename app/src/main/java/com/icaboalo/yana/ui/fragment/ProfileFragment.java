@@ -18,7 +18,7 @@ import com.icaboalo.yana.util.RealmUtils;
  */
 public class ProfileFragment extends Fragment {
 
-    EditText mFullNameInput, mUsernameInput, mEmailInput, mPhoneInput, mBirthDateInput;
+    EditText mFullNameInput, mEmailInput, mPhoneInput, mBirthDateInput;
     RadioButton mManButton, mWomanButton;
 
     @Nullable
@@ -31,7 +31,6 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mFullNameInput = (EditText) view.findViewById(R.id.full_name_input);
-        mUsernameInput = (EditText) view.findViewById(R.id.username_input);
         mEmailInput = (EditText) view.findViewById(R.id.etEmail);
         mPhoneInput = (EditText) view.findViewById(R.id.phone_input);
         mBirthDateInput = (EditText) view.findViewById(R.id.birth_date_input);
@@ -48,7 +47,6 @@ public class ProfileFragment extends Fragment {
 
     void setText(){
         UserModel user = RealmUtils.getUser();
-        mUsernameInput.setText(user.getUserName());
         mEmailInput.setText(user.getEmail());
         mFullNameInput.setText(user.getFullName());
         mPhoneInput.setText(user.getPhoneNumber());

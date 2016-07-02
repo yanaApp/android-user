@@ -13,10 +13,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.DayModel;
@@ -27,6 +31,9 @@ import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by icaboalo on 08/06/16.
@@ -39,6 +46,16 @@ public class ProgressFragment extends Fragment {
     ProgressBar mCompletedProgress;
     RecyclerView mDayProgressRecycler;
 
+    int mTutorialCount = 0;
+
+
+    @Bind(R.id.llcompleted)
+    LinearLayout llCompleted;
+    @Bind(R.id.llIncomplete)
+    LinearLayout llIncomplete;
+    @Bind(R.id.llAverage)
+    LinearLayout llAverage;
+
 
     @Nullable
     @Override
@@ -49,6 +66,7 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
         mCompleted = (TextView) view.findViewById(R.id.completed_text);
         mIncomplete = (TextView) view.findViewById(R.id.incomplete_text);
         mActionPlanSpinner = (Spinner) view.findViewById(R.id.action_plan_spinner);
@@ -61,7 +79,10 @@ public class ProgressFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm());
-        if (PrefUtils.isProgressFirstTime(getActivity())){
+        if (!PrefUtils.isProgressTourComplete(getActivity())){
+            startTutorial();
+        }
+        if (PrefUtils.isProgressFirstTime(getActivity()) && PrefUtils.isProgressTourComplete(getActivity())){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setMessage(getActivity().getString(R.string.cupcake_ipsum));
             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -127,5 +148,51 @@ public class ProgressFragment extends Fragment {
         mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
         mDayProgressRecycler.setLayoutManager(linearLayoutManager);
         mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+    }
+
+    void startTutorial(){
+        final ShowcaseView showcaseView = new ShowcaseView.Builder(getActivity())
+                .setStyle(R.style.CustomShowcase)
+                .build();
+        showcaseView.setContentTitle("Welcome to your Progress!");
+        showcaseView.setContentText("In here you can check your progress in the application");
+        showcaseView.overrideButtonClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (mTutorialCount){
+                    case 0:
+                        showcaseView.setTarget(new ViewTarget(llCompleted));
+                        showcaseView.setContentTitle("TITLE");
+                        showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
+                        break;
+
+                    case 1:
+                        showcaseView.setShowcase(new ViewTarget(llIncomplete), true);
+//                        showcaseView.setTarget(new ViewTarget(llIncomplete));
+                        showcaseView.setContentTitle("TITLE");
+                        showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
+                        break;
+
+                    case 2:
+                        showcaseView.setShowcase(new ViewTarget(llAverage), true);
+//                        showcaseView.setTarget(new ViewTarget(llAverage));
+                        showcaseView.setContentTitle("TITLE");
+                        showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
+                        break;
+
+                    case 3:
+                        showcaseView.setShowcase(new ViewTarget(mDayProgressRecycler), true);
+//                        showcaseView.setTarget(new ViewTarget(mDayProgressRecycler));
+                        showcaseView.setContentTitle("TITLE");
+                        showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
+                        break;
+
+                    case 4:
+                        showcaseView.hide();
+                        break;
+                }
+                mTutorialCount++;
+            }
+        });
     }
 }

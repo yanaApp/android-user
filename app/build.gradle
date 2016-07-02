@@ -20,6 +20,13 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+    maven(){
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -51,6 +58,11 @@ dependencies {
 //  Loading view
     compile 'me.wangyuwei:LoadingiVew:1.0.3'
 
+//  Tour guide
+    compile ('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar'){
+        transitive=true
+    }
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
 
 }
 

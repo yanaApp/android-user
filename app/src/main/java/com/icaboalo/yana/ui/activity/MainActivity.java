@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         replaceFragment(new ActionPlanFragment());
 
-        if (!PrefUtils.isProfileComplete(this)){
+        if (!PrefUtils.isProfileComplete(this) && PrefUtils.isActionPlanTourComplete(this)){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
             alertDialog.setTitle("Perfil no completo");
             alertDialog.setMessage("Por favor ayudanos a completar tu perfil para obtener más información");
