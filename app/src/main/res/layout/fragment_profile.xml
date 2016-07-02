@@ -12,6 +12,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/rlFullName"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -23,9 +24,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
-                    android:id="@+id/full_name_input"
+                    android:id="@+id/etFullName"
                     android:hint="NOMBRE COMPLETO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -45,6 +48,7 @@
             android:background="@color/colorAccent" />
 
         <RelativeLayout
+            android:id="@+id/rlEmail"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -56,6 +60,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:id="@+id/etEmail"
@@ -77,6 +83,7 @@
             android:background="@color/colorAccent" />
 
         <RelativeLayout
+            android:id="@+id/rlPhoneNumber"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -88,9 +95,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
-                    android:id="@+id/phone_input"
+                    android:id="@+id/etPhoneNumber"
                     android:hint="TELEFONO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,6 +119,7 @@
             android:background="@color/colorAccent" />
 
         <RelativeLayout
+            android:id="@+id/rlBirthDate"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -121,9 +131,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputEditText
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:drawableRight="@drawable/ic_keyboard_arrow_right_black_36dp"
                     android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_36dp"
-                    android:id="@+id/birth_date_input"
+                    android:id="@+id/etBirthDate"
                     android:hint="FECHA DE NACIMIENTO"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -143,6 +155,7 @@
             android:background="@color/colorAccent" />
 
         <RelativeLayout
+            android:id="@+id/rlGender"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -158,7 +171,7 @@
                 android:text="GENERO" />
 
             <RadioGroup
-                android:id="@+id/genre_group"
+                android:id="@+id/gender_group"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -168,14 +181,14 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/woman_button"
+                    android:id="@+id/rbWoman"
                     android:checked="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Femenino" />
 
                 <RadioButton
-                    android:id="@+id/man_button"
+                    android:id="@+id/rbMan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Masculino" />
@@ -188,6 +201,7 @@
             android:background="@color/colorAccent" />
 
         <RelativeLayout
+            android:id="@+id/rlLocation"
             android:background="@color/white"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"

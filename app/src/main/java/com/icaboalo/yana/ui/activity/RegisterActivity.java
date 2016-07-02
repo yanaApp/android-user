@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mFullNameInput = (TextInputEditText) findViewById(R.id.full_name_input);
+        mFullNameInput = (TextInputEditText) findViewById(R.id.etFullName);
         mUsernameInput = (TextInputEditText) findViewById(R.id.username_input);
         mEmailInput = (TextInputEditText) findViewById(R.id.etEmail);
         mPasswordInput = (TextInputEditText) findViewById(R.id.password_input);
