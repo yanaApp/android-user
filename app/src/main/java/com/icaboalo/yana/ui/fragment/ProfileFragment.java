@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.widget.RadioButton;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.UserModel;
+import com.icaboalo.yana.ui.activity.EditProfileActivity;
 import com.icaboalo.yana.util.RealmUtils;
 
 import butterknife.Bind;
@@ -26,14 +28,8 @@ public class ProfileFragment extends Fragment {
     EditText etFullName;
     @Bind(R.id.etEmail)
     EditText etEmail;
-    @Bind(R.id.etPhoneNumber)
-    EditText etPhoneNumber;
     @Bind(R.id.etBirthDate)
     EditText etBirthDate;
-    @Bind(R.id.rbMan)
-    RadioButton rbMan;
-    @Bind(R.id.rbWoman)
-    RadioButton rbWoman;
 
     @Nullable
     @Override
@@ -45,60 +41,80 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        etFullName = (EditText) view.findViewById(R.id.etFullName);
-        etEmail = (EditText) view.findViewById(R.id.etEmail);
-        etPhoneNumber = (EditText) view.findViewById(R.id.etPhoneNumber);
-        etBirthDate = (EditText) view.findViewById(R.id.etBirthDate);
 
-        rbMan = (RadioButton) view.findViewById(R.id.rbMan);
-        rbWoman = (RadioButton) view.findViewById(R.id.rbWoman);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onResume() {
+        super.onResume();
         setText();
     }
 
-    @OnClick(R.id.rlFullName)
+    @OnClick(R.id.ivFullName)
     void updateName() {
-
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_FULL_NAME);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getFullName());
+        edit.putExtras(bundle);
+        startActivity(edit);
     }
 
-    @OnClick(R.id.rlEmail)
+    @OnClick(R.id.ivEmail)
     void updateEmail(){
-
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_EMAIL);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getEmail());
+        edit.putExtras(bundle);
+        startActivity(edit);
     }
-    @OnClick(R.id.rlPhoneNumber)
-    void updatePhoneNumber(){
 
-    }
-    @OnClick(R.id.rlBirthDate)
+
+    @OnClick(R.id.ivBirthDate)
     void updateBirthDate(){
-
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_BIRTH_DATE);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getBirthDate());
+        edit.putExtras(bundle);
+        startActivity(edit);
     }
-    @OnClick(R.id.rlGender)
+
+    @OnClick(R.id.ivGender)
     void updateGender(){
-
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_GENDER);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getGender());
+        edit.putExtras(bundle);
+        startActivity(edit);
     }
-    @OnClick(R.id.rlLocation)
-    void updateLocation(){
 
+    @OnClick(R.id.ivLocation)
+    void updateLocation(){
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_LOCATION);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getLocation());
+        edit.putExtras(bundle);
+        startActivity(edit);
+    }
+
+    @OnClick(R.id.ivOccupation)
+    void updateOccupation(){
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_OCCUPATION);
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getLocation());
+        edit.putExtras(bundle);
+        startActivity(edit);
     }
 
     void setText() {
         UserModel user = RealmUtils.getUser();
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullName());
-        etPhoneNumber.setText(user.getPhoneNumber());
         etBirthDate.setText(user.getBirthDate());
-
-        if (user.getGenre() != null) {
-            if (user.getGenre().equals("man")) {
-                rbMan.setChecked(true);
-            } else {
-                rbWoman.setChecked(true);
-            }
-        }
     }
 }

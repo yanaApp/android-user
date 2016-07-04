@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.ContactModel;
@@ -186,6 +187,20 @@ public class RealmUtils {
         Realm realm = Realm.getDefaultInstance();
 
         return realm.where(UserModel.class).findFirst();
+    }
+
+    public static void updateUser(UserApiModel user){
+        final UserModel realmUser = getUser();
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realmUser.setEmail(user.getEmail());
+        realmUser.setFullName(user.getFullName());
+        realmUser.setBirthDate(user.getBirthDate());
+        realmUser.setId(user.getId());
+        realmUser.setOccupation(user.getOccupation());
+        realmUser.setGender(user.getGender());
+        realmUser.setLocation(user.getLocation());
+        realm.commitTransaction();
     }
 
     public static DayModel getCurrentDayFromRealm(){

@@ -18,37 +18,31 @@ public class UserModel extends RealmObject {
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("username")
     private String userName;
 
-    @SerializedName("full_name")
     private String fullName;
 
-    @SerializedName("email")
     private String email;
 
-    @SerializedName("phone_number")
     private String phoneNumber;
 
-    @SerializedName("birth_date")
     private String birthDate;
 
-    @SerializedName("genre")
     private String genre;
 
-    @SerializedName("location")
-    private String location;
-
     @Ignore
-    @SerializedName("password")
     private String password;
 
     @Ignore
-    @SerializedName("token")
     private String token;
+
+    private String gender;
+
+    private String location;
+
+    private String occupation;
 
     public int getId() {
         return id;
@@ -82,7 +76,7 @@ public class UserModel extends RealmObject {
         this.birthDate = birthDate;
     }
 
-    public String getGenre() {
+    public String getGender() {
         return genre;
     }
 
@@ -125,6 +119,22 @@ public class UserModel extends RealmObject {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 }
 

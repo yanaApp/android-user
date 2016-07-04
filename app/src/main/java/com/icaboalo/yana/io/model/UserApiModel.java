@@ -18,6 +18,12 @@ public class UserApiModel {
     @SerializedName("username")
     private String userName;
 
+    @SerializedName("full_name")
+    private String fullName;
+
+    @SerializedName("birth_date")
+    private String birthDate;
+
     @SerializedName("email")
     private String email;
 
@@ -35,6 +41,15 @@ public class UserApiModel {
 
     @SerializedName("action_plan")
     private ArrayList<ActionPlanApiModel> actionPlanList;
+
+    @SerializedName("gender")
+    private String gender;
+
+    @SerializedName("location")
+    private String location;
+
+    @SerializedName("occupation")
+    private String occupation;
 
     public int getId() {
         return id;
@@ -98,5 +113,45 @@ public class UserApiModel {
 
     public void setCategory(int category) {
         this.category = category;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
     }
 }
