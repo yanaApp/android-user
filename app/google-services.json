@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "876437136103",
+    "firebase_url": "https://yana-84c15.firebaseio.com",
+    "project_id": "yana-84c15",
+    "storage_bucket": "yana-84c15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876437136103:android:0ae3bd4e73c677d7",
+        "android_client_info": {
+          "package_name": "com.icaboalo.yana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876437136103-860874qb3jggb4pf4ufj95ifpb00st1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEYhIadiMOV52XHzNdnLkdW2GIwgzcdFw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876437136103:android:5680871c69f1374e",
+        "android_client_info": {
+          "package_name": "com.icaboalo.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876437136103-860874qb3jggb4pf4ufj95ifpb00st1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEYhIadiMOV52XHzNdnLkdW2GIwgzcdFw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
