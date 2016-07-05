@@ -28,7 +28,7 @@ import retrofit2.http.Path;
 public interface ApiService {
 
     @POST("login/")
-    Call<UserModel> login(@Body UserModel user);
+    Call<UserApiModel> login(@Body UserApiModel user);
 
     @POST("user/register")
     Call<UserApiModel> userRegister(@Body UserApiModel user);

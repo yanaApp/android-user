@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
+import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.UserModel;
 
 import java.io.IOException;
@@ -77,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             mProgressDialog = new ProgressDialog(LoginActivity.this);
             mProgressDialog.setMessage(getString(R.string.progress_dialog_login));
             mProgressDialog.show();
-            UserModel user = new UserModel();
+            UserApiModel user = new UserApiModel();
             user.setUserName(etUsername.getText().toString());
             user.setPassword(etPassword.getText().toString());
             loginRetrofit(user);
@@ -105,11 +106,11 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    void loginRetrofit(UserModel user){
-        Call<UserModel> call = ApiClient.getApiService().login(user);
-        call.enqueue(new Callback<UserModel>() {
+    void loginRetrofit(UserApiModel user){
+        Call<UserApiModel> call = ApiClient.getApiService().login(user);
+        call.enqueue(new Callback<UserApiModel>() {
             @Override
-            public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+            public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()) {
                     mProgressDialog.dismiss();
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
@@ -128,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserModel> call, Throwable t) {
+            public void onFailure(Call<UserApiModel> call, Throwable t) {
                 Log.d("RETROFIT_FAILURE", t.toString());
                 mProgressDialog.dismiss();
             }
