@@ -63,9 +63,10 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == 4){
-                    loginButton.animate().translationY(0).setDuration(1000);
+                    loginButton.setVisibility(View.VISIBLE);
+                    loginButton.animate().translationY(0).setDuration(800);
                 } else{
-                    loginButton.animate().translationY(loginButton.getHeight()).setDuration(200);
+                    loginButton.animate().translationY(loginButton.getHeight()).setDuration(100);
                 }
             }
 
