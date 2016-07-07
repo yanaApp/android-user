@@ -153,6 +153,7 @@ public class ProgressFragment extends Fragment {
     void startTutorial(){
         final ShowcaseView showcaseView = new ShowcaseView.Builder(getActivity())
                 .setTarget(Target.NONE)
+                .singleShot(98)
                 .withMaterialShowcase()
                 .setStyle(R.style.CustomShowcase)
                 .build();

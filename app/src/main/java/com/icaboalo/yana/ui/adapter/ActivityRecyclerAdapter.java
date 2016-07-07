@@ -289,7 +289,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             Activity activity = (MainActivity) mContext;
             final ShowcaseView showcaseView = new ShowcaseView.Builder(activity)
                     .setContentTitle("Welcome to your Action Plan")
-//                    .singleShot(42)
+                    .singleShot(99)
                     .withMaterialShowcase()
                     .setTarget(Target.NONE)
                     .setStyle(R.style.CustomShowcase)
