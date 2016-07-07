@@ -24,6 +24,7 @@ import com.icaboalo.yana.util.PrefUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -111,13 +112,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_log_out:
+                Realm realm = Realm.getDefaultInstance();
+                realm.beginTransaction();
+                realm.deleteAll();
+                realm.commitTransaction();
                 SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
                 break;
 
         }
 
-        replaceFragment(fragment);
+        if (fragment != null)
+            replaceFragment(fragment);
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

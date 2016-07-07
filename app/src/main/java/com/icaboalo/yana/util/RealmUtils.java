@@ -26,7 +26,9 @@ public class RealmUtils {
 
     public static int getCompletedActivitiesFromRealm(@NonNull DayModel day){
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+        int size = realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+
+        return size;
     }
 
     public static int getCompletedActivitiesFromRealm(ArrayList<DayModel> dayList){
@@ -42,7 +44,9 @@ public class RealmUtils {
 
     public static int getIncompleteActivitiesFromRealm(@NonNull DayModel day){
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+        int size = realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
+
+        return size;
     }
 
     public static int getIncompleteActivitiesFromRealm(ArrayList<DayModel> dayList){
@@ -109,12 +113,14 @@ public class RealmUtils {
                         break;
                     }
                 }
+
                 return dayList;
             } else {
                 ArrayList<DayModel> dayList = new ArrayList<>();
                 for (DayModel day : results) {
                     dayList.add(day);
                 }
+
                 return dayList;
             }
         } else {
@@ -130,12 +136,14 @@ public class RealmUtils {
                         break;
                     }
                 }
+
                 return dayList;
             } else {
                 ArrayList<DayModel> dayList = new ArrayList<>();
                 for (DayModel day: results){
                     dayList.add(day);
                 }
+
                 return dayList;
             }
         }
@@ -149,6 +157,7 @@ public class RealmUtils {
         for (ActionPlanModel actionPlan: results){
             actionPlanList.add(actionPlan);
         }
+
         return actionPlanList;
     }
 
@@ -180,13 +189,15 @@ public class RealmUtils {
         for (ActivityModel activity: results){
             activities.add(activity);
         }
+
         return activities;
     }
 
     public static UserModel getUser(){
         Realm realm = Realm.getDefaultInstance();
+        UserModel user = realm.where(UserModel.class).findFirst();
 
-        return realm.where(UserModel.class).findFirst();
+        return user;
     }
 
     public static void updateUser(UserApiModel user){
@@ -201,6 +212,7 @@ public class RealmUtils {
         realmUser.setGender(user.getGender());
         realmUser.setLocation(user.getLocation());
         realm.commitTransaction();
+
     }
 
     public static DayModel getCurrentDayFromRealm(){
@@ -208,7 +220,8 @@ public class RealmUtils {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
 
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
+        DayModel day = realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
+        return day;
     }
 
 
@@ -222,6 +235,7 @@ public class RealmUtils {
         activity.setDescription(result.getDescription());
         activity.setAnswer(result.getAnswer());
         activity.setDay(result.getDay());
+
         return activity;
     }
 
@@ -231,6 +245,7 @@ public class RealmUtils {
         ContactModel contact = realm.where(ContactModel.class).equalTo("id", contactId).findFirst();
         contact.deleteFromRealm();
         realm.commitTransaction();
+
     }
 
 }

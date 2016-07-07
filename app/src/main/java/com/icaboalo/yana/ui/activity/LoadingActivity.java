@@ -152,7 +152,7 @@ public class LoadingActivity extends AppCompatActivity {
                                 public void run() {
                                     showLoadingComplete();
                                 }
-                            }, 10000);
+                            }, 8000);
                         }
                     });
                 } else{

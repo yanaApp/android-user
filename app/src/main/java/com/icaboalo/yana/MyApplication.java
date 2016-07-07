@@ -1,5 +1,7 @@
 package com.icaboalo.yana;
 
+import android.util.Log;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -11,7 +13,12 @@ public class MyApplication extends android.app.Application {
     public void onCreate() {
         super.onCreate();
         // The Realm file will be located in Context.getFilesDir() with name "default.realm"
-        RealmConfiguration config = new RealmConfiguration.Builder(this).schemaVersion(1).build();
+        RealmConfiguration config = new RealmConfiguration.Builder(this)
+                .name("db.realm")
+                .deleteRealmIfMigrationNeeded()
+                .schemaVersion(1)
+                .build();
         Realm.setDefaultConfiguration(config);
+//        Log.d("REALM", Realm.getDefaultInstance().getPath());
     }
 }
