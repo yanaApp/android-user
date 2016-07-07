@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActivityModel;
@@ -289,6 +290,8 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             final ShowcaseView showcaseView = new ShowcaseView.Builder(activity)
                     .setContentTitle("Welcome to your Action Plan")
 //                    .singleShot(42)
+                    .withMaterialShowcase()
+                    .setTarget(Target.NONE)
                     .setStyle(R.style.CustomShowcase)
                     .setContentText("We'll give you a brief tour around, so you can start by yourself.")
                     .build();
@@ -299,7 +302,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     Toast.makeText(mContext, "1", Toast.LENGTH_SHORT).show();
                     switch (mTourCount){
                         case 0:
-                            showcaseView.setTarget(new ViewTarget(mEmotionImage));
+                            showcaseView.setShowcase(new ViewTarget(mEmotionImage), true);
                             showcaseView.setContentTitle("Press here");
                             showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
                             break;

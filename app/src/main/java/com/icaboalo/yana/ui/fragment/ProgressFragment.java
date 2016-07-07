@@ -152,6 +152,8 @@ public class ProgressFragment extends Fragment {
 
     void startTutorial(){
         final ShowcaseView showcaseView = new ShowcaseView.Builder(getActivity())
+                .setTarget(Target.NONE)
+                .withMaterialShowcase()
                 .setStyle(R.style.CustomShowcase)
                 .build();
         showcaseView.setContentTitle("Welcome to your Progress!");
@@ -161,28 +163,25 @@ public class ProgressFragment extends Fragment {
             public void onClick(View v) {
                 switch (mTutorialCount){
                     case 0:
-                        showcaseView.setTarget(new ViewTarget(llCompleted));
+                        showcaseView.setShowcase(new ViewTarget(llCompleted), true);
                         showcaseView.setContentTitle("TITLE");
                         showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
                         break;
 
                     case 1:
                         showcaseView.setShowcase(new ViewTarget(llIncomplete), true);
-//                        showcaseView.setTarget(new ViewTarget(llIncomplete));
                         showcaseView.setContentTitle("TITLE");
                         showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
                         break;
 
                     case 2:
                         showcaseView.setShowcase(new ViewTarget(llAverage), true);
-//                        showcaseView.setTarget(new ViewTarget(llAverage));
                         showcaseView.setContentTitle("TITLE");
                         showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
                         break;
 
                     case 3:
-                        showcaseView.setShowcase(new ViewTarget(mDayProgressRecycler), true);
-//                        showcaseView.setTarget(new ViewTarget(mDayProgressRecycler));
+                        showcaseView.setShowcase(new ViewTarget(mDayProgressRecycler.getChildAt(0)), true);
                         showcaseView.setContentTitle("TITLE");
                         showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
                         break;
