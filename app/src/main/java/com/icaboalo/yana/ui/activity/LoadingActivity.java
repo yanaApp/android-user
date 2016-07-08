@@ -14,11 +14,13 @@ import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActionPlanApiModel;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.io.model.CategoryApiModel;
+import com.icaboalo.yana.io.model.ContactApiModel;
 import com.icaboalo.yana.io.model.DayApiModel;
 import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.CategoryModel;
+import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.realm.UserModel;
 import com.icaboalo.yana.util.PrefUtils;
@@ -82,6 +84,7 @@ public class LoadingActivity extends AppCompatActivity {
                     final ArrayList<DayModel> dayList = new ArrayList<DayModel>();
                     final ArrayList<ActivityModel> activityList = new ArrayList<ActivityModel>();
                     final ArrayList<CategoryModel> categoryList = new ArrayList<CategoryModel>();
+                    final ArrayList<ContactModel> contactList = new ArrayList<ContactModel>();
 
                     for (ActionPlanApiModel responseActionPlan: responseUser.getActionPlanList()){
 
@@ -133,6 +136,16 @@ public class LoadingActivity extends AppCompatActivity {
                         }
                     }
 
+                    for (ContactApiModel responseContact: responseUser.getContactList()){
+                        ContactModel contact = new ContactModel();
+                        Log.d(TAG, "onResponse: " + responseContact.getName());
+                        contact.setId(responseContact.getId());
+                        contact.setPhoneNumber(responseContact.getPhoneNumber());
+                        contact.setName(responseContact.getName());
+                        contact.setValidated(responseContact.isValidated());
+                        contactList.add(contact);
+                    }
+
                     Log.d(TAG, "onResponse: " + categoryList.size());
 
                     Realm.getDefaultInstance().executeTransactionAsync(new Realm.Transaction() {
@@ -143,6 +156,7 @@ public class LoadingActivity extends AppCompatActivity {
                             realm.copyToRealmOrUpdate(dayList);
                             realm.copyToRealmOrUpdate(categoryList);
                             realm.copyToRealmOrUpdate(activityList);
+                            realm.copyToRealmOrUpdate(contactList);
                         }
                     }, new Realm.Transaction.OnSuccess() {
                         @Override

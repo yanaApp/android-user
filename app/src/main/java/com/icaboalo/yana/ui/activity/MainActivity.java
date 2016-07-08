@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 realm.commitTransaction();
                 SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
+                finish();
                 break;
 
         }
