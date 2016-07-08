@@ -51,6 +51,9 @@ public class UserApiModel {
     @SerializedName("occupation")
     private String occupation;
 
+    @SerializedName("contacts")
+    private ArrayList<ContactApiModel> contactList;
+
     public int getId() {
         return id;
     }
@@ -153,5 +156,13 @@ public class UserApiModel {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public ArrayList<ContactApiModel> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(ArrayList<ContactApiModel> contactList) {
+        this.contactList = contactList;
     }
 }
