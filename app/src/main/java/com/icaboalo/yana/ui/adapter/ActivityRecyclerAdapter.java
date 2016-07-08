@@ -18,7 +18,6 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.ui.activity.MainActivity;
-import com.icaboalo.yana.util.OnEmotionSelected;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 import com.squareup.picasso.Picasso;
@@ -38,6 +37,9 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     OnEmotionSelected mOnEmotionSelected;
     private int emotionExpandedPosition = -1, descriptionExpandedPosition = -1;
 
+    public interface OnEmotionSelected {
+        void onSelect(ActivityModel activity, int previousAnswer, int newAnswer);
+    }
 
     public ActivityRecyclerAdapter(Context context, ArrayList<ActivityModel> activityList, OnEmotionSelected onEmotionSelected) {
         this.mContext = context;

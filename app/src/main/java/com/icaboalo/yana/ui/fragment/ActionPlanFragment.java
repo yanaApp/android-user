@@ -13,31 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
-import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
-import com.icaboalo.yana.util.DividerItemDecorator;
-import com.icaboalo.yana.util.OnEmotionSelected;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
-import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import io.realm.Realm;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter.*;
 
 /**
  * Created by icaboalo on 26/05/16.
