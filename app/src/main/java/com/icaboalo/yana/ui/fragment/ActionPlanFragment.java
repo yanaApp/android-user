@@ -66,18 +66,28 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
-        mActivityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
+        mActivityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList);
+        mActivityRecyclerAdapter.setEmotionSelectedListener(new OnEmotionSelected() {
             @Override
-            public void onSelect(final ActivityModel activity, final int previousAnswer, int newAnswer) {
+            public void onSelect(ActivityModel activity, int previousAnswer, int newAnswer) {
                 Log.d("SELECTED", activity.toString());
                 showSnackBar(activity, previousAnswer, newAnswer);
             }
         });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        mActivityRecycler.setAdapter(mActivityRecyclerAdapter);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+//        linearLayoutManager.setReverseLayout(true);
+//        linearLayoutManager.setStackFromEnd(true);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
+        mActivityRecyclerAdapter.setOnExpandListener(new OnExpandListener() {
+            @Override
+            public void onExpand(int position, boolean expanded) {
+                if (expanded){
+                    Log.d("EXPAND", "EXPANDED " + position);
+                    mActivityRecycler.smoothScrollToPosition(position);
+                }
+            }
+        });
+        mActivityRecycler.setAdapter(mActivityRecyclerAdapter);
 //        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 

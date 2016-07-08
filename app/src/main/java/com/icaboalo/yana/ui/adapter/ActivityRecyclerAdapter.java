@@ -35,17 +35,28 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     ArrayList<ActivityModel> mActivityList;
     LayoutInflater mInflater;
     OnEmotionSelected mOnEmotionSelected;
+    OnExpandListener mOnExpandListener;
     private int emotionExpandedPosition = -1, descriptionExpandedPosition = -1;
 
     public interface OnEmotionSelected {
         void onSelect(ActivityModel activity, int previousAnswer, int newAnswer);
     }
 
-    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityModel> activityList, OnEmotionSelected onEmotionSelected) {
+    public interface OnExpandListener {
+        void onExpand(int position, boolean expanded);
+    }
+    public ActivityRecyclerAdapter(Context context, ArrayList<ActivityModel> activityList) {
         this.mContext = context;
         this.mActivityList = activityList;
-        this.mOnEmotionSelected = onEmotionSelected;
         this.mInflater = LayoutInflater.from(context);
+    }
+
+    public void setEmotionSelectedListener(OnEmotionSelected emotionSelectedListener){
+        this.mOnEmotionSelected = emotionSelectedListener;
+    }
+
+    public void setOnExpandListener(OnExpandListener expandListener){
+        this.mOnExpandListener = expandListener;
     }
 
     @Override
@@ -62,12 +73,14 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             holder.showEmotions(true);
             holder.showDescription(false);
             holder.mDescriptionExpand.setVisibility(View.GONE);
+            mOnExpandListener.onExpand(position, true);
 
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
             holder.mDescriptionExpand.setText("Ver menos");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
+            mOnExpandListener.onExpand(position, true);
 
         } else {
             holder.showEmotions(false);
@@ -75,6 +88,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             holder.mDescriptionExpand.setVisibility(View.VISIBLE);
             holder.mDescriptionExpand.setText("Ver más");
             holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
+            mOnExpandListener.onExpand(position, false);
         }
 
         holder.mEmotionImage.setOnClickListener(new View.OnClickListener() {
