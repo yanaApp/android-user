@@ -51,9 +51,16 @@ import retrofit2.Response;
 public class ContactsFragment extends Fragment {
 
     RecyclerView mContactRecycler;
+    private Realm mRealmInstance;
 
     public ContactsFragment() {
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
     }
 
     @Nullable
@@ -71,7 +78,7 @@ public class ContactsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupContactRecycler(RealmUtils.getContactsFromRealm());
+        setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
         if (PrefUtils.isContactsFirstTime(getActivity())){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
             alertDialog.setTitle("");
@@ -86,6 +93,12 @@ public class ContactsFragment extends Fragment {
             alertDialog.setCancelable(false);
             alertDialog.show();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     @Override
@@ -191,7 +204,7 @@ public class ContactsFragment extends Fragment {
                 switch (direction){
                     case ItemTouchHelper.END:
                         Toast.makeText(getActivity(), "Removed " + contactList.get(position).getName(), Toast.LENGTH_SHORT).show();
-                        RealmUtils.removeContactFromRealm(contactList.get(position).getId());
+                        RealmUtils.removeContactFromRealm(mRealmInstance, contactList.get(position).getId());
                         contactRecyclerAdapter.notifyItemRemoved(position);
                         break;
                     case ItemTouchHelper.START:
@@ -215,7 +228,7 @@ public class ContactsFragment extends Fragment {
                     realm.beginTransaction();
                     realm.copyToRealmOrUpdate(response.body());
                     realm.commitTransaction();
-                    setupContactRecycler(RealmUtils.getContactsFromRealm());
+                    setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());

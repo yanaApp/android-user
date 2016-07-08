@@ -34,6 +34,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 /**
  * Created by icaboalo on 08/06/16.
@@ -56,6 +57,13 @@ public class ProgressFragment extends Fragment {
     @Bind(R.id.llAverage)
     LinearLayout llAverage;
 
+    private Realm mRealmInstance;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
+    }
 
     @Nullable
     @Override
@@ -78,7 +86,7 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm());
+        setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm(mRealmInstance));
         if (!PrefUtils.isProgressTourComplete(getActivity())){
             startTutorial();
         }
@@ -95,6 +103,12 @@ public class ProgressFragment extends Fragment {
             alertDialog.setCancelable(false);
             alertDialog.show();
         }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     void setupActionPlanSpinner(final ArrayList<ActionPlanModel> actionPlanList){
@@ -117,9 +131,9 @@ public class ProgressFragment extends Fragment {
     }
 
     void setInformation(ActionPlanModel actionPlan){
-        ArrayList<DayModel> mCompletedDayList = RealmUtils.getDaysFromRealm(actionPlan, true);
-        int completedActivities = RealmUtils.getCompletedActivitiesFromRealm(mCompletedDayList);
-        int incompleteActivities = RealmUtils.getIncompleteActivitiesFromRealm(mCompletedDayList);
+        ArrayList<DayModel> mCompletedDayList = RealmUtils.getDaysFromRealm(mRealmInstance, actionPlan, true);
+        int completedActivities = RealmUtils.getCompletedActivitiesFromRealm(mRealmInstance, mCompletedDayList);
+        int incompleteActivities = RealmUtils.getIncompleteActivitiesFromRealm(mRealmInstance, mCompletedDayList);
 
         mCompleted.setText("" + completedActivities);
         mIncomplete.setText("" + incompleteActivities);
@@ -128,7 +142,7 @@ public class ProgressFragment extends Fragment {
 
         mCompletedProgress.setMax(completedActivities + incompleteActivities);
         mCompletedProgress.setProgress(completedActivities);
-        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(actionPlan), mEmotionImage);
+        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(mRealmInstance, actionPlan), mEmotionImage);
     }
 
 
@@ -137,9 +151,9 @@ public class ProgressFragment extends Fragment {
         ArrayList<Integer> incompleteActivities = new ArrayList<>();
         ArrayList<Integer> emotionAverage = new ArrayList<>();
         for (DayModel day: dayList){
-            completedActivities.add(RealmUtils.getCompletedActivitiesFromRealm(day));
-            incompleteActivities.add(RealmUtils.getIncompleteActivitiesFromRealm(day));
-            emotionAverage.add(RealmUtils.getEmotionAverageFromRealm(day));
+            completedActivities.add(RealmUtils.getCompletedActivitiesFromRealm(mRealmInstance, day));
+            incompleteActivities.add(RealmUtils.getIncompleteActivitiesFromRealm(mRealmInstance, day));
+            emotionAverage.add(RealmUtils.getEmotionAverageFromRealm(mRealmInstance, day));
 
         }
 

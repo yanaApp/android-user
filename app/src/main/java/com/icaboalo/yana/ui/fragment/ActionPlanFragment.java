@@ -41,8 +41,16 @@ public class ActionPlanFragment extends Fragment {
     TextView mActivityDate;
     ActivityRecyclerAdapter mActivityRecyclerAdapter;
 
+    private Realm mRealmInstance;
+
     public ActionPlanFragment() {
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
     }
 
     @Nullable
@@ -61,8 +69,14 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm().getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm().getDate()));
-        setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(RealmUtils.getCurrentDayFromRealm()));
+        mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getDate()));
+        setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(mRealmInstance, RealmUtils.getCurrentDayFromRealm(mRealmInstance)));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){

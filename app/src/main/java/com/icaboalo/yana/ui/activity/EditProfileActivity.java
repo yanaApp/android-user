@@ -3,7 +3,6 @@ package com.icaboalo.yana.ui.activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,14 +16,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
-import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
 
@@ -48,7 +45,9 @@ public class EditProfileActivity extends AppCompatActivity{
     TextView tvClear;
     @Bind(R.id.btSave)
     Button btSave;
-    Bundle bundle;
+    Bundle mBundle;
+
+    private Realm mRealmInstance;
 
     public static final String INFO_TYPE = "Information Type";
 
@@ -61,12 +60,17 @@ public class EditProfileActivity extends AppCompatActivity{
     public static final String INFO_OCCUPATION = "Occupation";
     public static final String CONTENT = "Content";
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        bundle = getIntent().getExtras();
+        mBundle = getIntent().getExtras();
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -89,6 +93,12 @@ public class EditProfileActivity extends AppCompatActivity{
                 btSave.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     @OnClick(R.id.tvClear)
@@ -117,7 +127,7 @@ public class EditProfileActivity extends AppCompatActivity{
     @OnClick(R.id.btSave)
     void saveInfo(){
         UserApiModel user = new UserApiModel();
-        switch (bundle.getString(INFO_TYPE, "")){
+        switch (mBundle.getString(INFO_TYPE, "")){
             case INFO_FULL_NAME:
                 user.setFullName(etField.getText().toString());
                 break;
@@ -145,12 +155,12 @@ public class EditProfileActivity extends AppCompatActivity{
                 user.setOccupation(etField.getText().toString());
                 break;
         }
-        Call<UserApiModel> call = ApiClient.getApiService().updateUserInfo(PrefUtils.getToken(this), user, RealmUtils.getUser().getId());
+        Call<UserApiModel> call = ApiClient.getApiService().updateUserInfo(PrefUtils.getToken(this), user, RealmUtils.getUser(mRealmInstance).getId());
         call.enqueue(new Callback<UserApiModel>() {
             @Override
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()){
-                    RealmUtils.updateUser(response.body());
+                    RealmUtils.updateUser(mRealmInstance, response.body());
                     finish();
                 } else {
                     try {
@@ -174,8 +184,8 @@ public class EditProfileActivity extends AppCompatActivity{
 
     void setInfo(){
         ActionBar actionBar = getSupportActionBar();
-        etField.setText(bundle.getString(CONTENT));
-        switch (bundle.getString(INFO_TYPE, "")){
+        etField.setText(mBundle.getString(CONTENT));
+        switch (mBundle.getString(INFO_TYPE, "")){
             case INFO_FULL_NAME:
                 actionBar.setTitle(INFO_FULL_NAME);
                 tvDescription.setText("");

@@ -24,15 +24,11 @@ import io.realm.RealmResults;
  */
 public class RealmUtils {
 
-    public static int getCompletedActivitiesFromRealm(@NonNull DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        int size = realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
-
-        return size;
+    public static int getCompletedActivitiesFromRealm(Realm realm, @NonNull DayModel day){
+        return realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
     }
 
-    public static int getCompletedActivitiesFromRealm(ArrayList<DayModel> dayList){
-        Realm realm = Realm.getDefaultInstance();
+    public static int getCompletedActivitiesFromRealm(Realm realm, ArrayList<DayModel> dayList){
         int count = 0;
         for (DayModel day : dayList){
             count += realm.where(ActivityModel.class).greaterThan("answer", 0).equalTo("day.id", day.getId()).findAll().size();
@@ -42,15 +38,11 @@ public class RealmUtils {
 
     }
 
-    public static int getIncompleteActivitiesFromRealm(@NonNull DayModel day){
-        Realm realm = Realm.getDefaultInstance();
-        int size = realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
-
-        return size;
+    public static int getIncompleteActivitiesFromRealm(Realm realm, @NonNull DayModel day){
+        return realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
     }
 
-    public static int getIncompleteActivitiesFromRealm(ArrayList<DayModel> dayList){
-        Realm realm = Realm.getDefaultInstance();
+    public static int getIncompleteActivitiesFromRealm(Realm realm, ArrayList<DayModel> dayList){
         int count = 0;
         for (DayModel day : dayList){
             count += realm.where(ActivityModel.class).equalTo("answer", 0).equalTo("day.id", day.getId()).findAll().size();
@@ -59,10 +51,10 @@ public class RealmUtils {
         return count;
     }
 
-    public static int getEmotionAverageFromRealm(@NonNull DayModel day){
+    public static int getEmotionAverageFromRealm(Realm realm, @NonNull DayModel day){
         int answerTotal = 0;
         int answerCount = 0;
-        for (ActivityModel activity : getActivitiesFromRealm(day)){
+        for (ActivityModel activity : getActivitiesFromRealm(realm, day)){
             int answer = activity.getAnswer();
             if (answer > 0){
                 answerTotal += answer;
@@ -78,11 +70,11 @@ public class RealmUtils {
 
     }
 
-    public static int getEmotionAverageFromRealm(@NonNull ActionPlanModel actionPlan){
-        for (DayModel day : getDaysFromRealm(actionPlan, true)){
+    public static int getEmotionAverageFromRealm(Realm realm, @NonNull ActionPlanModel actionPlan){
+        for (DayModel day : getDaysFromRealm(realm, actionPlan, true)){
             int answerTotal = 0;
             int answerCount = 0;
-            for (ActivityModel activity : getActivitiesFromRealm(day)){
+            for (ActivityModel activity : getActivitiesFromRealm(realm, day)){
                 int answer = activity.getAnswer();
                 if (answer > 0){
                     answerTotal += answer;
@@ -99,13 +91,12 @@ public class RealmUtils {
         return 0;
     }
 
-    public static ArrayList<DayModel> getDaysFromRealm(@Nullable ActionPlanModel actionPlan, boolean onlyCompleted){
-        Realm realm = Realm.getDefaultInstance();
+    public static ArrayList<DayModel> getDaysFromRealm(Realm realm, @Nullable ActionPlanModel actionPlan, boolean onlyCompleted){
         if (actionPlan == null){
             RealmResults<DayModel> results = realm.where(DayModel.class).findAll();
             Log.d("REALM_RESULTS", results.toString());
             if (onlyCompleted){
-                DayModel currentDay = getCurrentDayFromRealm();
+                DayModel currentDay = getCurrentDayFromRealm(realm);
                 ArrayList<DayModel> dayList = new ArrayList<>();
                 for (DayModel day : results){
                     dayList.add(day);
@@ -128,7 +119,7 @@ public class RealmUtils {
             Log.d("REALM_RESULTS", results.toString());
 
             if (onlyCompleted){
-                DayModel currentDay = getCurrentDayFromRealm();
+                DayModel currentDay = getCurrentDayFromRealm(realm);
                 ArrayList<DayModel> dayList = new ArrayList<>();
                 for (DayModel day : results){
                     dayList.add(day);
@@ -149,8 +140,7 @@ public class RealmUtils {
         }
     }
 
-    public static ArrayList<ActionPlanModel> getActionPlansFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
+    public static ArrayList<ActionPlanModel> getActionPlansFromRealm(Realm realm){
         RealmResults<ActionPlanModel> results = realm.where(ActionPlanModel.class).findAll();
         Log.d("REALM_RESULTS", results.toString());
         ArrayList<ActionPlanModel> actionPlanList = new ArrayList<>();
@@ -161,8 +151,7 @@ public class RealmUtils {
         return actionPlanList;
     }
 
-    public static ArrayList<ContactModel> getContactsFromRealm(){
-        Realm realm = Realm.getDefaultInstance();
+    public static ArrayList<ContactModel> getContactsFromRealm(Realm realm){
         RealmQuery<ContactModel> query = realm.where(ContactModel.class);
         RealmResults<ContactModel> results =  query.findAll();
 
@@ -177,8 +166,7 @@ public class RealmUtils {
     }
 
 
-    public static ArrayList<ActivityModel> getActivitiesFromRealm(DayModel currentDay){
-        Realm realm = Realm.getDefaultInstance();
+    public static ArrayList<ActivityModel> getActivitiesFromRealm(Realm realm, DayModel currentDay){
         RealmQuery<ActivityModel> query = realm.where(ActivityModel.class).equalTo("day.date", currentDay.getDate());
 
         RealmResults<ActivityModel> results = query.findAll();
@@ -193,16 +181,12 @@ public class RealmUtils {
         return activities;
     }
 
-    public static UserModel getUser(){
-        Realm realm = Realm.getDefaultInstance();
-        UserModel user = realm.where(UserModel.class).findFirst();
-
-        return user;
+    public static UserModel getUser(Realm realm){
+        return realm.where(UserModel.class).findFirst();
     }
 
-    public static void updateUser(UserApiModel user){
-        final UserModel realmUser = getUser();
-        Realm realm = Realm.getDefaultInstance();
+    public static void updateUser(Realm realm, UserApiModel user){
+        final UserModel realmUser = getUser(realm);
         realm.beginTransaction();
         realmUser.setEmail(user.getEmail());
         realmUser.setFullName(user.getFullName());
@@ -215,18 +199,15 @@ public class RealmUtils {
 
     }
 
-    public static DayModel getCurrentDayFromRealm(){
+    public static DayModel getCurrentDayFromRealm(Realm realm){
         Calendar calendar = Calendar.getInstance();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
 
-        Realm realm = Realm.getDefaultInstance();
-        DayModel day = realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
-        return day;
+        return realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
     }
 
 
-    public static ActivityModel getActivityFromRealm(int activityId){
-        Realm realm = Realm.getDefaultInstance();
+    public static ActivityModel getActivityFromRealm(Realm realm, int activityId){
         RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
         ActivityModel result = query.equalTo("id", activityId).findAll().get(0);
         ActivityModel activity = new ActivityModel();
@@ -239,8 +220,7 @@ public class RealmUtils {
         return activity;
     }
 
-    public static void removeContactFromRealm(int contactId){
-        Realm realm = Realm.getDefaultInstance();
+    public static void removeContactFromRealm(Realm realm, int contactId){
         realm.beginTransaction();
         ContactModel contact = realm.where(ContactModel.class).equalTo("id", contactId).findFirst();
         contact.deleteFromRealm();

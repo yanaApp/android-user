@@ -18,6 +18,7 @@ import com.icaboalo.yana.util.RealmUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 /**
  * Created by icaboalo on 17/06/16.
@@ -30,6 +31,14 @@ public class ProfileFragment extends Fragment {
     EditText etEmail;
     @Bind(R.id.etBirthDate)
     EditText etBirthDate;
+
+    Realm mRealmInstance;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
+    }
 
     @Nullable
     @Override
@@ -50,12 +59,18 @@ public class ProfileFragment extends Fragment {
         setText();
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mRealmInstance.close();
+    }
+
     @OnClick(R.id.ivFullName)
     void updateName() {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_FULL_NAME);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getFullName());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getFullName());
         edit.putExtras(bundle);
         startActivity(edit);
     }
@@ -65,7 +80,7 @@ public class ProfileFragment extends Fragment {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_EMAIL);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getEmail());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getEmail());
         edit.putExtras(bundle);
         startActivity(edit);
     }
@@ -76,7 +91,7 @@ public class ProfileFragment extends Fragment {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_BIRTH_DATE);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getBirthDate());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getBirthDate());
         edit.putExtras(bundle);
         startActivity(edit);
     }
@@ -86,7 +101,7 @@ public class ProfileFragment extends Fragment {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_GENDER);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getGender());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getGender());
         edit.putExtras(bundle);
         startActivity(edit);
     }
@@ -96,7 +111,7 @@ public class ProfileFragment extends Fragment {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_LOCATION);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getLocation());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getLocation());
         edit.putExtras(bundle);
         startActivity(edit);
     }
@@ -106,13 +121,13 @@ public class ProfileFragment extends Fragment {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
         bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_OCCUPATION);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser().getLocation());
+        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getLocation());
         edit.putExtras(bundle);
         startActivity(edit);
     }
 
     void setText() {
-        UserModel user = RealmUtils.getUser();
+        UserModel user = RealmUtils.getUser(mRealmInstance);
         etEmail.setText(user.getEmail());
         etFullName.setText(user.getFullName());
         etBirthDate.setText(user.getBirthDate());
