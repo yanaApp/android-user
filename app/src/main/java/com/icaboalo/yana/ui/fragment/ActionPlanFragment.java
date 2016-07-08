@@ -70,19 +70,17 @@ public class ActionPlanFragment extends Fragment {
         mActivityRecyclerAdapter.setEmotionSelectedListener(new OnEmotionSelected() {
             @Override
             public void onSelect(ActivityModel activity, int previousAnswer, int newAnswer) {
-                Log.d("SELECTED", activity.toString());
                 showSnackBar(activity, previousAnswer, newAnswer);
             }
         });
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-//        linearLayoutManager.setReverseLayout(true);
-//        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
         mActivityRecyclerAdapter.setOnExpandListener(new OnExpandListener() {
             @Override
             public void onExpand(int position, boolean expanded) {
                 if (expanded){
-                    Log.d("EXPAND", "EXPANDED " + position);
                     mActivityRecycler.smoothScrollToPosition(position);
                 }
             }

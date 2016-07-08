@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,22 +73,20 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         if (position == emotionExpandedPosition) {
             holder.showEmotions(true);
             holder.showDescription(false);
+            holder.showActivityColorBar(false);
             holder.mDescriptionExpand.setVisibility(View.GONE);
             mOnExpandListener.onExpand(position, true);
 
         } else if (position == descriptionExpandedPosition) {
             holder.showDescription(true);
             holder.showEmotions(false);
-            holder.mDescriptionExpand.setText("Ver menos");
-            holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
+            holder.showActivityColorBar(false);
             mOnExpandListener.onExpand(position, true);
 
         } else {
             holder.showEmotions(false);
             holder.showDescription(false);
-            holder.mDescriptionExpand.setVisibility(View.VISIBLE);
-            holder.mDescriptionExpand.setText("Ver más");
-            holder.mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
+            holder.showActivityColorBar(true);
             mOnExpandListener.onExpand(position, false);
         }
 
@@ -276,29 +275,25 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         public void showDescription(boolean show) {
             int visibility = show ? View.VISIBLE : View.GONE;
             mDescriptionLayout.setVisibility(visibility);
-            if (mDescriptionLayout.getVisibility() == View.VISIBLE){
-                showActivityColorBar(false);
+            if (show){
+                mDescriptionExpand.setVisibility(View.VISIBLE);
+                mDescriptionExpand.setText("Ver menos");
+                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
             } else {
-                showActivityColorBar(true);
+                mDescriptionExpand.setVisibility(View.VISIBLE);
+                mDescriptionExpand.setText("Ver más");
+                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
             }
         }
 
         public void showEmotions(boolean show){
             int visibility = show ? View.VISIBLE : View.GONE;
             mEmotionLayout.setVisibility(visibility);
-            if (mEmotionLayout.getVisibility() == View.VISIBLE){
-                mDescriptionExpand.setVisibility(View.GONE);
-                showActivityColorBar(false);
-            } else {
-                mDescriptionExpand.setVisibility(View.VISIBLE);
-                showActivityColorBar(true);
-            }
         }
 
         public void showActivityColorBar(boolean show){
-            int visibility = show ? View.VISIBLE : View.GONE;
+            int visibility = show ? View.VISIBLE : View.INVISIBLE;
             mActivityColor.setVisibility(visibility);
-
         }
 
         void startTour(){
