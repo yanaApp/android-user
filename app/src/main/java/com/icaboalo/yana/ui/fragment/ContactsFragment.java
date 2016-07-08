@@ -57,11 +57,6 @@ public class ContactsFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mRealmInstance = Realm.getDefaultInstance();
-    }
 
     @Nullable
     @Override
@@ -78,6 +73,7 @@ public class ContactsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mRealmInstance = Realm.getDefaultInstance();
         setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
         if (PrefUtils.isContactsFirstTime(getActivity())){
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());

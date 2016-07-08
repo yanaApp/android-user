@@ -47,11 +47,6 @@ public class ActionPlanFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mRealmInstance = Realm.getDefaultInstance();
-    }
 
     @Nullable
     @Override
@@ -69,6 +64,8 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mRealmInstance = Realm.getDefaultInstance();
+
         mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getDate()));
         setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(mRealmInstance, RealmUtils.getCurrentDayFromRealm(mRealmInstance)));
     }

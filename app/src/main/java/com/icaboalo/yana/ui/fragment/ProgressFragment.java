@@ -59,11 +59,6 @@ public class ProgressFragment extends Fragment {
 
     private Realm mRealmInstance;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mRealmInstance = Realm.getDefaultInstance();
-    }
 
     @Nullable
     @Override
@@ -86,6 +81,7 @@ public class ProgressFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mRealmInstance = Realm.getDefaultInstance();
         setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm(mRealmInstance));
         if (!PrefUtils.isProgressTourComplete(getActivity())){
             startTutorial();

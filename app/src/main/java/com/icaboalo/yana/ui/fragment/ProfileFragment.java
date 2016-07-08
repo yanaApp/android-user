@@ -34,12 +34,6 @@ public class ProfileFragment extends Fragment {
 
     Realm mRealmInstance;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mRealmInstance = Realm.getDefaultInstance();
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,7 +44,12 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mRealmInstance = Realm.getDefaultInstance();
     }
 
     @Override
