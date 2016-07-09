@@ -13,6 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/tvSlide"
+        android:layout_centerHorizontal="true"
+        android:text="@string/slide_to_begin"
+        android:layout_above="@+id/view_pager_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <com.pixelcan.inkpageindicator.InkPageIndicator
         android:layout_margin="16dp"
         android:id="@+id/view_pager_indicator"

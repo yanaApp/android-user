@@ -158,4 +158,5 @@
     <string name="email_input_hint">EMAIL</string>
     <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
     <string name="cupcake_ipsum">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
+    <string name="slide_to_begin">Slide to begin</string>
 </resources>
