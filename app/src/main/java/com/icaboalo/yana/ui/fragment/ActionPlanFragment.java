@@ -20,6 +20,7 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
+import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -126,7 +127,7 @@ public class ActionPlanFragment extends Fragment {
     }
 
     void showSnackBar(final ActivityModel activity, final int previousAnswer, final int newAnswer){
-        Snackbar.make(getView(), "Changed emotion from " + previousAnswer + " to " + newAnswer, Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+        Snackbar.make(getView(), "Changed emotion from " + VUtil.answerToText(previousAnswer) + " to " + VUtil.answerToText(newAnswer), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

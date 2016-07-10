@@ -47,6 +47,29 @@ public class VUtil {
 
     }
 
+    public static String answerToText(int answer){
+        switch (answer){
+            case 0:
+                return "null";
+
+            case 1:
+                return "very sad";
+
+            case 2:
+                return "sad";
+
+            case 3:
+                return "normal";
+
+            case 4:
+                return "happy";
+
+            case 5:
+                return "very happi";
+        }
+        return "";
+    }
+
     public static void expand(final View v) {
         v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final int targetHeight = v.getMeasuredHeight();
