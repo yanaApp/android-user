@@ -26,7 +26,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:focusable="false"
                     android:id="@+id/etFullName"
-                    android:hint="NOMBRE COMPLETO"
+                    android:hint="@string/full_name_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -68,7 +68,7 @@
                     android:focusable="false"
 
                     android:id="@+id/etEmail"
-                    android:hint="CORREO ELECTRONICO"
+                    android:hint="@string/email_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -110,7 +110,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:focusable="false"
                     android:id="@+id/etBirthDate"
-                    android:hint="FECHA DE NACIMIENTO"
+                    android:hint="@string/birth_date_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -152,7 +152,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:focusable="false"
                     android:id="@+id/etGender"
-                    android:hint="GENDER"
+                    android:hint="@string/gender_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -193,7 +193,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:focusable="false"
                     android:id="@+id/etLocation"
-                    android:hint="UBICACIÓN"
+                    android:hint="@string/location_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -234,7 +234,7 @@
                 <android.support.design.widget.TextInputEditText
                     android:focusable="false"
                     android:id="@+id/etOccupation"
-                    android:hint="OCCUPATION"
+                    android:hint="@string/occupation_input_hint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
