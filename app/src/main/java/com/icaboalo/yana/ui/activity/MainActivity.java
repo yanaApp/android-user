@@ -112,13 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_log_out:
-                Realm realm = Realm.getDefaultInstance();
-                realm.beginTransaction();
-                realm.deleteAll();
-                realm.commitTransaction();
-                SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
-                sharedPreferences.edit().clear().apply();
-                finish();
+                showLogOutConfirmationDialog();
                 break;
 
         }
@@ -127,6 +121,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             replaceFragment(fragment);
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showLogOutConfirmationDialog() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setIcon(R.drawable.ic_exit_to_app_black_24dp)
+                .setTitle("Are you sure you want to exit?")
+                .setMessage("")
+                .setCancelable(false)
+                .setPositiveButton("Sure", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Realm realm = Realm.getDefaultInstance();
+                        realm.beginTransaction();
+                        realm.deleteAll();
+                        realm.commitTransaction();
+                        SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
+                        sharedPreferences.edit().clear().apply();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create().show();
     }
 
     void replaceFragment(Fragment fragment){
