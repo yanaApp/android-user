@@ -28,7 +28,7 @@
         android:id="@+id/menu_bottom"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_help"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="Help" />
         <item

@@ -34,7 +34,7 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
+
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -118,7 +118,6 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -160,7 +159,6 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -201,7 +199,6 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -242,7 +239,6 @@
                     android:layout_centerVertical="true"
                     android:background="@android:color/transparent"
                     android:inputType="textPersonName"
-                    android:maxLength="50"
                     android:singleLine="true"/>
             </android.support.design.widget.TextInputLayout>
 

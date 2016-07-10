@@ -18,6 +18,7 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.ContactsFragment;
+import com.icaboalo.yana.ui.fragment.HelpFragment;
 import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.PrefUtils;
@@ -113,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_log_out:
                 showLogOutConfirmationDialog();
+                break;
+            case R.id.nav_help:
+                fragment = new HelpFragment();
                 break;
 
         }

@@ -164,4 +164,6 @@
     <string name="gender_input_hint">GENDER</string>
     <string name="location_input_hint">LOCATION</string>
     <string name="occupation_input_hint">OCCUPATION</string>
+    <string name="what_is_depression">WHAT IS DEPRESSION?</string>
+    <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
 </resources>
