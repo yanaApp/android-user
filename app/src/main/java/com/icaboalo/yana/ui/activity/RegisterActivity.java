@@ -26,7 +26,7 @@ import static com.icaboalo.yana.R.string.error_invalid_email;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextInputEditText mFullNameInput, mUsernameInput, mEmailInput, mPasswordInput;
+    TextInputEditText mFullNameInput, mEmailInput, mPasswordInput;
     Button mRegisterButton;
     TextView mLoginButton;
 
@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         mFullNameInput = (TextInputEditText) findViewById(R.id.etFullName);
-        mUsernameInput = (TextInputEditText) findViewById(R.id.username_input);
         mEmailInput = (TextInputEditText) findViewById(R.id.etEmail);
         mPasswordInput = (TextInputEditText) findViewById(R.id.password_input);
 
@@ -54,9 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.register_button:
                 if (mFullNameInput.getText().toString().isEmpty() || mFullNameInput.getText().toString().length() < 2){
                     mFullNameInput.setError(getString(error_empty_field));
-                } else if (mUsernameInput.getText().toString().isEmpty() || mUsernameInput.getText().toString().length() < 2){
-                    mUsernameInput.setError(getString(error_empty_field));
-                } else if (mEmailInput.getText().toString().isEmpty() || mEmailInput.getText().toString().length() < 2){
+                }  else if (mEmailInput.getText().toString().isEmpty() || mEmailInput.getText().toString().length() < 2){
                     mEmailInput.setError(getString(error_empty_field));
                 } else if (!mEmailInput.getText().toString().contains("@")){
                     mEmailInput.setError(getString(error_invalid_email));
@@ -64,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     mPasswordInput.setError(getString(error_empty_field));
                 } else {
                     UserApiModel user = new UserApiModel();
-                    user.setUserName(mUsernameInput.getText().toString());
                     user.setPassword(mPasswordInput.getText().toString());
                     user.setEmail(mEmailInput.getText().toString());
                     SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);

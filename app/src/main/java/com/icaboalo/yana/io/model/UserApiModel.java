@@ -15,9 +15,6 @@ public class UserApiModel {
     @SerializedName("id")
     private int id;
 
-    @SerializedName("username")
-    private String userName;
-
     @SerializedName("full_name")
     private String fullName;
 
@@ -58,10 +55,6 @@ public class UserApiModel {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -84,10 +77,6 @@ public class UserApiModel {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public void setEmail(String email) {

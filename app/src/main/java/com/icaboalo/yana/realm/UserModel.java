@@ -1,12 +1,5 @@
 package com.icaboalo.yana.realm;
 
-
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
@@ -19,8 +12,6 @@ public class UserModel extends RealmObject {
 
     @PrimaryKey
     private int id;
-
-    private String userName;
 
     private String fullName;
 
@@ -50,14 +41,6 @@ public class UserModel extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getFullName() {
