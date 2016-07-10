@@ -26,8 +26,6 @@ public class TutorialActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @Bind(R.id.view_pager_indicator)
     InkPageIndicator mViewPagerIndicator;
-    @Bind(R.id.tvSlide)
-    TextView tvSlide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +69,6 @@ public class TutorialActivity extends AppCompatActivity {
                     loginButton.animate().translationY(0).setDuration(800);
                 } else{
                     loginButton.animate().translationY(loginButton.getHeight()).setDuration(100);
-                }
-                if (position == 0){
-                    tvSlide.setVisibility(View.VISIBLE);
-                } else {
-                    tvSlide.setVisibility(View.GONE);
                 }
             }
 
