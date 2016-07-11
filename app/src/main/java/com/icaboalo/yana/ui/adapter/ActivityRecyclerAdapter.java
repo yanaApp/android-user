@@ -165,39 +165,6 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             this.mEmotionSelected = onEmotionSelected;
         }
 
-        void setEmotionImage(int answer) {
-            if (answer >= 0) {
-                switch (answer) {
-                    case 0:
-                        Picasso.with(mContext).load(R.drawable.cancel_outlined_circular_32).into(mEmotionImage);
-                        break;
-
-                    case 1:
-                        Picasso.with(mContext).load(R.drawable.very_sad_32).into(mEmotionImage);
-                        break;
-
-                    case 2:
-                        Picasso.with(mContext).load(R.drawable.sad_32).into(mEmotionImage);
-                        break;
-
-                    case 3:
-                        Picasso.with(mContext).load(R.drawable.normal_32).into(mEmotionImage);
-                        break;
-
-                    case 4:
-                        Picasso.with(mContext).load(R.drawable.happy_32).into(mEmotionImage);
-                        break;
-
-                    case 5:
-                        Picasso.with(mContext).load(R.drawable.very_happy_32).into(mEmotionImage);
-                        break;
-
-                }
-            } else {
-                mEmotionImage.setImageDrawable(null);
-            }
-        }
-
         void setTitle(String text) {
             mActivityTitle = (TextView) itemView.findViewById(R.id.activity_title);
             mActivityTitle.setText(text);
@@ -225,43 +192,43 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             switch (v.getId()) {
                 case R.id.cancel:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 0);
-                    setEmotionImage(0);
                     activity.setAnswer(0);
+                    VUtil.setEmotionImage(mContext, 0, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
                 case R.id.very_sad:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 1);
-                    setEmotionImage(1);
                     activity.setAnswer(1);
+                    VUtil.setEmotionImage(mContext, 1, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
                 case R.id.sad:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 2);
                     activity.setAnswer(2);
-                    setEmotionImage(2);
+                    VUtil.setEmotionImage(mContext, 2, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
                 case R.id.normal:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 3);
                     activity.setAnswer(3);
-                    setEmotionImage(3);
+                    VUtil.setEmotionImage(mContext, 3, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
                 case R.id.happy:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 4);
                     activity.setAnswer(4);
-                    setEmotionImage(4);
+                    VUtil.setEmotionImage(mContext, 4, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
                 case R.id.very_happy:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 5);
                     activity.setAnswer(5);
-                    setEmotionImage(5);
+                    VUtil.setEmotionImage(mContext, 5, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
             }

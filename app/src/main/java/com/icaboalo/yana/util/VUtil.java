@@ -18,8 +18,11 @@ import com.squareup.picasso.Picasso;
 public class VUtil {
 
     public static void setEmotionImage(Context context, int answer, ImageView image) {
-        if (answer > 0) {
+        if (answer >= 0) {
             switch (answer) {
+                case 0:
+                    Picasso.with(context).load(R.drawable.cancel_outlined_circular_32).into(image);
+                    break;
                 case 1:
                     Picasso.with(context).load(R.drawable.very_sad_32).into(image);
                     break;
