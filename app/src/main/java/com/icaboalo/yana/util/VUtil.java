@@ -65,7 +65,7 @@ public class VUtil {
                 return "happy";
 
             case 5:
-                return "very happi";
+                return "very happy";
         }
         return "";
     }

@@ -50,7 +50,7 @@ public class ProgressFragment extends Fragment {
     int mTutorialCount = 0;
 
 
-    @Bind(R.id.llcompleted)
+    @Bind(R.id.llCompleted)
     LinearLayout llCompleted;
     @Bind(R.id.llIncomplete)
     LinearLayout llIncomplete;
