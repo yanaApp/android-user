@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.UserModel;
@@ -25,15 +25,22 @@ import io.realm.Realm;
  */
 public class ProfileFragment extends Fragment {
 
-    @Bind(R.id.etFullName)
-    EditText etFullName;
-    @Bind(R.id.etEmail)
-    EditText etEmail;
-    @Bind(R.id.etBirthDate)
-    EditText etBirthDate;
+    @Bind(R.id.tvFullName)
+    TextView tvFullName;
+    @Bind(R.id.tvEmail)
+    TextView tvEmail;
+    @Bind(R.id.tvBirthDate)
+    TextView tvBirthDate;
+    @Bind(R.id.tvGender)
+    TextView tvGender;
+    @Bind(R.id.tvLocation)
+    TextView tvLocation;
+    @Bind(R.id.tvOccupation)
+    TextView tvOccupation;
 
     Realm mRealmInstance;
 
+    private static final String TAG = "ProfileFragment";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,8 +54,8 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
         mRealmInstance = Realm.getDefaultInstance();
     }
 
@@ -64,7 +71,7 @@ public class ProfileFragment extends Fragment {
         mRealmInstance.close();
     }
 
-    @OnClick(R.id.ivFullName)
+    @OnClick(R.id.rlFullName)
     void updateName() {
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -74,7 +81,7 @@ public class ProfileFragment extends Fragment {
         startActivity(edit);
     }
 
-    @OnClick(R.id.ivEmail)
+    @OnClick(R.id.rlEmail)
     void updateEmail(){
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -85,7 +92,7 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    @OnClick(R.id.ivBirthDate)
+    @OnClick(R.id.rlBirthDate)
     void updateBirthDate(){
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -95,7 +102,7 @@ public class ProfileFragment extends Fragment {
         startActivity(edit);
     }
 
-    @OnClick(R.id.ivGender)
+    @OnClick(R.id.rlGender)
     void updateGender(){
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -105,7 +112,7 @@ public class ProfileFragment extends Fragment {
         startActivity(edit);
     }
 
-    @OnClick(R.id.ivLocation)
+    @OnClick(R.id.rlLocation)
     void updateLocation(){
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -115,7 +122,7 @@ public class ProfileFragment extends Fragment {
         startActivity(edit);
     }
 
-    @OnClick(R.id.ivOccupation)
+    @OnClick(R.id.rlOccupation)
     void updateOccupation(){
         Intent edit = EditProfileActivity.getCallingIntent(getActivity());
         Bundle bundle = new Bundle();
@@ -127,8 +134,28 @@ public class ProfileFragment extends Fragment {
 
     void setText() {
         UserModel user = RealmUtils.getUser(mRealmInstance);
-        etEmail.setText(user.getEmail());
-        etFullName.setText(user.getFullName());
-        etBirthDate.setText(user.getBirthDate());
+        if (user.getFullName() == null) {
+            tvFullName.setVisibility(View.GONE);
+        } else tvFullName.setText(user.getFullName());
+
+        if (user.getEmail() == null){
+            tvEmail.setVisibility(View.GONE);
+        } else tvEmail.setText(user.getEmail());
+
+        if (user.getBirthDate() == null){
+            tvBirthDate.setVisibility(View.GONE);
+        } else tvBirthDate.setText(user.getBirthDate());
+
+        if (user.getGender() == null){
+            tvGender.setVisibility(View.GONE);
+        } else tvGender.setText(user.getGender());
+
+        if (user.getLocation() == null){
+            tvLocation.setVisibility(View.GONE);
+        } else tvLocation.setText(user.getLocation());
+
+        if (user.getOccupation() == null){
+            tvOccupation.setVisibility(View.GONE);
+        } else tvOccupation.setText(user.getOccupation());
     }
 }

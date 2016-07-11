@@ -1,255 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
     <LinearLayout
-        android:layout_gravity="bottom"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:divider="@drawable/green_divider"
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <RelativeLayout
             android:id="@+id/rlFullName"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:id="@+id/etFullName"
-                    android:hint="@string/full_name_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/full_name_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvFullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Iñaki Cabo Alonso"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
         </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:id="@+id/rlEmail"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
-                    android:id="@+id/etEmail"
-                    android:hint="@string/email_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textEmailAddress"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/email_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="icaboalo@gmail.com"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
         </RelativeLayout>
 
-        <View
+        <RelativeLayout
+            android:id="@+id/rlPassword"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
+            android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/password_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rlBirthDate"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:id="@+id/etBirthDate"
-                    android:hint="@string/birth_date_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/birth_date_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvBirthDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="15-09-1998"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivBirthDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rlGender"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:id="@+id/etGender"
-                    android:hint="@string/gender_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/gender_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Hombre"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivGender"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
         </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
 
         <RelativeLayout
             android:id="@+id/rlLocation"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:id="@+id/etLocation"
-                    android:hint="@string/location_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/location_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Ciudad de México"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/colorAccent" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rlOccupation"
-            android:background="@color/white"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
             android:layout_width="match_parent"
-            android:layout_height="70dp">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_centerInParent="true"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <android.support.design.widget.TextInputEditText
-                    android:focusable="false"
-                    android:id="@+id/etOccupation"
-                    android:hint="@string/occupation_input_hint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:background="@android:color/transparent"
-                    android:inputType="textPersonName"
-                    android:singleLine="true"/>
-            </android.support.design.widget.TextInputLayout>
+                android:layout_height="70dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/occupation_input_hint"
+                    android:textColor="#801d1d26"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/tvOccupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Estudiante"
+                    android:textColor="#1d1d26"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
 
             <ImageView
-                android:id="@+id/ivOccupation"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_36dp"/>
         </RelativeLayout>
+
     </LinearLayout>
 
 </ScrollView>

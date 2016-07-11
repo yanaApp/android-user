@@ -1,11 +1,12 @@
 package com.icaboalo.yana.ui.activity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -47,6 +48,8 @@ public class EditProfileActivity extends AppCompatActivity{
     Button btSave;
     Bundle mBundle;
 
+
+    ProgressDialog mProgressDialog;
     private Realm mRealmInstance;
 
     public static final String INFO_TYPE = "Information Type";
@@ -155,16 +158,21 @@ public class EditProfileActivity extends AppCompatActivity{
                 user.setOccupation(etField.getText().toString());
                 break;
         }
+        mProgressDialog = new ProgressDialog(EditProfileActivity.this);
+        mProgressDialog.setMessage("Saving");
+        mProgressDialog.show();
         Call<UserApiModel> call = ApiClient.getApiService().updateUserInfo(PrefUtils.getToken(this), user, RealmUtils.getUser(mRealmInstance).getId());
         call.enqueue(new Callback<UserApiModel>() {
             @Override
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()){
                     RealmUtils.updateUser(mRealmInstance, response.body());
+                    mProgressDialog.dismiss();
                     finish();
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
+                        mProgressDialog.dismiss();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -173,7 +181,8 @@ public class EditProfileActivity extends AppCompatActivity{
 
             @Override
             public void onFailure(Call<UserApiModel> call, Throwable t) {
-
+                Log.d("RETROFIT_FAILURE", t.toString());
+                mProgressDialog.dismiss();
             }
         });
     }

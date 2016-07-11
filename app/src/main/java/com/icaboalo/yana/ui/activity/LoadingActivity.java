@@ -74,7 +74,6 @@ public class LoadingActivity extends AppCompatActivity {
 
                     final UserModel user = new UserModel();
                     user.setId(responseUser.getId());
-                    user.setUserName(responseUser.getUserName());
                     user.setEmail(responseUser.getEmail());
                     user.setPhoneNumber(responseUser.getPhoneNumber());
 

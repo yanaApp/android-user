@@ -21,8 +21,6 @@ public class UserModel extends RealmObject {
 
     private String birthDate;
 
-    private String genre;
-
     @Ignore
     private String password;
 
@@ -59,14 +57,6 @@ public class UserModel extends RealmObject {
         this.birthDate = birthDate;
     }
 
-    public String getGender() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -91,7 +81,6 @@ public class UserModel extends RealmObject {
         this.phoneNumber = phoneNumber;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -104,10 +93,6 @@ public class UserModel extends RealmObject {
         this.token = token;
     }
 
-    public String getGenre() {
-        return genre;
-    }
-
     public void setGender(String gender) {
         this.gender = gender;
     }
@@ -118,6 +103,10 @@ public class UserModel extends RealmObject {
 
     public void setOccupation(String occupation) {
         this.occupation = occupation;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }
 

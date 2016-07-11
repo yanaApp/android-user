@@ -166,4 +166,6 @@
     <string name="occupation_input_hint">OCCUPATION</string>
     <string name="what_is_depression">WHAT IS DEPRESSION?</string>
     <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
+    <string name="password_input_hint">PASSWORD</string>
+    <string name="clear_field">Clear field</string>
 </resources>
