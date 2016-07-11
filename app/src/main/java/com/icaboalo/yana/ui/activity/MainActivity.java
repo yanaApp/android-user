@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView.setNavigationItemSelectedListener(this);
 
+        getSupportActionBar().setTitle(R.string.action_plan_title);
         replaceFragment(new ActionPlanFragment());
 
         if (!PrefUtils.isProfileComplete(this) && PrefUtils.isActionPlanTourComplete(this)){
@@ -101,29 +102,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (id){
             case R.id.nav_action_plan:
+                getSupportActionBar().setTitle(R.string.action_plan_title);
                 fragment = new ActionPlanFragment();
                 break;
             case R.id.nav_contacts:
+                getSupportActionBar().setTitle(R.string.contacts_title);
                 fragment = new ContactsFragment();
                 break;
             case R.id.nav_progress:
+                getSupportActionBar().setTitle(R.string.progress_title);
                 fragment = new ProgressFragment();
                 break;
             case R.id.nav_profile:
+                getSupportActionBar().setTitle(R.string.profile_title);
                 fragment = new ProfileFragment();
                 break;
             case R.id.nav_log_out:
                 showLogOutConfirmationDialog();
                 break;
             case R.id.nav_help:
+                getSupportActionBar().setTitle(R.string.help_title);
                 fragment = new HelpFragment();
                 break;
 
         }
 
-        if (fragment != null)
+        if (fragment != null){
             replaceFragment(fragment);
-        mDrawerLayout.closeDrawer(GravityCompat.START);
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
         return true;
     }
 

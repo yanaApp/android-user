@@ -168,4 +168,9 @@
     <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
     <string name="password_input_hint">PASSWORD</string>
     <string name="clear_field">Clear field</string>
+    <string name="action_plan_title">Action Plan</string>
+    <string name="contacts_title">Contacts</string>
+    <string name="progress_title">Progress</string>
+    <string name="profile_title">Profile</string>
+    <string name="help_title">Help</string>
 </resources>
