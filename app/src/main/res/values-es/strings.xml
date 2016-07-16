@@ -96,4 +96,11 @@
     <string name="slide_to_begin">Desliza para comenzar</string>
     <string name="depression_symptoms">SINTOMAS DE LA DEPRESIÓN</string>
     <string name="what_is_depression">¿QUÉ ES LA DEPRESIÓN?</string>
+    <string name="action_plan_title">Plan de Acción</string>
+    <string name="clear_field">Vaciar campo</string>
+    <string name="contacts_title">Contactos</string>
+    <string name="help_title">Ayuda</string>
+    <string name="profile_title">Perfil</string>
+    <string name="password_input_hint">CONTRASEÑA</string>
+    <string name="progress_title">Progreso</string>
 </resources>

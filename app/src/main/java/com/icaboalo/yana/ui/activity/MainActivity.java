@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -22,6 +23,7 @@ import com.icaboalo.yana.ui.fragment.HelpFragment;
 import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.PrefUtils;
+import com.icaboalo.yana.util.RealmUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +35,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout mDrawerLayout;
     @Bind(R.id.navigation_view)
     NavigationView mNavigationView;
+    @Bind(R.id.tvFullName)
+    TextView tvFullName;
+    @Bind(R.id.tvEmail)
+    TextView tvEmail;
+
+    Realm mRealmInstance;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mRealmInstance = Realm.getDefaultInstance();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             alertDialog.show();
         }
+
+        tvFullName.setText(RealmUtils.getUser(mRealmInstance).getFullName());
+        tvEmail.setText(RealmUtils.getUser(mRealmInstance).getEmail());
     }
 
     @Override
@@ -132,6 +149,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
         return true;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     private void showLogOutConfirmationDialog() {
