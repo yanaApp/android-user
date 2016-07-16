@@ -99,7 +99,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                 } else {
                     emotionExpandedPosition = position;
                 }
-                notifyDataSetChanged();
+                notifyItemRangeChanged(position, getItemCount());
             }
         });
 
@@ -112,7 +112,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                 } else {
                     descriptionExpandedPosition = position;
                 }
-                notifyDataSetChanged();
+                notifyItemRangeChanged(position, getItemCount());
             }
         });
 

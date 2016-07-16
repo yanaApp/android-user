@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -23,7 +22,6 @@ import com.icaboalo.yana.ui.fragment.HelpFragment;
 import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.PrefUtils;
-import com.icaboalo.yana.util.RealmUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,14 +29,14 @@ import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    @Bind(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-    @Bind(R.id.navigation_view)
-    NavigationView mNavigationView;
-    @Bind(R.id.tvFullName)
-    TextView tvFullName;
-    @Bind(R.id.tvEmail)
-    TextView tvEmail;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    @Bind(R.id.navigationView)
+    NavigationView navigationView;
+//    @Bind(R.id.tvFullName)
+//    TextView tvFullName;
+//    @Bind(R.id.tvEmail)
+//    TextView tvEmail;
 
     Realm mRealmInstance;
 
@@ -63,11 +61,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        mNavigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setTitle(R.string.action_plan_title);
         replaceFragment(new ActionPlanFragment());
@@ -97,14 +95,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialog.show();
         }
 
-        tvFullName.setText(RealmUtils.getUser(mRealmInstance).getFullName());
-        tvEmail.setText(RealmUtils.getUser(mRealmInstance).getEmail());
+//        tvFullName.setText(RealmUtils.getUser(mRealmInstance).getFullName());
+//        tvEmail.setText(RealmUtils.getUser(mRealmInstance).getEmail());
     }
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else{
             super.onBackPressed();
         }
@@ -146,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (fragment != null){
             replaceFragment(fragment);
-            mDrawerLayout.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
         return true;
     }
