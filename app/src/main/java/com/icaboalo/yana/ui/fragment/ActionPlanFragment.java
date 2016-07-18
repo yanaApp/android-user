@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.realm.Realm;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +40,9 @@ import static com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter.*;
  */
 public class ActionPlanFragment extends Fragment {
 
+    @Bind(R.id.activity_recycler)
     RecyclerView mActivityRecycler;
+    @Bind(R.id.activity_date)
     TextView mActivityDate;
     ActivityRecyclerAdapter mActivityRecyclerAdapter;
 
@@ -58,8 +62,7 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
-        mActivityDate = (TextView) view.findViewById(R.id.activity_date);
+        ButterKnife.bind(this, view);
     }
 
     @Override

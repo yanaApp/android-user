@@ -1,7 +1,5 @@
 package com.icaboalo.yana;
 
-import android.util.Log;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 

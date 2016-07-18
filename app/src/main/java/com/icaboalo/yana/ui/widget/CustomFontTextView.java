@@ -36,4 +36,10 @@ public class CustomFontTextView extends TextView {
     private Typeface getDosisBlackTypeFace(Context context) {
         return Typeface.createFromAsset(context.getAssets(), DOSIS_FONT);
     }
+
+//    @Override
+//    public void setText(CharSequence text, BufferType type) {
+//        super.setText(text, type);
+//        this.setText(text);
+//    }
 }
