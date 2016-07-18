@@ -13,6 +13,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -22,6 +24,7 @@ import com.icaboalo.yana.ui.fragment.HelpFragment;
 import com.icaboalo.yana.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.util.PrefUtils;
+import com.icaboalo.yana.util.RealmUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,22 +36,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     @Bind(R.id.navigationView)
     NavigationView navigationView;
-//    @Bind(R.id.tvFullName)
-//    TextView tvFullName;
-//    @Bind(R.id.tvEmail)
-//    TextView tvEmail;
 
     Realm mRealmInstance;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        mRealmInstance = Realm.getDefaultInstance();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRealmInstance = Realm.getDefaultInstance();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (PrefUtils.getToken(this).equals("TOKEN") || PrefUtils.getToken(this).isEmpty()){
@@ -60,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setHeaderInfo();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
@@ -94,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             });
             alertDialog.show();
         }
-
-//        tvFullName.setText(RealmUtils.getUser(mRealmInstance).getFullName());
-//        tvEmail.setText(RealmUtils.getUser(mRealmInstance).getEmail());
     }
 
     @Override
@@ -182,7 +174,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .create().show();
     }
 
-    void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    private void setHeaderInfo(){
+        if (navigationView !=null){
+            View header = navigationView.getHeaderView(0);
+            TextView tvFullName = (TextView) header.findViewById(R.id.tvFullName);
+            TextView tvEmail = (TextView) header.findViewById(R.id.tvEmail);
+
+            tvFullName.setText(RealmUtils.getUser(mRealmInstance).getFullName());
+            tvEmail.setText(RealmUtils.getUser(mRealmInstance).getEmail());
+        }
     }
 }
