@@ -157,7 +157,7 @@ public class ProgressFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
         mDayProgressRecycler.setLayoutManager(linearLayoutManager);
-        mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+//        mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     void startTutorial(){

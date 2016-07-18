@@ -9,6 +9,7 @@
     android:paddingRight="32dp"
     android:paddingStart="32dp"
     android:background="@color/white"
+    android:layout_marginBottom="1dp"
     android:paddingTop="20dp">
 
     <TextView
