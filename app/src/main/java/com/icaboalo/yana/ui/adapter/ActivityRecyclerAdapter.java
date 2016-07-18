@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.ui.activity.MainActivity;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -245,11 +243,11 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             if (show){
                 mDescriptionExpand.setVisibility(View.VISIBLE);
                 mDescriptionExpand.setText("Ver menos");
-                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_up_black_24dp, 0, 0, 0);
+                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.up_arrow_24dp, 0, 0, 0);
             } else {
                 mDescriptionExpand.setVisibility(View.VISIBLE);
                 mDescriptionExpand.setText("Ver más");
-                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_keyboard_arrow_down_black_24dp, 0, 0, 0);
+                mDescriptionExpand.setCompoundDrawablesWithIntrinsicBounds(R.drawable.down_arrow_24dp, 0, 0, 0);
             }
         }
 
