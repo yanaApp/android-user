@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:background="#E2E2E4" />
 
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/activity_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -12,7 +12,7 @@
     android:layout_marginBottom="1dp"
     android:paddingTop="20dp">
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_height="10dp"
             android:background="@color/colorAccent" />
 
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/completed_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_marginStart="32dp"
             android:background="@color/pink" />
 
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/incomplete_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

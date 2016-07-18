@@ -15,7 +15,7 @@
         android:layout_alignParentStart="true"
         android:background="#FFC107" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/activity_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:text="Title"
         android:textSize="20sp" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/image_description"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
@@ -76,7 +76,7 @@
         <!--android:layout_marginStart="48dp"-->
         <!--android:src="@drawable/information_outline_circular_64" />-->
 
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/activity_description"
             android:layout_width="215dp"
             android:layout_height="wrap_content"

@@ -24,7 +24,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/tvDescription"
             android:textAlignment="center"
             android:text="De esta manera aparecerás en Snapchat, asi que elige un nombre con el que te conozcan tus amigos."
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:singleLine="true"
             android:inputType="textPersonName"
             android:id="@+id/etField"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/tvClear"
             android:layout_marginTop="16dp"
             android:textColor="@color/colorAccent"

@@ -17,12 +17,12 @@
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:text="Vuelve a "
             android:textSize="36sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/description"
             android:text="sonreir."
             android:textSize="40sp"
@@ -31,20 +31,20 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_marginBottom="64dp"
         android:text="No estas sólo"
         android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:text="YANA"
         android:textSize="48sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_marginTop="64dp"
         android:text="@string/slide_to_begin"
         android:layout_width="wrap_content"

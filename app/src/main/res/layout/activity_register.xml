@@ -8,7 +8,7 @@
     android:padding="32dp"
     tools:context="com.icaboalo.yana.ui.activity.RegisterActivity">
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="¡Bienvenido!"
@@ -53,7 +53,7 @@
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -70,7 +70,7 @@
         android:layout_marginTop="24dp"
         android:text="Create" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -13,7 +13,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/contact_name"
         android:layout_marginLeft="32dp"
         android:textSize="20sp"

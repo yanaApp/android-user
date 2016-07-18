@@ -5,7 +5,7 @@
     android:padding="32dp"
     android:orientation="vertical">
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:text="Personaliza tu plan de acción"
         android:textAllCaps="true"
         android:textSize="24sp"
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/description"
         android:layout_marginTop="24dp"
         android:layout_gravity="center"
