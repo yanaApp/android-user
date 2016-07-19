@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
+    tools:context="com.icaboalo.yana.ui.activity.EvaluationActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:weightSum="4">
+
+        <ProgressBar
+            android:id="@+id/question_progress"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false" />
+
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
+            android:id="@+id/question_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:text="1. Las cosas no me satisfacen tanto."
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".7"
+        android:background="@color/colorAccent"
+        android:paddingBottom="16dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingTop="32dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                    android:id="@+id/option_1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/circle_white"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4.5"
+                android:gravity="center">
+
+                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                    android:id="@+id/option_2"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:background="@drawable/circle_white"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:gravity="center">
+
+                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                    android:id="@+id/option_3"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/circle_white"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:gravity="center">
+
+                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                    android:id="@+id/option_4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/circle_white"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btContinue"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_arrow_forward_white_48dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

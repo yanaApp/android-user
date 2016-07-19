@@ -11,7 +11,7 @@ import com.icaboalo.yana.ui.fragment.AutoEvaluationFragment;
 import com.icaboalo.yana.ui.fragment.TitleDescriptionFragment;
 import com.icaboalo.yana.ui.fragment.SelectEvaluationFragment;
 
-public class AutoEvaluationActivity extends AppCompatActivity{
+public class EmptyActivity extends AppCompatActivity{
 
     Fragment[] mFragmentPages;
     int mFragmentPagesPosition = 0;
