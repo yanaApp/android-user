@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
 import com.icaboalo.yana.ui.activity.RegisterActivity;
+import com.icaboalo.yana.util.EvaluationClickListener;
 
 /**
  * Created by icaboalo on 08/06/16.
@@ -19,6 +20,13 @@ import com.icaboalo.yana.ui.activity.RegisterActivity;
 public class SelectEvaluationFragment extends Fragment implements View.OnClickListener {
 
     Button mSkipEvaluationButton, mEvaluationButton;
+    EvaluationClickListener mEvaluationClickListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mEvaluationClickListener = (EvaluationClickListener) context;
+    }
 
     @Nullable
     @Override
@@ -49,7 +57,7 @@ public class SelectEvaluationFragment extends Fragment implements View.OnClickLi
                 getActivity().finish();
                 break;
             case R.id.evaluation_button:
-                ((AutoEvaluationActivity) getActivity()).nextFragment();
+                mEvaluationClickListener.onClick();
                 break;
         }
     }

@@ -39,11 +39,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.AutoEvaluationActivity"
+            android:name=".ui.activity.EmptyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.EvaluationActivity"
+            android:name=".ui.fragment.EvaluationFragment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -56,10 +56,9 @@
                 android:value=".ui.activity.MainActivity" />
         </activity>
 
-        <service
-            android:name=".service.YanaFirebaseMessagingService">
+        <service android:name=".service.YanaFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <service android:name=".service.YanaFirebaseInstanceIdService">
@@ -67,6 +66,8 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".ui.activity.EvaluationActivity"></activity>
     </application>
 
 </manifest>

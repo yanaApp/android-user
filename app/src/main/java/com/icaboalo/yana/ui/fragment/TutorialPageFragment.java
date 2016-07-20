@@ -14,7 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
+import com.icaboalo.yana.ui.activity.EmptyActivity;
+import com.icaboalo.yana.ui.activity.EvaluationActivity;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -111,7 +112,7 @@ public class TutorialPageFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("INTENT", "action plan test");
-                        Intent goToTest = new Intent(getActivity(), AutoEvaluationActivity.class);
+                        Intent goToTest = new Intent(getActivity(), EvaluationActivity.class);
                         startActivity(goToTest);
                         getActivity().finish();
                     }

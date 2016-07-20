@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
+import com.icaboalo.yana.util.EvaluationClickListener;
 
 /**
  * Created by icaboalo on 08/06/16.
@@ -25,7 +25,13 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
     LinearLayout mOption1, mOption2, mOption3;
     Button mContinueButton;
     int mAnswer = 0;
+    EvaluationClickListener mEvaluationClickListener;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mEvaluationClickListener = (EvaluationClickListener) context;
+    }
 
     @Nullable
     @Override
@@ -78,9 +84,9 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
                 if (mAnswer == 0){
                     Toast.makeText(getActivity(), "Please select one from the above", Toast.LENGTH_SHORT).show();
                 } else {
-                    ((AutoEvaluationActivity) getActivity()).nextFragment();
                     SharedPreferences sharedPref = getActivity().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
                     sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswer).apply();
+                    mEvaluationClickListener.onClick();
                 }
                 break;
         }

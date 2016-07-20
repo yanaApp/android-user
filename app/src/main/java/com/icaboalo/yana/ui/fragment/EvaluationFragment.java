@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +15,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.fragment.TitleDescriptionFragment;
-import com.icaboalo.yana.util.AutoEvaluationClickListener;
+import com.icaboalo.yana.util.EvaluationClickListener;
 
 public class EvaluationFragment extends Fragment implements View.OnClickListener{
 
@@ -25,7 +23,7 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
     TextView mQuestion;
     TextView mOption1, mOption2, mOption3, mOption4;
     Button mContinueButton;
-    AutoEvaluationClickListener mAutoEvaluationClickListener;
+    EvaluationClickListener mEvaluationClickListener;
     String[] mQuestionList;
     int mQuestionPosition = 0;
     int mAnswer = -1;
@@ -34,7 +32,7 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mAutoEvaluationClickListener = (AutoEvaluationClickListener) context;
+        mEvaluationClickListener = (EvaluationClickListener) context;
     }
 
     @Nullable
@@ -104,8 +102,9 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
                 if (mAnswer != -1){
                     if (mQuestionPosition == mQuestionList.length -1){
                         SharedPreferences sharedPref = getActivity().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
-                        sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswerTotal).apply();
-                        mAutoEvaluationClickListener.onClick();
+                        sharedPref.edit().putInt(PrefConstants.scorePref, mAnswerTotal).apply();
+                        mEvaluationClickListener.setAnswer(mAnswerTotal);
+                        mEvaluationClickListener.onClick();
                     } else {
                         mAnswerTotal += mAnswer;
                         mQuestionPosition++;

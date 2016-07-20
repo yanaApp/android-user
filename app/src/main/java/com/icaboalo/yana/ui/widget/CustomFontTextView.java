@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class CustomFontTextView extends TextView {
 
     final static String DOSIS_FONT = "fonts/Dosis-Regular.ttf";
+    final static String AVENIR_FONT = "fonts/AvenirLTStd-Book.otf";
 
     public CustomFontTextView(Context context) {
         super(context);
@@ -30,11 +31,11 @@ public class CustomFontTextView extends TextView {
     }
 
     private void init(Context context) {
-        this.setTypeface(getDosisBlackTypeFace(context));
+        this.setTypeface(getBlackTypeFace(context));
     }
 
-    private Typeface getDosisBlackTypeFace(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), DOSIS_FONT);
+    private Typeface getBlackTypeFace(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), AVENIR_FONT);
     }
 
 //    @Override

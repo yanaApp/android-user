@@ -173,4 +173,10 @@
     <string name="progress_title">Progress</string>
     <string name="profile_title">Profile</string>
     <string name="help_title">Help</string>
+    <string name="moderate_depression">MODERATE DEPRESSION</string>
+    <string name="moderate_depression_description"> In the morning the feeling of sadness is higher and fluctuates during the day, but constantly is displeased with himself. Feel it bored most of the time and no longer enjoys doing what he liked before . * A score of 17 or more indicates you may need professional help.</string>
+    <string name="you_are_not_alone">YOU ARE NOT ALONE</string>
+    <string name="you_are_not_alone_description">  Do not be alarmed by the results your test. We together with your support network will help in this stage of your life.</string>
+    <string name="severe_depression">SEVERE DEPRESSION</string>
+    <string name="mild_depression">MILD DEPRESSION</string>
 </resources>

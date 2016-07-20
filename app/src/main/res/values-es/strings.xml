@@ -103,4 +103,10 @@
     <string name="profile_title">Perfil</string>
     <string name="password_input_hint">CONTRASEÑA</string>
     <string name="progress_title">Progreso</string>
+    <string name="mild_depression">DEPRESIÓN LEVE</string>
+    <string name="moderate_depression">DEPRESIÓN MODERADA</string>
+    <string name="moderate_depression_description">Por las mañanas el sentimiento de tristeza es mayor y fluctúa durante el día, aunque siente constantemente desagrado hacia sí mismo. Se siente aburrido la mayor parte del tiempo y ya no disfruta hacer lo que antes le gustaba. *Una puntuación de 17 o más indica que puede necesitar ayuda profesional.</string>
+    <string name="severe_depression">DEPRESIÓN GRAVE</string>
+    <string name="you_are_not_alone">NOSOTROS ESTAMOS AQUÍ PARA TI</string>
+    <string name="you_are_not_alone_description">No te alarmes por los resultados de tu test. Nosotros juntos con tu red de apoyo te ayudaremos en  esta etapa de tu vida.  </string>
 </resources>

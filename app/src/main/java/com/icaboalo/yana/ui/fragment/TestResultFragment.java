@@ -14,16 +14,16 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.util.EvaluationClickListener;
 
 /**
- * Created by icaboalo on 21/06/16.
+ * Created by icaboalo on 20/07/16.
  */
-public class TitleDescriptionFragment extends Fragment {
+public class TestResultFragment extends Fragment {
 
     TextView mTitle, mDescription;
     Button mContinueButton;
     EvaluationClickListener mEvaluationClickListener;
 
-    public static TitleDescriptionFragment newInstance(String title, String description, String buttonText, String tag){
-        TitleDescriptionFragment fragment = new TitleDescriptionFragment();
+    public static TestResultFragment newInstance(String title, String description, String buttonText, String tag){
+        TestResultFragment fragment = new TestResultFragment();
         Bundle args = new Bundle();
         args.putString("TITLE", title);
         args.putString("DESCRIPTION", description);
@@ -31,6 +31,14 @@ public class TitleDescriptionFragment extends Fragment {
         args.putString("TAG", tag);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public void setTitle(String title){
+        mTitle.setText(title);
+    }
+
+    public void setDescription(String description){
+        mDescription.setText(description);
     }
 
     @Override
@@ -66,7 +74,7 @@ public class TitleDescriptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mEvaluationClickListener != null)
-                mEvaluationClickListener.onClick();
+                    mEvaluationClickListener.onClick();
             }
         });
     }
