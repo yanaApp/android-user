@@ -25,7 +25,6 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.realm.ActionPlanModel;
 import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.DayProgressRecyclerAdapter;
-import com.icaboalo.yana.util.DividerItemDecorator;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
@@ -41,21 +40,27 @@ import io.realm.Realm;
  */
 public class ProgressFragment extends Fragment {
 
-    TextView mCompleted, mIncomplete;
-    Spinner mActionPlanSpinner;
-    ImageView mEmotionImage;
-    ProgressBar mCompletedProgress;
-    RecyclerView mDayProgressRecycler;
-
-    int mTutorialCount = 0;
-
-
+    @Bind(R.id.tvCompleted)
+    TextView tvCompleted;
+    @Bind(R.id.tvIncomplete)
+    TextView tvIncomplete;
+    @Bind(R.id.spActionPlan)
+    Spinner spActionPlan;
+    @Bind(R.id.ivEmotionAverage)
+    ImageView ivEmotionAverage;
+    @Bind(R.id.pbCompleted)
+    ProgressBar pbCompleted;
+    @Bind(R.id.rvDayProgress)
+    RecyclerView rvDayProgress;
     @Bind(R.id.llCompleted)
     LinearLayout llCompleted;
     @Bind(R.id.llIncomplete)
     LinearLayout llIncomplete;
     @Bind(R.id.llAverage)
     LinearLayout llAverage;
+
+
+    int mTutorialCount = 0;
 
     private Realm mRealmInstance;
 
@@ -70,12 +75,6 @@ public class ProgressFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        mCompleted = (TextView) view.findViewById(R.id.completed_text);
-        mIncomplete = (TextView) view.findViewById(R.id.incomplete_text);
-        mActionPlanSpinner = (Spinner) view.findViewById(R.id.action_plan_spinner);
-        mEmotionImage = (ImageView) view.findViewById(R.id.emotion_average_image);
-        mCompletedProgress = (ProgressBar) view.findViewById(R.id.completed_progress_bar);
-        mDayProgressRecycler = (RecyclerView) view.findViewById(R.id.day_progress_recycler);
     }
 
     @Override
@@ -85,19 +84,6 @@ public class ProgressFragment extends Fragment {
         setupActionPlanSpinner(RealmUtils.getActionPlansFromRealm(mRealmInstance));
         if (!PrefUtils.isProgressTourComplete(getActivity())){
             startTutorial();
-        }
-        if (PrefUtils.isProgressFirstTime(getActivity()) && PrefUtils.isProgressTourComplete(getActivity())){
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-            alertDialog.setMessage(getActivity().getString(R.string.cupcake_ipsum));
-            alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-//                    PrefUtils.setProgressFirstTime(getActivity(), false);
-                    dialog.dismiss();
-                }
-            });
-            alertDialog.setCancelable(false);
-            alertDialog.show();
         }
     }
 
@@ -110,10 +96,13 @@ public class ProgressFragment extends Fragment {
     void setupActionPlanSpinner(final ArrayList<ActionPlanModel> actionPlanList){
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
         for (ActionPlanModel actionPlan: actionPlanList){
-            arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
+            if (actionPlan.isActive())
+                arrayAdapter.add("Plan Actual");
+            else
+                arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
         }
-        mActionPlanSpinner.setAdapter(arrayAdapter);
-        mActionPlanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spActionPlan.setAdapter(arrayAdapter);
+        spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setInformation(actionPlanList.get(position));
@@ -131,14 +120,14 @@ public class ProgressFragment extends Fragment {
         int completedActivities = RealmUtils.getCompletedActivitiesFromRealm(mRealmInstance, mCompletedDayList);
         int incompleteActivities = RealmUtils.getIncompleteActivitiesFromRealm(mRealmInstance, mCompletedDayList);
 
-        mCompleted.setText("" + completedActivities);
-        mIncomplete.setText("" + incompleteActivities);
+        tvCompleted.setText("" + completedActivities);
+        tvIncomplete.setText("" + incompleteActivities);
 
         setupDayProcessRecycler(mCompletedDayList);
 
-        mCompletedProgress.setMax(completedActivities + incompleteActivities);
-        mCompletedProgress.setProgress(completedActivities);
-        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(mRealmInstance, actionPlan), mEmotionImage);
+        pbCompleted.setMax(completedActivities + incompleteActivities);
+        pbCompleted.setProgress(completedActivities);
+        VUtil.setEmotionImage(getActivity(), RealmUtils.getEmotionAverageFromRealm(mRealmInstance, actionPlan), ivEmotionAverage);
     }
 
 
@@ -155,9 +144,9 @@ public class ProgressFragment extends Fragment {
 
         DayProgressRecyclerAdapter dayProgressRecyclerAdapter = new DayProgressRecyclerAdapter(getActivity(), dayList, completedActivities, incompleteActivities, emotionAverage);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mDayProgressRecycler.setAdapter(dayProgressRecyclerAdapter);
-        mDayProgressRecycler.setLayoutManager(linearLayoutManager);
-//        mDayProgressRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
+        rvDayProgress.setAdapter(dayProgressRecyclerAdapter);
+        rvDayProgress.setLayoutManager(linearLayoutManager);
+//        rvDayProgress.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     void startTutorial(){
@@ -192,7 +181,7 @@ public class ProgressFragment extends Fragment {
                         break;
 
                     case 3:
-                        showcaseView.setShowcase(new ViewTarget(mDayProgressRecycler.getChildAt(0)), true);
+                        showcaseView.setShowcase(new ViewTarget(rvDayProgress.getChildAt(0)), true);
                         showcaseView.setContentTitle("TITLE");
                         showcaseView.setContentText(getActivity().getString(R.string.cupcake_ipsum));
                         break;

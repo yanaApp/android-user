@@ -68,7 +68,7 @@
             android:background="@color/orange" />
 
         <ImageView
-            android:id="@+id/emotion_average_image"
+            android:id="@+id/ivEmotionAverage"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="5dp"
