@@ -13,13 +13,10 @@ public class ContactModel extends RealmObject {
     @PrimaryKey
     private int id;
 
-    @SerializedName("name")
     private String name;
 
-    @SerializedName("phone_number")
     private String phoneNumber;
 
-    @SerializedName("is_validated")
     private boolean isValidated = false;
 
     private UserModel user;

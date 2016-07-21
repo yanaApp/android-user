@@ -13,22 +13,16 @@ public class ActivityModel extends RealmObject{
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("title")
     private String title;
 
-    @SerializedName("description")
     private String description;
 
-    @SerializedName("day")
     private DayModel day;
 
-    @SerializedName("answer")
     private int answer = 0;
 
-    @SerializedName("category")
     private CategoryModel category;
 
     public int getId() {

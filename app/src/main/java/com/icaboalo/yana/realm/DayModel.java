@@ -17,19 +17,14 @@ public class DayModel extends RealmObject{
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("date")
     private String date;
 
-    @SerializedName("day_number")
     private int number;
 
-    @SerializedName("action_plan")
     private ActionPlanModel actionPlan;
 
-    @SerializedName("answer")
     private int answer = 0;
 
     public int getId() {

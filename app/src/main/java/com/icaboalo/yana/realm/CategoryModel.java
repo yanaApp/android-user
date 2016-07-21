@@ -11,13 +11,10 @@ import io.realm.annotations.PrimaryKey;
 public class CategoryModel extends RealmObject {
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("name")
     private String name;
 
-    @SerializedName("color")
     private String color;
 
     public int getId() {
