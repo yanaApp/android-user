@@ -95,7 +95,7 @@ public class LoadingActivity extends AppCompatActivity {
                         actionPlan.setUser(user);
                         actionPlan.setActive(responseActionPlan.isActive());
 
-                        Log.d(TAG, "onResponse: " + actionPlan.toString());
+                        Log.d(TAG, "onResponse: " + actionPlan.isActive());
                         actionPlanList.add(actionPlan);
 
                         for (DayApiModel responseDay: responseActionPlan.getDayList()){

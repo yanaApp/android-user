@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
@@ -44,6 +46,10 @@ public class ActionPlanFragment extends Fragment {
     RecyclerView mActivityRecycler;
     @Bind(R.id.activity_date)
     TextView mActivityDate;
+    @Bind(R.id.llContainer)
+    LinearLayout llContainer;
+    @Bind(R.id.llNoActionPlan)
+    LinearLayout llNoActionPlan;
     ActivityRecyclerAdapter mActivityRecyclerAdapter;
 
     private Realm mRealmInstance;
@@ -70,8 +76,16 @@ public class ActionPlanFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mRealmInstance = Realm.getDefaultInstance();
 
-        mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getDate()));
-        setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(mRealmInstance, RealmUtils.getCurrentDayFromRealm(mRealmInstance)));
+        if (RealmUtils.getCurrentActionPlan(mRealmInstance) != null){
+            llContainer.setVisibility(View.VISIBLE);
+            llNoActionPlan.setVisibility(View.GONE);
+            mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getDate()));
+            setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(mRealmInstance, RealmUtils.getCurrentDayFromRealm(mRealmInstance)));
+        } else {
+            llContainer.setVisibility(View.GONE);
+            llNoActionPlan.setVisibility(View.VISIBLE);
+            Toast.makeText(getActivity(), "No action plan", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

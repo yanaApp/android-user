@@ -181,6 +181,10 @@ public class RealmUtils {
         return activities;
     }
 
+    public static ActionPlanModel getCurrentActionPlan(Realm realm){
+        return realm.where(ActionPlanModel.class).equalTo("isActive", true).findFirst();
+    }
+
     public static UserModel getUser(Realm realm){
         return realm.where(UserModel.class).findFirst();
     }
@@ -225,7 +229,6 @@ public class RealmUtils {
         ContactModel contact = realm.where(ContactModel.class).equalTo("id", contactId).findFirst();
         contact.deleteFromRealm();
         realm.commitTransaction();
-
     }
 
 }
