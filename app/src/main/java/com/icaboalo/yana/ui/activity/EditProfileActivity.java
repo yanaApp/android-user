@@ -56,6 +56,7 @@ public class EditProfileActivity extends AppCompatActivity{
 
     public static final String INFO_FULL_NAME = "Full Name";
     public static final String INFO_EMAIL = "Email";
+    public static final String INFO_PASSWORD = "Password";
     public static final String INFO_PHONE_NUMBER = "Phone Number";
     public static final String INFO_BIRTH_DATE = "Birth Date";
     public static final String INFO_GENDER = "Gender";

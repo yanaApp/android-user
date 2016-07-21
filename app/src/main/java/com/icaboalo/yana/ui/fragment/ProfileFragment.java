@@ -91,6 +91,15 @@ public class ProfileFragment extends Fragment {
         startActivity(edit);
     }
 
+    @OnClick(R.id.rlPassword)
+    void changePassword(){
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
+        Bundle bundle = new Bundle();
+        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_PASSWORD);
+        edit.putExtras(bundle);
+        startActivity(edit);
+    }
+
 
     @OnClick(R.id.rlBirthDate)
     void updateBirthDate(){
