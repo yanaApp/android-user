@@ -67,7 +67,7 @@ public class DayProgressRecyclerAdapter extends RecyclerView.Adapter<DayProgress
             mDayText = (TextView) itemView.findViewById(R.id.day_text);
             mCompletedCount = (TextView) itemView.findViewById(R.id.completed_count);
             mIncompleteCount = (TextView) itemView.findViewById(R.id.incomplete_count);
-            mEmotionAverage = (ImageView) itemView.findViewById(R.id.emotion_average_image);
+            mEmotionAverage = (ImageView) itemView.findViewById(R.id.ivEmotionAverage);
         }
 
 

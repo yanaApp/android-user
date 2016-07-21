@@ -10,6 +10,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
@@ -43,8 +44,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     void checkForToken(){
-        if (VUtil.getToken(this).equals("TOKEN") || VUtil.getToken(this).isEmpty()){
-            if (VUtil.isTutorialCompleted(this)){
+        if (PrefUtils.getToken(this).equals("TOKEN") || PrefUtils.getToken(this).isEmpty()){
+            if (PrefUtils.isTutorialCompleted(this)){
                 Intent goToLogin = new Intent(this, LoginActivity.class);
                 startActivity(goToLogin);
                 Log.d("INTENT", "login");

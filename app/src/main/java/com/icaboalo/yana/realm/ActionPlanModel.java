@@ -17,22 +17,16 @@ public class ActionPlanModel extends RealmObject{
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("category")
     private String category;
 
-    @SerializedName("initial_date")
     private String initialDate;
 
-    @SerializedName("final_date")
     private String finalDate;
 
-    @SerializedName("user")
     private UserModel user;
 
-    @SerializedName("is_active")
     private boolean isActive;
 
     public int getId() {

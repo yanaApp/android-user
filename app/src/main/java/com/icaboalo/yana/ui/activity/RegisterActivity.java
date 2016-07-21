@@ -1,6 +1,7 @@
 package com.icaboalo.yana.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.UserApiModel;
@@ -24,7 +26,7 @@ import static com.icaboalo.yana.R.string.error_invalid_email;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextInputEditText mFullNameInput, mUsernameInput, mEmailInput, mPasswordInput;
+    TextInputEditText mFullNameInput, mEmailInput, mPasswordInput;
     Button mRegisterButton;
     TextView mLoginButton;
 
@@ -33,9 +35,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        mFullNameInput = (TextInputEditText) findViewById(R.id.full_name_input);
-        mUsernameInput = (TextInputEditText) findViewById(R.id.username_input);
-        mEmailInput = (TextInputEditText) findViewById(R.id.email_input);
+        mFullNameInput = (TextInputEditText) findViewById(R.id.etFullName);
+        mEmailInput = (TextInputEditText) findViewById(R.id.etEmail);
         mPasswordInput = (TextInputEditText) findViewById(R.id.password_input);
 
         mRegisterButton = (Button) findViewById(R.id.register_button);
@@ -52,9 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             case R.id.register_button:
                 if (mFullNameInput.getText().toString().isEmpty() || mFullNameInput.getText().toString().length() < 2){
                     mFullNameInput.setError(getString(error_empty_field));
-                } else if (mUsernameInput.getText().toString().isEmpty() || mUsernameInput.getText().toString().length() < 2){
-                    mUsernameInput.setError(getString(error_empty_field));
-                } else if (mEmailInput.getText().toString().isEmpty() || mEmailInput.getText().toString().length() < 2){
+                }  else if (mEmailInput.getText().toString().isEmpty() || mEmailInput.getText().toString().length() < 2){
                     mEmailInput.setError(getString(error_empty_field));
                 } else if (!mEmailInput.getText().toString().contains("@")){
                     mEmailInput.setError(getString(error_invalid_email));
@@ -62,9 +61,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     mPasswordInput.setError(getString(error_empty_field));
                 } else {
                     UserApiModel user = new UserApiModel();
-                    user.setUserName(mUsernameInput.getText().toString());
                     user.setPassword(mPasswordInput.getText().toString());
                     user.setEmail(mEmailInput.getText().toString());
+                    SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);
+                    user.setCategory(sharedPref.getInt(PrefConstants.evaluationPref, 0));
+                    user.setPhoneNumber("5539777292");
                     userRegisterAPI(user);
                 }
                 break;
@@ -84,9 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
                 if (response.isSuccessful()){
                     Log.d("RETROFIT_SUCCESS", "success");
-                    Log.d("INTENT", "main");
-                    Intent goToMain = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(goToMain);
+                    Intent goToLoading = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(goToLoading);
                     finish();
                 } else {
                     try {

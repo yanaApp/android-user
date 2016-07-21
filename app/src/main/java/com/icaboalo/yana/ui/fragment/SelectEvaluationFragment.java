@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,16 +11,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.activity.LoginActivity;
-import com.icaboalo.yana.ui.activity.MainActivity;
 import com.icaboalo.yana.ui.activity.RegisterActivity;
+import com.icaboalo.yana.util.EvaluationClickListener;
 
 /**
  * Created by icaboalo on 08/06/16.
  */
-public class SelectEvaluationFragment extends Fragment {
+public class SelectEvaluationFragment extends Fragment implements View.OnClickListener {
 
-    Button mEvaluationButton;
+    Button mSkipEvaluationButton, mEvaluationButton;
+    EvaluationClickListener mEvaluationClickListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mEvaluationClickListener = (EvaluationClickListener) context;
+    }
 
     @Nullable
     @Override
@@ -30,19 +37,28 @@ public class SelectEvaluationFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mEvaluationButton = (Button) view.findViewById(R.id.skip_evaluation_button);
+        mSkipEvaluationButton = (Button) view.findViewById(R.id.skip_evaluation_button);
+        mEvaluationButton = (Button) view.findViewById(R.id.evaluation_button);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mEvaluationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToRegister = new Intent(getActivity(), LoginActivity.class);
+        mSkipEvaluationButton.setOnClickListener(this);
+        mEvaluationButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.skip_evaluation_button:
+                Intent goToRegister = new Intent(getActivity(), RegisterActivity.class);
                 startActivity(goToRegister);
                 getActivity().finish();
-            }
-        });
+                break;
+            case R.id.evaluation_button:
+                mEvaluationClickListener.onClick();
+                break;
+        }
     }
 }

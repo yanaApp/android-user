@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.icaboalo.yana.ui.activity.LoadingActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <me.wangyuwei.loadingview.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            lv:lv_duration="15"
+            android:id="@+id/loading_view"
+            lv:lv_end_color="@color/pink"
+            lv:lv_external_radius="150dp"
+            lv:lv_internal_radius="10dp"
+            lv:lv_start_color="@color/colorAccent" />
+
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="80dp"
+            android:text="@string/downloading_contents"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/view_load_complete"/>
+
+</RelativeLayout>

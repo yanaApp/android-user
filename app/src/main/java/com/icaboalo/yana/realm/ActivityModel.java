@@ -13,20 +13,17 @@ public class ActivityModel extends RealmObject{
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("title")
     private String title;
 
-    @SerializedName("description")
     private String description;
 
-    @SerializedName("day")
     private DayModel day;
 
-    @SerializedName("answer")
     private int answer = 0;
+
+    private CategoryModel category;
 
     public int getId() {
         return id;
@@ -66,5 +63,13 @@ public class ActivityModel extends RealmObject{
 
     public void setAnswer(int answer) {
         this.answer = answer;
+    }
+
+    public CategoryModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryModel category) {
+        this.category = category;
     }
 }

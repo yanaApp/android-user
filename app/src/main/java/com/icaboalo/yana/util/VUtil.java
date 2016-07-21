@@ -2,6 +2,11 @@ package com.icaboalo.yana.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.ImageView;
 
 import com.icaboalo.yana.PrefConstants;
@@ -13,20 +18,12 @@ import com.squareup.picasso.Picasso;
  */
 public class VUtil {
 
-    public static String getToken(Context context){
-        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.authFile, Context.MODE_PRIVATE);
-        String token = sharedPrefs.getString(PrefConstants.tokenPref, "");
-        return token;
-    }
-
-    public static boolean isTutorialCompleted(Context context){
-        SharedPreferences sharedPrefs = context.getSharedPreferences(PrefConstants.tutorialFile, Context.MODE_PRIVATE);
-        return sharedPrefs.getBoolean(PrefConstants.isTutorialCompleted, false);
-    }
-
     public static void setEmotionImage(Context context, int answer, ImageView image) {
-        if (answer > 0) {
+        if (answer >= 0) {
             switch (answer) {
+                case 0:
+                    Picasso.with(context).load(R.drawable.cancel_outlined_circular_32).into(image);
+                    break;
                 case 1:
                     Picasso.with(context).load(R.drawable.very_sad_32).into(image);
                     break;
@@ -52,6 +49,29 @@ public class VUtil {
             image.setImageDrawable(null);
         }
 
+    }
+
+    public static String answerToText(@NonNull Integer answer){
+        switch (answer){
+            case 0:
+                return "null";
+
+            case 1:
+                return "very sad";
+
+            case 2:
+                return "sad";
+
+            case 3:
+                return "normal";
+
+            case 4:
+                return "happy";
+
+            case 5:
+                return "very happy";
+        }
+        return "";
     }
 }
 

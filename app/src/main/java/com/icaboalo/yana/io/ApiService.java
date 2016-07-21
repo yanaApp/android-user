@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import butterknife.Bind;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,10 +28,13 @@ import retrofit2.http.Path;
 public interface ApiService {
 
     @POST("login/")
-    Call<UserModel> login(@Body UserModel user);
+    Call<UserApiModel> login(@Body UserApiModel user);
 
-    @POST("user/register/")
+    @POST("user/register")
     Call<UserApiModel> userRegister(@Body UserApiModel user);
+
+    @PATCH("user/{id}/")
+    Call<UserApiModel> updateUserInfo(@Header("Authorization") String token, @Body UserApiModel user, @Path("id") int userId);
 
     @GET("me/")
     Call<ArrayList<UserApiModel>> getMe(@Header("Authorization") String token);

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -26,100 +25,93 @@
         android:background="@color/colorAccent" />
 
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:id="@+id/option_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        android:paddingBottom="16dp"
+        android:paddingEnd="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingStart="32dp"
+        android:paddingTop="16dp">
 
-        <LinearLayout
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:padding="3dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. "
+            android:textAlignment="center" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:padding="3dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. Phasellus interdum diam purus, a rhoncus mi laoreet."
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d3" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="Depresión leve"
-                android:textAlignment="center" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:id="@+id/option_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        android:paddingBottom="16dp"
+        android:paddingEnd="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingStart="32dp"
+        android:paddingTop="16dp">
 
-        <LinearLayout
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:padding="3dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi.."
+            android:textAlignment="center" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:padding="3dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. Phasellus interdum diam purus, a rhoncus mi laoreet."
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d3" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="Depresión moderada"
-                android:textAlignment="center" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:id="@+id/option_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="2dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+        android:paddingBottom="16dp"
+        android:paddingEnd="32dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:paddingStart="32dp"
+        android:paddingTop="16dp">
 
-        <LinearLayout
+        <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:padding="3dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi."
+            android:textAlignment="center" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorAccent"
-                android:padding="3dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. Phasellus interdum diam purus, a rhoncus mi laoreet."
-                android:textAlignment="center"
-                android:textColor="@color/white" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorAccent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="Depresión grave"
-                android:textAlignment="center" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btContinue"
+            style="@style/AppTheme.ButtonBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Siguiente"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
 
 </LinearLayout>

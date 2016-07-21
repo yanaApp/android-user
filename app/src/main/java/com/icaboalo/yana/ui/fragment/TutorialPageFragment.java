@@ -1,6 +1,5 @@
 package com.icaboalo.yana.ui.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,13 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.ui.activity.AutoEvaluationActivity;
-import com.icaboalo.yana.ui.activity.RegisterActivity;
+import com.icaboalo.yana.ui.activity.EmptyActivity;
+import com.icaboalo.yana.ui.activity.EvaluationActivity;
 import com.squareup.picasso.Picasso;
-
-import java.security.PrivilegedAction;
 
 /**
  * Created by icaboalo on 03/06/16.
@@ -61,7 +57,7 @@ public class TutorialPageFragment extends Fragment {
                 return inflater.inflate(R.layout.fragment_tutorial_page, container, false);
 
             case 4:
-                return inflater.inflate(R.layout.fragment_tutorial_final, container, false);
+                return inflater.inflate(R.layout.layout_title_description, container, false);
 
         }
 
@@ -74,7 +70,7 @@ public class TutorialPageFragment extends Fragment {
         mTutorialImage = (ImageView) view.findViewById(R.id.tutorial_image);
         mTitle = (TextView) view.findViewById(R.id.title);
         mDescription = (TextView) view.findViewById(R.id.description);
-        mContinue = (Button) view.findViewById(R.id.continue_button);
+        mContinue = (Button) view.findViewById(R.id.btContinue);
     }
 
     @Override
@@ -116,7 +112,7 @@ public class TutorialPageFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("INTENT", "action plan test");
-                        Intent goToTest = new Intent(getActivity(), AutoEvaluationActivity.class);
+                        Intent goToTest = new Intent(getActivity(), EvaluationActivity.class);
                         startActivity(goToTest);
                         getActivity().finish();
                     }

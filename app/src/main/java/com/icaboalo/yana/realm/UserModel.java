@@ -1,12 +1,5 @@
 package com.icaboalo.yana.realm;
 
-
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
@@ -18,25 +11,27 @@ public class UserModel extends RealmObject {
 
 
     @PrimaryKey
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("username")
-    private String userName;
+    private String fullName;
 
-    @SerializedName("email")
     private String email;
 
-    @SerializedName("phone_number")
     private String phoneNumber;
 
+    private String birthDate;
+
     @Ignore
-    @SerializedName("password")
     private String password;
 
     @Ignore
-    @SerializedName("token")
     private String token;
+
+    private String gender;
+
+    private String location;
+
+    private String occupation;
 
     public int getId() {
         return id;
@@ -46,12 +41,28 @@ public class UserModel extends RealmObject {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getEmail() {
@@ -70,7 +81,6 @@ public class UserModel extends RealmObject {
         this.phoneNumber = phoneNumber;
     }
 
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -81,6 +91,22 @@ public class UserModel extends RealmObject {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }
 

@@ -6,14 +6,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,37 +19,45 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.ActivityApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
-import com.icaboalo.yana.realm.DayModel;
 import com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter;
-import com.icaboalo.yana.util.DividerItemDecorator;
-import com.icaboalo.yana.util.OnEmotionSelected;
-import com.icaboalo.yana.util.OnViewHolderClick;
+import com.icaboalo.yana.util.PrefUtils;
+import com.icaboalo.yana.util.RealmUtils;
 import com.icaboalo.yana.util.VUtil;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import io.realm.Realm;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.icaboalo.yana.ui.adapter.ActivityRecyclerAdapter.*;
 
 /**
  * Created by icaboalo on 26/05/16.
  */
 public class ActionPlanFragment extends Fragment {
 
+    @Bind(R.id.activity_recycler)
     RecyclerView mActivityRecycler;
+    @Bind(R.id.activity_date)
     TextView mActivityDate;
+    @Bind(R.id.llContainer)
+    LinearLayout llContainer;
+    @Bind(R.id.llNoActionPlan)
+    LinearLayout llNoActionPlan;
+    ActivityRecyclerAdapter mActivityRecyclerAdapter;
+
+    private Realm mRealmInstance;
 
     public ActionPlanFragment() {
         setHasOptionsMenu(true);
     }
+
 
     @Nullable
     @Override
@@ -62,66 +68,54 @@ public class ActionPlanFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mActivityRecycler = (RecyclerView) view.findViewById(R.id.activity_recycler);
-        mActivityDate = (TextView) view.findViewById(R.id.activity_date);
+        ButterKnife.bind(this, view);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mActivityDate.setText(Html.fromHtml("<b>Día " + getCurrentDay().getNumber() + "</b>  |  " + getCurrentDay().getDate()));
-        setUpActivityRecycler(getActivitiesFromRealm(getCurrentDay()));
+        mRealmInstance = Realm.getDefaultInstance();
+
+        if (RealmUtils.getCurrentActionPlan(mRealmInstance) != null){
+            llContainer.setVisibility(View.VISIBLE);
+            llNoActionPlan.setVisibility(View.GONE);
+            mActivityDate.setText(Html.fromHtml("<b>Día " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getNumber() + "</b>  |  " + RealmUtils.getCurrentDayFromRealm(mRealmInstance).getDate()));
+            setUpActivityRecycler(RealmUtils.getActivitiesFromRealm(mRealmInstance, RealmUtils.getCurrentDayFromRealm(mRealmInstance)));
+        } else {
+            llContainer.setVisibility(View.GONE);
+            llNoActionPlan.setVisibility(View.VISIBLE);
+            Toast.makeText(getActivity(), "No action plan", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mRealmInstance.close();
     }
 
     void setUpActivityRecycler(final ArrayList<ActivityModel> activityList){
-        final ActivityRecyclerAdapter activityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList, new OnEmotionSelected() {
+        mActivityRecyclerAdapter = new ActivityRecyclerAdapter(getActivity(), activityList);
+        mActivityRecyclerAdapter.setEmotionSelectedListener(new OnEmotionSelected() {
             @Override
-            public void onSelect(final ActivityModel activity, final int previousAnswer, int newAnswer) {
-                Log.d("SELECTED", activity.toString());
-                Snackbar.make(getView(), "Changed emotion from " + previousAnswer + " to " + newAnswer, Snackbar.LENGTH_LONG).setAction("Undo", null).show();
-                updateActivity(VUtil.getToken(getActivity()), newAnswer, activity.getId());
+            public void onSelect(ActivityModel activity, int previousAnswer, int newAnswer) {
+                showSnackBar(activity, previousAnswer, newAnswer);
             }
         });
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mActivityRecycler.setAdapter(activityRecyclerAdapter);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
         mActivityRecycler.setLayoutManager(linearLayoutManager);
-        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
-    }
-
-    DayModel getCurrentDay(){
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
-
-        Realm realm = Realm.getDefaultInstance();
-        return realm.where(DayModel.class).equalTo("date", currentDate).findFirst();
-    }
-
-    ArrayList<ActivityModel> getActivitiesFromRealm(DayModel currentDay){
-        Realm realm = Realm.getDefaultInstance();
-        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class).equalTo("day.date", currentDay.getDate());
-
-        RealmResults<ActivityModel> results = query.findAll();
-
-        Log.d("REALM_RESULTS", results.toString());
-
-        ArrayList<ActivityModel> activities = new ArrayList<>();
-        for (ActivityModel activity: results){
-            activities.add(activity);
-        }
-        return activities;
-    }
-
-    ActivityModel getActivityFromRealm(int activityId){
-        Realm realm = Realm.getDefaultInstance();
-        RealmQuery<ActivityModel> query = realm.where(ActivityModel.class);
-        ActivityModel result = query.equalTo("id", activityId).findAll().get(0);
-        ActivityModel activity = new ActivityModel();
-        activity.setId(result.getId());
-        activity.setTitle(result.getTitle());
-        activity.setDescription(result.getDescription());
-        activity.setAnswer(result.getAnswer());
-        activity.setDay(result.getDay());
-        return activity;
+        mActivityRecyclerAdapter.setOnExpandListener(new OnExpandListener() {
+            @Override
+            public void onExpand(int position, boolean expanded) {
+                if (expanded){
+                    mActivityRecycler.smoothScrollToPosition(position);
+                }
+            }
+        });
+        mActivityRecycler.setAdapter(mActivityRecyclerAdapter);
+//        mActivityRecycler.addItemDecoration(new DividerItemDecorator(getActivity()));
     }
 
     void updateActivity(String token, int answer, int activityId){
@@ -147,6 +141,35 @@ public class ActionPlanFragment extends Fragment {
                 Log.d("RETROFIT_FAILURE", t.toString());
             }
         });
+    }
+
+    void showSnackBar(final ActivityModel activity, final int previousAnswer, final int newAnswer){
+        Snackbar.make(getView(), "Changed emotion from " + VUtil.answerToText(previousAnswer) + " to " + VUtil.answerToText(newAnswer), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        }).setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                super.onDismissed(snackbar, event);
+                switch (event){
+                    case DISMISS_EVENT_ACTION:
+                        Log.d("SNACKBAR", "clicked");
+                        Realm realm = Realm.getDefaultInstance();
+                        realm.beginTransaction();
+                        activity.setAnswer(previousAnswer);
+                        mActivityRecyclerAdapter.notifyDataSetChanged();
+                        realm.commitTransaction();
+                        break;
+
+                    case DISMISS_EVENT_TIMEOUT:
+                        Log.d("SNACKBAR", "timeout");
+                        updateActivity(PrefUtils.getToken(getActivity()), newAnswer, activity.getId());
+                        break;
+                }
+            }
+        }).show();
     }
 
 }

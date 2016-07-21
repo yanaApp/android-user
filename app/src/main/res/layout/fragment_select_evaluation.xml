@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:text="Personaliza tu plan de acción"
         android:textAllCaps="true"
         android:textSize="24sp"
@@ -14,14 +13,17 @@
         android:paddingRight="32dp"
         android:textAlignment="center"
         android:layout_gravity="center"
+        android:layout_above="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
+        android:id="@+id/description"
         android:layout_marginTop="24dp"
         android:layout_gravity="center"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_centerVertical="true"
         android:textSize="18dp"
         android:text="Aparte de tu autoevaluación, \nes importante realizar un test \noficial para poder ayudarte \nde una manera más especializada."
         android:textAlignment="center"
@@ -29,6 +31,16 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:layout_above="@+id/skip_evaluation_button"
+        android:id="@+id/evaluation_button"
+        android:layout_marginTop="16dp"
+        android:text="Realizar ahora"
+        style="@style/AppTheme.ButtonBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_alignParentBottom="true"
         android:id="@+id/skip_evaluation_button"
         android:layout_marginTop="16dp"
         android:text="Realizar más tarde"
@@ -36,4 +48,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-</LinearLayout>
+</RelativeLayout>

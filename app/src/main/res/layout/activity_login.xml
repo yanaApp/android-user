@@ -1,68 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingBottom="32dp"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
-    android:paddingTop="32dp"
-    android:gravity="bottom"
     tools:context=".ui.activity.LoginActivity">
 
-    <TextView
-        android:id="@+id/title_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¡Hola de nuevo!"
-        android:textSize="36sp" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="64dp"
-        android:id="@+id/username_input_container"
+    <FrameLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputEditText
-            android:text="user"
-            android:id="@+id/username_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="USERNAME"
-            android:inputType="textPersonName" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="16dp"
-        android:id="@+id/password_input_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/password_input"
-            android:text="user123"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="PASSWORD"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
-
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="¿Olvidaste tu contraseña?" />
-
-    <Button
-        android:layout_marginTop="48dp"
-        style="@style/AppTheme.ButtonBlue"
-        android:id="@+id/login_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign in" />
+        <include layout="@layout/view_login_form" />
+        <include layout="@layout/view_forgot_password"/>
+    </FrameLayout>
 
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

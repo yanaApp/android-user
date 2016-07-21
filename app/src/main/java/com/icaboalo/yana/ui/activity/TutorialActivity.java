@@ -1,32 +1,30 @@
 package com.icaboalo.yana.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.domain.FragmentPagerModel;
 import com.icaboalo.yana.ui.adapter.ViewPagerAdapter;
-import com.icaboalo.yana.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.ui.fragment.TutorialPageFragment;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class TutorialActivity extends AppCompatActivity {
 
+    @Bind(R.id.view_pager)
     ViewPager mViewPager;
+    @Bind(R.id.view_pager_indicator)
     InkPageIndicator mViewPagerIndicator;
 
     @Override
@@ -34,9 +32,8 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_tutorial);
+        ButterKnife.bind(this);
 
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPagerIndicator = (InkPageIndicator) findViewById(R.id.view_pager_indicator);
         setupViewPager();
         final TextView loginButton = (TextView) findViewById(R.id.login_button);
 
@@ -62,16 +59,17 @@ public class TutorialActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position == 4){
-                    loginButton.animate().translationY(0).setDuration(1000);
-                } else{
-                    loginButton.animate().translationY(loginButton.getHeight()).setDuration(200);
-                }
+
             }
 
             @Override
             public void onPageSelected(int position) {
-
+                if (position == 4){
+                    loginButton.setVisibility(View.VISIBLE);
+                    loginButton.animate().translationY(0).setDuration(800);
+                } else{
+                    loginButton.animate().translationY(loginButton.getHeight()).setDuration(100);
+                }
             }
 
             @Override

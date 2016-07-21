@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="24dp"
     tools:context="com.icaboalo.yana.ui.activity.TutorialActivity">
 
     <android.support.v4.view.ViewPager
@@ -26,7 +25,7 @@
         app:dotGap="8dp"
         app:pageIndicatorColor="#d3d3d3d3" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_margin="16dp"
         android:id="@+id/skip_tutorial"
         android:layout_width="wrap_content"
@@ -35,9 +34,9 @@
         android:layout_alignParentRight="true"
         android:text="Omitir" />
 
-    <TextView
+    <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/login_button"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_alignParentBottom="true"
         android:text="Ya tienes una cuenta? Inicia sesión"
         android:gravity="center"

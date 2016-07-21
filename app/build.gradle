@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 23
@@ -17,6 +18,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven(){
+        url "https://oss.sonatype.org/content/repositories/snapshots"
     }
 }
 
@@ -41,8 +49,27 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
+//    Butterknife
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+
 //  ViewPagerIndicator
     compile 'com.pacioianu.david:ink-page-indicator:1.1.1'
+
+//  Loading view
+    compile 'me.wangyuwei:LoadingiVew:1.0.3'
+
+//  Tour guide
+    compile ('com.github.worker8:tourguide:1.0.17-SNAPSHOT@aar'){
+        transitive=true
+    }
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
+
+//  Firabase
+    // analytics
+    compile 'com.google.firebase:firebase-core:9.2.0'
+    // messaging
+    compile 'com.google.firebase:firebase-messaging:9.2.1'
 
 
 }

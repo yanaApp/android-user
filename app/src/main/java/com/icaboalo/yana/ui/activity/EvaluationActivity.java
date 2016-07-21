@@ -3,102 +3,114 @@ package com.icaboalo.yana.ui.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.util.Log;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.domain.FragmentPagerModel;
+import com.icaboalo.yana.ui.adapter.ViewPagerAdapter;
+import com.icaboalo.yana.ui.fragment.AutoEvaluationFragment;
+import com.icaboalo.yana.ui.fragment.EvaluationFragment;
+import com.icaboalo.yana.ui.fragment.SelectEvaluationFragment;
+import com.icaboalo.yana.ui.fragment.TestResultFragment;
+import com.icaboalo.yana.ui.fragment.TitleDescriptionFragment;
+import com.icaboalo.yana.ui.widget.NonSwipeableViewPager;
+import com.icaboalo.yana.util.EvaluationClickListener;
 
-import static com.icaboalo.yana.R.color.orange;
-import static com.icaboalo.yana.R.color.white;
+import java.util.ArrayList;
 
-public class EvaluationActivity extends AppCompatActivity implements View.OnClickListener{
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-    ProgressBar mQuestionProgress;
-    TextView mQuestion;
-    View mOption1, mOption2, mOption3, mOption4;
-    Button mContinueButton;
-    String[] mQuestionList = {"Question 1", "Question 2", "Question 3", "Question 4", "Question 5"};
-    int mQuestionPosition = 0;
-    int mAnswer = 0;
-    int mAnswerTotal = 0;
+public class EvaluationActivity extends AppCompatActivity implements EvaluationClickListener {
+
+    @Bind(R.id.viewPager)
+    NonSwipeableViewPager viewPager;
+
+    private int mCurrentPosition = 0;
+    private TestResultFragment testResultFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluation);
-        mQuestionProgress = (ProgressBar) findViewById(R.id.question_progress);
-        mQuestionProgress.setMax(20);
-        mQuestionProgress.setProgress(mQuestionPosition);
-        mQuestion = (TextView) findViewById(R.id.question_text);
-        mQuestion.setText(mQuestionList[mQuestionPosition]);
-        mOption1 = findViewById(R.id.option_1);
-        mOption1.setOnClickListener(this);
-        mOption2 = findViewById(R.id.option_2);
-        mOption2.setOnClickListener(this);
-        mOption3 = findViewById(R.id.option_3);
-        mOption3.setOnClickListener(this);
-        mOption4 = findViewById(R.id.option_4);
-        mOption4.setOnClickListener(this);
-        mContinueButton = (Button) findViewById(R.id.continue_button);
-        mContinueButton.setOnClickListener(this);
+        ButterKnife.bind(this);
+        testResultFragment = TestResultFragment.newInstance("", "", getString(R.string.continue_button), "");
+        setupViewPager(createFragmentList());
     }
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.option_1:
-                mAnswer = 1;
-                mOption1.setBackgroundColor(getResources().getColor(orange));
-                mOption2.setBackgroundColor(getResources().getColor(white));
-                mOption3.setBackgroundColor(getResources().getColor(white));
-                mOption4.setBackgroundColor(getResources().getColor(white));
-                break;
-            case R.id.option_2:
-                mAnswer = 2;
-                mOption1.setBackgroundColor(getResources().getColor(white));
-                mOption2.setBackgroundColor(getResources().getColor(orange));
-                mOption3.setBackgroundColor(getResources().getColor(white));
-                mOption4.setBackgroundColor(getResources().getColor(white));
-                break;
-            case R.id.option_3:
-                mAnswer = 3;
-                mOption1.setBackgroundColor(getResources().getColor(white));
-                mOption2.setBackgroundColor(getResources().getColor(white));
-                mOption3.setBackgroundColor(getResources().getColor(orange));
-                mOption4.setBackgroundColor(getResources().getColor(white));
-                break;
-            case R.id.option_4:
-                mAnswer = 4;
-                mOption1.setBackgroundColor(getResources().getColor(white));
-                mOption2.setBackgroundColor(getResources().getColor(white));
-                mOption3.setBackgroundColor(getResources().getColor(white));
-                mOption4.setBackgroundColor(getResources().getColor(orange));
-                break;
-            case R.id.continue_button:
-                if (mAnswer != 0){
-                    if (mQuestionPosition == mQuestionList.length -1){
-                        Intent goToRegister = new Intent(EvaluationActivity.this, LoginActivity.class);
-                        startActivity(goToRegister);
-                        finish();
-                    } else {
-                        mAnswerTotal += mAnswer;
-                        mQuestionPosition++;
-                        mAnswer = 0;
-                        mOption1.setBackgroundColor(getResources().getColor(white));
-                        mOption2.setBackgroundColor(getResources().getColor(white));
-                        mOption3.setBackgroundColor(getResources().getColor(white));
-                        mOption4.setBackgroundColor(getResources().getColor(white));
-                        mQuestionProgress.setProgress(mQuestionPosition);
-                        mQuestion.setText(mQuestionList[mQuestionPosition]);
-                    }
-                } else {
-                    mContinueButton.setError("Select one from the options above");
-                    Toast.makeText(EvaluationActivity.this, "Select one from the options above", Toast.LENGTH_SHORT).show();
-                }
-                break;
+    public void onClick() {
+        mCurrentPosition ++;
+        if (mCurrentPosition == createFragmentList().size()){
+            Intent goToRegister = new Intent(EvaluationActivity.this, RegisterActivity.class);
+            startActivity(goToRegister);
+            finish();
+        } else {
+            viewPager.setCurrentItem(mCurrentPosition, true);
         }
     }
+
+    @Override
+    public void setAnswer(int answer) {
+        getResultScreen(testResultFragment, answer);
+    }
+
+    private ArrayList<FragmentPagerModel> createFragmentList(){
+        ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
+        fragmentList.add(new FragmentPagerModel(new AutoEvaluationFragment()));
+        fragmentList.add(new FragmentPagerModel(TitleDescriptionFragment.newInstance(getString(R.string.depression_title),
+                getString(R.string.depression_description),
+                getString(R.string.continue_button),
+                "")));
+        fragmentList.add(new FragmentPagerModel(new SelectEvaluationFragment()));
+        fragmentList.add(new FragmentPagerModel(TitleDescriptionFragment.newInstance(getString(R.string.beck_title),
+                getString(R.string.beck_description),
+                getString(R.string.continue_button),
+                "")));
+        fragmentList.add(new FragmentPagerModel(new EvaluationFragment()));
+        fragmentList.add(new FragmentPagerModel(testResultFragment));
+        fragmentList.add(new FragmentPagerModel(TitleDescriptionFragment.newInstance(getString(R.string.you_are_not_alone),
+                getString(R.string.you_are_not_alone_description),
+                getString(R.string.continue_button),
+                "")));
+        return fragmentList;
+    }
+
+    private void getResultScreen(TestResultFragment testResultFragment, int answer){
+//        int answer = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE).getInt(PrefConstants.scorePref, 0);
+//        Toast.makeText(EvaluationActivity.this, "" + answer, Toast.LENGTH_SHORT).show();
+        if (answer > 0 && answer < 17){
+            getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
+                    .edit()
+                    .putInt(PrefConstants.evaluationPref, 1)
+                    .apply();
+            testResultFragment.setTitle(getString(R.string.mild_depression));
+            testResultFragment.setDescription(getString(R.string.cupcake_ipsum));
+        }
+
+        else if (answer >= 17 && answer < 31){
+            getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
+                    .edit()
+                    .putInt(PrefConstants.evaluationPref, 2)
+                    .apply();
+            testResultFragment.setTitle(getString(R.string.moderate_depression));
+            testResultFragment.setDescription(getString(R.string.cupcake_ipsum));
+        }
+
+        else if (answer >= 31){
+            getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
+                    .edit()
+                    .putInt(PrefConstants.evaluationPref, 3)
+                    .apply();
+            testResultFragment.setTitle(getString(R.string.severe_depression));
+            testResultFragment.setDescription(getString(R.string.cupcake_ipsum));
+        }
+    }
+
+    private void setupViewPager(ArrayList<FragmentPagerModel> fragmentList){
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList);
+        viewPager.setAdapter(viewPagerAdapter);
+    }
+
 }

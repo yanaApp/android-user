@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">YANA</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
+    <string name="beck_title">INVENTARIO DE DEPRESIÓN DE BECK</string>
+    <string name="continue_button">Continuar</string>
+    <string name="depression_description">La depresión es un trastorno mental frecuente, que se caracteriza por la presencia de tristeza, pérdida de interés o placer, sentimientos de culpa o falta de autoestima, trastornos de sueño o del apetito, sensación de cansancio y falta de concentración.</string>
+    <string name="depression_title">LA DEPRESIÓN</string>
+    <string name="error_empty_field">Este campo es necesario</string>
+    <string name="error_invalid_email">Ingresa una dirección de correo valida</string>
+    <string name="next_button">Siguiente</string>
+    <string name="progress_dialog_login">Iniciando Sesión</string>
+    <string name="take_test_later_button">Realizar más tarde</string>
+    <string name="take_test_now_button">Realizar ahora</string>
+
+    <array name="beck_test">
+        <!--1-->
+        <item>1. No me siento triste. \n\n2. Me siento triste. \n\n3. Me siento triste continuamente y no puedo dejar de estarlo. \n\n4. Me siento tan triste o tan desgraciado que no puedo soportarlo.</item>
+
+        <!--2-->
+        <item>1. No me siento especialmente desanimado respecto al futuro. \n\n2.Me siento desanimado respecto al futuro. \n\n3. Siento que no tengo que esperar nada. \n\n4. Siento que el futuro es desesperanzador y las cosas no mejorarán.</item>
+
+        <!--3-->
+        <item>1. No me siento fracasado. \n\n2. Creo que he fracasado más que la mayoría de las personas. \n\n3. Cuando miro hacia atrás, sólo veo fracaso tras fracaso. \n\n4. Me siento una persona totalmente fracasada.</item>
+
+        <!--4-->
+        <item>1. Las cosas me satisfacen tanto como antes. \n\n2. No disfruto de las cosas tanto como antes. \n\n3. Ya no obtengo una satisfacción auténtica de las cosas. \n\n4. Estoy insatisfecho o aburrido de todo.</item>
+
+        <!--5-->
+        <item>1. No me siento especialmente culpable. \n\n2. Me siento culpable en bastantes ocasiones. \n\n3. Me siento culpable en la mayoría de las ocasiones. \n\n4. Me siento culpable constantemente.</item>
+
+        <!--6-->
+        <item>1. No creo que esté siendo castigado. \n\n2. Me siento como si fuese a ser castigado. \n\n3. Espero ser castigado. \n\n4. Siento que estoy siendo castigado.</item>
+
+        <!--7-->
+        <item>1. No estoy decepcionado de mí mismo. \n\n2. Estoy decepcionado de mí mismo. \n\n3. Me da vergüenza de mí mismo. \n\n4. Me detesto. </item>
+
+        <!--8-->
+        <item>1. No me considero peor que cualquier otro. \n\n2. Me autocritico por mis debilidades o por mis errores. \n\n3. Continuamente me culpo por mis faltas.\n\n4. Me culpo por todo lo malo que sucede. </item>
+
+        <!--9-->
+        <item>1. No tengo ningún pensamiento de suicidio. \n\n2. A veces pienso en suicidarme, pero no lo cometería. \n\n3. Desearía suicidarme.\n\n4. Me suicidaría si tuviese la oportunidad. </item>
+
+        <!--10-->
+        <item>1. No lloro más de lo que solía llorar. \n\n2. Ahora lloro más que antes. \n\n3. Lloro continuamente. \n\n4. Antes era capaz de llorar, pero ahora no puedo, incluso aunque quiera. </item>
+
+        <!--11-->
+        <item>1. No estoy más irritado de lo normal en mí. \n\n2. Me molesto o irrito más fácilmente que antes. \n\n3. Me siento irritado continuamente. \n\n4. No me irrito absolutamente nada por las cosas que antes solían irritarme. </item>
+
+        <!--12-->
+        <item>1. No he perdido el interés por los demás. \n\n2. Estoy menos interesado en los demás que antes. \n\n3. He perdido la mayor parte de mi interés por los demás. \n\n4. He perdido todo el interés por los demás. </item>
+
+        <!--13-->
+        <item>1. Tomo decisiones más o menos como siempre he hecho. \n\n2. Evito tomar decisiones más que antes. \n\n3. Tomar decisiones me resulta mucho más difícil que antes. \n\n4. Ya me es imposible tomar decisiones. </item>
+
+        <!--14-->
+        <item>1. No creo tener peor aspecto que antes. \n\n2. Me temo que ahora parezco más viejo o poco atractivo. \n\n3. Creo que se han producido cambios permanentes en mi aspecto que me hacen parecer poco atractivo. \n\n4. Creo que tengo un aspecto horrible.</item>
+
+        <!--15-->
+        <item>1. Trabajo igual que antes. \n\n2. Me cuesta un esfuerzo extra comenzar a hacer algo. \n\n3. Tengo que obligarme mucho para hacer algo. \n\n4. No puedo hacer nada en absoluto. </item>
+
+        <!--16-->
+        <item>1. Duermo tan bien como siempre. \n\n2. No duermo tan bien como antes. \n\n3. Me despierto una o dos horas antes de lo habitual y me resulta difícil volver a dormir. \n\n4. Me despierto varias horas antes de lo habitual y no puedo volverme a dormir. </item>
+
+        <!--17-->
+        <item>1. No me siento más cansado de lo normal. \n\n2. Me canso más fácilmente que antes. \n\n3. Me canso en cuanto hago cualquier cosa. \n\n4. Estoy demasiado cansado para hacer nada. </item>
+
+        <!--18-->
+        <item>1. Mi apetito no ha disminuido. \n\n2. No tengo tan buen apetito como antes. \n\n3. Ahora tengo mucho menos apetito. \n\n 4.He perdido completamente el apetito. </item>
+
+        <!--19-->
+        <item>1. Últimamente he perdido poco peso o no he perdido nada. \n\n2. He perdido más de 2 kilos y medio. \n\n3. He perdido más de 4 kilos. \n\n4. He perdido más de 7 kilos. </item>
+
+        <!--20-->
+        <item>1. No estoy preocupado por mi salud más de lo normal. \n\n2. Estoy preocupado por problemas físicos como dolores, molestias, malestar de estómago o estreñimiento. \n\n3. Estoy preocupado por mis problemas físicos y me resulta difícil pensar algo más. \n\n4. Estoy tan preocupado por mis problemas físicos que soy incapaz de pensar en cualquier cosa. </item>
+
+        <!--21-->
+        <item>1. No he observado ningún cambio reciente en mi interés. \n\n2. Estoy menos interesado por el sexo que antes. \n\n3. Estoy mucho menos interesado por el sexo. \n\n4. He perdido totalmente mi interés por el sexo. </item>
+
+    </array>
+    <string name="downloading_contents">Estamos descargando tus contenidos</string>
+    <string name="action_action_plan_title">Plan de Acción</string>
+    <string name="action_contacts_title">Contactos</string>
+    <string name="action_profile_title">Perfil</string>
+    <string name="action_progress_title">Progreso</string>
+    <string name="action_log_out_title">Cerrar sesión</string>
+    <string name="restore_password">Restablecer contraseña</string>
+    <string name="email_input_hint">CORREO ELECTRONICO</string>
+    <string name="loading_complete">TODO LISTO, HEMOS DESCARGADO TU PLAN DE ACCIÓN</string>
+    <string name="birth_date_input_hint">FECHA DE NACIMIENTO</string>
+    <string name="full_name_input_hint">NOMBRE COMPLETO</string>
+    <string name="gender_input_hint">GENERO</string>
+    <string name="location_input_hint">UBICACIÓN</string>
+    <string name="occupation_input_hint">OCUPACIÓN</string>
+    <string name="slide_to_begin">Desliza para comenzar</string>
+    <string name="depression_symptoms">SINTOMAS DE LA DEPRESIÓN</string>
+    <string name="what_is_depression">¿QUÉ ES LA DEPRESIÓN?</string>
+    <string name="action_plan_title">Plan de Acción</string>
+    <string name="clear_field">Vaciar campo</string>
+    <string name="contacts_title">Contactos</string>
+    <string name="help_title">Ayuda</string>
+    <string name="profile_title">Perfil</string>
+    <string name="password_input_hint">CONTRASEÑA</string>
+    <string name="progress_title">Progreso</string>
+    <string name="mild_depression">DEPRESIÓN LEVE</string>
+    <string name="moderate_depression">DEPRESIÓN MODERADA</string>
+    <string name="moderate_depression_description">Por las mañanas el sentimiento de tristeza es mayor y fluctúa durante el día, aunque siente constantemente desagrado hacia sí mismo. Se siente aburrido la mayor parte del tiempo y ya no disfruta hacer lo que antes le gustaba. *Una puntuación de 17 o más indica que puede necesitar ayuda profesional.</string>
+    <string name="severe_depression">DEPRESIÓN GRAVE</string>
+    <string name="you_are_not_alone">NOSOTROS ESTAMOS AQUÍ PARA TI</string>
+    <string name="you_are_not_alone_description">No te alarmes por los resultados de tu test. Nosotros juntos con tu red de apoyo te ayudaremos en  esta etapa de tu vida.  </string>
+    <string name="welcome">¡Bienvenido!</string>
+</resources>
