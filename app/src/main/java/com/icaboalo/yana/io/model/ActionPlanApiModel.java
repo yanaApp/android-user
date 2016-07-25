@@ -23,7 +23,7 @@ public class ActionPlanApiModel {
     @SerializedName("final_date")
     private String finalDate;
 
-    @SerializedName("is_activate")
+    @SerializedName("is_active")
     private boolean isActive;
 
     @SerializedName("days")

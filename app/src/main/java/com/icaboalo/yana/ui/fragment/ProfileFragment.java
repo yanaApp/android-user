@@ -73,97 +73,76 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.rlFullName)
     void updateName() {
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_FULL_NAME);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getFullName());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_FULL_NAME,
+                RealmUtils.getUser(mRealmInstance).getFullName());
         startActivity(edit);
     }
 
     @OnClick(R.id.rlEmail)
     void updateEmail(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_EMAIL);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getEmail());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_EMAIL,
+                RealmUtils.getUser(mRealmInstance).getEmail());
         startActivity(edit);
     }
 
     @OnClick(R.id.rlPassword)
     void changePassword(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_PASSWORD);
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_PASSWORD, "");
         startActivity(edit);
     }
 
 
     @OnClick(R.id.rlBirthDate)
     void updateBirthDate(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_BIRTH_DATE);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getBirthDate());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_BIRTH_DATE,
+                RealmUtils.getUser(mRealmInstance).getBirthDate());
         startActivity(edit);
     }
 
     @OnClick(R.id.rlGender)
     void updateGender(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_GENDER);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getGender());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_GENDER,
+                RealmUtils.getUser(mRealmInstance).getGender());
         startActivity(edit);
     }
 
     @OnClick(R.id.rlLocation)
     void updateLocation(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_LOCATION);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getLocation());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_LOCATION,
+                RealmUtils.getUser(mRealmInstance).getLocation());
         startActivity(edit);
     }
 
     @OnClick(R.id.rlOccupation)
     void updateOccupation(){
-        Intent edit = EditProfileActivity.getCallingIntent(getActivity());
-        Bundle bundle = new Bundle();
-        bundle.putString(EditProfileActivity.INFO_TYPE, EditProfileActivity.INFO_OCCUPATION);
-        bundle.putString(EditProfileActivity.CONTENT, RealmUtils.getUser(mRealmInstance).getLocation());
-        edit.putExtras(bundle);
+        Intent edit = EditProfileActivity.getCallingIntent(getActivity(), EditProfileActivity.INFO_OCCUPATION,
+                RealmUtils.getUser(mRealmInstance).getOccupation());
         startActivity(edit);
     }
 
     void setText() {
         UserModel user = RealmUtils.getUser(mRealmInstance);
-        if (user.getFullName() == null) {
+        if (user.getFullName() == null || user.getFullName().isEmpty()) {
             tvFullName.setVisibility(View.GONE);
         } else tvFullName.setText(user.getFullName());
 
-        if (user.getEmail() == null){
+        if (user.getEmail() == null || user.getEmail().isEmpty()){
             tvEmail.setVisibility(View.GONE);
         } else tvEmail.setText(user.getEmail());
 
-        if (user.getBirthDate() == null){
+        if (user.getBirthDate() == null || user.getBirthDate().isEmpty()){
             tvBirthDate.setVisibility(View.GONE);
         } else tvBirthDate.setText(user.getBirthDate());
 
-        if (user.getGender() == null){
+        if (user.getGender() == null || user.getGender().isEmpty()){
             tvGender.setVisibility(View.GONE);
         } else tvGender.setText(user.getGender());
 
-        if (user.getLocation() == null){
+        if (user.getLocation() == null || user.getLocation().isEmpty()){
             tvLocation.setVisibility(View.GONE);
         } else tvLocation.setText(user.getLocation());
 
-        if (user.getOccupation() == null){
+        if (user.getOccupation() == null || user.getOccupation().isEmpty()){
             tvOccupation.setVisibility(View.GONE);
         } else tvOccupation.setText(user.getOccupation());
     }

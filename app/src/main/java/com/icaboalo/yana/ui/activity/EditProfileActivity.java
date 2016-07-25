@@ -47,6 +47,7 @@ public class EditProfileActivity extends AppCompatActivity{
     @Bind(R.id.btSave)
     Button btSave;
     Bundle mBundle;
+    private static final String TAG = "EditProfileActivity";
 
 
     ProgressDialog mProgressDialog;
@@ -67,6 +68,7 @@ public class EditProfileActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart: ");
         mRealmInstance = Realm.getDefaultInstance();
     }
 
@@ -77,8 +79,6 @@ public class EditProfileActivity extends AppCompatActivity{
         mBundle = getIntent().getExtras();
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
         setInfo();
 
         etField.addTextChangedListener(new TextWatcher() {
@@ -102,6 +102,7 @@ public class EditProfileActivity extends AppCompatActivity{
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop: bla");
         mRealmInstance.close();
     }
 
@@ -153,7 +154,7 @@ public class EditProfileActivity extends AppCompatActivity{
                 break;
 
             case INFO_LOCATION:
-                user.setGender(etField.getText().toString());
+                user.setLocation(etField.getText().toString());
                 break;
             case INFO_OCCUPATION:
                 user.setOccupation(etField.getText().toString());
@@ -188,51 +189,56 @@ public class EditProfileActivity extends AppCompatActivity{
         });
     }
 
-    public static Intent getCallingIntent(Context context){
-        return new Intent(context, EditProfileActivity.class);
+    public static Intent getCallingIntent(Context context, String type, String content){
+        Intent nIntent = new Intent(context, EditProfileActivity.class);
+        nIntent.putExtra(EditProfileActivity.INFO_TYPE, type);
+        nIntent.putExtra(EditProfileActivity.CONTENT, content);
+        return nIntent;
     }
 
     void setInfo(){
         ActionBar actionBar = getSupportActionBar();
         etField.setText(mBundle.getString(CONTENT));
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         switch (mBundle.getString(INFO_TYPE, "")){
             case INFO_FULL_NAME:
-                actionBar.setTitle(INFO_FULL_NAME);
+                actionBar.setTitle("Full name");
                 tvDescription.setText("");
                 etField.setTag(INFO_FULL_NAME);
                 break;
 
             case INFO_EMAIL:
-                actionBar.setTitle(INFO_EMAIL);
+                actionBar.setTitle("Email");
                 tvDescription.setText("");
                 etField.setTag(INFO_EMAIL);
                 break;
 
             case INFO_PHONE_NUMBER:
-                actionBar.setTitle(INFO_PHONE_NUMBER);
+                actionBar.setTitle("Phone number");
                 tvDescription.setText("");
                 etField.setTag(INFO_PHONE_NUMBER);
                 break;
 
             case INFO_BIRTH_DATE:
-                actionBar.setTitle(INFO_BIRTH_DATE);
+                actionBar.setTitle("Birth date");
                 tvDescription.setText("");
                 etField.setTag(INFO_BIRTH_DATE);
                 break;
 
             case INFO_GENDER:
-                actionBar.setTitle(INFO_GENDER);
+                actionBar.setTitle("Gender");
                 tvDescription.setText("");
                 etField.setTag(INFO_GENDER);
                 break;
 
             case INFO_LOCATION:
-                actionBar.setTitle(INFO_LOCATION);
+                actionBar.setTitle("Location");
                 tvDescription.setText("");
                 etField.setTag(INFO_LOCATION);
                 break;
             case INFO_OCCUPATION:
-                actionBar.setTitle(INFO_OCCUPATION);
+                actionBar.setTitle("Occupation");
                 tvDescription.setText("");
                 etField.setTag(INFO_OCCUPATION);
                 break;

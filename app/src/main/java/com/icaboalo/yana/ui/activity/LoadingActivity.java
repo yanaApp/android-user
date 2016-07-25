@@ -76,6 +76,11 @@ public class LoadingActivity extends AppCompatActivity {
                     user.setId(responseUser.getId());
                     user.setEmail(responseUser.getEmail());
                     user.setPhoneNumber(responseUser.getPhoneNumber());
+                    user.setFullName(responseUser.getFullName());
+                    user.setGender(responseUser.getGender());
+                    user.setBirthDate(responseUser.getBirthDate());
+                    user.setLocation(responseUser.getLocation());
+                    user.setOccupation(responseUser.getOccupation());
 
                     Log.d(TAG, "onResponse: " + user.toString());
 
