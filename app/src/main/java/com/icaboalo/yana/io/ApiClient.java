@@ -19,4 +19,11 @@ public class ApiClient {
         }
         return mApiService;
     }
+
+    public static Retrofit sRetrofit(){
+        return new Retrofit.Builder()
+                .baseUrl("http://yana-network.herokuapp.com/api/v1/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 }

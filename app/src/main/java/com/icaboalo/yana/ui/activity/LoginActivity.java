@@ -23,9 +23,13 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
 import com.icaboalo.yana.io.model.UserApiModel;
+import com.icaboalo.yana.presenter.LoginPresenter;
 import com.icaboalo.yana.realm.UserModel;
+import com.icaboalo.yana.view.LoginView;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,9 +38,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginView {
 
-
+    @Inject
+    LoginPresenter mLoginPresenter;
     @Bind(R.id.llLoginForm)
     LinearLayout llLoginForm;
     @Bind(R.id.rlForgotPassword)
@@ -148,5 +153,50 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public void loginSuccessful() {
+
+    }
+
+    @Override
+    public void loginError() {
+
+    }
+
+    @Override
+    public void usernameError() {
+
+    }
+
+    @Override
+    public void passwordError() {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showRetry() {
+
+    }
+
+    @Override
+    public void hideRetry() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
     }
 }
