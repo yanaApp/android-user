@@ -1,26 +1,74 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="app_name">YANA</string>
-    <string name="error_empty_field">This field is required</string>
-    <string name="label_activity_complete" translatable="false">ACTIVITY_COMPLETE</string>
-    <string name="extra_activity" translatable="false">ACTIVITY</string>
 
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-    <string name="error_invalid_email">Enter a valid email address</string>
+    <!--TextView-->
     <string name="progress_dialog_login">Loggin in</string>
-
     <string name="depression_title">THE DEPRESSION</string>
     <string name="depression_description">La depresión es un trastorno mental frecuente, que se caracteriza por la presencia de tristeza, pérdida de interés o placer, sentimientos de culpa o falta de autoestima, trastornos de sueño o del apetito, sensación de cansancio y falta de concentración.</string>
+    <string name="beck_title">BECK DEPRESSION INVENTARY</string>
+    <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
+    <string name="downloading_contents">We\'re downloading your contents</string>
+    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
+    <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
+    <string name="slide_to_begin">Slide to begin</string>
+    <string name="what_is_depression">WHAT IS DEPRESSION?</string>
+    <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
+    <string name="moderate_depression">MODERATE DEPRESSION</string>
+    <string name="moderate_depression_description"> In the morning the feeling of sadness is higher and fluctuates during the day, but constantly is displeased with himself. Feel it bored most of the time and no longer enjoys doing what he liked before . * A score of 17 or more indicates you may need professional help.</string>
+    <string name="you_are_not_alone">YOU ARE NOT ALONE</string>
+    <string name="you_are_not_alone_description">  Do not be alarmed by the results your test. We together with your support network will help in this stage of your life.</string>
+    <string name="severe_depression">SEVERE DEPRESSION</string>
+    <string name="mild_depression">MILD DEPRESSION</string>
+    <string name="welcome">Welcome!</string>
+    <string name="hello_again">Hello again!</string>
+
+    <!--Hint-->
+    <string name="email_input_hint">EMAIL</string>
+    <string name="full_name_input_hint">FULL NAME</string>
+    <string name="birth_date_input_hint">BIRTH DATE</string>
+    <string name="gender_input_hint">GENDER</string>
+    <string name="location_input_hint">POSTAL CODE</string>
+    <string name="occupation_input_hint">OCCUPATION</string>
+    <string name="password_input_hint">PASSWORD</string>
+
+    <!--Error-->
+    <string name="error_empty_field">This field is required</string>
+    <string name="error_invalid_email">Enter a valid email address</string>
+
+    <!--Button-->
     <string name="continue_button">Continue</string>
     <string name="next_button">Next</string>
     <string name="take_test_now_button">Take now</string>
     <string name="take_test_later_button">Take later</string>
+    <string name="restore_password">Restore password</string>
+    <string name="clear_field">Clear field</string>
+    <string name="button_log_in">Log in</string>
+    <string name="forgot_password">Forgot password?</string>
 
-    <string name="beck_title">BECK DEPRESSION INVENTARY</string>
-    <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
+    <!--Label-->
+    <string name="label_activity_complete" translatable="false">ACTIVITY_COMPLETE</string>
+    <string name="extra_activity" translatable="false">ACTIVITY</string>
+
+    <!--Action-->
+    <string name="action_settings">Settings</string>
+    <string name="action_profile_title">Profile</string>
+    <string name="action_action_plan_title">Action Plan</string>
+    <string name="action_contacts_title">Contacts</string>
+    <string name="action_progress_title">Progress</string>
+    <string name="action_log_out_title">Log out</string>
+
+    <!--Title-->
+    <string name="action_plan_title">Action Plan</string>
+    <string name="contacts_title">Contacts</string>
+    <string name="progress_title">Progress</string>
+    <string name="profile_title">Profile</string>
+    <string name="help_title">Help</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+
 
     <array name="beck_test">
         <!--1-->
@@ -148,36 +196,4 @@
         </item>
 
     </array>
-    <string name="downloading_contents">We\'re downloading your contents</string>
-    <string name="action_profile_title">Profile</string>
-    <string name="action_action_plan_title">Action Plan</string>
-    <string name="action_contacts_title">Contacts</string>
-    <string name="action_progress_title">Progress</string>
-    <string name="action_log_out_title">Log out</string>
-    <string name="restore_password">Restore password</string>
-    <string name="email_input_hint">EMAIL</string>
-    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
-    <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
-    <string name="slide_to_begin">Slide to begin</string>
-    <string name="full_name_input_hint">FULL NAME</string>
-    <string name="birth_date_input_hint">BIRTH DATE</string>
-    <string name="gender_input_hint">GENDER</string>
-    <string name="location_input_hint">POSTAL CODE</string>
-    <string name="occupation_input_hint">OCCUPATION</string>
-    <string name="what_is_depression">WHAT IS DEPRESSION?</string>
-    <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
-    <string name="password_input_hint">PASSWORD</string>
-    <string name="clear_field">Clear field</string>
-    <string name="action_plan_title">Action Plan</string>
-    <string name="contacts_title">Contacts</string>
-    <string name="progress_title">Progress</string>
-    <string name="profile_title">Profile</string>
-    <string name="help_title">Help</string>
-    <string name="moderate_depression">MODERATE DEPRESSION</string>
-    <string name="moderate_depression_description"> In the morning the feeling of sadness is higher and fluctuates during the day, but constantly is displeased with himself. Feel it bored most of the time and no longer enjoys doing what he liked before . * A score of 17 or more indicates you may need professional help.</string>
-    <string name="you_are_not_alone">YOU ARE NOT ALONE</string>
-    <string name="you_are_not_alone_description">  Do not be alarmed by the results your test. We together with your support network will help in this stage of your life.</string>
-    <string name="severe_depression">SEVERE DEPRESSION</string>
-    <string name="mild_depression">MILD DEPRESSION</string>
-    <string name="welcome">Welcome!</string>
 </resources>

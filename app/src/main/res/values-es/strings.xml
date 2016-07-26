@@ -110,4 +110,7 @@
     <string name="you_are_not_alone">NOSOTROS ESTAMOS AQUÍ PARA TI</string>
     <string name="you_are_not_alone_description">No te alarmes por los resultados de tu test. Nosotros juntos con tu red de apoyo te ayudaremos en  esta etapa de tu vida.  </string>
     <string name="welcome">¡Bienvenido!</string>
+    <string name="button_log_in">Iniciar sesión</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="hello_again">¡Hola de nuevo!</string>
 </resources>
