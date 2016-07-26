@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
@@ -108,7 +109,15 @@ public class EditProfileActivity extends AppCompatActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mRealmInstance.close();
+        if (!mRealmInstance.isClosed())
+            mRealmInstance.close();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!mRealmInstance.isClosed())
+            mRealmInstance.close();
     }
 
     @OnClick(R.id.tvClear)
@@ -240,8 +249,10 @@ public class EditProfileActivity extends AppCompatActivity{
             case INFO_LOCATION:
                 actionBar.setTitle("Location");
                 tvDescription.setText("");
+                etField.setInputType(InputType.TYPE_CLASS_NUMBER);
                 etField.setTag(INFO_LOCATION);
                 break;
+
             case INFO_OCCUPATION:
                 actionBar.setTitle("Occupation");
                 tvDescription.setText("");

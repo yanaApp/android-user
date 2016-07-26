@@ -91,7 +91,7 @@
     <string name="birth_date_input_hint">FECHA DE NACIMIENTO</string>
     <string name="full_name_input_hint">NOMBRE COMPLETO</string>
     <string name="gender_input_hint">GENERO</string>
-    <string name="location_input_hint">UBICACIÓN</string>
+    <string name="location_input_hint">CODIGO POSTAL</string>
     <string name="occupation_input_hint">OCUPACIÓN</string>
     <string name="slide_to_begin">Desliza para comenzar</string>
     <string name="depression_symptoms">SINTOMAS DE LA DEPRESIÓN</string>

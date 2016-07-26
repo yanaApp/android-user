@@ -162,7 +162,7 @@
     <string name="full_name_input_hint">FULL NAME</string>
     <string name="birth_date_input_hint">BIRTH DATE</string>
     <string name="gender_input_hint">GENDER</string>
-    <string name="location_input_hint">LOCATION</string>
+    <string name="location_input_hint">POSTAL CODE</string>
     <string name="occupation_input_hint">OCCUPATION</string>
     <string name="what_is_depression">WHAT IS DEPRESSION?</string>
     <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
