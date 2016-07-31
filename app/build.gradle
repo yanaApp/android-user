@@ -1,6 +1,20 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+        classpath "io.realm:realm-gradle-plugin:1.0.0"
+    }
+}
 
 android {
     compileSdkVersion 23
@@ -26,6 +40,26 @@ repositories {
     maven(){
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
+}
+retrolambda {
+    jdk getJavaVersion(8)
+    oldJdk getJavaVersion(8)
+    javaVersion JavaVersion.VERSION_1_7
+    defaultMethods false
+    incremental true
+}
+
+String getJavaVersion(Integer v) {
+    def sout = new StringBuffer()
+    def proc = "/usr/libexec/java_home -v 1.$v".execute()
+    proc.consumeProcessOutput(sout, new StringBuffer())
+    proc.waitForOrKill(1000)
+    return sout.toString().replace("\n", "").replace("\r", "")
+}
+
+ext {
+    daggerVersion = '2.2'
+    retrofitVersion = '2.0.2'
 }
 
 dependencies {
@@ -71,14 +105,12 @@ dependencies {
     // messaging
     compile 'com.google.firebase:firebase-messaging:9.2.1'
 
+    //  Injection
+    compile 'javax.annotation:jsr250-api:1.0'
+    compile "com.google.dagger:dagger:$daggerVersion"
+    apt "com.google.dagger:dagger-compiler:$daggerVersion"
+//  Rx
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
 
-}
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath "io.realm:realm-gradle-plugin:1.0.0"
-    }
 }
