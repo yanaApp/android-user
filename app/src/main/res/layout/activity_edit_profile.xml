@@ -16,11 +16,12 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            app:theme="@style/AppTheme.WhiteToolbar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/AppTheme.WhiteToolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
