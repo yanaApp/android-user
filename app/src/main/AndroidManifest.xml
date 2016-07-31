@@ -13,15 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".old.ui.activity.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".old.ui.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ui.activity.SplashScreenActivity"
+            android:name=".old.ui.activity.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,41 +31,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.TutorialActivity"
+            android:name=".old.ui.activity.TutorialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.RegisterActivity"
+            android:name=".old.ui.activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.EmptyActivity"
+            android:name=".old.ui.activity.EmptyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".ui.activity.LoadingActivity"
+            android:name=".old.ui.activity.LoadingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".ui.activity.EditProfileActivity">
+        <activity android:name=".old.ui.activity.EditProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.activity.MainActivity" />
+                android:value=".old.ui.activity.MainActivity" />
         </activity>
 
-        <activity android:name=".ui.activity.EvaluationActivity"/>
+        <activity android:name=".old.ui.activity.EvaluationActivity"/>
 
 
-        <service android:name=".service.YanaFirebaseMessagingService">
+        <service android:name=".presentation.services.YanaFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service android:name=".service.YanaFirebaseInstanceIdService">
+        <service android:name=".presentation.services.YanaFirebaseInstanceIdService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>

@@ -7,7 +7,7 @@
     android:padding="32dp"
     android:visibility="gone">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

@@ -6,9 +6,9 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="32dp"
-    tools:context="com.icaboalo.yana.ui.activity.RegisterActivity">
+    tools:context=".old.ui.activity.RegisterActivity">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
@@ -53,7 +53,7 @@
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -70,7 +70,7 @@
         android:layout_marginTop="24dp"
         android:text="Create" />
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

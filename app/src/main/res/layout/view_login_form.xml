@@ -10,7 +10,7 @@
     android:paddingRight="32dp"
     android:paddingTop="32dp">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:text="user123" />
     </android.support.design.widget.TextInputLayout>
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

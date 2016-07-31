@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.icaboalo.yana.ui.activity.EditProfileActivity">
+    tools:context=".old.ui.activity.EditProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abContainer"
@@ -30,7 +30,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/tvDescription"
             android:textAlignment="center"
             android:text="De esta manera aparecerás en Snapchat, asi que elige un nombre con el que te conozcan tus amigos."
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/tvClear"
             android:layout_marginTop="16dp"
             android:textColor="@color/colorAccent"

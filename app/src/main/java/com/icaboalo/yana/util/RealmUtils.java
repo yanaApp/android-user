@@ -4,12 +4,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.icaboalo.yana.io.model.UserApiModel;
-import com.icaboalo.yana.realm.ActionPlanModel;
-import com.icaboalo.yana.realm.ActivityModel;
-import com.icaboalo.yana.realm.ContactModel;
-import com.icaboalo.yana.realm.DayModel;
-import com.icaboalo.yana.realm.UserModel;
+import com.icaboalo.yana.old.io.model.UserApiModel;
+import com.icaboalo.yana.old.realm.ActionPlanModel;
+import com.icaboalo.yana.old.realm.ActivityModel;
+import com.icaboalo.yana.old.realm.ContactModel;
+import com.icaboalo.yana.old.realm.DayModel;
+import com.icaboalo.yana.old.realm.UserModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

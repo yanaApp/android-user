@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="2"
-    tools:context=".ui.fragment.EvaluationFragment">
+    tools:context=".old.ui.fragment.EvaluationFragment">
 
 
     <LinearLayout
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:indeterminate="false" />
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/question_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -57,7 +57,7 @@
                 android:layout_weight="3"
                 android:gravity="center">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/option_1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -73,7 +73,7 @@
                 android:layout_weight="4.5"
                 android:gravity="center">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/option_2"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
@@ -89,7 +89,7 @@
                 android:layout_weight="6"
                 android:gravity="center">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/option_3"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
@@ -105,7 +105,7 @@
                 android:layout_weight="6"
                 android:gravity="center">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/option_4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
