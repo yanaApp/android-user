@@ -25,7 +25,7 @@ public interface Repository {
     Observable<?> postListDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                       boolean persist);
 
-    Observable<?> deleteObjectDynamically(String url, int id, Class domainClass, Class dataClass, boolean persist);
+    Observable<?> deleteObjectDynamically(String url, Class domainClass, Class dataClass, boolean persist);
 
     Observable<?> putObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                        boolean persist);
