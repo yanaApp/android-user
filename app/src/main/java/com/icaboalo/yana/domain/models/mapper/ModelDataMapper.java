@@ -15,6 +15,12 @@ public class ModelDataMapper {
         this.gson = gson;
     }
 
+    /**
+     * Transform an Object into another Object.
+     *
+     * @param object Object to be transformed.
+     * @return Object if valid, otherwise null.
+     */
     public Object transformToPresentation(Object object, Class presentationClass){
         if (object != null)
             if (!(object instanceof Boolean))
@@ -22,6 +28,12 @@ public class ModelDataMapper {
         return object;
     }
 
+    /**
+     * Transform a List into a List
+     *
+     * @param list Objects to be transformed.
+     * @return {@link List} if valid {@link List} otherwise null.
+     */
     public List<Object> transformAllToPresentation(List<Object> list, Class presentationClass){
         List<Object> transformedList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
