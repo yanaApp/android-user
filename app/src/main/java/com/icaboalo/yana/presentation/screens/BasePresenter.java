@@ -6,4 +6,5 @@ package com.icaboalo.yana.presentation.screens;
 public abstract class BasePresenter {
 
 
+
 }
