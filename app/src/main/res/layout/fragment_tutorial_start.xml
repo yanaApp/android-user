@@ -14,8 +14,9 @@
         android:layout_height="84dp" />
 
     <LinearLayout
+        android:paddingLeft="20dp"
         android:layout_marginBottom="16dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:textColor="@color/primary_text"
@@ -23,10 +24,13 @@
             android:textSize="36sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+
+        <com.icaboalo.yana.ui.widget.TypewriterView
             android:textColor="@color/primary_text"
-            android:id="@+id/description"
-            android:text="sonreir."
+            android:windowSoftInputMode="stateHidden"
+            android:clickable="false"
+            android:background="@android:color/transparent"
+            android:id="@+id/typeView"
             android:textSize="40sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
