@@ -27,18 +27,19 @@
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:layout_margin="16dp"
-        android:id="@+id/skip_tutorial"
+        android:id="@+id/tvSkipTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:text="Omitir" />
+        android:layout_alignParentEnd="true"
+        android:text="@string/skip" />
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/login_button"
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        android:text="Ya tienes una cuenta? Inicia sesión"
+        android:text="@string/already_have_an_account"
         android:gravity="center"
         android:background="#d3d3d3"
         android:layout_width="match_parent"

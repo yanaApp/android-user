@@ -26,6 +26,8 @@ public class TutorialActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @Bind(R.id.view_pager_indicator)
     InkPageIndicator mViewPagerIndicator;
+    @Bind(R.id.tvSkipTutorial)
+    TextView tvSkipTutorial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class TutorialActivity extends AppCompatActivity {
         final TextView loginButton = (TextView) findViewById(R.id.login_button);
 
 
-        findViewById(R.id.skip_tutorial).setOnClickListener(new View.OnClickListener() {
+        tvSkipTutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mViewPager.setCurrentItem(4);
@@ -67,7 +69,9 @@ public class TutorialActivity extends AppCompatActivity {
                 if (position == 4){
                     loginButton.setVisibility(View.VISIBLE);
                     loginButton.animate().translationY(0).setDuration(800);
+                    tvSkipTutorial.setVisibility(View.GONE);
                 } else{
+                    tvSkipTutorial.setVisibility(View.VISIBLE);
                     loginButton.animate().translationY(loginButton.getHeight()).setDuration(100);
                 }
             }
