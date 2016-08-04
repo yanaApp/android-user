@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="2"
-    tools:context=".ui.fragment.EvaluationFragment">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:weightSum="2"
+              tools:context=".ui.fragment.EvaluationFragment">
 
 
     <LinearLayout
@@ -21,7 +21,7 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="false" />
+            android:indeterminate="false"/>
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/question_text"
@@ -30,7 +30,8 @@
             android:layout_marginTop="15dp"
             android:gravity="center_vertical"
             android:text="1. Las cosas no me satisfacen tanto."
-            android:textSize="18sp" />
+            android:textColor="@color/primary_text"
+            android:textSize="18sp"/>
 
 
     </LinearLayout>
@@ -64,7 +65,8 @@
                     android:background="@drawable/circle_white"
                     android:gravity="center"
                     android:text="1"
-                    android:textSize="12sp" />
+                    android:textColor="@color/primary_text"
+                    android:textSize="12sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -80,7 +82,8 @@
                     android:background="@drawable/circle_white"
                     android:gravity="center"
                     android:text="2"
-                    android:textSize="16sp" />
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -96,7 +99,8 @@
                     android:background="@drawable/circle_white"
                     android:gravity="center"
                     android:text="3"
-                    android:textSize="22sp" />
+                    android:textColor="@color/primary_text"
+                    android:textSize="22sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +116,8 @@
                     android:background="@drawable/circle_white"
                     android:gravity="center"
                     android:text="4"
-                    android:textSize="30sp" />
+                    android:textColor="@color/primary_text"
+                    android:textSize="30sp"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -123,7 +128,7 @@
             android:layout_height="48dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/ic_arrow_forward_white_48dp" />
+            android:background="@drawable/ic_arrow_forward_white_48dp"/>
 
     </RelativeLayout>
 

@@ -11,13 +11,13 @@
         android:layout_height="wrap_content">
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:textColor="#801d1d26"
+            android:textColor="@color/secondary_text"
             android:text="@string/what_is_depression"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:textColor="#1d1d26"
+            android:textColor="@color/primary_text"
             android:layout_marginTop="10dp"
             android:text="@string/cupcake_ipsum"
             android:layout_width="match_parent"
@@ -30,14 +30,14 @@
             android:layout_height="1dp"/>
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:textColor="#801d1d26"
+            android:textColor="@color/secondary_text"
             android:text="@string/depression_symptoms"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:textColor="#1d1d26"
+            android:textColor="@color/primary_text"
             android:layout_marginTop="10dp"
             android:text="@string/cupcake_ipsum"
             android:layout_width="match_parent"

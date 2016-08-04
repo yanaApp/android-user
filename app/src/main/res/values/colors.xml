@@ -9,5 +9,8 @@
     <color name="orange">#ecd67f</color>
     <color name="pink">#e2b0dc</color>
 
+    <color name="primary_text">#1d1d26</color>
+    <color name="secondary_text">#bfbfc0</color>
+
     <!--#FFC107-->
 </resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp"
-    android:animateLayoutChanges="true"
-    android:background="#fff"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:animateLayoutChanges="true"
+                android:background="#fff"
+                android:orientation="vertical">
 
     <View
         android:id="@+id/activity_color"
@@ -13,7 +13,7 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#FFC107" />
+        android:background="#FFC107"/>
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/activity_title"
@@ -25,7 +25,8 @@
         android:paddingStart="48dp"
         android:singleLine="true"
         android:text="Title"
-        android:textSize="20sp" />
+        android:textColor="@color/primary_text"
+        android:textSize="20sp"/>
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/image_description"
@@ -39,8 +40,8 @@
         android:drawableStart="@drawable/down_arrow_24dp"
         android:gravity="center"
         android:text="Ver más"
-        android:textColor="#801d1d26"
-        android:textSize="16sp" />
+        android:textColor="@color/secondary_text"
+        android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/image_emotion"
@@ -52,7 +53,7 @@
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
         android:background="@drawable/circle_gray"
-        android:clickable="false" />
+        android:clickable="false"/>
 
 
     <RelativeLayout
@@ -85,7 +86,8 @@
             android:layout_marginStart="48dp"
             android:paddingBottom="16dp"
             android:paddingTop="16dp"
-            android:text="Description..." />
+            android:text="Description..."
+            android:textColor="@color/primary_text"/>
         <!--android:layout_toEndOf="@id/icon_description"-->
         <!--android:layout_toRightOf="@id/icon_description"-->
 
@@ -113,7 +115,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="10dp"
             android:background="#FFC107"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
 
         <ImageView
             android:id="@+id/cancel"
@@ -128,7 +130,7 @@
             android:layout_toLeftOf="@+id/emotion_icon_divider"
             android:layout_toStartOf="@+id/emotion_icon_divider"
             android:scaleType="centerInside"
-            android:src="@drawable/cancel_outlined_circular_28" />
+            android:src="@drawable/cancel_outlined_circular_28"/>
 
         <View
             android:id="@+id/emotion_icon_divider"
@@ -140,7 +142,7 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/very_sad"
             android:layout_toStartOf="@+id/very_sad"
-            android:background="#000000" />
+            android:background="#000000"/>
 
         <ImageView
             android:id="@+id/very_sad"
@@ -155,7 +157,7 @@
             android:layout_toLeftOf="@+id/sad"
             android:layout_toStartOf="@+id/sad"
             android:scaleType="centerInside"
-            android:src="@drawable/very_sad_28" />
+            android:src="@drawable/very_sad_28"/>
 
         <ImageView
             android:id="@+id/sad"
@@ -170,7 +172,7 @@
             android:layout_toLeftOf="@+id/normal"
             android:layout_toStartOf="@+id/normal"
             android:scaleType="centerInside"
-            android:src="@drawable/sad_28" />
+            android:src="@drawable/sad_28"/>
 
         <ImageView
             android:id="@+id/normal"
@@ -185,7 +187,7 @@
             android:layout_toLeftOf="@+id/happy"
             android:layout_toStartOf="@+id/happy"
             android:scaleType="centerInside"
-            android:src="@drawable/normal_28" />
+            android:src="@drawable/normal_28"/>
 
         <ImageView
             android:id="@+id/happy"
@@ -200,7 +202,7 @@
             android:layout_toLeftOf="@+id/very_happy"
             android:layout_toStartOf="@+id/very_happy"
             android:scaleType="centerInside"
-            android:src="@drawable/happy_28" />
+            android:src="@drawable/happy_28"/>
 
         <ImageView
             android:id="@+id/very_happy"
@@ -213,7 +215,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:scaleType="centerInside"
-            android:src="@drawable/very_happy_28" />
+            android:src="@drawable/very_happy_28"/>
     </RelativeLayout>
 
 

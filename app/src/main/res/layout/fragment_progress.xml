@@ -30,6 +30,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -38,6 +39,7 @@
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:id="@+id/tvCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +65,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -71,6 +74,7 @@
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:id="@+id/tvIncomplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +101,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

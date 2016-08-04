@@ -14,6 +14,7 @@
         android:layout_height="48dp" />
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
+        android:textColor="@color/primary_text"
         android:id="@+id/contact_name"
         android:layout_marginLeft="32dp"
         android:textSize="20sp"

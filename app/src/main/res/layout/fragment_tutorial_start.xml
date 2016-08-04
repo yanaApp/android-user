@@ -9,20 +9,22 @@
     <ImageView
         android:id="@+id/tutorial_image"
         android:layout_marginBottom="48dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="64dp"
-        android:layout_height="64dp" />
+        android:src="@mipmap/logo"
+        android:layout_width="84dp"
+        android:layout_height="84dp" />
 
     <LinearLayout
         android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <com.icaboalo.yana.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
             android:text="Vuelve a "
             android:textSize="36sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <com.icaboalo.yana.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
             android:id="@+id/description"
             android:text="sonreir."
             android:textSize="40sp"
@@ -35,10 +37,12 @@
         android:layout_marginBottom="64dp"
         android:text="No estas sólo"
         android:textSize="24sp"
+        android:textColor="@color/secondary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
+        android:textColor="@color/colorAccent"
         android:text="YANA"
         android:textSize="48sp"
         android:layout_width="wrap_content"

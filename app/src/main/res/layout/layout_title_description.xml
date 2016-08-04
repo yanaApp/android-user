@@ -8,6 +8,7 @@
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/title"
         android:textAlignment="center"
+        android:textColor="@color/primary_text"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/description"
         android:layout_marginBottom="16dp"
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content" />
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
+        android:textColor="@color/secondary_text"
         android:id="@+id/description"
         android:textSize="16sp"
         android:paddingLeft="16dp"
