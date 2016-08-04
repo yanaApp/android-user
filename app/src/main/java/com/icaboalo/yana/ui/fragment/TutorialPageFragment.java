@@ -94,7 +94,7 @@ public class TutorialPageFragment extends Fragment {
                 break;
             case 1:
                 Picasso.with(getActivity()).load(R.drawable.chat_128).into(mTutorialImage);
-                mTitle.setText("Recibe apoyo");
+                mTitle.setText("RECIBE APOYO");
                 mDescription.setText("Apoyate de una red de contactos que te respalde en esta etapa de tu vida.");
                 break;
             case 2:
