@@ -61,11 +61,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     mPasswordInput.setError(getString(error_empty_field));
                 } else {
                     UserApiModel user = new UserApiModel();
-                    user.setPassword(mPasswordInput.getText().toString());
+                    user.setFullName(mFullNameInput.getText().toString());
                     user.setEmail(mEmailInput.getText().toString());
+                    user.setPassword(mPasswordInput.getText().toString());
                     SharedPreferences sharedPref = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE);
                     user.setCategory(sharedPref.getInt(PrefConstants.evaluationPref, 0));
-                    user.setPhoneNumber("5539777292");
                     userRegisterAPI(user);
                 }
                 break;

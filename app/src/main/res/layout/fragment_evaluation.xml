@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".7"
-        android:background="@color/colorAccent"
+        android:background="@color/yana_green"
         android:paddingBottom="16dp"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"

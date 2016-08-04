@@ -50,7 +50,7 @@
         <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:id="@+id/tvClear"
             android:layout_marginTop="16dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/yana_green"
             android:layout_gravity="center"
             android:text="@string/clear_field"
             android:layout_width="wrap_content"

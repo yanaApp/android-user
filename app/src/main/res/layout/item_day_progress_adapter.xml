@@ -35,7 +35,7 @@
         <View
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:background="@color/colorAccent" />
+            android:background="@color/yana_green" />
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:textColor="@color/secondary_text"
@@ -52,7 +52,7 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/pink" />
+            android:background="@color/yana_pink" />
 
         <com.icaboalo.yana.ui.widget.CustomFontTextView
             android:textColor="@color/secondary_text"
@@ -68,7 +68,7 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/orange" />
+            android:background="@color/yana_orange" />
 
         <ImageView
             android:id="@+id/ivEmotionAverage"

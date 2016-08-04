@@ -79,7 +79,8 @@ public class TutorialPageFragment extends Fragment {
         final int position = getArguments().getInt("POSITION");
         switch (position){
             case 0:
-                final String words[] = {"jugar.", "divertirte.", "sonreir."};
+                final String words[] = {"j", "ju", "jug", "juga", "jugar", "jugar.", "jugar", "juga", "jug", "ju", "j", "", "d", "di",
+                        "jugar.", "divertirte.", "sonreir."};
                 if (!isCreated){
                     final Runnable changeText = new Runnable() {
                         @Override

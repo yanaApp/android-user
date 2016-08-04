@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:animationDuration="320"
-        app:currentPageIndicatorColor="@color/colorAccent"
+        app:currentPageIndicatorColor="@color/yana_green"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
         app:pageIndicatorColor="#d3d3d3d3" />

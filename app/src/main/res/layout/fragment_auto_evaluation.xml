@@ -20,7 +20,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorAccent"/>
+        android:background="@color/yana_green"/>
 
 
     <LinearLayout
@@ -96,7 +96,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorAccent"/>
+        android:background="@color/yana_green"/>
 
 
     <FrameLayout

@@ -42,7 +42,7 @@
         android:layout_height="wrap_content" />
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/yana_green"
         android:text="Yana"
         android:textSize="48sp"
         android:layout_width="wrap_content"

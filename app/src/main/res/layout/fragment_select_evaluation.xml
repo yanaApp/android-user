@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
+        android:background="@color/opaque_yana_green"
         android:text="Realizar más tarde"/>
 
 </RelativeLayout>
