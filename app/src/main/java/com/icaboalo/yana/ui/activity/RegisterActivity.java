@@ -1,5 +1,6 @@
 package com.icaboalo.yana.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TextInputEditText;
@@ -29,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     TextInputEditText mFullNameInput, mEmailInput, mPasswordInput;
     Button mRegisterButton;
     TextView mLoginButton;
+
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 } else if (mPasswordInput.getText().toString().isEmpty() || mPasswordInput.getText().toString().length() < 2){
                     mPasswordInput.setError(getString(error_empty_field));
                 } else {
+                    progressDialog = new ProgressDialog(RegisterActivity.this);
+                    progressDialog.setMessage("Te estamos registrando");
+                    progressDialog.show();
                     UserApiModel user = new UserApiModel();
                     user.setFullName(mFullNameInput.getText().toString());
                     user.setEmail(mEmailInput.getText().toString());
@@ -83,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         call.enqueue(new Callback<UserApiModel>() {
             @Override
             public void onResponse(Call<UserApiModel> call, Response<UserApiModel> response) {
+                progressDialog.hide();
                 if (response.isSuccessful()){
                     Log.d("RETROFIT_SUCCESS", "success");
                     Intent goToLoading = new Intent(RegisterActivity.this, MainActivity.class);
@@ -99,6 +106,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public void onFailure(Call<UserApiModel> call, Throwable t) {
+                progressDialog.hide();
                 Log.d("RETROFIT_FAILURE", t.toString());
             }
         });
