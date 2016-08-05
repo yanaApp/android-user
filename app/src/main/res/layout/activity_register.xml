@@ -60,11 +60,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Al registrarte confirmas que has leido y aceptado terminos del servicio y la politica de privacidad"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
         android:textAllCaps="true"
         android:textSize="10sp" />
 
