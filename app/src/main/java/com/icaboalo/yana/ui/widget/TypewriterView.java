@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Handler;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +12,7 @@ import java.util.Queue;
 /**
  * @author icaboalo on 04/08/16.
  */
-public class TypewriterView extends EditText {
+public class TypewriterView extends CustomFontEditText {
 
     private boolean isRunning = false;
     private long mTypeSpeed = 80;

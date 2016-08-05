@@ -3,34 +3,33 @@ package com.icaboalo.yana.ui.widget;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.EditText;
 
 /**
- * Created by icaboalo on 16/07/16.
+ * @author icaboalo on 05/08/16.
  */
-public class CustomFontTextView extends TextView {
+public class CustomFontEditText extends EditText {
 
     final static String DOSIS_FONT = "fonts/Dosis-Regular.ttf";
     final static String AVENIR_FONT = "fonts/AvenirLTStd-Book.otf";
     final static String AVENIR_LIGHT_FONT = "fonts/AvenirLTStd-Light.otf";
 
-    public CustomFontTextView(Context context) {
+    public CustomFontEditText(Context context) {
         super(context);
-        if (! isInEditMode())
-            init(context);
     }
 
-    public CustomFontTextView(Context context, AttributeSet attrs) {
+    public CustomFontEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if (! isInEditMode())
+        if (!isInEditMode())
             init(context);
     }
 
-    public CustomFontTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomFontEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         if (!isInEditMode())
             init(context);
     }
+
 
     private void init(Context context) {
         this.setTypeface(getBlackTypeFace(context));
@@ -39,10 +38,4 @@ public class CustomFontTextView extends TextView {
     private Typeface getBlackTypeFace(Context context) {
         return Typeface.createFromAsset(context.getAssets(), AVENIR_LIGHT_FONT);
     }
-
-//    @Override
-//    public void setText(CharSequence text, BufferType type) {
-//        super.setText(text, type);
-//        this.setText(text);
-//    }
 }
