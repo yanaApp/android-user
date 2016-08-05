@@ -81,13 +81,7 @@ public class TutorialPageFragment extends Fragment {
         final int position = getArguments().getInt("POSITION");
         switch (position){
             case 0:
-//                final String words[] = {"j", "ju", "jug", "juga", "jugar", "jugar.", "jugar", "juga", "jug", "ju", "j", "", "d",
-//                        "di", "div", "dive", "diver", "divert", "diverti", "divertir", "divertirt", "divertirte",
-//                        "divertirte.", "divertirte", "divertirt", "divertir", "diverti", "divertirt", "divertir", "diverti",
-//                        "divert", "diver", "dive", "div", "di", "d", "", "s", "so", "son", "sonr", "sonre", "sonrei", "sonreir",
-//                        "sonreir.", "sonrei", "sonre", "sonre", "sonr", "son", "so", "s", ""};
                 typeView = (TypewriterView) getView().findViewById(R.id.typeView);
-
                 typeView.type("jugar.")
                         .pause(500)
                         .delete("jugar.")
@@ -101,8 +95,6 @@ public class TutorialPageFragment extends Fragment {
                         .delete("sonreir.")
                         .pause(200)
                         .type("vivir...");
-
-
                 break;
             case 1:
                 Picasso.with(getActivity()).load(R.drawable.chat_128).into(mTutorialImage);
