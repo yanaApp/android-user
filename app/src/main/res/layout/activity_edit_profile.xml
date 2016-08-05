@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <com.icaboalo.yana.ui.widget.CustomFontEditText
             android:singleLine="true"
             android:inputType="textPersonName"
             android:id="@+id/etField"

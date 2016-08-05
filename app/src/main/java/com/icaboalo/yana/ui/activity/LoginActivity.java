@@ -42,9 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.rlForgotPassword)
     RelativeLayout rlForgotPassword;
     @Bind(R.id.username_input)
-    TextInputEditText etUsername;
+    EditText etUsername;
     @Bind(R.id.password_input)
-    TextInputEditText etPassword;
+    EditText etPassword;
     @Bind(R.id.etEmail)
     EditText etEmail;
 
