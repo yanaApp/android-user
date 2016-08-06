@@ -70,7 +70,7 @@
     <string name="skip">Skip</string>
     <string name="already_have_an_account">Already have an account? Log in</string>
     <string name="button_register">Register</string>
-
+    <string name="first_name_input_hint">First name</string>
 
     <array name="beck_test">
         <!--1-->
@@ -197,5 +197,15 @@
             perdido totalmente mi interés por el sexo.
         </item>
 
+    </array>
+
+    <array name="relations">
+        <item>What\'s your relationship?</item>
+        <item>Dad</item>
+        <item>Mom</item>
+        <item>Sibling</item>
+        <item>Partner</item>
+        <item>Friend</item>
+        <item>Other</item>
     </array>
 </resources>
