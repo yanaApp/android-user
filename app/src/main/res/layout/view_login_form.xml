@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:paddingBottom="32dp"
-    android:paddingLeft="32dp"
-    android:id="@+id/llLoginForm"
-    android:paddingRight="32dp"
-    android:paddingTop="32dp">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="bottom"
+              android:orientation="vertical"
+              android:paddingBottom="32dp"
+              android:paddingLeft="32dp"
+              android:id="@+id/llLoginForm"
+              android:paddingRight="32dp"
+              android:paddingTop="32dp">
+
 
     <com.icaboalo.yana.ui.widget.CustomFontTextView
         android:id="@+id/title_text"

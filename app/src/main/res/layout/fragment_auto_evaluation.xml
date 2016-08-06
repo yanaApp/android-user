@@ -40,7 +40,7 @@
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. "
             android:textAlignment="center"
-            android:textColor="@color/Black"/>
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
@@ -65,7 +65,7 @@
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi.."
             android:textAlignment="center"
-            android:textColor="@color/Black"/>
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
@@ -90,7 +90,7 @@
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi."
             android:textAlignment="center"
-            android:textColor="@color/Black"/>
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
