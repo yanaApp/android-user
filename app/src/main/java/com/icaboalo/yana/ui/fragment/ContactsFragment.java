@@ -2,6 +2,7 @@ package com.icaboalo.yana.ui.fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -45,7 +46,7 @@ import retrofit2.Response;
 /**
  * Created by icaboalo on 05/06/16.
  */
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends Fragment implements AddContactDialog.OnDialogClickListener{
 
     RecyclerView mContactRecycler;
     private Realm mRealmInstance;
@@ -142,16 +143,7 @@ public class ContactsFragment extends Fragment {
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
                         if (hasPhone.equals("1")){
-//                            ContactModel contact = new ContactModel();
-
-//                            contact.setName(name);
-//                            contact.setPhoneNumber(cNumber);
-
                             showDialog(name, phoneList);
-
-//                            Toast.makeText(getActivity(), contact.getName() + " " + contact.getPhoneNumber(), Toast.LENGTH_SHORT).show();
-//                            Log.d("CONTACT", contact.getName() + " " + contact.getPhoneNumber());
-//                            saveContactAPI(PrefUtils.getToken(getActivity()), contact);
                         }
                     }
                     c.close();
@@ -177,6 +169,21 @@ public class ContactsFragment extends Fragment {
             case 0:
                 return;
         }
+    }
+
+    @Override
+    public void onPositiveClick(DialogInterface dialogInterface, String contactName, String phoneNumber, String relation, boolean liveTogether) {
+        ContactModel nContactModel = new ContactModel();
+        nContactModel.setName(contactName);
+        nContactModel.setPhoneNumber(phoneNumber);
+        nContactModel.setRelation(relation);
+        nContactModel.setLiveTogether(liveTogether);
+        saveContactAPI(PrefUtils.getToken(getActivity()), new ContactModel());
+    }
+
+    @Override
+    public void onNegativeClick(DialogInterface dialogInterface) {
+
     }
 
     void setupContactRecycler(final ArrayList<ContactModel> contactList){
@@ -229,6 +236,7 @@ public class ContactsFragment extends Fragment {
                     realm.copyToRealmOrUpdate(response.body());
                     realm.commitTransaction();
                     setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
+                    realm.close();
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());

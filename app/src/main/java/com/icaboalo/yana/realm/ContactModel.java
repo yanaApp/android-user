@@ -19,6 +19,10 @@ public class ContactModel extends RealmObject {
 
     private boolean isValidated = false;
 
+    private String relation;
+
+    private boolean liveTogether;
+
     private UserModel user;
 
     public int getId() {
@@ -51,6 +55,22 @@ public class ContactModel extends RealmObject {
 
     public void setValidated(boolean validated) {
         isValidated = validated;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public boolean isLiveTogether() {
+        return liveTogether;
+    }
+
+    public void setLiveTogether(boolean liveTogether) {
+        this.liveTogether = liveTogether;
     }
 
     public UserModel getUser() {

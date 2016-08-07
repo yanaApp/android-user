@@ -33,6 +33,13 @@ public class AddContactDialog extends DialogFragment {
     Spinner spPhoneNumber;
     @Bind(R.id.spRelation)
     Spinner spRelation;
+    OnDialogClickListener mDialogClickListener;
+
+    public interface OnDialogClickListener{
+        void onPositiveClick(DialogInterface dialogInterface, String contactName, String phoneNumber, String relation,
+                             boolean liveTogether);
+        void onNegativeClick(DialogInterface dialogInterface);
+    }
 
     public static final String CONTACT_NAME = "Contact name", PHONE_NUMBERS = "Phone numbers";
 
@@ -58,13 +65,14 @@ public class AddContactDialog extends DialogFragment {
         alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(), (String)spPhoneNumber.getSelectedItem(),
+                        (String)spRelation.getSelectedItem(), cbLiveTogether.isChecked());
             }
         });
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                mDialogClickListener.onNegativeClick(dialog);
             }
         });
         return alertDialog.create();
