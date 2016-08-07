@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 
@@ -65,8 +66,12 @@ public class AddContactDialog extends DialogFragment {
         alertDialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(), (String)spPhoneNumber.getSelectedItem(),
-                        (String)spRelation.getSelectedItem(), cbLiveTogether.isChecked());
+                if (etFirstName.getText().toString().isEmpty() || spPhoneNumber.getSelectedItemPosition() == 0 ||
+                        spRelation.getSelectedItemPosition() == 0)
+                    Toast.makeText(getActivity(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+                else
+                    mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(),
+                            (String)spPhoneNumber.getSelectedItem(), (String)spRelation.getSelectedItem(), cbLiveTogether.isChecked());
             }
         });
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
