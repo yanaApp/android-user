@@ -1,4 +1,4 @@
-package com.icaboalo.yana.domain;
+package com.icaboalo.yana.old.domain;
 
 import android.support.v4.app.Fragment;
 

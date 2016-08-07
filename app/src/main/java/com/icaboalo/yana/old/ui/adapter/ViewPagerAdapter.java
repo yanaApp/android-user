@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.icaboalo.yana.domain.FragmentPagerModel;
+import com.icaboalo.yana.old.domain.FragmentPagerModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.domain.FragmentPagerModel;
+import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.AutoEvaluationFragment;
 import com.icaboalo.yana.old.ui.fragment.EvaluationFragment;

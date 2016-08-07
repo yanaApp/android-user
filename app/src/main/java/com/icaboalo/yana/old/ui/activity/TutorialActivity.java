@@ -10,7 +10,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.domain.FragmentPagerModel;
+import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.TutorialPageFragment;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
