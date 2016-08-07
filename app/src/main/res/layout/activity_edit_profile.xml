@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <EditText
+        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
             android:singleLine="true"
             android:inputType="textPersonName"
             android:id="@+id/etField"
@@ -50,7 +50,7 @@
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/tvClear"
             android:layout_marginTop="16dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/yana_green"
             android:layout_gravity="center"
             android:text="@string/clear_field"
             android:layout_width="wrap_content"

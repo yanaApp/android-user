@@ -30,6 +30,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -38,6 +39,7 @@
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:id="@+id/tvCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +52,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/colorAccent" />
+                android:background="@color/yana_green" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,6 +65,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -71,6 +74,7 @@
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:id="@+id/tvIncomplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,7 +87,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_horizontal|bottom"
-                android:background="@color/pink" />
+                android:background="@color/yana_pink" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,6 +101,7 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -118,7 +123,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_gravity="center_horizontal|bottom"
-                android:background="@color/orange" />
+                android:background="@color/yana_orange" />
         </LinearLayout>
 
         <ProgressBar

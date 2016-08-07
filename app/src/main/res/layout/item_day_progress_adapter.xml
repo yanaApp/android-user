@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:textColor="@color/primary_text"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="Día 1  |  7 de Junio 2016"
@@ -34,9 +35,10 @@
         <View
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:background="@color/colorAccent" />
+            android:background="@color/yana_green" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/secondary_text"
             android:id="@+id/completed_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,9 +52,10 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/pink" />
+            android:background="@color/yana_pink" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/secondary_text"
             android:id="@+id/incomplete_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +68,7 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/orange" />
+            android:background="@color/yana_orange" />
 
         <ImageView
             android:id="@+id/ivEmotionAverage"

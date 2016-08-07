@@ -4,10 +4,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.TextInputEditText;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -36,9 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.rlForgotPassword)
     RelativeLayout rlForgotPassword;
     @Bind(R.id.username_input)
-    TextInputEditText etUsername;
+    EditText etUsername;
     @Bind(R.id.password_input)
-    TextInputEditText etPassword;
+    EditText etPassword;
     @Bind(R.id.etEmail)
     EditText etEmail;
 

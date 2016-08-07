@@ -33,7 +33,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/full_name_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
@@ -78,7 +78,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/email_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
@@ -123,7 +123,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/password_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -158,7 +158,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/birth_date_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
@@ -204,7 +204,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/gender_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
@@ -249,7 +249,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/location_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
@@ -295,7 +295,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/occupation_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView

@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -28,9 +27,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.icaboalo.yana.R;
+
 import com.icaboalo.yana.old.io.ApiClient;
+import com.icaboalo.yana.old.io.model.ContactApiModel;
 import com.icaboalo.yana.old.realm.ContactModel;
 import com.icaboalo.yana.old.ui.adapter.ContactRecyclerAdapter;
+import com.icaboalo.yana.old.ui.fragment.dialog.AddContactDialog;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 
@@ -45,7 +47,7 @@ import retrofit2.Response;
 /**
  * Created by icaboalo on 05/06/16.
  */
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends Fragment implements AddContactDialog.OnDialogClickListener{
 
     RecyclerView mContactRecycler;
     private Realm mRealmInstance;
@@ -72,20 +74,6 @@ public class ContactsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mRealmInstance = Realm.getDefaultInstance();
         setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
-        if (PrefUtils.isContactsFirstTime(getActivity())){
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-            alertDialog.setTitle("");
-            alertDialog.setMessage("Durante tu plan de acción podrás apoyarte de una red de contactos que trabajarán contigo durante tu proceso. Ellos tendrán un seguimiento de tu progreso y te apoyaran para salir adelante. Deberás elegir a aquellas personas en las que más confíes.");
-            alertDialog.setPositiveButton("VAMOS", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-//                    PrefUtils.setContactsFirstTime(getActivity(), false);
-                    dialog.dismiss();
-                }
-            });
-            alertDialog.setCancelable(false);
-            alertDialog.show();
-        }
     }
 
     @Override
@@ -116,20 +104,39 @@ public class ContactsFragment extends Fragment {
         switch (requestCode){
             case 1:
                 if (resultCode == Activity.RESULT_OK){
-                    Uri contatsData = data.getData();
-                    Cursor c = getActivity().getContentResolver().query(contatsData, null, null, null, null);
+                    Uri contactsData = data.getData();
+                    Cursor c = getActivity().getContentResolver().query(contactsData, null, null, null, null);
                     if (c.moveToFirst()){
-                        String id =c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+                        String id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
 
-                        String hasPhone =c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
-                        String cNumber = "";
+                        String hasPhone = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+                        ArrayList<String> phoneList = new ArrayList<>();
                         if (hasPhone.equalsIgnoreCase("1")) {
                             Cursor phones = getActivity().getContentResolver().query(
-                                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ id,
+                                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = "+ id,
                                     null, null);
-                            phones.moveToFirst();
-                            cNumber = phones.getString(phones.getColumnIndex("data1"));
+                            while (phones.moveToNext()){
+                                String number = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                                int type = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                                switch (type) {
+                                    case ContactsContract.CommonDataKinds.Phone.TYPE_HOME:
+                                        // do something with the Home number here...
+                                        number += "  (HOME)";
+                                        break;
+                                    case ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE:
+                                        // do something with the Mobile number here...
+                                        number += "  (MOBILE)";
+
+                                        break;
+                                    case ContactsContract.CommonDataKinds.Phone.TYPE_WORK:
+                                        // do something with the Work number here...
+                                        number += "  (WORK)";
+
+                                        break;
+                                }
+                                phoneList.add(number);
+                            }
                             phones.close();
                         } else {
                             Toast.makeText(getActivity(), "Selected contact doesn't has a saved phone number", Toast.LENGTH_SHORT).show();
@@ -137,14 +144,7 @@ public class ContactsFragment extends Fragment {
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
                         if (hasPhone.equals("1")){
-                            ContactModel contact = new ContactModel();
-
-                            contact.setName(name);
-                            contact.setPhoneNumber(cNumber);
-
-                            Toast.makeText(getActivity(), contact.getName() + " " + contact.getPhoneNumber(), Toast.LENGTH_SHORT).show();
-                            Log.d("CONTACT", contact.getName() + " " + contact.getPhoneNumber());
-                            saveContactAPI(PrefUtils.getToken(getActivity()), contact);
+                            showDialog(name, phoneList);
                         }
                     }
                     c.close();
@@ -170,6 +170,21 @@ public class ContactsFragment extends Fragment {
             case 0:
                 return;
         }
+    }
+
+    @Override
+    public void onPositiveClick(DialogInterface dialogInterface, String contactName, String phoneNumber, String relation, boolean liveTogether) {
+        ContactApiModel nContactModel = new ContactApiModel();
+        nContactModel.setName(contactName);
+        nContactModel.setPhoneNumber(phoneNumber);
+        nContactModel.setRelation(relation);
+        nContactModel.setLiveTogether(liveTogether);
+        saveContactAPI(PrefUtils.getToken(getActivity()), nContactModel);
+    }
+
+    @Override
+    public void onNegativeClick(DialogInterface dialogInterface) {
+
     }
 
     void setupContactRecycler(final ArrayList<ContactModel> contactList){
@@ -210,8 +225,8 @@ public class ContactsFragment extends Fragment {
         itemTouchHelper.attachToRecyclerView(mContactRecycler);
     }
 
-
-    void saveContactAPI(String token, ContactModel contact){
+    //TODO 7/08/2016 change to ContactApiModel to work
+    void saveContactAPI(String token, ContactApiModel contact){
         Call<ContactModel> call = ApiClient.getApiService().saveContact(token, contact);
         call.enqueue(new Callback<ContactModel>() {
             @Override
@@ -222,6 +237,7 @@ public class ContactsFragment extends Fragment {
                     realm.copyToRealmOrUpdate(response.body());
                     realm.commitTransaction();
                     setupContactRecycler(RealmUtils.getContactsFromRealm(mRealmInstance));
+                    realm.close();
                 } else {
                     try {
                         Log.d("RETROFIT_ERROR", response.errorBody().string());
@@ -268,5 +284,11 @@ public class ContactsFragment extends Fragment {
             Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
             startActivityForResult(pickContact, 1);
         }
+    }
+
+    private void showDialog(String contactName, ArrayList<String> phoneNumber){
+        AddContactDialog nAddContactDialog = AddContactDialog.newInstance(contactName, phoneNumber);
+        nAddContactDialog.setCancelable(false);
+        nAddContactDialog.show(getActivity().getSupportFragmentManager(), "Add new contact");
     }
 }

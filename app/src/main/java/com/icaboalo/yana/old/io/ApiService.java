@@ -1,10 +1,13 @@
 package com.icaboalo.yana.old.io;
 
+
 import com.icaboalo.yana.old.io.model.ActivityApiModel;
+import com.icaboalo.yana.old.io.model.ContactApiModel;
 import com.icaboalo.yana.old.io.model.UserApiModel;
 import com.icaboalo.yana.old.realm.ActivityModel;
 import com.icaboalo.yana.old.realm.ContactModel;
 import com.icaboalo.yana.old.realm.DayModel;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,5 +48,5 @@ public interface ApiService {
     Call<ActivityApiModel> updateActivity(@Header("Authorization") String token, @Body HashMap<String, Integer> answer, @Path("id") int activityId);
 
     @POST("contact/")
-    Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactModel contactModel);
+    Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactApiModel contact);
 }

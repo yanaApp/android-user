@@ -14,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
+
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
+import com.icaboalo.yana.old.ui.widget.TypewriterView;
+
 import com.squareup.picasso.Picasso;
 
 /**
@@ -24,6 +27,7 @@ public class TutorialPageFragment extends Fragment {
 
     ImageView mTutorialImage;
     TextView mTitle, mDescription;
+    TypewriterView typeView;
     Button mContinue;
     int wordIndex = 0;
     final Handler handler = new Handler();
@@ -78,22 +82,24 @@ public class TutorialPageFragment extends Fragment {
         final int position = getArguments().getInt("POSITION");
         switch (position){
             case 0:
-                final String words[] = {"jugar.", "divertirte.", "sonreir."};
-                if (!isCreated){
-                    final Runnable changeText = new Runnable() {
-                        @Override
-                        public void run() {
-                            wordIndex = (wordIndex + 1 ) % words.length;
-                            mDescription.setText(words[wordIndex]);
-                            handler.postDelayed(this, 1000);
-                        }
-                    };
-                    handler.postDelayed(changeText, 1000);
-                }
+                typeView = (TypewriterView) getView().findViewById(R.id.typeView);
+                typeView.type("jugar.")
+                        .pause(500)
+                        .delete("jugar.")
+                        .pause(200)
+                        .type("divertirte.")
+                        .pause(500)
+                        .delete("divertirte.")
+                        .pause(200)
+                        .type("sonreir.")
+                        .pause(500)
+                        .delete("sonreir.")
+                        .pause(200)
+                        .type("vivir...");
                 break;
             case 1:
                 Picasso.with(getActivity()).load(R.drawable.chat_128).into(mTutorialImage);
-                mTitle.setText("Recibe apoyo");
+                mTitle.setText("RECIBE APOYO");
                 mDescription.setText("Apoyate de una red de contactos que te respalde en esta etapa de tu vida.");
                 break;
             case 2:

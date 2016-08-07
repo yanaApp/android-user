@@ -8,7 +8,7 @@
               android:layout_height="match_parent">
 
     <ImageView
-        android:tint="@color/colorAccent"
+        android:tint="@color/yana_green"
         android:src="@android:drawable/stat_notify_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

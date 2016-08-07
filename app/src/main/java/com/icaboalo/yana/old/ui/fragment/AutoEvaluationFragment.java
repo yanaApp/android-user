@@ -61,21 +61,21 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.option_1:
-                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                v.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
                 mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
                 mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
                 mAnswer = 1;
                 break;
 
             case R.id.option_2:
-                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                v.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
                 mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
                 mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
                 mAnswer = 2;
                 break;
 
             case R.id.option_3:
-                v.setBackgroundColor(Color.parseColor("#BFE8E3"));
+                v.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
                 mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
                 mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
                 mAnswer = 3;

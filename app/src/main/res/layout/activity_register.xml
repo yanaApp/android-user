@@ -15,11 +15,13 @@
         android:textSize="36sp" />
 
     <android.support.design.widget.TextInputLayout
+        android:textColorHint="@color/secondary_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
         <android.support.design.widget.TextInputEditText
+            android:textColor="@color/primary_text"
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,11 +30,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:textColorHint="@color/secondary_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
         <android.support.design.widget.TextInputEditText
+            android:textColor="@color/primary_text"
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,11 +45,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
+        android:textColorHint="@color/secondary_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
         <android.support.design.widget.TextInputEditText
+            android:textColor="@color/primary_text"
             android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,11 +60,12 @@
     </android.support.design.widget.TextInputLayout>
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="24dp"
         android:text="Al registrarte confirmas que has leido y aceptado terminos del servicio y la politica de privacidad"
-        android:textAlignment="center"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
         android:textAllCaps="true"
         android:textSize="10sp" />
 
@@ -68,14 +75,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Create" />
+        android:text="@string/button_register" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="¿Ya tienes cuenta? Inicia sesión"
+        android:layout_marginTop="24dp"
+        android:text="@string/already_have_an_account"
         android:textAllCaps="true" />
 </LinearLayout>

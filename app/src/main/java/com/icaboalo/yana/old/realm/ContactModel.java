@@ -1,5 +1,7 @@
 package com.icaboalo.yana.old.realm;
 
+import com.google.gson.annotations.SerializedName;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -13,9 +15,16 @@ public class ContactModel extends RealmObject {
 
     private String name;
 
+    @SerializedName("phone_number")
     private String phoneNumber;
 
+    @SerializedName("is_validated")
     private boolean isValidated = false;
+
+    private String relation;
+
+    @SerializedName("live_together")
+    private boolean liveTogether;
 
     private UserModel user;
 
@@ -49,6 +58,22 @@ public class ContactModel extends RealmObject {
 
     public void setValidated(boolean validated) {
         isValidated = validated;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public boolean isLiveTogether() {
+        return liveTogether;
+    }
+
+    public void setLiveTogether(boolean liveTogether) {
+        this.liveTogether = liveTogether;
     }
 
     public UserModel getUser() {
