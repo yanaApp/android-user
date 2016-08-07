@@ -7,10 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ContactApiModel {
 
-    @SerializedName("id")
     private int id;
 
-    @SerializedName("name")
     private String name;
 
     @SerializedName("phone_number")
@@ -19,7 +17,11 @@ public class ContactApiModel {
     @SerializedName("is_validated")
     private boolean isValidated = false;
 
-    @SerializedName("user")
+    private String relation;
+
+    @SerializedName("live_together")
+    private boolean liveTogether;
+
     private UserApiModel user;
 
     public int getId() {
@@ -52,6 +54,22 @@ public class ContactApiModel {
 
     public void setValidated(boolean validated) {
         isValidated = validated;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public boolean isLiveTogether() {
+        return liveTogether;
+    }
+
+    public void setLiveTogether(boolean liveTogether) {
+        this.liveTogether = liveTogether;
     }
 
     public UserApiModel getUser() {

@@ -15,12 +15,15 @@ public class ContactModel extends RealmObject {
 
     private String name;
 
+    @SerializedName("phone_number")
     private String phoneNumber;
 
+    @SerializedName("is_validated")
     private boolean isValidated = false;
 
     private String relation;
 
+    @SerializedName("live_together")
     private boolean liveTogether;
 
     private UserModel user;

@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.io.ApiClient;
+import com.icaboalo.yana.io.model.ContactApiModel;
 import com.icaboalo.yana.realm.ContactModel;
 import com.icaboalo.yana.ui.adapter.ContactRecyclerAdapter;
 import com.icaboalo.yana.ui.fragment.dialog.AddContactDialog;
@@ -173,12 +174,12 @@ public class ContactsFragment extends Fragment implements AddContactDialog.OnDia
 
     @Override
     public void onPositiveClick(DialogInterface dialogInterface, String contactName, String phoneNumber, String relation, boolean liveTogether) {
-        ContactModel nContactModel = new ContactModel();
+        ContactApiModel nContactModel = new ContactApiModel();
         nContactModel.setName(contactName);
         nContactModel.setPhoneNumber(phoneNumber);
         nContactModel.setRelation(relation);
         nContactModel.setLiveTogether(liveTogether);
-        saveContactAPI(PrefUtils.getToken(getActivity()), new ContactModel());
+        saveContactAPI(PrefUtils.getToken(getActivity()), nContactModel);
     }
 
     @Override
@@ -224,8 +225,8 @@ public class ContactsFragment extends Fragment implements AddContactDialog.OnDia
         itemTouchHelper.attachToRecyclerView(mContactRecycler);
     }
 
-
-    void saveContactAPI(String token, ContactModel contact){
+    //TODO 7/08/2016 change to ContactApiModel to work
+    void saveContactAPI(String token, ContactApiModel contact){
         Call<ContactModel> call = ApiClient.getApiService().saveContact(token, contact);
         call.enqueue(new Callback<ContactModel>() {
             @Override

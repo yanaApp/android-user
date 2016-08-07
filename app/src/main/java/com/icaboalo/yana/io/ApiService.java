@@ -1,6 +1,7 @@
 package com.icaboalo.yana.io;
 
 import com.icaboalo.yana.io.model.ActivityApiModel;
+import com.icaboalo.yana.io.model.ContactApiModel;
 import com.icaboalo.yana.io.model.UserApiModel;
 import com.icaboalo.yana.realm.ActivityModel;
 import com.icaboalo.yana.realm.ContactModel;
@@ -49,5 +50,5 @@ public interface ApiService {
     Call<ActivityApiModel> updateActivity(@Header("Authorization") String token, @Body HashMap<String, Integer> answer, @Path("id") int activityId);
 
     @POST("contact/")
-    Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactModel contactModel);
+    Call<ContactModel> saveContact(@Header("Authorization") String token, @Body ContactApiModel contact);
 }
