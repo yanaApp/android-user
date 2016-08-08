@@ -11,11 +11,11 @@ public interface EntityMapper<D, R> {
 
     List<R> transformAllToRealm(List<D> list, Class dataClass);
 
-    D tranformToDomain(R realmModel);
+    D transformToDomain(R realmModel);
 
     List<D> transformAllToDomain(List<R> realmModelList);
 
-    D tranformToDomain(R realmModel, Class dataClass);
+    D transformToDomain(R realmModel, Class domainClass);
 
-    List<D> tranformAllToDomain(List<R> realmModelList, Class dataClass);
+    List<D> transformAllToDomain(List<R> realmModelList, Class domainClass);
 }

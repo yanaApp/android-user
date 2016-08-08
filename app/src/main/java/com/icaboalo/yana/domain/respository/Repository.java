@@ -15,7 +15,7 @@ public interface Repository {
 
     Observable<List> getListDynamically(String url, Class domainClass, Class dataClass, boolean persist);
 
-    Observable<?> getObjectDynamically(String url, int id, Class domainClass, Class dataClass, boolean persist);
+    Observable<?> getObjectDynamically(String url, String idColumnName, int id, Class domainClass, Class dataClass, boolean persist);
 
     Observable<?> postObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                         boolean persist);
@@ -25,10 +25,15 @@ public interface Repository {
     Observable<?> postListDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                       boolean persist);
 
-    Observable<?> deleteObjectDynamically(String url, Class domainClass, Class dataClass, boolean persist);
-
     Observable<?> putObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                        boolean persist);
+
+    Observable<List> putListDynamically(String url, HashMap<String, Object> keyValuePairs,
+                                        Class domainClass, Class dataClass, boolean persist);
+
+    Observable<?> deleteAllDynamically(String url, Class dataClass, boolean persist);
+
+    Observable<List> searchDisk(String query, String column, Class domainClass, Class dataClass);
 
     Observable<List> searchRealmList(RealmQuery query, Class domainClass);
 }

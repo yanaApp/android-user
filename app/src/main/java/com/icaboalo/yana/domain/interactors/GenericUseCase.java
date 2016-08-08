@@ -55,9 +55,9 @@ public class GenericUseCase {
 
 
     @SuppressWarnings("unchecked")
-    public void executeDynamicGetObject(Subscriber UseCaseSubscriber, String url, int id, Class domainClass, Class dataClass,
+    public void executeDynamicGetObject(Subscriber UseCaseSubscriber, String idColumnName, String url, int id, Class domainClass, Class dataClass,
                                         Class presentationClass, boolean persist){
-        mSubscription = mRepository.getObjectDynamically(url, id, domainClass, dataClass, persist)
+        mSubscription = mRepository.getObjectDynamically(url, idColumnName, id, domainClass, dataClass, persist)
                 .map(object -> mModelDataMapper.transformToPresentation(object, presentationClass))
                 .compose(applySchedulers())
                 .compose(getLifecycle())

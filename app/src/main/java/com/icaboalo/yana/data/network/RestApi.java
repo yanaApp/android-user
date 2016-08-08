@@ -31,6 +31,9 @@ public interface RestApi {
     @PUT
     Observable<Object> dynamicPutObject(@Url String url, @Body RequestBody body);
 
+    @PUT
+    Observable<List> dynamicPutList(@Url String url, @Body RequestBody body);
+
     @DELETE
     Observable<Object> dynamicDeleteObject(@Url String url, @Body RequestBody body);
 }

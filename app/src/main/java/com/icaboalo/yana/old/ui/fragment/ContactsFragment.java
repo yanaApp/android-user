@@ -224,8 +224,6 @@ public class ContactsFragment extends Fragment implements AddContactDialog.OnDia
 
         itemTouchHelper.attachToRecyclerView(mContactRecycler);
     }
-
-    //TODO 7/08/2016 change to ContactApiModel to work
     void saveContactAPI(String token, ContactApiModel contact){
         Call<ContactModel> call = ApiClient.getApiService().saveContact(token, contact);
         call.enqueue(new Callback<ContactModel>() {
