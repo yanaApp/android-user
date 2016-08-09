@@ -9,16 +9,21 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.realm.RealmQuery;
 import rx.Observable;
 
 /**
  * @author icaboalo on 07/08/16.
  */
+@Singleton
 public class DataRepository implements Repository {
 
     private final DataStoreFactory mDataStoreFactory;
 
+    @Inject
     public DataRepository(DataStoreFactory dataStoreFactory) {
         mDataStoreFactory = dataStoreFactory;
     }

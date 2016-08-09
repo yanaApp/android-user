@@ -84,6 +84,12 @@ public class ApiConnection {
         return mRetrofit.create(RestApi.class).dynamicPutObject(url, body);
     }
 
+    public static Observable<List> dynamicPutList(String url, RequestBody body){
+        if (mRetrofit == null)
+            mRetrofit = createRetro2Client();
+        return mRetrofit.create(RestApi.class).dynamicPutList(url, body);
+    }
+
     public static Observable<Object> dynamicDeleteObject(String url, RequestBody body){
         if (mRetrofit == null)
             mRetrofit = createRetro2Client();

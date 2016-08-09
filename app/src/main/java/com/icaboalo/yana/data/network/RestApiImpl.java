@@ -41,6 +41,11 @@ public class RestApiImpl implements RestApi {
     }
 
     @Override
+    public Observable<List> dynamicPutList(@Url String url, @Body RequestBody body) {
+        return ApiConnection.dynamicPutList(url, body);
+    }
+
+    @Override
     public Observable<Object> dynamicDeleteObject(@Url String url, @Body RequestBody body) {
         return ApiConnection.dynamicDeleteObject(url, body);
     }

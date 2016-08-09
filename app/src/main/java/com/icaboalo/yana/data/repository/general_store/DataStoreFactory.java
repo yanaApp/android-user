@@ -7,6 +7,8 @@ import com.icaboalo.yana.data.entities.mappers.EntityMapper;
 import com.icaboalo.yana.data.network.RestApiImpl;
 import com.icaboalo.yana.util.Utils;
 
+import javax.inject.Inject;
+
 /**
  * @author icaboalo on 07/08/16.
  */
@@ -15,6 +17,7 @@ public class DataStoreFactory {
     private final Context mContext;
     private final DataBaseManager mDataBaseManager;
 
+    @Inject
     public DataStoreFactory(Context context, DataBaseManager dataBaseManager) {
         mContext = context;
         mDataBaseManager = dataBaseManager;

@@ -5,12 +5,17 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * @author icaboalo on 31/07/16.
  */
+@Singleton
 public class ModelDataMapper {
     final private Gson gson;
 
+    @Inject
     public ModelDataMapper(Gson gson) {
         this.gson = gson;
     }

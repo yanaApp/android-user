@@ -6,6 +6,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmModel;
@@ -17,11 +20,13 @@ import rx.Observable;
 /**
  * @author icaboalo on 07/08/16.
  */
+@Singleton
 public class GeneralRealmManagerImpl implements DataBaseManager {
 
     private Realm mRealm;
     private Context mContext;
 
+    @Inject
     public GeneralRealmManagerImpl(Context context) {
         mContext = context;
         mRealm = Realm.getDefaultInstance();

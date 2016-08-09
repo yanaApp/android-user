@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import javax.inject.Inject;
+
 import io.realm.RealmQuery;
 import rx.Observable;
 import rx.Subscriber;
@@ -28,6 +30,7 @@ public class GenericUseCase {
     private final PostExecutionThread mPostExecutionThread;
     private Subscription mSubscription;
 
+    @Inject
     public GenericUseCase(Repository repository, PostExecutionThread postExecutionThread, ThreadExecutor threadExecutor) {
         mRepository = repository;
         mPostExecutionThread = postExecutionThread;
@@ -91,17 +94,6 @@ public class GenericUseCase {
     public void executeDynamicPostList(Subscriber UseCaseSubscriber, String url, HashMap<String, Object> keyValuePairs,
                                        Class domainClass, Class dataClass, Class presentationClass, boolean persist){
         mSubscription = mRepository.postListDynamically(url, keyValuePairs, domainClass, dataClass, persist)
-                .map(object -> mModelDataMapper.transformToPresentation(object, presentationClass))
-                .compose(applySchedulers())
-                .compose(getLifecycle())
-                .subscribe(UseCaseSubscriber);
-    }
-
-
-    @SuppressWarnings("unchecked")
-    public void executeDynamicDeleteObject(Subscriber UseCaseSubscriber, String url, Class domainClass, Class dataClass,
-                                           Class presentationClass, boolean persist){
-        mSubscription = mRepository.deleteObjectDynamically(url, domainClass, dataClass, persist)
                 .map(object -> mModelDataMapper.transformToPresentation(object, presentationClass))
                 .compose(applySchedulers())
                 .compose(getLifecycle())
