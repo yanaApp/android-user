@@ -65,6 +65,13 @@
     <string name="profile_title">Profile</string>
     <string name="help_title">Help</string>
 
+    <!-- Exception messages -->
+    <string name="exception_message_generic">Hubo un error en el servidor</string>
+    <string name="exception_message_no_connection">Revisa tu conexión a internet</string>
+    <string name="exception_message_user_not_found">Cannot retrieve data. Please Check your internet connection</string>
+    <string name="network_error_persisted">No Notwork but post request persisted to queue!\n Request will be posted as soon as network is available.</string>
+    <string name="network_error_not_persisted"><![CDATA[No network & could not persist request to queue!\nGoogle play services not available and android version less than 5.0!]]></string>
+
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="skip">Skip</string>
