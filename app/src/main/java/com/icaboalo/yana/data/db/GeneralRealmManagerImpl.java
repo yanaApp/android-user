@@ -1,6 +1,7 @@
 package com.icaboalo.yana.data.db;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -16,6 +17,8 @@ import io.realm.RealmObject;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 /**
  * @author icaboalo on 07/08/16.
@@ -46,11 +49,8 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     public Observable<?> put(RealmObject realmModel, Class dataClass) {
         if (realmModel != null)
             return Observable.defer(() -> {
-                if (mRealm.isInTransaction())
-                    mRealm.cancelTransaction();
-                mRealm.beginTransaction();
-                RealmObject result = mRealm.copyToRealmOrUpdate(realmModel);
-                mRealm.commitTransaction();
+                mRealm = Realm.getDefaultInstance();
+                RealmObject result = executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModel));
                 if (RealmObject.isValid(result))
                     return Observable.just(true);
                 else
@@ -63,11 +63,8 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     public Observable<?> put(RealmModel realmModel, Class dataClass) {
         if (realmModel != null)
             return Observable.defer(() -> {
-                if (mRealm.isInTransaction())
-                    mRealm.cancelTransaction();
-                mRealm.beginTransaction();
-                RealmModel result = mRealm.copyToRealmOrUpdate(realmModel);
-                mRealm.commitTransaction();
+                mRealm = Realm.getDefaultInstance();
+                RealmModel result = executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModel));
                 if (RealmObject.isValid(result))
                     return Observable.just(true);
                 else
@@ -77,36 +74,50 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     }
 
     @Override
-    public Observable<?> put(JSONObject realmObject, Class dataClass) {
-//        if (realmObject != null)
-//            return Observable.defer(() -> {
-//
-//            });
+    public Observable<?> put(JSONObject realmObject, String idColumnName, Class dataClass) {
+        if (realmObject != null)
+            return Observable.defer(() -> {
+                if (idColumnName == null || idColumnName == null)
+                    return Observable.error(new Exception("could not find id!"));
+                mRealm = Realm.getDefaultInstance();
+                RealmModel result = executeWriteOperationInRealm(mRealm, () -> mRealm.createOrUpdateObjectFromJson(dataClass, realmObject));
+                if (RealmObject.isValid(result)) {
+                    return Observable.just(true);
+                } else
+                    return Observable.error(new Exception("RealmModel is invalid"));
+
+            });
         return Observable.error(new Exception("json cant be null"));
     }
 
     @Override
     public void putAll(List<RealmObject> realmModels, Class dataClass) {
         Observable.defer(() -> {
-            if (mRealm.isInTransaction())
-                mRealm.cancelTransaction();
-            mRealm.beginTransaction();
-            mRealm.copyToRealmOrUpdate(realmModels);
-            mRealm.commitTransaction();
+            mRealm = Realm.getDefaultInstance();
+            executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModels));
             return Observable.from(realmModels);
-        });
+        }).subscribeOn(Schedulers.immediate())
+                //we need to use immediate instead of io,
+                // since if we have created UI thread realm objects,
+                // and we try to invoke this method.
+                // Then this method would not use if IO is used,
+                // since io creates a new thread for each subscriber.
+                .subscribe(new PutAllSubscriberClass(realmModels));
     }
 
     @Override
     public boolean isCached(int itemId, String columnId, Class clazz) {
-        return false;
+        if (columnId.isEmpty())
+            return false;
+        Object realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, itemId).findFirst();
+        return realmObject != null;
     }
 
     @Override
     public boolean isItemValid(int itemId, String columnId, Class clazz) {
         if (columnId.isEmpty())
             return false;
-        Object realmObject = mRealm.where(clazz).equalTo(columnId, itemId).findFirst();
+        Object realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, itemId).findFirst();
         return realmObject != null;
     }
 
@@ -167,5 +178,54 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     @Override
     public Observable<List> getWhere(RealmQuery realmQuery) {
         return Observable.just(realmQuery.findAll());
+    }
+
+    private void executeWriteOperationInRealm(Realm realm, Executor executor) {
+        if (realm.isInTransaction()) {
+            realm.cancelTransaction();
+        }
+        realm.beginTransaction();
+        executor.run();
+        realm.commitTransaction();
+    }
+
+    private <T> T executeWriteOperationInRealm(Realm realm, ExecuteAndReturn<T> executor) {
+        T toReturnValue;
+        if (realm.isInTransaction())
+            realm.cancelTransaction();
+        realm.beginTransaction();
+        toReturnValue = executor.run();
+        realm.commitTransaction();
+        return toReturnValue;
+    }
+
+    private interface Executor {
+        void run();
+    }
+
+    private interface ExecuteAndReturn<T> {
+        T run();
+    }
+
+    private class PutAllSubscriberClass extends Subscriber<Object> {
+        private final List<RealmObject> mRealmModels;
+
+        public PutAllSubscriberClass(List<RealmObject> realmModels) {
+            mRealmModels = realmModels;
+        }
+
+        @Override
+        public void onCompleted() {
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            e.printStackTrace();
+        }
+
+        @Override
+        public void onNext(Object o) {
+            Log.d("TAG", "all " + mRealmModels.getClass().getName() + "s added!");
+        }
     }
 }

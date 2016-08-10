@@ -44,14 +44,14 @@ public class DiskDataStore implements DataStore {
     @Override
     public Observable<?> dynamicPostObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                            boolean persist) {
-        return Observable.defer(() -> mDataBaseManager.put(new JSONObject(keyValuePairs), dataClass)
+        return Observable.defer(() -> mDataBaseManager.put(new JSONObject(keyValuePairs), "id", dataClass)
                 .map(object -> mEntityMapper.transformToDomain(object)));
     }
 
     @Override
     public Observable<?> dynamicPostObject(String url, JSONObject keyValuePairs, Class domainClass, Class dataClass,
                                            boolean persist) {
-        return Observable.defer(() -> mDataBaseManager.put(keyValuePairs, dataClass)
+        return Observable.defer(() -> mDataBaseManager.put(keyValuePairs, "id", dataClass)
                 .map(object -> mEntityMapper.transformToDomain(object)));
     }
 
@@ -62,7 +62,7 @@ public class DiskDataStore implements DataStore {
 
     @Override
     public Observable<?> dynamicPutObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
-        return Observable.defer(() -> mDataBaseManager.put(new JSONObject(keyValuePairs), dataClass)
+        return Observable.defer(() -> mDataBaseManager.put(new JSONObject(keyValuePairs), "id", dataClass)
                 .map(object -> mEntityMapper.transformToDomain(object)));
     }
 

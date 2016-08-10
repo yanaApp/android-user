@@ -37,7 +37,7 @@ public interface DataBaseManager {
 
     Observable<?> put(RealmModel realmModel, Class dataClass);
 
-    Observable<?> put(JSONObject realmObject, Class dataClass);
+    Observable<?> put(JSONObject realmObject, String idColumnName, Class dataClass);
 
     /**
      * Puts and element into the cache.

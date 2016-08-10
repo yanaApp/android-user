@@ -34,6 +34,7 @@ public class CloudDataStore implements DataStore {
     private DataBaseManager mRealmManager;
     private EntityMapper mEntityDataMapper;
     private Class mDataClass;
+    private String mIdColumnName;
 
     public CloudDataStore(RestApi restApi, DataBaseManager dataBaseManager,EntityMapper entityDataMapper) {
         mRestApi = restApi;
@@ -51,7 +52,7 @@ public class CloudDataStore implements DataStore {
             nObservable = mRealmManager.put((RealmModel) mappedObject, mDataClass);
         else
             try {
-                nObservable = mRealmManager.put(new JSONObject(new Gson().toJson(object, mDataClass)), mDataClass);
+                nObservable = mRealmManager.put(new JSONObject(new Gson().toJson(object, mDataClass)), mIdColumnName, mDataClass);
             } catch (JSONException e) {
                 e.printStackTrace();
                 nObservable = Observable.error(e);
@@ -97,6 +98,7 @@ public class CloudDataStore implements DataStore {
     @Override
     public Observable<?> dynamicGetObject(String url, String idColumnName, int itemId, Class domainClass, Class dataClass, boolean persist) {
         mDataClass = dataClass;
+        mIdColumnName = idColumnName;
         return mRestApi.dynamicGetObject(url)
                 .doOnNext(object -> {
                     if (persist)
