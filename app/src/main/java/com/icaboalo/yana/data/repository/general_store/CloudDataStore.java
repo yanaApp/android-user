@@ -2,10 +2,15 @@ package com.icaboalo.yana.data.repository.general_store;
 
 import android.content.Context;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.gson.Gson;
+import com.icaboalo.yana.R;
 import com.icaboalo.yana.data.db.DataBaseManager;
 import com.icaboalo.yana.data.entities.mappers.EntityMapper;
+import com.icaboalo.yana.data.exception.NetworkConnectionException;
 import com.icaboalo.yana.data.network.RestApi;
+import com.icaboalo.yana.util.Constants;
+import com.icaboalo.yana.util.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,26 +115,52 @@ public class CloudDataStore implements DataStore {
     @Override
     public Observable<?> dynamicPostObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
         return Observable.defer(() -> {
-            return mRestApi.dynamicPostObject(url, RequestBody.create(MediaType.parse("application/json"),
+            if (!Utils.isNetworkAvailable(mContext) && (Utils.hasLollipop()
+                   /* || GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/)) {
+//                queuePost.call(object);
+                if (persist)
+                    saveGenericToCache.call(keyValuePairs);
+                return Observable.error(new NetworkConnectionException(mContext.getString(R.string.network_error_persisted)));
+            } else if (!Utils.isNetworkAvailable(mContext) && !(Utils.hasLollipop()
+                    /*|| GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/))
+                return Observable.error(new NetworkConnectionException(mContext.getString(R.string.network_error_not_persisted)));
+            return mRestApi.dynamicPostObject(url, RequestBody.create(MediaType.parse(Constants.APPLICATION_JSON),
                     new JSONObject(keyValuePairs).toString()))
                     .doOnNext(object -> {
                         if (persist)
                             saveGenericToCache.call(object);
                     })
-                    .map(object -> mEntityDataMapper.transformToDomain(object, domainClass));
+                    .doOnError(throwable -> {
+//                        Log.d(TAG, throwable.getMessage());
+//                        queuePost.call(object);
+                    })
+                    .map(realmModel -> mEntityDataMapper.transformToDomain(realmModel, domainClass));
         });
     }
 
     @Override
     public Observable<?> dynamicPostObject(String url, JSONObject keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
         return Observable.defer(() -> {
-            return mRestApi.dynamicPostObject(url, RequestBody.create(MediaType.parse("application/json"),
+            if (!Utils.isNetworkAvailable(mContext) && (Utils.hasLollipop()
+                   /* || GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/)) {
+//                queuePost.call(object);
+                if (persist)
+                    saveGenericToCache.call(keyValuePairs);
+                return Observable.error(new NetworkConnectionException(mContext.getString(R.string.network_error_persisted)));
+            } else if (!Utils.isNetworkAvailable(mContext) && !(Utils.hasLollipop()
+                    /*|| GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/))
+                return Observable.error(new NetworkConnectionException(mContext.getString(R.string.network_error_not_persisted)));
+            return mRestApi.dynamicPostObject(url, RequestBody.create(MediaType.parse(Constants.APPLICATION_JSON),
                     keyValuePairs.toString()))
                     .doOnNext(object -> {
                         if (persist)
                             saveGenericToCache.call(object);
                     })
-                    .map(object -> mEntityDataMapper.transformToDomain(object, domainClass));
+                    .doOnError(throwable -> {
+//                        Log.d(TAG, throwable.getMessage());
+//                        queuePost.call(object);
+                    })
+                    .map(realmModel -> mEntityDataMapper.transformToDomain(realmModel, domainClass));
         });
     }
 

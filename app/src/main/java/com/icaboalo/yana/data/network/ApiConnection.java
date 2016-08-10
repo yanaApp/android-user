@@ -1,8 +1,11 @@
 package com.icaboalo.yana.data.network;
 
+import android.util.Log;
+
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
+import com.icaboalo.yana.BuildConfig;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.data.executor.JobExecutor;
 import com.icaboalo.yana.util.Constants;
@@ -16,6 +19,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -49,9 +53,15 @@ public class ApiConnection {
         };
     }
 
+    public static HttpLoggingInterceptor provideHttpLoggingInterceptor() {
+        return new HttpLoggingInterceptor(message -> Log.d("NetworkInfo", message))
+                .setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+    }
+
     public static OkHttpClient provideOkHttpClient(){
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(provideDynamicHeaderInterceptor())
+                .addInterceptor(provideHttpLoggingInterceptor())
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .writeTimeout(TIME_OUT, TimeUnit.SECONDS);

@@ -31,7 +31,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
     public void post(HashMap<String, Object> postBundle) {
         hideViewRetry();
         showViewLoading();
-        getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), "", postBundle, Login.class, LoginEntity.class,
+        getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), Constants.API_BASE_URL + "login/", postBundle, Login.class, LoginEntity.class,
                 LoginViewModel.class, false);
     }
 
