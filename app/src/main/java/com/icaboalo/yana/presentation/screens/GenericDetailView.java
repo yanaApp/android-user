@@ -5,7 +5,6 @@ package com.icaboalo.yana.presentation.screens;
  */
 public interface GenericDetailView<M> extends LoadDataView{
 
-
     /**
      * Render an item in the UI.
      *

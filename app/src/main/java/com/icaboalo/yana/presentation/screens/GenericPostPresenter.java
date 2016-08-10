@@ -85,6 +85,7 @@ public abstract class GenericPostPresenter<M> extends BasePresenter{
         @Override
         public void onError(Throwable e) {
             hideViewLoading();
+            showViewRetry();
             if (TextUtils.isEmpty(getErrorMessage(e)))
                 showErrorMessage(new DefaultErrorBundle((Exception) e));
             else
