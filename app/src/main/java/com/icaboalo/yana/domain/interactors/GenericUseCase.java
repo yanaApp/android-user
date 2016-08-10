@@ -111,6 +111,34 @@ public class GenericUseCase {
                 .subscribe(UseCaseSubscriber);
     }
 
+    @SuppressWarnings("unchecked")
+    public void executeDynamicPutList(Subscriber UseCaseSubscriber, String url, HashMap<String, Object> keyValuePairs,
+                                      Class domainClass, Class dataClass, Class presentationClass, boolean persist){
+        mSubscription = mRepository.putListDynamically(url, keyValuePairs, domainClass, dataClass, persist)
+                .map(list -> mModelDataMapper.transformAllToPresentation(list, presentationClass))
+                .compose(applySchedulers())
+                .compose(getLifecycle())
+                .subscribe(UseCaseSubscriber);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void executeDynamicDeleteAll(Subscriber UseCaseSubscriber, String url, Class dataClass, boolean persist){
+        mSubscription = mRepository.deleteAllDynamically(url, dataClass, persist)
+                .compose(applySchedulers())
+                .compose(getLifecycle())
+                .subscribe(UseCaseSubscriber);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void executeSearchDisk(Subscriber UseCaseSubscriber, String query, String column, Class domainClass, Class dataClass,
+                                  Class presentationClass){
+        mSubscription = mRepository.searchDisk(query, column, domainClass, dataClass)
+                .map(list -> mModelDataMapper.transformAllToPresentation(list, presentationClass))
+                .compose(applySchedulers())
+                .compose(getLifecycle())
+                .subscribe(UseCaseSubscriber);
+
+    }
 
     @SuppressWarnings("unchecked")
     public void executeSearchRealmList(Subscriber UseCaseSubscriber, RealmQuery query, Class domainClass,
