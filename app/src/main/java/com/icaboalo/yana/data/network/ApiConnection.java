@@ -3,14 +3,18 @@ package com.icaboalo.yana.data.network;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
+import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.data.executor.JobExecutor;
 import com.icaboalo.yana.util.Constants;
+import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.realm.RealmObject;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -25,8 +29,29 @@ public class ApiConnection {
     private static Retrofit mRetrofit;
     private static final int TIME_OUT = 30;
 
+    private static Interceptor provideDynamicHeaderInterceptor(){
+        return chain -> {
+            Request finalRequest = chain.request();
+            if (finalRequest.toString().contains("login/")){
+                finalRequest = chain.request().newBuilder()
+                        .header("Content-Type", "application/json")
+                        .method(chain.request().method(), chain.request().body())
+                        .build();
+
+            } else {
+                finalRequest = chain.request().newBuilder()
+                        .header("Content-Type", "application/json")
+                        .header("Authorization", "Token " + PrefUtils.getToken(MyApplication.getInstance().getApplicationContext()))
+                        .method(chain.request().method(), chain.request().body())
+                        .build();
+            }
+            return chain.proceed(finalRequest);
+        };
+    }
+
     public static OkHttpClient provideOkHttpClient(){
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                .addInterceptor(provideDynamicHeaderInterceptor())
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .writeTimeout(TIME_OUT, TimeUnit.SECONDS);
