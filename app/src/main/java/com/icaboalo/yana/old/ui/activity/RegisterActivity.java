@@ -15,6 +15,7 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.io.ApiClient;
 import com.icaboalo.yana.old.io.model.UserApiModel;
+import com.icaboalo.yana.presentation.screens.login.*;
 
 import java.io.IOException;
 
@@ -40,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mFullNameInput = (TextInputEditText) findViewById(R.id.etFullName);
         mEmailInput = (TextInputEditText) findViewById(R.id.etEmail);
-        mPasswordInput = (TextInputEditText) findViewById(R.id.password_input);
+        mPasswordInput = (TextInputEditText) findViewById(R.id.etPassword);
 
         mRegisterButton = (Button) findViewById(R.id.register_button);
         assert mRegisterButton != null;
@@ -77,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.login_button:
                 Log.d("INTENT", "login");
-                Intent goToLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent goToLogin = new Intent(RegisterActivity.this, com.icaboalo.yana.presentation.screens.login.LoginActivity.class);
                 startActivity(goToLogin);
                 finish();
                 break;

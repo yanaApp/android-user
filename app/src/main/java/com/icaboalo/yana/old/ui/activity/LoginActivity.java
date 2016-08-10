@@ -34,9 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout llLoginForm;
     @Bind(R.id.rlForgotPassword)
     RelativeLayout rlForgotPassword;
-    @Bind(R.id.username_input)
-    EditText etUsername;
-    @Bind(R.id.password_input)
+    @Bind(R.id.etPassword)
     EditText etPassword;
     @Bind(R.id.etEmail)
     EditText etEmail;
@@ -61,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.login_button)
     void login(){
-        if (etUsername.getText().toString().isEmpty()){
-            etUsername.setError(getString(R.string.error_empty_field));
+        if (etEmail.getText().toString().isEmpty()){
+            etEmail.setError(getString(R.string.error_empty_field));
         }
         else if (etPassword.getText().toString().isEmpty()){
             etPassword.setError(getString(R.string.error_empty_field));
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             mProgressDialog.setMessage(getString(R.string.progress_dialog_login));
             mProgressDialog.show();
             UserApiModel user = new UserApiModel();
-            user.setUserName(etUsername.getText().toString());
+            user.setUserName(etEmail.getText().toString());
             user.setPassword(etPassword.getText().toString());
             loginRetrofit(user);
         }

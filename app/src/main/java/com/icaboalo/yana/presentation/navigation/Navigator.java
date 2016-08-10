@@ -5,11 +5,14 @@ import android.content.Intent;
 
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 
+import javax.inject.Inject;
+
 /**
  * @author icaboalo on 31/07/16.
  */
 public class Navigator {
 
+    @Inject
     public Navigator() {
     }
 

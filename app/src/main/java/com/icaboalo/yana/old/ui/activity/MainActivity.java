@@ -23,6 +23,7 @@ import com.icaboalo.yana.old.ui.fragment.ContactsFragment;
 import com.icaboalo.yana.old.ui.fragment.HelpFragment;
 import com.icaboalo.yana.old.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.old.ui.fragment.ProgressFragment;
+import com.icaboalo.yana.presentation.screens.login.*;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.RealmUtils;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         if (PrefUtils.getToken(this).equals("TOKEN") || PrefUtils.getToken(this).isEmpty()){
-            Intent goToLogin = new Intent(this, LoginActivity.class);
+            Intent goToLogin = new Intent(this, com.icaboalo.yana.presentation.screens.login.LoginActivity.class);
             startActivity(goToLogin);
             finish();
         }

@@ -6,6 +6,8 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.respository.Repository;
 import com.icaboalo.yana.presentation.di.PerActivity;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,6 +22,7 @@ public class UserModule {
 
     @Provides
     @PerActivity
+    @Named("generalizedDetailUseCase")
     GenericUseCase provideGetGenericUseCase(Repository repository, PostExecutionThread postExecutionThread, ThreadExecutor threadExecutor){
         return new GenericUseCase(repository, postExecutionThread, threadExecutor);
     }

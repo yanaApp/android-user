@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Window;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.screens.login.*;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.Timer;
@@ -34,7 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     void checkForToken(){
         if (PrefUtils.getToken(this).equals("TOKEN") || PrefUtils.getToken(this).isEmpty()){
             if (PrefUtils.isTutorialCompleted(this)){
-                Intent goToLogin = new Intent(this, LoginActivity.class);
+                Intent goToLogin = new Intent(this, com.icaboalo.yana.presentation.screens.login.LoginActivity.class);
                 startActivity(goToLogin);
                 Log.d("INTENT", "login");
                 finish();

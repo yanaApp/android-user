@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.icaboalo.yana.MyApplication;
@@ -20,12 +21,13 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends AppCompatActivity implements HasComponent<UserComponent>{
 
     @Inject
-    Navigator navigator;
+    public Navigator navigator;
     private UserComponent mUserComponent;
 
+
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
         initializeInjector();
         initialize();
@@ -42,9 +44,9 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
 
 
     /**
-            * Get the Main Application component for dependency injection.
-            *
-            * @return {@link com.icaboalo.yana.presentation.di.component.ApplicationComponent}
+    * Get the Main Application component for dependency injection.
+    *
+    * @return {@link com.icaboalo.yana.presentation.di.component.ApplicationComponent}
     */
     protected ApplicationComponent getApplicationComponent() {
         return ((MyApplication) getApplicationContext()).getApplicationComponent();

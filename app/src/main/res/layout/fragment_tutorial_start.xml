@@ -27,7 +27,7 @@
             android:layout_marginBottom="16dp"
             android:paddingLeft="20dp">
 
-            <com.icaboalo.yana.ui.widget.CustomFontTextView
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vuelve a "
@@ -46,7 +46,7 @@
                 android:windowSoftInputMode="stateHidden"/>
         </LinearLayout>
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
@@ -54,7 +54,7 @@
             android:textColor="@color/secondary_text"
             android:textSize="24sp"/>
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yana"
@@ -63,7 +63,7 @@
     </LinearLayout>
 
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"

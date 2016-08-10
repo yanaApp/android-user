@@ -13,6 +13,8 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.TutorialPageFragment;
+import com.icaboalo.yana.presentation.screens.login.*;
+import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
@@ -52,8 +54,8 @@ public class TutorialActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("INTENT", "login");
-                Intent goToLogin = new Intent(TutorialActivity.this, LoginActivity.class);
-                startActivity(goToLogin);
+                Intent goToLogin = new Intent(TutorialActivity.this, com.icaboalo.yana.presentation.screens.login.LoginActivity.class);
+                startActivity(LoginActivity.getCallingIntent(TutorialActivity.this));
                 finish();
             }
         });
