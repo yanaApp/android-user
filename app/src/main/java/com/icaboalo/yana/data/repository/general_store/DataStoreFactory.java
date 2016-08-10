@@ -19,6 +19,8 @@ public class DataStoreFactory {
 
     @Inject
     public DataStoreFactory(Context context, DataBaseManager dataBaseManager) {
+        if (dataBaseManager == null)
+            throw new IllegalArgumentException("Constructor parameters cannot be null!");
         mContext = context;
         mDataBaseManager = dataBaseManager;
     }
@@ -27,9 +29,12 @@ public class DataStoreFactory {
      * Create {@link DataStore} .
      */
     public DataStore dynamically(String url, EntityMapper entityMapper, Class dataClass){
-        if (!url.isEmpty())
+        if (url.isEmpty()){
+            return new DiskDataStore(mDataBaseManager, entityMapper);
+        } else if (!url.isEmpty()){
             return new CloudDataStore(new RestApiImpl(), mDataBaseManager, entityMapper);
-        else return null;
+        }
+        else return new DiskDataStore(mDataBaseManager, entityMapper);
     }
 
     /**
