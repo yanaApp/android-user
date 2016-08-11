@@ -36,7 +36,7 @@
         android:text="@string/skip" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/login_button"
+        android:id="@+id/btLogin"
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
         android:text="@string/already_have_an_account"

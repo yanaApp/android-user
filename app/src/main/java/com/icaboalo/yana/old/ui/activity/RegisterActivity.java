@@ -15,7 +15,6 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.io.ApiClient;
 import com.icaboalo.yana.old.io.model.UserApiModel;
-import com.icaboalo.yana.presentation.screens.login.*;
 
 import java.io.IOException;
 
@@ -47,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         assert mRegisterButton != null;
         mRegisterButton.setOnClickListener(this);
 
-        mLoginButton = (TextView) findViewById(R.id.login_button);
+        mLoginButton = (TextView) findViewById(R.id.btLogin);
         mLoginButton.setOnClickListener(this);
     }
 
@@ -76,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     userRegisterAPI(user);
                 }
                 break;
-            case R.id.login_button:
+            case R.id.btLogin:
                 Log.d("INTENT", "login");
                 Intent goToLogin = new Intent(RegisterActivity.this, com.icaboalo.yana.presentation.screens.login.LoginActivity.class);
                 startActivity(goToLogin);

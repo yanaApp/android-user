@@ -38,7 +38,7 @@ public class TutorialActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setupViewPager();
-        final TextView loginButton = (TextView) findViewById(R.id.login_button);
+        final TextView loginButton = (TextView) findViewById(R.id.btLogin);
 
 
         tvSkipTutorial.setOnClickListener(new View.OnClickListener() {
