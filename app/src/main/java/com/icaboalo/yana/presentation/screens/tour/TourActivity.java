@@ -112,6 +112,11 @@ public class TourActivity extends BaseActivity implements GenericListView<Fragme
         navigator.navigateTo(getApplicationContext(), LoginActivity.getCallingIntent(getApplicationContext()));
     }
 
+    @OnClick(R.id.tvSkipTutorial)
+    void skip(){
+        mViewPager.setCurrentItem(4);
+    }
+
     public static Intent getCallingContext(Context context){
         return new Intent(context, TourActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
