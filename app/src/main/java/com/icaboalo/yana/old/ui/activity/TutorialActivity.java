@@ -13,7 +13,6 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.TutorialPageFragment;
-import com.icaboalo.yana.presentation.screens.login.*;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
@@ -35,7 +34,7 @@ public class TutorialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_tutorial);
+        setContentView(R.layout.activity_tour);
         ButterKnife.bind(this);
 
         setupViewPager();
