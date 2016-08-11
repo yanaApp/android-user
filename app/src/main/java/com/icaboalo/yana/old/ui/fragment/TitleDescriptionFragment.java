@@ -49,8 +49,8 @@ public class TitleDescriptionFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mDescription = (TextView) view.findViewById(R.id.description);
+        mTitle = (TextView) view.findViewById(R.id.tvTitle);
+        mDescription = (TextView) view.findViewById(R.id.tvDescription);
         mContinueButton = (Button) view.findViewById(R.id.btContinue);
     }
 

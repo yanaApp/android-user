@@ -2,7 +2,6 @@ package com.icaboalo.yana.presentation.screens.tour;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,16 +17,29 @@ import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.old.ui.widget.TypewriterView;
 import com.squareup.picasso.Picasso;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by icaboalo on 03/06/16.
  */
 public class TourPageFragment extends Fragment {
 
+    @Nullable
+    @Bind(R.id.ivTutorial)
     ImageView mTutorialImage;
-    TextView mTitle, mDescription;
+    @Nullable
+    @Bind(R.id.tvTitle)
+    TextView mTitle;
+    @Nullable
+    @Bind(R.id.tvDescription)
+    TextView mDescription;
+    @Nullable
+    @Bind(R.id.typeView)
     TypewriterView typeView;
+    @Nullable
+    @Bind(R.id.btContinue)
     Button mContinue;
-    final Handler handler = new Handler();
     boolean isCreated = false;
 
 
@@ -67,10 +79,7 @@ public class TourPageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mTutorialImage = (ImageView) view.findViewById(R.id.tutorial_image);
-        mTitle = (TextView) view.findViewById(R.id.title);
-        mDescription = (TextView) view.findViewById(R.id.description);
-        mContinue = (Button) view.findViewById(R.id.btContinue);
+        ButterKnife.bind(this, view);
     }
 
     @Override
@@ -80,7 +89,6 @@ public class TourPageFragment extends Fragment {
         switch (position){
             case 0:
                 if (!isCreated){
-                    typeView = (TypewriterView) getView().findViewById(R.id.typeView);
                     typeView.type("jugar.")
                             .pause(500)
                             .delete("jugar.")
@@ -97,6 +105,7 @@ public class TourPageFragment extends Fragment {
                 }
                 break;
             case 1:
+//                TODO CORRECT TEXTS
                 Picasso.with(getActivity()).load(R.drawable.chat_128).into(mTutorialImage);
                 mTitle.setText("RECIBE APOYO");
                 mDescription.setText("Apoyate de una red de contactos que te respalde en esta etapa de tu vida.");

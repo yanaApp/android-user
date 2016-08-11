@@ -6,9 +6,9 @@
     android:orientation="vertical">
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/title"
+        android:id="@+id/tvTitle"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/description"
+        android:layout_above="@+id/tvDescription"
         android:layout_marginBottom="16dp"
         android:text="AUTOEVALUACIÓN"
         style="@style/AppTheme.TextTitle"
@@ -18,7 +18,7 @@
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:textColor="@color/secondary_text"
-        android:id="@+id/description"
+        android:id="@+id/tvDescription"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         style="@style/AppTheme.TextDescription"
