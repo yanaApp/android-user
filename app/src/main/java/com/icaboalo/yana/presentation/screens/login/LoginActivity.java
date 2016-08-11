@@ -1,7 +1,9 @@
 package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -64,6 +66,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     public void recoverPasswordSuccess(boolean success) {
         rlForgotPassword.setVisibility(View.GONE);
         llLoginForm.setVisibility(View.VISIBLE);
+        showDialog();
     }
 
     @Override
@@ -117,7 +120,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     }
 
     @OnClick(R.id.forgot_password)
-    void show_forgot_password(){
+    void showForgotPassword(){
         llLoginForm.setVisibility(View.GONE);
         rlForgotPassword.setVisibility(View.VISIBLE);
     }
@@ -129,6 +132,19 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         else {
             mLoginPresenter.attemptRecoverPassword(etEmail.getText().toString());
         }
+    }
+
+    void showDialog(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Recuperación");
+        alertDialog.setMessage("Por favor revisa tu correo electronico para restablecer tu contraseña.");
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
     public static Intent getCallingIntent(Context context){
