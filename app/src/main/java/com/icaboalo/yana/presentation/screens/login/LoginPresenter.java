@@ -5,10 +5,15 @@ import android.content.SharedPreferences;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.data.entities.LoginEntity;
+import com.icaboalo.yana.data.entities.RecoverPasswordEntity;
+import com.icaboalo.yana.domain.exception.DefaultErrorBundle;
+import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Login;
+import com.icaboalo.yana.domain.models.RecoverPassword;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.login.view_model.RecoverPasswordViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;
@@ -54,5 +59,43 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
         nEditor.putString(PrefConstants.tokenPref, loginViewModel.getToken());
         nEditor.apply();
         return true;
+    }
+
+    public void attemptRecoverPassword(String email){
+        showViewLoading();
+        recoverPassword(email);
+    }
+
+//    TODO create recover url
+    private void recoverPassword(String email){
+        HashMap<String, Object> recoverBundle = new HashMap<>(1);
+        recoverBundle.put("email", email);
+        getGenericUseCase().executeDynamicPostObject(new RecoverPasswordSubscriber(), Constants.API_BASE_URL, recoverBundle,
+                RecoverPassword.class, RecoverPasswordEntity.class, RecoverPasswordViewModel.class, false);
+    }
+
+    private void recoverPasswordSuccess(boolean success){
+        ((LoginView) getGenericPostView()).recoverPasswordSuccess(success);
+    }
+
+    private class RecoverPasswordSubscriber extends DefaultSubscriber<RecoverPasswordViewModel>{
+        @Override
+        public void onCompleted() {
+            hideViewLoading();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            hideViewLoading();
+            showViewRetry();
+            showErrorMessage(new DefaultErrorBundle((Exception) e));
+            e.printStackTrace();
+        }
+
+        @Override
+        public void onNext(RecoverPasswordViewModel recoverPasswordViewModel) {
+            super.onNext(recoverPasswordViewModel);
+            recoverPasswordSuccess(true);
+        }
     }
 }

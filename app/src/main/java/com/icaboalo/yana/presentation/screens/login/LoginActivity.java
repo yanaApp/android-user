@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import butterknife.OnClick;
 /**
  * @author icaboalo on 09/08/16.
  */
-public class LoginActivity extends BaseActivity implements GenericPostView<LoginViewModel>{
+public class LoginActivity extends BaseActivity implements LoginView<LoginViewModel>{
 
     @Inject
     LoginPresenter mLoginPresenter;
@@ -36,6 +37,11 @@ public class LoginActivity extends BaseActivity implements GenericPostView<Login
     EditText etEmail;
     @Bind(R.id.etPassword)
     EditText etPassword;
+    @Bind(R.id.rlForgotPassword)
+    RelativeLayout rlForgotPassword;
+    @Bind(R.id.llLoginForm)
+    LinearLayout llLoginForm;
+
 
     @Override
     public void initialize() {
@@ -52,6 +58,12 @@ public class LoginActivity extends BaseActivity implements GenericPostView<Login
     @Override
     public void postSuccessful(LoginViewModel item) {
         navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingContext(getApplicationContext()));
+    }
+
+    @Override
+    public void recoverPasswordSuccess(boolean success) {
+        rlForgotPassword.setVisibility(View.GONE);
+        llLoginForm.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -83,17 +95,40 @@ public class LoginActivity extends BaseActivity implements GenericPostView<Login
         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (rlForgotPassword.getVisibility() == View.VISIBLE){
+            rlForgotPassword.setVisibility(View.GONE);
+            llLoginForm.setVisibility(View.VISIBLE);
+        } else
+            super.onBackPressed();
+    }
+
     @OnClick(R.id.btLogin)
     void login(){
         if (etEmail.getText().toString().isEmpty() && etPassword.getText().toString().isEmpty())
-            showError("Debes llenar todos los campos");
+            showError("Debes llenar todos los campos.");
         else {
             HashMap<String, Object> loginBundle = new HashMap<>(2);
             loginBundle.put("username", etEmail.getText().toString());
             loginBundle.put("password", etPassword.getText().toString());
             mLoginPresenter.post(loginBundle);
         }
+    }
 
+    @OnClick(R.id.forgot_password)
+    void show_forgot_password(){
+        llLoginForm.setVisibility(View.GONE);
+        rlForgotPassword.setVisibility(View.VISIBLE);
+    }
+
+    @OnClick(R.id.btRecoverPassword)
+    void recoverPassword(){
+        if (etEmail.getText().toString().isEmpty())
+            showError("Debes llenar todos los campos.");
+        else {
+            mLoginPresenter.attemptRecoverPassword(etEmail.getText().toString());
+        }
     }
 
     public static Intent getCallingIntent(Context context){
