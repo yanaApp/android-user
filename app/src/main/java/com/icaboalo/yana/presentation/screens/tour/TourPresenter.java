@@ -24,11 +24,11 @@ public class TourPresenter extends GenericListPresenter<FragmentPagerModel, Recy
     @Override
     public void getItemList() {
         ArrayList<FragmentPagerModel> pagerList = new ArrayList<>();
-        pagerList.add(new FragmentPagerModel(new TutorialPageFragment().newInstance(pagerList.size())));
-        pagerList.add(new FragmentPagerModel(new TutorialPageFragment().newInstance(pagerList.size())));
-        pagerList.add(new FragmentPagerModel(new TutorialPageFragment().newInstance(pagerList.size())));
-        pagerList.add(new FragmentPagerModel(new TutorialPageFragment().newInstance(pagerList.size())));
-        pagerList.add(new FragmentPagerModel(new TutorialPageFragment().newInstance(pagerList.size())));
+        pagerList.add(new FragmentPagerModel(new TourPageFragment().newInstance(pagerList.size())));
+        pagerList.add(new FragmentPagerModel(new TourPageFragment().newInstance(pagerList.size())));
+        pagerList.add(new FragmentPagerModel(new TourPageFragment().newInstance(pagerList.size())));
+        pagerList.add(new FragmentPagerModel(new TourPageFragment().newInstance(pagerList.size())));
+        pagerList.add(new FragmentPagerModel(new TourPageFragment().newInstance(pagerList.size())));
         getGenericListView().renderItemList(pagerList);
     }
 }

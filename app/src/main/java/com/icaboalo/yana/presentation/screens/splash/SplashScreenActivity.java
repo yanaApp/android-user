@@ -5,7 +5,6 @@ import android.view.Window;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.MainActivity;
-import com.icaboalo.yana.old.ui.activity.TutorialActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
