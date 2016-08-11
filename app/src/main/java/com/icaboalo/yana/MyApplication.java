@@ -1,7 +1,6 @@
 package com.icaboalo.yana;
 
 import com.icaboalo.yana.presentation.di.component.ApplicationComponent;
-import com.icaboalo.yana.presentation.di.component.DaggerActivityComponent;
 import com.icaboalo.yana.presentation.di.component.DaggerApplicationComponent;
 import com.icaboalo.yana.presentation.di.module.ApplicationModule;
 
