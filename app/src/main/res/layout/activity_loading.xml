@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".old.ui.activity.LoadingActivity">
+    tools:context=".presentation.screens.action_plan.loading.LoadingActivity">
 
     <RelativeLayout
         android:id="@+id/rlLoading"
@@ -33,5 +33,6 @@
 
 
     <include layout="@layout/view_load_complete"/>
+    <include layout="@layout/view_retry"/>
 
 </RelativeLayout>

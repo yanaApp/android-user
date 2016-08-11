@@ -6,7 +6,7 @@ package com.icaboalo.yana.util;
 public class Constants {
 
     public static final String API_BASE_URL = "https://yana-network.herokuapp.com/api/v1/";
-    public static String ACCESS_TOKEN = "";
+    public static String ACCESS_TOKEN = "TOKEN";
 
     public static final String APPLICATION_JSON = "application/json";
 }

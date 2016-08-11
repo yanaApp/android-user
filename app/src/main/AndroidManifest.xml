@@ -47,7 +47,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".old.ui.activity.LoadingActivity"
+            android:name=".presentation.screens.action_plan.loading.LoadingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

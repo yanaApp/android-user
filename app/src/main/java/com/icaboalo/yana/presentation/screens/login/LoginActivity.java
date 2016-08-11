@@ -2,9 +2,6 @@ package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -13,6 +10,7 @@ import android.widget.Toast;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
+import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
 
 import java.util.HashMap;
@@ -53,7 +51,7 @@ public class LoginActivity extends BaseActivity implements GenericPostView<Login
 
     @Override
     public void postSuccessful(LoginViewModel item) {
-        showError(item.getToken());
+        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingContext(getApplicationContext()));
     }
 
     @Override

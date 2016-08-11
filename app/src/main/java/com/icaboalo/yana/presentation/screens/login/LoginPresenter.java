@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.login;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.data.entities.LoginEntity;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Login;
@@ -38,6 +39,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
     @Override
     public void postSuccess(LoginViewModel model) {
         saveResponseToPrefs(model);
+        super.postSuccess(model);
     }
 
     private void saveResponseToPrefs(LoginViewModel loginViewModel){
@@ -48,8 +50,8 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
 
     private boolean saveResponseToPrefsHelper(LoginViewModel loginViewModel){
         Constants.ACCESS_TOKEN = loginViewModel.getToken();
-        SharedPreferences.Editor nEditor = getGenericPostView().getApplicationContext().getSharedPreferences("", Context.MODE_PRIVATE).edit();
-        nEditor.putString(Constants.ACCESS_TOKEN, loginViewModel.getToken());
+        SharedPreferences.Editor nEditor = getGenericPostView().getApplicationContext().getSharedPreferences(PrefConstants.authFile, Context.MODE_PRIVATE).edit();
+        nEditor.putString(PrefConstants.tokenPref, loginViewModel.getToken());
         nEditor.apply();
         return true;
     }

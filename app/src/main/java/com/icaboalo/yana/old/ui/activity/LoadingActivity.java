@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.io.ApiClient;
@@ -48,7 +49,8 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
         ButterKnife.bind(this);
 
-        getMe(PrefUtils.getToken(this));
+        getMe("Token " + PrefUtils.getToken(this));
+        Toast.makeText(LoadingActivity.this, PrefUtils.getToken(this), Toast.LENGTH_SHORT).show();
     }
 
     @OnClick(R.id.btContinue)
