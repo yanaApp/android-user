@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".old.ui.activity.TutorialActivity"
+            android:name=".presentation.screens.tour.TourActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

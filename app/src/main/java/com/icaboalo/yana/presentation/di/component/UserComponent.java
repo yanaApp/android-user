@@ -5,6 +5,7 @@ import com.icaboalo.yana.presentation.di.module.ActivityModule;
 import com.icaboalo.yana.presentation.di.module.UserModule;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
+import com.icaboalo.yana.presentation.screens.tour.TourActivity;
 
 import dagger.Component;
 
@@ -18,4 +19,6 @@ public interface UserComponent {
     void inject(LoginActivity loginActivity);
 
     void inject(LoadingActivity loadingActivity);
+
+    void inject(TourActivity tourActivity);
 }

@@ -9,7 +9,7 @@
         style="@style/AppTheme.TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/description"
+        android:layout_above="@+id/tvDescription"
         android:paddingLeft="32dp"
         android:paddingRight="32dp"
         android:text="Personaliza tu plan de acción"/>
@@ -17,7 +17,7 @@
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         style="@style/AppTheme.TextDescription"
-        android:id="@+id/description"
+        android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

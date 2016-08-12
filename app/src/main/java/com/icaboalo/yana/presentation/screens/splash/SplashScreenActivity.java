@@ -5,9 +5,9 @@ import android.view.Window;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.MainActivity;
-import com.icaboalo.yana.old.ui.activity.TutorialActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
+import com.icaboalo.yana.presentation.screens.tour.TourActivity;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.Timer;
@@ -41,7 +41,7 @@ public class SplashScreenActivity extends BaseActivity {
 
     private void checkForToken(){
         if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equals("TOKEN")){
-            navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), TutorialActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            navigator.navigateTo(getApplicationContext(), TourActivity.getCallingContext(getApplicationContext()));
             finish();
         } else {
             if (!PrefUtils.isDownloadCompleted(getApplicationContext())){

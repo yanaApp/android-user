@@ -31,8 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
         super.onCreate(savedInstanceState);
         getApplicationComponent().inject(this);
         initializeInjector();
-        initialize();
         setupUI();
+        initialize();
     }
 
     @Override

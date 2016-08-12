@@ -78,7 +78,7 @@
         android:text="@string/button_register" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/login_button"
+        android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
