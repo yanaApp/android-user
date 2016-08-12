@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.old.ui.widget.TypewriterView;
+import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -23,7 +24,7 @@ import butterknife.ButterKnife;
 /**
  * Created by icaboalo on 03/06/16.
  */
-public class TourPageFragment extends Fragment {
+public class TourPageFragment extends BaseFragment {
 
     @Nullable
     @Bind(R.id.ivTutorial)
@@ -83,8 +84,7 @@ public class TourPageFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void initialize() {
         final int position = getArguments().getInt("POSITION");
         switch (position){
             case 0:
@@ -121,15 +121,8 @@ public class TourPageFragment extends Fragment {
                 mDescription.setText("Completa las actividades diarias que te ayudarán a sentirte mejor.");
                 break;
             case 4:
-                mContinue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("INTENT", "action plan test");
-                        Intent goToTest = new Intent(getActivity(), EvaluationActivity.class);
-                        startActivity(goToTest);
-                        getActivity().finish();
-                    }
-                });
+                mContinue.setOnClickListener(v -> navigator.navigateTo(getContext(),
+                        new Intent(getContext(), EvaluationActivity.class)));
                 break;
         }
     }
@@ -139,5 +132,4 @@ public class TourPageFragment extends Fragment {
         super.onDestroyView();
         isCreated = true;
     }
-
 }
