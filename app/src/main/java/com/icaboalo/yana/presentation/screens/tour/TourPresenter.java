@@ -4,7 +4,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.old.domain.FragmentPagerModel;
-import com.icaboalo.yana.old.ui.fragment.TutorialPageFragment;
 import com.icaboalo.yana.presentation.screens.GenericListPresenter;
 
 import java.util.ArrayList;
