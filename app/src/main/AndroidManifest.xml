@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".old.ui.activity.RegisterActivity"
+            android:name=".presentation.screens.register.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

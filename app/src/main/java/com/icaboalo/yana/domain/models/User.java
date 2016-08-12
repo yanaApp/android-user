@@ -1,11 +1,11 @@
-package com.icaboalo.yana.presentation.screens.register.view_model;
+package com.icaboalo.yana.domain.models;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author icaboalo on 11/08/16.
+ * @author icaboalo on 10/08/16.
  */
-public class RegisterViewModel {
+public class User {
 
     private int id;
 

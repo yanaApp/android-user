@@ -1,88 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:padding="32dp"
     tools:context=".old.ui.activity.RegisterActivity">
 
-    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome"
-        android:textSize="36sp" />
-
-    <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
-            android:id="@+id/etFullName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/full_name_input_hint"
-            android:inputType="textPersonName" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
-            android:id="@+id/etEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email_input_hint"
-            android:inputType="textEmailAddress" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
-
-        <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password_input_hint"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
-
-    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Al registrarte confirmas que has leido y aceptado terminos del servicio y la politica de privacidad"
-        android:gravity="center"
-        android:lineSpacingExtra="3dp"
-        android:textAllCaps="true"
-        android:textSize="10sp" />
-
-    <Button
-        android:id="@+id/btRegister"
-        style="@style/AppTheme.ButtonBlue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/button_register" />
-
-    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/btLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:text="@string/already_have_an_account"
-        android:textAllCaps="true" />
-</LinearLayout>
+    <include layout="@layout/content_register"/>
+    <include layout="@layout/view_progress"/>
+</RelativeLayout>

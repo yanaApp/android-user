@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.screens.register;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -32,8 +34,8 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
     EditText etPassword;
     @Bind(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
-    RelativeLayout rlRetry;
+//    @Bind(R.id.rlRetry)
+//    RelativeLayout rlRetry;
 
     @Override
     public void initialize() {
@@ -49,7 +51,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void postSuccessful(RegisterViewModel item) {
-
+        showError(item.getFullName());
     }
 
     @Override
@@ -93,5 +95,9 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
             registerBundle.put("password", etPassword.getText().toString());
             mRegisterPresenter.post(registerBundle);
         }
+    }
+
+    public static Intent getCallingIntent(Context context){
+        return new Intent(context, RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }

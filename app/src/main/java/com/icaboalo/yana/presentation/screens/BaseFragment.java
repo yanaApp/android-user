@@ -40,7 +40,7 @@ public abstract class BaseFragment extends Fragment{
      * @return {@link com.icaboalo.yana.presentation.di.component.ApplicationComponent}
      */
     protected ApplicationComponent getApplicationComponent(){
-        return ((MyApplication) getContext()).getApplicationComponent();
+        return ((MyApplication) getContext().getApplicationContext()).getApplicationComponent();
     }
 
     /**

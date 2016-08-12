@@ -1,7 +1,6 @@
 package com.icaboalo.yana.old.ui.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.old.ui.activity.RegisterActivity;
+import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
 import com.icaboalo.yana.util.EvaluationClickListener;
 
 /**
@@ -52,8 +51,7 @@ public class SelectEvaluationFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.skip_evaluation_button:
-                Intent goToRegister = new Intent(getActivity(), RegisterActivity.class);
-                startActivity(goToRegister);
+                startActivity(RegisterActivity.getCallingIntent(getActivity()));
                 getActivity().finish();
                 break;
             case R.id.evaluation_button:
