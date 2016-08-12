@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mEmailInput = (TextInputEditText) findViewById(R.id.etEmail);
         mPasswordInput = (TextInputEditText) findViewById(R.id.etPassword);
 
-        mRegisterButton = (Button) findViewById(R.id.register_button);
+        mRegisterButton = (Button) findViewById(R.id.btRegister);
         assert mRegisterButton != null;
         mRegisterButton.setOnClickListener(this);
 
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.register_button:
+            case R.id.btRegister:
                 if (mFullNameInput.getText().toString().isEmpty() || mFullNameInput.getText().toString().length() < 2){
                     mFullNameInput.setError(getString(error_empty_field));
                 }  else if (mEmailInput.getText().toString().isEmpty() || mEmailInput.getText().toString().length() < 2){
