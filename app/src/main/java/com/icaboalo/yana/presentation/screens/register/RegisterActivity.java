@@ -10,6 +10,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.HashMap;
 
@@ -51,7 +52,8 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void postSuccessful(RegisterViewModel item) {
-        showError(item.getFullName());
+        showError(item.getUserViewModel().getFullName());
+        showError(PrefUtils.getToken(getApplicationContext()));
     }
 
     @Override
