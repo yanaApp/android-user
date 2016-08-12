@@ -13,7 +13,7 @@ public class UserRealmModel extends RealmObject{
     @PrimaryKey
     private int id;
 
-    private String email, password, location, occupation, gender;
+    private String email, location, occupation, gender;
     @SerializedName("full_name")
     private String fullName;
     @SerializedName("phone_number")
@@ -25,10 +25,6 @@ public class UserRealmModel extends RealmObject{
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getLocation() {

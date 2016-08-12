@@ -2,7 +2,9 @@ package com.icaboalo.yana.presentation.screens.register;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
+import com.google.gson.Gson;
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.data.entities.RegisterEntity;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
@@ -14,7 +16,11 @@ import com.icaboalo.yana.domain.models.User;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
+import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
 import com.icaboalo.yana.util.Constants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -43,7 +49,26 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     @Override
     public void postSuccess(RegisterViewModel model) {
         saveResponseToPrefs(model.getToken());
+        saveUserOnRealm(model.getUserViewModel());
         super.postSuccess(model);
+    }
+
+    private void saveUserOnRealm(UserViewModel userViewModel){
+        Observable.defer(() -> Observable.just(saveUserOnRealmHelper(userViewModel)))
+                .subscribeOn(Schedulers.io())
+                .subscribe();
+    }
+
+    private boolean saveUserOnRealmHelper(UserViewModel userViewModel){
+        try {
+            JSONObject json = new JSONObject(new Gson().toJson(userViewModel).replace("full_name", "fullName").replace("phone_number", "phoneNumber"));
+            getGenericUseCase().executeDynamicPostObject(new SaveSubscriber(), "", json, User.class, UserRealmModel.class,
+                    UserViewModel.class, true);
+            return true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private void saveResponseToPrefs(String token){
@@ -58,5 +83,22 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
         nEditor.putString(PrefConstants.tokenPref, token);
         nEditor.apply();
         return true;
+    }
+
+    private class SaveSubscriber extends DefaultSubscriber<UserViewModel>{
+        @Override
+        public void onCompleted() {
+            super.onCompleted();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            super.onError(e);
+        }
+
+        @Override
+        public void onNext(UserViewModel userViewModel) {
+            ((RegisterView) getGenericPostView()).saveSuccess(userViewModel);
+        }
     }
 }

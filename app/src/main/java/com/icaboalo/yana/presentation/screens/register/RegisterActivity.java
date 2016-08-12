@@ -10,6 +10,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
+import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.HashMap;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
 /**
  * @author icaboalo on 11/08/16.
  */
-public class RegisterActivity extends BaseActivity implements GenericPostView<RegisterViewModel> {
+public class RegisterActivity extends BaseActivity implements RegisterView<RegisterViewModel> {
 
     @Inject
     RegisterPresenter mRegisterPresenter;
@@ -52,8 +53,8 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void postSuccessful(RegisterViewModel item) {
-        showError(item.getUserViewModel().getFullName());
-        showError(PrefUtils.getToken(getApplicationContext()));
+//        showError(item.getUserViewModel().getFullName());
+//        showError(PrefUtils.getToken(getApplicationContext()));
     }
 
     @Override
@@ -101,5 +102,10 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context, RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    @Override
+    public void saveSuccess(UserViewModel model) {
+        showError(model.getFullName());
     }
 }
