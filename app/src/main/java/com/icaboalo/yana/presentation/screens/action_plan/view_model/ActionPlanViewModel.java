@@ -2,7 +2,6 @@ package com.icaboalo.yana.presentation.screens.action_plan.view_model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,9 +17,9 @@ public class ActionPlanViewModel {
     private boolean isActive;
 
     @SerializedName("initial_date")
-    private Date initialDate;
+    private String initialDate;
     @SerializedName("final_date")
-    private Date finalDate;
+    private String finalDate;
 
     @SerializedName("days")
     private List<DayViewModel> dayList;
@@ -37,11 +36,11 @@ public class ActionPlanViewModel {
         return isActive;
     }
 
-    public Date getInitialDate() {
+    public String getInitialDate() {
         return initialDate;
     }
 
-    public Date getFinalDate() {
+    public String getFinalDate() {
         return finalDate;
     }
 

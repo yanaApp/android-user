@@ -2,9 +2,6 @@ package com.icaboalo.yana.data.entities.realm_models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-import java.util.List;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -23,9 +20,9 @@ public class ActionPlanRealmModel extends RealmObject {
     private boolean isActive;
 
     @SerializedName("initial_date")
-    private Date initialDate;
+    private String initialDate;
     @SerializedName("final_date")
-    private Date finalDate;
+    private String finalDate;
 
     @SerializedName("days")
     private RealmList<DayRealmModel> dayList;
@@ -42,11 +39,11 @@ public class ActionPlanRealmModel extends RealmObject {
         return isActive;
     }
 
-    public Date getInitialDate() {
+    public String getInitialDate() {
         return initialDate;
     }
 
-    public Date getFinalDate() {
+    public String getFinalDate() {
         return finalDate;
     }
 

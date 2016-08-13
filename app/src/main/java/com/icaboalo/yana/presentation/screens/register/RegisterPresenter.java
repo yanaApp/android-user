@@ -15,6 +15,7 @@ import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
 import com.icaboalo.yana.util.Constants;
+import com.icaboalo.yana.util.PrefUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +40,7 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     @Override
     public void post(HashMap<String, Object> postBundle) {
         showViewLoading();
+        postBundle.put("category", PrefUtils.getEvaluationResult(getGenericPostView().getApplicationContext()));
         getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), Constants.API_BASE_URL + "user/register/", postBundle,
                 Register.class, RegisterEntity.class, RegisterViewModel.class, false);
     }
