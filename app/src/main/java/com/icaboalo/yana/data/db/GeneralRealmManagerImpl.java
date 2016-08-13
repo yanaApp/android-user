@@ -39,7 +39,6 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     public Observable<?> getById(String idColumnName, int userId, Class clazz) {
         return Observable.defer(() -> {
             mRealm = Realm.getDefaultInstance();
-            Log.d("REALM", mRealm.where(clazz).equalTo(idColumnName, userId).findFirst().toString());
             return Observable.just(mRealm.where(clazz).equalTo(idColumnName, userId).findFirst());
         });
     }
