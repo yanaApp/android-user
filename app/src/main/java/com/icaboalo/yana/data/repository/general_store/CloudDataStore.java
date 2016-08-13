@@ -1,6 +1,7 @@
 package com.icaboalo.yana.data.repository.general_store;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.gson.Gson;
@@ -114,6 +115,7 @@ public class CloudDataStore implements DataStore {
 
     @Override
     public Observable<?> dynamicPostObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
         return Observable.defer(() -> {
             if (!Utils.isNetworkAvailable(mContext) && (Utils.hasLollipop()
                    /* || GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/)) {
@@ -131,7 +133,7 @@ public class CloudDataStore implements DataStore {
                             saveGenericToCache.call(object);
                     })
                     .doOnError(throwable -> {
-//                        Log.d(TAG, throwable.getMessage());
+                        Log.d("TAG", throwable.getMessage());
 //                        queuePost.call(object);
                     })
                     .map(realmModel -> mEntityDataMapper.transformToDomain(realmModel, domainClass));
@@ -140,6 +142,7 @@ public class CloudDataStore implements DataStore {
 
     @Override
     public Observable<?> dynamicPostObject(String url, JSONObject keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
         return Observable.defer(() -> {
             if (!Utils.isNetworkAvailable(mContext) && (Utils.hasLollipop()
                    /* || GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext) == ConnectionResult.SUCCESS*/)) {
@@ -166,6 +169,7 @@ public class CloudDataStore implements DataStore {
 
     @Override
     public Observable<List> dynamicPostList(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
         return Observable.defer(() -> {
             return mRestApi.dynamicPostList(url, RequestBody.create(MediaType.parse("application/json"),
                     new JSONObject(keyValuePairs).toString()))
@@ -179,6 +183,7 @@ public class CloudDataStore implements DataStore {
 
     @Override
     public Observable<?> dynamicPutObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
         return Observable.defer(() -> {
             return mRestApi.dynamicPutObject(url, RequestBody.create(MediaType.parse("application/json"),
                     new JSONObject(keyValuePairs).toString()))
@@ -192,6 +197,7 @@ public class CloudDataStore implements DataStore {
 
     @Override
     public Observable<List> dynamicPutList(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
         return Observable.defer(() -> {
             return mRestApi.dynamicPutList(url, RequestBody.create(MediaType.parse("application/json"),
                     new JSONObject(keyValuePairs).toString()))

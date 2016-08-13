@@ -1,19 +1,15 @@
-package com.icaboalo.yana.data.entities.realm_models.action_plan;
+package com.icaboalo.yana.domain.models;
 
 import com.google.gson.annotations.SerializedName;
-
-import io.realm.RealmObject;
-import io.realm.annotations.PrimaryKey;
 
 /**
  * @author icaboalo on 10/08/16.
  */
-public class UserRealmModel extends RealmObject{
+public class User {
 
-    @PrimaryKey
     private int id;
 
-    private String email, location, occupation, gender;
+    private String email, password, location, occupation, gender;
     @SerializedName("full_name")
     private String fullName;
     @SerializedName("phone_number")
@@ -25,6 +21,10 @@ public class UserRealmModel extends RealmObject{
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getLocation() {
