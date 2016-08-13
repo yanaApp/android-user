@@ -23,7 +23,7 @@
                 android:background="#E2E2E4"/>
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:id="@+id/activity_date"
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -34,7 +34,7 @@
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/activity_recycler"
+            android:id="@+id/rvActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/llDayContainer"/>
@@ -42,5 +42,7 @@
 
 
     <include layout="@layout/view_no_action_plan"/>
+    <include layout="@layout/view_progress"/>
+    <include layout="@layout/view_retry"/>
 
 </RelativeLayout>

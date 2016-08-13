@@ -42,9 +42,9 @@ import static com.icaboalo.yana.old.ui.adapter.ActivityRecyclerAdapter.*;
  */
 public class ActionPlanFragment extends Fragment {
 
-    @Bind(R.id.activity_recycler)
+    @Bind(R.id.rvActivity)
     RecyclerView mActivityRecycler;
-    @Bind(R.id.activity_date)
+    @Bind(R.id.tvDate)
     TextView mActivityDate;
     @Bind(R.id.llContainer)
     LinearLayout llContainer;
