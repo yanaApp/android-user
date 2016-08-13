@@ -4,13 +4,14 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
+import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.domain.models.action_plan.User;
 
 import java.util.ArrayList;
+import java.util.FormatFlagsConversionMismatchException;
 import java.util.List;
 
-import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmModel;
 import io.realm.RealmObject;
@@ -18,11 +19,11 @@ import io.realm.RealmObject;
 /**
  * @author icaboalo on 13/08/16.
  */
-public class UserEntityMapper implements EntityMapper<Object, Object> {
+public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
 
     protected Gson gson;
 
-    public UserEntityMapper() {
+    public ActionPlanEntityMapper() {
         gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
             @Override
             public boolean shouldSkipField(FieldAttributes f) {
@@ -60,23 +61,20 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
-            Realm nRealm = Realm.getDefaultInstance();
-            nRealm.beginTransaction();
-            UserRealmModel model = (UserRealmModel) realmModel;
-            User user = new User();
-            transformToDomainHelper(model, user);
-            nRealm.commitTransaction();
-            nRealm.close();
-            return user;
+            ActionPlanRealmModel model = (ActionPlanRealmModel) realmModel;
+            ActionPlan actionPlan = new ActionPlan();
+            transformToDomainHelper(model, actionPlan);
+            return actionPlan;
         }
-        return new User();
+
+        return new ActionPlan();
     }
 
     @Override
     public List<Object> transformAllToDomain(List<Object> realmModelList) {
         List<Object> objects = new ArrayList<>();
-        for (Object realmObject : realmModelList){
-            objects.add(transformToDomain(realmObject));
+        for (Object object : realmModelList){
+            objects.add(transformToDomain(object));
         }
         return objects;
     }
@@ -84,16 +82,15 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
         if (realmModel != null){
-            if (realmModel instanceof UserRealmModel){
-                UserRealmModel userRealmModel = (UserRealmModel) realmModel;
-                User user = new User();
-                transformToDomainHelper(userRealmModel, user);
-                return user;
+            if (realmModel instanceof ActionPlanRealmModel){
+                ActionPlanRealmModel nActionPlanRealmModel = (ActionPlanRealmModel) realmModel;
+                ActionPlan actionPlan = new ActionPlan();
+                transformToDomainHelper(nActionPlanRealmModel, actionPlan);
+                return actionPlan;
             }
             return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
         }
-
-        return new User();
+        return new ActionPlan();
     }
 
     @Override
@@ -105,14 +102,12 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
         return list;
     }
 
-    //TODO ADD ACTION PLAN LIST
-    private void transformToDomainHelper(UserRealmModel userRealmModel, User user){
-        user.setFullName(userRealmModel.getFullName());
-        user.setEmail(userRealmModel.getEmail());
-        user.setGender(userRealmModel.getGender());
-        user.setId(userRealmModel.getId());
-        user.setPhoneNumber(userRealmModel.getPhoneNumber());
-        user.setLocation(userRealmModel.getLocation());
-        user.setOccupation(userRealmModel.getOccupation());
+    // TODO ADD DAY LIST
+    private void transformToDomainHelper(ActionPlanRealmModel actionPlanRealmModel, ActionPlan actionPlan){
+        actionPlan.setId(actionPlanRealmModel.getId());
+        actionPlan.setActive(actionPlanRealmModel.isActive());
+        actionPlan.setCategory(actionPlanRealmModel.getCategory());
+        actionPlan.setFinalDate(actionPlanRealmModel.getFinalDate());
+        actionPlan.setInitialDate(actionPlanRealmModel.getInitialDate());
     }
 }
