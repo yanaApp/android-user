@@ -4,8 +4,9 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.ActivityRealmModel;
-import com.icaboalo.yana.domain.models.action_plan.Activity;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.CategoryRealmModel;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel;
+import com.icaboalo.yana.domain.models.action_plan.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +18,11 @@ import io.realm.RealmObject;
 /**
  * @author icaboalo on 13/08/16.
  */
-public class ActivityEntityMapper implements EntityMapper<Object, Object> {
+public class CategoryEntityMapper implements EntityMapper<Object, Object> {
 
     protected Gson gson;
 
-    public ActivityEntityMapper() {
+    public CategoryEntityMapper() {
         gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
             @Override
             public boolean shouldSkipField(FieldAttributes f) {
@@ -41,7 +42,7 @@ public class ActivityEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToRealm(Object item, Class dataClass) {
         if (item != null)
-            return dataClass.cast(gson.fromJson(gson.toJson(item), dataClass));
+            dataClass.cast(gson.fromJson(gson.toJson(item), dataClass));
         return null;
     }
 
@@ -60,10 +61,10 @@ public class ActivityEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
-            ActivityRealmModel activityRealmModel = (ActivityRealmModel) realmModel;
-            return transformToDomainHelper(activityRealmModel);
+            CategoryRealmModel categoryRealmModel = (CategoryRealmModel) realmModel;
+            return transformToDomainHelper(categoryRealmModel);
         }
-        return new Activity();
+        return new Category();
     }
 
     @Override
@@ -78,13 +79,13 @@ public class ActivityEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
         if (realmModel != null){
-            if (realmModel instanceof ActivityRealmModel){
-                ActivityRealmModel activityRealmModel = (ActivityRealmModel) realmModel;
-                return transformToDomain(activityRealmModel);
+            if (realmModel instanceof CategoryRealmModel){
+                CategoryRealmModel categoryRealmModel = (CategoryRealmModel) realmModel;
+                return transformToDomainHelper(categoryRealmModel);
             }
             return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
         }
-        return new Activity();
+        return new Category();
     }
 
     @Override
@@ -96,16 +97,11 @@ public class ActivityEntityMapper implements EntityMapper<Object, Object> {
         return list;
     }
 
-    //TODO add category
-    public static Activity transformToDomainHelper(ActivityRealmModel activityRealmModel){
-        Activity activity = new Activity();
-        activity.setId(activityRealmModel.getId());
-        activity.setAnswer(activityRealmModel.getAnswer());
-        activity.setTitle(activityRealmModel.getTitle());
-        activity.setDescription(activityRealmModel.getDescription());
-
-        activity.setCategory(CategoryEntityMapper.transformToDomainHelper(activityRealmModel.getCategory()));
-
-        return activity;
+    public static Category transformToDomainHelper(CategoryRealmModel categoryRealmModel){
+        Category category = new Category();
+        category.setId(categoryRealmModel.getId());
+        category.setColor(categoryRealmModel.getColor());
+        category.setName(categoryRealmModel.getName());
+        return category;
     }
 }
