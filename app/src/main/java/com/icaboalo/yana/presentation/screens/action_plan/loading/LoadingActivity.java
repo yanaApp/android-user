@@ -2,14 +2,13 @@ package com.icaboalo.yana.presentation.screens.action_plan.loading;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
-import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.action_plan.view_model.LoadingViewModel;
 
 import javax.inject.Inject;
 
@@ -19,13 +18,10 @@ import butterknife.ButterKnife;
 /**
  * @author icaboalo on 10/08/16.
  */
-public class LoadingActivity extends BaseActivity implements GenericDetailView<UserViewModel> {
+public class LoadingActivity extends BaseActivity implements GenericDetailView<LoadingViewModel> {
 
     @Inject
     LoadingPresenter mLoadingPresenter;
-    @Nullable
-    @Bind(R.id.rlRetry)
-    RelativeLayout rlRetry;
     @Bind(R.id.rlLoadComplete)
     RelativeLayout rlLoadComplete;
     @Bind(R.id.rlLoading)
@@ -45,7 +41,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     }
 
     @Override
-    public void renderItem(UserViewModel item) {
+    public void renderItem(LoadingViewModel item) {
         showError(item.toString());
         rlLoadComplete.setVisibility(View.VISIBLE);
     }
@@ -64,14 +60,10 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
 
     @Override
     public void showRetry() {
-        if (rlRetry != null)
-            rlRetry.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideRetry() {
-        if (rlRetry != null)
-            rlRetry.setVisibility(View.GONE);
     }
 
     @Override

@@ -11,8 +11,6 @@ import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
-import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
-import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.HashMap;
 
