@@ -77,12 +77,23 @@ public class DayEntityMapper implements EntityMapper<Object, Object> {
 
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
-        return null;
+        if (realmModel != null){
+            if (realmModel instanceof DayRealmModel){
+                DayRealmModel dayRealmModel = (DayRealmModel) realmModel;
+                return transformToDomainHelper(dayRealmModel);
+            }
+            return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
+        }
+        return new Day();
     }
 
     @Override
     public List<Object> transformAllToDomain(List<Object> realmModelList, Class domainClass) {
-        return null;
+        List<Object> list = new ArrayList<>();
+        for (Object object : realmModelList){
+            list.add(transformToDomain(object, domainClass));
+        }
+        return list;
     }
 
     public static Day transformToDomainHelper(DayRealmModel dayRealmModel){
