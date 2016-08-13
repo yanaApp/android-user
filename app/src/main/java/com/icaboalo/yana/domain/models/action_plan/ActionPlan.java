@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.action_plan.view_model;
+package com.icaboalo.yana.domain.models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author icaboalo on 10/08/16.
+ * @author icaboalo on 12/08/16.
  */
-public class ActionPlanViewModel {
+public class ActionPlan {
 
     private int id;
 
@@ -23,7 +23,7 @@ public class ActionPlanViewModel {
     private Date finalDate;
 
     @SerializedName("days")
-    private List<DayViewModel> dayList;
+    private List<Day> dayList;
 
     public int getId() {
         return id;
@@ -45,7 +45,7 @@ public class ActionPlanViewModel {
         return finalDate;
     }
 
-    public List<DayViewModel> getDayList() {
+    public List<Day> getDayList() {
         return dayList;
     }
 }
