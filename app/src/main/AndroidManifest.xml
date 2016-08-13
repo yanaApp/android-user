@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".old.ui.activity.MainActivity"
+            android:name=".presentation.screens.action_plan.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -54,7 +54,7 @@
         <activity android:name=".old.ui.activity.EditProfileActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".old.ui.activity.MainActivity" />
+                android:value=".presentation.screens.action_plan.main.MainActivity" />
         </activity>
 
         <activity android:name=".old.ui.activity.EvaluationActivity"/>
