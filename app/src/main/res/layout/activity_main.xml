@@ -10,6 +10,8 @@
     tools:context=".old.ui.activity.MainActivity">
 
     <include layout="@layout/app_bar_drawer"/>
+    <include layout="@layout/view_progress"/>
+    <include layout="@layout/view_retry"/>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"

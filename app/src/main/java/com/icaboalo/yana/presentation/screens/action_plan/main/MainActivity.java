@@ -37,6 +37,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void initialize() {
         getComponent().inject(this);
         mMainPresenter.setView(this);
+        mMainPresenter.initialize(6);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void showError(String message) {
-
+        showToastMessage(message);
     }
 
 

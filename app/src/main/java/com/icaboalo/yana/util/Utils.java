@@ -8,6 +8,7 @@ import android.os.Build;
 
 import com.icaboalo.yana.data.entities.mappers.EntityDataMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityMapper;
+import com.icaboalo.yana.data.entities.mappers.UserEntityMapper;
 
 /**
  * @author icaboalo on 08/08/16.
@@ -26,6 +27,8 @@ public class Utils {
 //                return new IncomingEntityMapper();
 //            case "com.grability.rappitendero.data.entities.realm_models.incoming.OrdersRealmModel":
 //                return new OrderEntityMapper();
+            case "com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel":
+                return new UserEntityMapper();
             default:
                 return new EntityDataMapper();
         }
