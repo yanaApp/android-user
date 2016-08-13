@@ -47,4 +47,28 @@ public class ActionPlan {
     public List<Day> getDayList() {
         return dayList;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void setInitialDate(String initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public void setFinalDate(String finalDate) {
+        this.finalDate = finalDate;
+    }
+
+    public void setDayList(List<Day> dayList) {
+        this.dayList = dayList;
+    }
 }

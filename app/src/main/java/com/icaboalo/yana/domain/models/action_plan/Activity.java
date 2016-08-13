@@ -29,4 +29,24 @@ public class Activity {
     public Category getCategory() {
         return category;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

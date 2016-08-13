@@ -30,4 +30,16 @@ public class Day {
     public List<Activity> getActivityList() {
         return activityList;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDayNumber(int dayNumber) {
+        this.dayNumber = dayNumber;
+    }
+
+    public void setActivityList(List<Activity> activityList) {
+        this.activityList = activityList;
+    }
 }

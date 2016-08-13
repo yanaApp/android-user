@@ -32,4 +32,20 @@ public class Contact {
     public boolean isValidated() {
         return isValidated;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setValidated(boolean validated) {
+        isValidated = validated;
+    }
 }
