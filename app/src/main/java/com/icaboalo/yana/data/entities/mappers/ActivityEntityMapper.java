@@ -5,9 +5,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.ActivityRealmModel;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.DayRealmModel;
 import com.icaboalo.yana.domain.models.action_plan.Activity;
-import com.icaboalo.yana.domain.models.action_plan.Day;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +17,11 @@ import io.realm.RealmObject;
 /**
  * @author icaboalo on 13/08/16.
  */
-public class DayEntityMapper implements EntityMapper<Object, Object> {
+public class ActivityEntityMapper implements EntityMapper<Object, Object> {
 
     protected Gson gson;
 
-    public DayEntityMapper() {
+    public ActivityEntityMapper() {
         gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
             @Override
             public boolean shouldSkipField(FieldAttributes f) {
@@ -38,6 +36,7 @@ public class DayEntityMapper implements EntityMapper<Object, Object> {
             }
         }).create();
     }
+
 
     @Override
     public Object transformToRealm(Object item, Class dataClass) {
@@ -61,10 +60,10 @@ public class DayEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
-            DayRealmModel dayRealmModel = (DayRealmModel) realmModel;
-            return transformToDomainHelper(dayRealmModel);
+            ActivityRealmModel activityRealmModel = (ActivityRealmModel) realmModel;
+            return transformToDomainHelper(activityRealmModel);
         }
-        return new Day();
+        return new Activity();
     }
 
     @Override
@@ -79,13 +78,13 @@ public class DayEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
         if (realmModel != null){
-            if (realmModel instanceof DayRealmModel){
-                DayRealmModel dayRealmModel = (DayRealmModel) realmModel;
-                return transformToDomainHelper(dayRealmModel);
+            if (realmModel instanceof ActivityRealmModel){
+                ActivityRealmModel activityRealmModel = (ActivityRealmModel) realmModel;
+                return transformToDomain(activityRealmModel);
             }
             return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
         }
-        return new Day();
+        return new Activity();
     }
 
     @Override
@@ -97,18 +96,15 @@ public class DayEntityMapper implements EntityMapper<Object, Object> {
         return list;
     }
 
-    public static Day transformToDomainHelper(DayRealmModel dayRealmModel){
-        Day day = new Day();
-        day.setId(dayRealmModel.getId());
-        day.setDayNumber(dayRealmModel.getDayNumber());
-        day.setDate(dayRealmModel.getDate());
+    //TODO add category
+    public static Activity transformToDomainHelper(ActivityRealmModel activityRealmModel){
+        Activity activity = new Activity();
+        activity.setId(activityRealmModel.getId());
+        activity.setAnswer(activityRealmModel.getAnswer());
+        activity.setTitle(activityRealmModel.getTitle());
+        activity.setDescription(activityRealmModel.getDescription());
 
-        List<Activity> activityList = new ArrayList<>();
 
-        for (ActivityRealmModel activity : dayRealmModel.getActivityList())
-            activityList.add(ActivityEntityMapper.transformToDomainHelper(activity));
-
-        day.setActivityList(activityList);
-        return day;
+        return activity;
     }
 }
