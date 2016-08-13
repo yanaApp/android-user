@@ -1,21 +1,25 @@
-package com.icaboalo.yana.presentation.screens.action_plan.view_model;
+package com.icaboalo.yana.data.entities.realm_models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * @author icaboalo on 10/08/16.
- */
-public class DayViewModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+/**
+ * @author icaboalo on 12/08/16.
+ */
+public class DayRealmModel extends RealmObject{
+
+    @PrimaryKey
     private int id;
 
     @SerializedName("day_number")
     private int dayNumber;
 
     @SerializedName("activities")
-    private List<ActivityViewModel> activityList;
+    private List<ActivityRealmModel> activityList;
 
     public int getId() {
         return id;
@@ -25,7 +29,7 @@ public class DayViewModel {
         return dayNumber;
     }
 
-    public List<ActivityViewModel> getActivityList() {
+    public List<ActivityRealmModel> getActivityList() {
         return activityList;
     }
 }

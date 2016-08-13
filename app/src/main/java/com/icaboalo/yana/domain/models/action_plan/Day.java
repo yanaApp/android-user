@@ -1,13 +1,15 @@
-package com.icaboalo.yana.presentation.screens.action_plan.view_model;
+package com.icaboalo.yana.domain.models.action_plan;
+
+import android.app.*;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 /**
- * @author icaboalo on 10/08/16.
+ * @author icaboalo on 12/08/16.
  */
-public class DayViewModel {
+public class Day {
 
     private int id;
 
@@ -15,7 +17,7 @@ public class DayViewModel {
     private int dayNumber;
 
     @SerializedName("activities")
-    private List<ActivityViewModel> activityList;
+    private List<Activity> activityList;
 
     public int getId() {
         return id;
@@ -25,7 +27,7 @@ public class DayViewModel {
         return dayNumber;
     }
 
-    public List<ActivityViewModel> getActivityList() {
+    public List<Activity> getActivityList() {
         return activityList;
     }
 }
