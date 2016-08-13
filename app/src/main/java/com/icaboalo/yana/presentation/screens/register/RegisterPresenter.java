@@ -2,23 +2,19 @@ package com.icaboalo.yana.presentation.screens.register;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.data.entities.RegisterEntity;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
-import com.icaboalo.yana.domain.exception.DefaultErrorBundle;
 import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Register;
-import com.icaboalo.yana.domain.models.User;
+import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
 import com.icaboalo.yana.util.Constants;
-import com.icaboalo.yana.util.PrefUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

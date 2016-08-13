@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
-import com.icaboalo.yana.presentation.screens.action_plan.view_model.LoadingViewModel;
+import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
 
 import javax.inject.Inject;
 
@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 /**
  * @author icaboalo on 10/08/16.
  */
-public class LoadingActivity extends BaseActivity implements GenericDetailView<LoadingViewModel> {
+public class LoadingActivity extends BaseActivity implements GenericDetailView<UserViewModel> {
 
     @Inject
     LoadingPresenter mLoadingPresenter;
@@ -41,7 +41,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<L
     }
 
     @Override
-    public void renderItem(LoadingViewModel item) {
+    public void renderItem(UserViewModel item) {
         showError(item.toString());
         rlLoadComplete.setVisibility(View.VISIBLE);
     }
