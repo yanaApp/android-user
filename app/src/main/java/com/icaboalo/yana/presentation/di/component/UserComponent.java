@@ -4,6 +4,7 @@ import com.icaboalo.yana.presentation.di.PerActivity;
 import com.icaboalo.yana.presentation.di.module.ActivityModule;
 import com.icaboalo.yana.presentation.di.module.UserModule;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
+import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
@@ -24,4 +25,6 @@ public interface UserComponent {
     void inject(TourActivity tourActivity);
 
     void inject(RegisterActivity registerActivity);
+
+    void inject(MainActivity mainActivity);
 }
