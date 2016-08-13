@@ -5,6 +5,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.DayRealmModel;
 import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.domain.models.action_plan.Day;
 import com.icaboalo.yana.domain.models.action_plan.User;
@@ -109,7 +110,8 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
         actionPlan.setInitialDate(actionPlanRealmModel.getInitialDate());
 
         List<Day> dayList = new ArrayList<>();
-
+        for (DayRealmModel nDayRealmModel : actionPlanRealmModel.getDayList())
+            dayList.add(DayEntityMapper.transformToDomainHelper(nDayRealmModel));
         actionPlan.setDayList(dayList);
         return actionPlan;
     }
