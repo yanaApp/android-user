@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -19,7 +20,7 @@ public class DayRealmModel extends RealmObject{
     private int dayNumber;
 
     @SerializedName("activities")
-    private List<ActivityRealmModel> activityList;
+    private RealmList<ActivityRealmModel> activityList;
 
     public int getId() {
         return id;
@@ -29,7 +30,7 @@ public class DayRealmModel extends RealmObject{
         return dayNumber;
     }
 
-    public List<ActivityRealmModel> getActivityList() {
+    public RealmList<ActivityRealmModel> getActivityList() {
         return activityList;
     }
 }

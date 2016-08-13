@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -22,10 +23,10 @@ public class UserRealmModel extends RealmObject{
     private String phoneNumber;
 
     @SerializedName("action_plan")
-    private List<ActionPlanRealmModel> actionPlanList;
+    private RealmList<ActionPlanRealmModel> actionPlanList;
 
     @SerializedName("contacts")
-    private List<ContactRealmModel> contactList;
+    private RealmList<ContactRealmModel> contactList;
 
     public int getId() {
         return id;
@@ -55,11 +56,11 @@ public class UserRealmModel extends RealmObject{
         return phoneNumber;
     }
 
-    public List<ActionPlanRealmModel> getActionPlanList() {
+    public RealmList<ActionPlanRealmModel> getActionPlanList() {
         return actionPlanList;
     }
 
-    public List<ContactRealmModel> getContactList() {
+    public RealmList<ContactRealmModel> getContactList() {
         return contactList;
     }
 }
