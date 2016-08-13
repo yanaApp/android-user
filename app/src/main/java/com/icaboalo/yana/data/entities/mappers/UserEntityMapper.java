@@ -4,7 +4,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
+import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
+import com.icaboalo.yana.domain.models.action_plan.Contact;
 import com.icaboalo.yana.domain.models.action_plan.User;
 
 import java.util.ArrayList;
@@ -105,7 +108,7 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
         return list;
     }
 
-    //TODO ADD ACTION PLAN LIST
+
     private void transformToDomainHelper(UserRealmModel userRealmModel, User user){
         user.setFullName(userRealmModel.getFullName());
         user.setEmail(userRealmModel.getEmail());
@@ -114,5 +117,14 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
         user.setPhoneNumber(userRealmModel.getPhoneNumber());
         user.setLocation(userRealmModel.getLocation());
         user.setOccupation(userRealmModel.getOccupation());
+
+        List<ActionPlan> actionPlanList = new ArrayList<>();
+        List<Contact> contactList = new ArrayList<>();
+
+        for (ActionPlanRealmModel actionPlan : userRealmModel.getActionPlanList())
+            actionPlanList.add(ActionPlanEntityMapper.transformToDomainHelper(actionPlan));
+
+        user.setActionPlanList(actionPlanList);
+        user.setContactList(contactList);
     }
 }

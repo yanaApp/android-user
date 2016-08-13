@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
 import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
+import com.icaboalo.yana.domain.models.action_plan.Day;
 import com.icaboalo.yana.domain.models.action_plan.User;
 
 import java.util.ArrayList;
@@ -62,9 +63,7 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
             ActionPlanRealmModel model = (ActionPlanRealmModel) realmModel;
-            ActionPlan actionPlan = new ActionPlan();
-            transformToDomainHelper(model, actionPlan);
-            return actionPlan;
+            return transformToDomainHelper(model);
         }
 
         return new ActionPlan();
@@ -84,9 +83,7 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
         if (realmModel != null){
             if (realmModel instanceof ActionPlanRealmModel){
                 ActionPlanRealmModel nActionPlanRealmModel = (ActionPlanRealmModel) realmModel;
-                ActionPlan actionPlan = new ActionPlan();
-                transformToDomainHelper(nActionPlanRealmModel, actionPlan);
-                return actionPlan;
+                return transformToDomainHelper(nActionPlanRealmModel);
             }
             return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
         }
@@ -103,11 +100,17 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
     }
 
     // TODO ADD DAY LIST
-    private void transformToDomainHelper(ActionPlanRealmModel actionPlanRealmModel, ActionPlan actionPlan){
+    public static ActionPlan transformToDomainHelper(ActionPlanRealmModel actionPlanRealmModel) {
+        ActionPlan actionPlan = new ActionPlan();
         actionPlan.setId(actionPlanRealmModel.getId());
         actionPlan.setActive(actionPlanRealmModel.isActive());
         actionPlan.setCategory(actionPlanRealmModel.getCategory());
         actionPlan.setFinalDate(actionPlanRealmModel.getFinalDate());
         actionPlan.setInitialDate(actionPlanRealmModel.getInitialDate());
+
+        List<Day> dayList = new ArrayList<>();
+
+        actionPlan.setDayList(dayList);
+        return actionPlan;
     }
 }
