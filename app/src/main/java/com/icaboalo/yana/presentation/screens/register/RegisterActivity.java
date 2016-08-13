@@ -52,7 +52,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void postSuccessful(RegisterViewModel item) {
-        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingContext(getApplicationContext()));
+        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
         finish();
     }
 

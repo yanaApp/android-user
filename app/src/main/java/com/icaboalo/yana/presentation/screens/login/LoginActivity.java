@@ -58,7 +58,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Override
     public void postSuccessful(LoginViewModel item) {
-        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingContext(getApplicationContext()));
+        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
     }
 
     @Override

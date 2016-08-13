@@ -42,7 +42,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
 
     @Override
     public void renderItem(UserViewModel item) {
-        showError(item.toString());
+        showError("Bienvenido " + item.getFullName());
         rlLoadComplete.setVisibility(View.VISIBLE);
     }
 
@@ -71,7 +71,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
         showToastMessage(message);
     }
 
-    public static Intent getCallingContext(Context context){
+    public static Intent getCallingIntent(Context context){
         return new Intent(context, LoadingActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }

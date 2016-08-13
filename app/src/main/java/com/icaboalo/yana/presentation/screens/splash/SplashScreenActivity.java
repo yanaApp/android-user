@@ -40,12 +40,12 @@ public class SplashScreenActivity extends BaseActivity {
     }
 
     private void checkForToken(){
-        if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equals("TOKEN")){
+        if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equalsIgnoreCase("TOKEN")){
             navigator.navigateTo(getApplicationContext(), TourActivity.getCallingContext(getApplicationContext()));
             finish();
         } else {
             if (!PrefUtils.isDownloadCompleted(getApplicationContext())){
-                navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), LoadingActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
                 finish();
             }
             else {
