@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.action_plan_title));
         replaceFragment(new ActionPlanFragment());
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -114,6 +115,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void renderItem(UserViewModel item) {
+        showError(item.getFullName());
         setHeaderInfo(item.getEmail(), item.getFullName());
     }
 
