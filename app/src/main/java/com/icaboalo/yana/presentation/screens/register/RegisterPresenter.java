@@ -18,6 +18,7 @@ import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
 import com.icaboalo.yana.util.Constants;
+import com.icaboalo.yana.util.PrefUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,6 +55,7 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     }
 
     private void saveUserOnRealm(UserViewModel userViewModel){
+        showViewLoading();
         Observable.defer(() -> Observable.just(saveUserOnRealmHelper(userViewModel)))
                 .subscribeOn(Schedulers.io())
                 .subscribe();
@@ -89,17 +91,19 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     private class SaveSubscriber extends DefaultSubscriber<UserViewModel>{
         @Override
         public void onCompleted() {
+            hideViewLoading();
             super.onCompleted();
         }
 
         @Override
         public void onError(Throwable e) {
+            hideViewLoading();
+            showViewRetry();
             super.onError(e);
         }
 
         @Override
         public void onNext(UserViewModel userViewModel) {
-            ((RegisterView) getGenericPostView()).saveSuccess(userViewModel);
         }
     }
 }
