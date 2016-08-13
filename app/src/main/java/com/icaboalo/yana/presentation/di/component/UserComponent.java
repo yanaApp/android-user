@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.di.component;
 import com.icaboalo.yana.presentation.di.PerActivity;
 import com.icaboalo.yana.presentation.di.module.ActivityModule;
 import com.icaboalo.yana.presentation.di.module.UserModule;
+import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
@@ -27,4 +28,6 @@ public interface UserComponent {
     void inject(RegisterActivity registerActivity);
 
     void inject(MainActivity mainActivity);
+
+    void inject(ActivitiesFragment activitiesFragment);
 }

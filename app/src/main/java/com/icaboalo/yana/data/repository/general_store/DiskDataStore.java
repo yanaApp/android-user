@@ -36,7 +36,7 @@ public class DiskDataStore implements DataStore {
     }
 
     @Override
-    public Observable<?> dynamicGetObject(String url, String idColumnName, int itemId, Class domainClass, Class dataClass, boolean persist) {
+    public Observable<?> dynamicGetObject(String url, String idColumnName, String itemId, Class domainClass, Class dataClass, boolean persist) {
         return mDataBaseManager.getById(idColumnName, itemId, dataClass)
                 .map(object -> mEntityMapper.transformToDomain(object));
     }

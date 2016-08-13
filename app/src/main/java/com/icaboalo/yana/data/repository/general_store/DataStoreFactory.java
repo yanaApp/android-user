@@ -40,7 +40,7 @@ public class DataStoreFactory {
     /**
      * Create {@link DataStore} from an id.
      */
-    public DataStore dynamically(String url, String idColumnName, int id, EntityMapper entityDataMapper,
+    public DataStore dynamically(String url, String idColumnName, String id, EntityMapper entityDataMapper,
                                  Class dataClass) {
         if (url.isEmpty() && (mDataBaseManager.isItemValid(id, idColumnName, dataClass) || !Utils.isNetworkAvailable(mContext)))
             return new DiskDataStore(mDataBaseManager, entityDataMapper);

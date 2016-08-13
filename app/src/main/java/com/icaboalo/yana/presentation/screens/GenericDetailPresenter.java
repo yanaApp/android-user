@@ -14,7 +14,7 @@ import com.icaboalo.yana.presentation.exceptions.ErrorMessageFactory;
 public abstract class GenericDetailPresenter<M> extends BasePresenter{
 
     private GenericDetailView<M> mGenericDetailView;
-    public int mItemId;
+    public String mItemId;
 
     public GenericDetailPresenter(GenericUseCase genericUseCase) {
         super(genericUseCase);
@@ -32,7 +32,7 @@ public abstract class GenericDetailPresenter<M> extends BasePresenter{
         this.mGenericDetailView = genericDetailView;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(String itemId) {
         mItemId = itemId;
     }
 
@@ -40,14 +40,14 @@ public abstract class GenericDetailPresenter<M> extends BasePresenter{
         return mGenericDetailView;
     }
 
-    public int getItemId() {
+    public String getItemId() {
         return mItemId;
     }
 
     /**
      * Initializes the presenter by start retrieving item details.
      */
-    public void initialize(int itemId){
+    public void initialize(String itemId){
         this.mItemId = itemId;
         loadItemDetails();
     }

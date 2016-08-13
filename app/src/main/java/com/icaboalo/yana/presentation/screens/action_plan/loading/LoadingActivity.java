@@ -33,7 +33,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     public void initialize() {
         getComponent().inject(this);
         mLoadingPresenter.setView(this);
-        mLoadingPresenter.initialize(-1);
+        mLoadingPresenter.initialize("");
     }
 
     @Override

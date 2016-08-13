@@ -24,6 +24,7 @@ import com.icaboalo.yana.old.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.old.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
 import com.icaboalo.yana.util.RealmUtils;
 
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void initialize() {
         getComponent().inject(this);
         mMainPresenter.setView(this);
-        mMainPresenter.initialize(6);
+        mMainPresenter.initialize("user@test.com");
     }
 
     @Override
@@ -64,7 +65,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getString(R.string.action_plan_title));
-        replaceFragment(new ActionPlanFragment());
+        replaceFragment(new ActivitiesFragment());
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()){
             case R.id.nav_action_plan:
                 getSupportActionBar().setTitle(R.string.action_plan_title);
-                fragment = new ActionPlanFragment();
+                fragment = new ActivitiesFragment();
                 break;
             case R.id.nav_contacts:
                 getSupportActionBar().setTitle(R.string.contacts_title);

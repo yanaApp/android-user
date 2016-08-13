@@ -36,7 +36,7 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     }
 
     @Override
-    public Observable<?> getById(String idColumnName, int userId, Class clazz) {
+    public Observable<?> getById(String idColumnName, String userId, Class clazz) {
         return Observable.defer(() -> {
             mRealm = Realm.getDefaultInstance();
             return Observable.just(mRealm.where(clazz).equalTo(idColumnName, userId).findFirst());
@@ -117,7 +117,7 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     }
 
     @Override
-    public boolean isItemValid(int itemId, String columnId, Class clazz) {
+    public boolean isItemValid(String itemId, String columnId, Class clazz) {
         if (columnId.isEmpty())
             return false;
         Object realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, itemId).findFirst();

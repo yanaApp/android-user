@@ -102,7 +102,7 @@ public class CloudDataStore implements DataStore {
     }
 
     @Override
-    public Observable<?> dynamicGetObject(String url, String idColumnName, int itemId, Class domainClass, Class dataClass, boolean persist) {
+    public Observable<?> dynamicGetObject(String url, String idColumnName, String itemId, Class domainClass, Class dataClass, boolean persist) {
         mDataClass = dataClass;
         mIdColumnName = idColumnName;
         return mRestApi.dynamicGetObject(url)

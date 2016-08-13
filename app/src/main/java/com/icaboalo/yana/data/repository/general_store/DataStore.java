@@ -21,7 +21,7 @@ public interface DataStore {
     /**
      * Get an {@link rx.Observable} which will emit a ? by its id.
      */
-    Observable<?> dynamicGetObject(final String url, final String idColumnName, final int itemId,
+    Observable<?> dynamicGetObject(final String url, final String idColumnName, final String itemId,
                                    Class domainClass, Class dataClass, boolean persist);
 
     /**

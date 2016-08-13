@@ -1,5 +1,7 @@
 package com.icaboalo.yana.domain.interactors;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.icaboalo.yana.domain.executors.PostExecutionThread;
 import com.icaboalo.yana.domain.executors.ThreadExecutor;
@@ -58,7 +60,7 @@ public class GenericUseCase {
 
 
     @SuppressWarnings("unchecked")
-    public void executeDynamicGetObject(Subscriber UseCaseSubscriber, String idColumnName, String url, int id, Class domainClass, Class dataClass,
+    public void executeDynamicGetObject(Subscriber UseCaseSubscriber, String idColumnName, String url, String id, Class domainClass, Class dataClass,
                                         Class presentationClass, boolean persist){
         mSubscription = mRepository.getObjectDynamically(url, idColumnName, id, domainClass, dataClass, persist)
                 .map(object -> mModelDataMapper.transformToPresentation(object, presentationClass))

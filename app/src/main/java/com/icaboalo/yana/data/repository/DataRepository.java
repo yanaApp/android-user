@@ -35,7 +35,7 @@ public class DataRepository implements Repository {
     }
 
     @Override
-    public Observable<?> getObjectDynamically(String url, String idColumnName, int id, Class domainClass, Class dataClass,
+    public Observable<?> getObjectDynamically(String url, String idColumnName, String id, Class domainClass, Class dataClass,
                                               boolean persist) {
         return mDataStoreFactory.dynamically(url, idColumnName, id, Utils.getDataMapper(dataClass), dataClass)
                 .dynamicGetObject(url, idColumnName, id, domainClass, dataClass, persist);

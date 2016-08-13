@@ -21,7 +21,7 @@ public interface DataBaseManager {
      *
      * @param userId The user id to retrieve data.
      */
-    Observable<?> getById(final String idColumnName, final int userId, Class clazz);
+    Observable<?> getById(final String idColumnName, final String userId, Class clazz);
 
     /**
      * Gets an {@link Observable} which will emit a List of Objects.
@@ -59,7 +59,7 @@ public interface DataBaseManager {
      *
      * @return true, the cache is expired, otherwise false.
      */
-    boolean isItemValid(final int itemId, String columnId, Class clazz);
+    boolean isItemValid(final String itemId, String columnId, Class clazz);
 
     boolean areItemsValid(String destination);
 

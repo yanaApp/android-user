@@ -21,7 +21,7 @@ public class LoadingPresenter extends GenericDetailPresenter<UserViewModel> {
 
     @Override
     public void getItemDetails() {
-        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "", Constants.API_BASE_URL + "user/me/", -1,
+        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "", Constants.API_BASE_URL + "user/me/", "",
                 User.class, UserRealmModel.class, UserViewModel.class, true);
     }
 }

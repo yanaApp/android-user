@@ -63,13 +63,9 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
-            Realm nRealm = Realm.getDefaultInstance();
-            nRealm.beginTransaction();
             UserRealmModel model = (UserRealmModel) realmModel;
             User user = new User();
             transformToDomainHelper(model, user);
-            nRealm.commitTransaction();
-            nRealm.close();
             return user;
         }
         return new User();

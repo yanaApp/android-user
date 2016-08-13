@@ -15,7 +15,7 @@ public interface Repository {
 
     Observable<List> getListDynamically(String url, Class domainClass, Class dataClass, boolean persist);
 
-    Observable<?> getObjectDynamically(String url, String idColumnName, int id, Class domainClass, Class dataClass, boolean persist);
+    Observable<?> getObjectDynamically(String url, String idColumnName, String id, Class domainClass, Class dataClass, boolean persist);
 
     Observable<?> postObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
                                         boolean persist);
