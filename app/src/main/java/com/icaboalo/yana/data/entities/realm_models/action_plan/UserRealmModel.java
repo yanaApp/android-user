@@ -2,6 +2,9 @@ package com.icaboalo.yana.data.entities.realm_models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -18,6 +21,12 @@ public class UserRealmModel extends RealmObject{
     private String fullName;
     @SerializedName("phone_number")
     private String phoneNumber;
+
+    @SerializedName("action_plan")
+    private RealmList<ActionPlanRealmModel> actionPlanList;
+
+    @SerializedName("contacts")
+    private RealmList<ContactRealmModel> contactList;
 
     public int getId() {
         return id;
@@ -45,5 +54,13 @@ public class UserRealmModel extends RealmObject{
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public RealmList<ActionPlanRealmModel> getActionPlanList() {
+        return actionPlanList;
+    }
+
+    public RealmList<ContactRealmModel> getContactList() {
+        return contactList;
     }
 }

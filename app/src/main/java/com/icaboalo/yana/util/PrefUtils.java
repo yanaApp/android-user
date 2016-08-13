@@ -59,4 +59,8 @@ public class PrefUtils {
         nEditor.putBoolean(PrefConstants.isDownloadCompletedPref, completed);
         nEditor.apply();
     }
+
+    public static int getEvaluationResult(Context context){
+        return context.getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE).getInt(PrefConstants.evaluationPref, 0);
+    }
 }

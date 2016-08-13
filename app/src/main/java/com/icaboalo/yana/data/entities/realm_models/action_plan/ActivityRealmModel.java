@@ -1,14 +1,18 @@
-package com.icaboalo.yana.presentation.screens.action_plan.view_model;
+package com.icaboalo.yana.data.entities.realm_models.action_plan;
+
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
- * @author icaboalo on 10/08/16.
+ * @author icaboalo on 12/08/16.
  */
-public class ActivityViewModel {
+public class ActivityRealmModel extends RealmObject {
 
+    @PrimaryKey
     private int id;
     private String title, description;
     private int answer;
-    private CategoryViewModel category;
+    private CategoryRealmModel category;
 
     public int getId() {
         return id;
@@ -26,7 +30,7 @@ public class ActivityViewModel {
         return answer;
     }
 
-    public CategoryViewModel getCategory() {
+    public CategoryRealmModel getCategory() {
         return category;
     }
 }

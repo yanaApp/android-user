@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
-import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
 
@@ -59,7 +58,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Override
     public void postSuccessful(LoginViewModel item) {
-        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingContext(getApplicationContext()));
+        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
     }
 
     @Override
@@ -113,7 +112,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             showError("Debes llenar todos los campos.");
         else {
             HashMap<String, Object> loginBundle = new HashMap<>(2);
-            loginBundle.put("username", etEmail.getText().toString());
+            loginBundle.put("email", etEmail.getText().toString());
             loginBundle.put("password", etPassword.getText().toString());
             mLoginPresenter.post(loginBundle);
         }
