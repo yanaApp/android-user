@@ -16,6 +16,8 @@ public class Day {
     @SerializedName("day_number")
     private int dayNumber;
 
+    private String date;
+
     @SerializedName("activities")
     private List<Activity> activityList;
 
@@ -41,5 +43,13 @@ public class Day {
 
     public void setActivityList(List<Activity> activityList) {
         this.activityList = activityList;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

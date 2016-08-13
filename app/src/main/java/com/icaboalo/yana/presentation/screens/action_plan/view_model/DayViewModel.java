@@ -14,6 +14,8 @@ public class DayViewModel {
     @SerializedName("day_number")
     private int dayNumber;
 
+    private String date;
+
     @SerializedName("activities")
     private List<ActivityViewModel> activityList;
 
@@ -27,5 +29,9 @@ public class DayViewModel {
 
     public List<ActivityViewModel> getActivityList() {
         return activityList;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

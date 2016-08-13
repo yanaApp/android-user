@@ -19,6 +19,8 @@ public class DayRealmModel extends RealmObject{
     @SerializedName("day_number")
     private int dayNumber;
 
+    private String date;
+
     @SerializedName("activities")
     private RealmList<ActivityRealmModel> activityList;
 
@@ -32,5 +34,9 @@ public class DayRealmModel extends RealmObject{
 
     public RealmList<ActivityRealmModel> getActivityList() {
         return activityList;
+    }
+
+    public String getDate() {
+        return date;
     }
 }
