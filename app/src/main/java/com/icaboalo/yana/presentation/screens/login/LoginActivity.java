@@ -112,7 +112,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             showError("Debes llenar todos los campos.");
         else {
             HashMap<String, Object> loginBundle = new HashMap<>(2);
-            loginBundle.put("username", etEmail.getText().toString());
+            loginBundle.put("email", etEmail.getText().toString());
             loginBundle.put("password", etPassword.getText().toString());
             mLoginPresenter.post(loginBundle);
         }

@@ -1,8 +1,6 @@
 package com.icaboalo.yana.presentation.screens.action_plan.view_model;
 
 import com.google.gson.annotations.SerializedName;
-import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
-import com.icaboalo.yana.domain.models.action_plan.Contact;
 
 import java.util.List;
 
