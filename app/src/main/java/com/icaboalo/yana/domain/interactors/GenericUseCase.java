@@ -124,6 +124,16 @@ public class GenericUseCase {
     }
 
     @SuppressWarnings("unchecked")
+    public void executeDynamicPatchObject(Subscriber UseCaseSubscriber, String url, HashMap<String, Object> keyValuePairs,
+                                          Class domainClass, Class dataClass, Class presentationClass, boolean persist){
+        mSubscription = mRepository.patchObjectDynamically(url, keyValuePairs, domainClass, dataClass, persist)
+                .map(object -> mModelDataMapper.transformToPresentation(object, presentationClass))
+                .compose(applySchedulers())
+                .compose(getLifecycle())
+                .subscribe(UseCaseSubscriber);
+    }
+
+    @SuppressWarnings("unchecked")
     public void executeDynamicDeleteAll(Subscriber UseCaseSubscriber, String url, Class dataClass, boolean persist){
         mSubscription = mRepository.deleteAllDynamically(url, dataClass, persist)
                 .compose(applySchedulers())

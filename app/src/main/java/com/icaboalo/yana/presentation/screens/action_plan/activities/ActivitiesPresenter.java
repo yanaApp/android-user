@@ -43,9 +43,9 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
     }
 
     private void saveEmotion(HashMap<String, Object> emotionBundle, int activityId){
-        getGenericUseCase().executeDynamicPutObject(new SaveEmotionSubscriber(),
+        getGenericUseCase().executeDynamicPatchObject(new SaveEmotionSubscriber(),
                 Constants.API_BASE_URL + "activity/" + activityId + "/", emotionBundle, Activity.class, ActivityRealmModel.class,
-                ActivityViewModel.class, false);
+                ActivityViewModel.class, true);
     }
 
     private void saveSuccess(ActivityViewModel activityViewModel){
