@@ -1,6 +1,7 @@
 package com.icaboalo.yana.presentation.screens.action_plan.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -10,11 +11,14 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
@@ -34,6 +38,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author icaboalo on 13/08/16.
@@ -48,6 +53,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     RelativeLayout rlProgress;
     @Bind(R.id.rlRetry)
     RelativeLayout rlRetry;
+    @Bind(R.id.llNoActionPlan)
+    LinearLayout llNoActionPlan;
+    @Bind(R.id.llContainer)
+    LinearLayout llContainer;
     @Bind(R.id.rvActivity)
     RecyclerView rvActivity;
     private ActivitiesRecyclerAdapter mActivitiesRecyclerAdapter;
@@ -74,14 +83,20 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void renderItem(DayViewModel item) {
-        tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
-        List<ItemInfo> itemList = new ArrayList<>();
-        Collections.sort(item.getActivityList(), (lhs, rhs) ->
-                String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));
-        for (ActivityViewModel activityViewModel : item.getActivityList()){
-            itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
+        if (item != null){
+            tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
+            List<ItemInfo> itemList = new ArrayList<>();
+            Collections.sort(item.getActivityList(), (lhs, rhs) ->
+                    String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));
+            for (ActivityViewModel activityViewModel : item.getActivityList()){
+                itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
+            }
+            mActivitiesRecyclerAdapter.setDataList(itemList);
         }
-        mActivitiesRecyclerAdapter.setDataList(itemList);
+        else {
+            llContainer.setVisibility(View.GONE);
+            llNoActionPlan.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -135,6 +150,12 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
         showSnackBar(activityViewModel, answer);
     }
 
+    @OnClick(R.id.btCreateActionPlan)
+    void createNewActionPlan(){
+        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
     private void setupActivityRecycler(){
         mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getApplicationContext(), new ArrayList<>()){
             @Override
@@ -159,6 +180,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
                 switch (event){
                     case DISMISS_EVENT_ACTION:
                         showError("Undo");
+                        mActivitiesRecyclerAdapter.notifyDataSetChanged();
                         break;
                     default:
                         mActivitiesPresenter.attemptSaveEmotion(activityViewModel, answer);

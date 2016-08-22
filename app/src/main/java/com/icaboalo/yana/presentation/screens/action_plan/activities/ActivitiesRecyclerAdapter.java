@@ -8,9 +8,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesRecyclerAdapter.ActivityViewHolder;
+import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
@@ -88,6 +92,10 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             }
             notifyItemRangeChanged(position, getItemCount());
         });
+
+//        if (position == getPureDataList().size() -1)
+//            holder.startTour();
+
     }
 
     public void setOnEmotionSelectedListener(ActivitiesListener emotionSelectedListener){
@@ -120,6 +128,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         ImageView ivHappy;
         @Bind(R.id.ivVeryHappy)
         ImageView ivVeryHappy;
+
+        int mTourCount = 0;
 
 
         public ActivityViewHolder(View itemView) {
@@ -175,7 +185,6 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             vColor.setVisibility(visibility);
         }
 
-
         @Override
         public void onClick(View v) {
             switch (v.getId()){
@@ -204,6 +213,54 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                     VUtil.setEmotionImage(mContext, 5, btEmotion);
                     break;
             }
+        }
+
+        void startTour(){
+            final ShowcaseView showcaseView = new ShowcaseView.Builder((MainActivity)mContext)
+                    .setContentTitle("Welcome to your Action Plan")
+                    .singleShot(99)
+                    .withMaterialShowcase()
+                    .setTarget(Target.NONE)
+                    .setStyle(R.style.CustomShowcase)
+                    .setContentText("We'll give you a brief tour around, so you can start by yourself.")
+                    .build();
+            showcaseView.setButtonText("Next");
+            showcaseView.overrideButtonClick(v -> {
+                switch (mTourCount){
+                    case 0:
+                        showcaseView.setShowcase(new ViewTarget(btEmotion), true);
+                        showcaseView.setContentTitle("Press here");
+                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                        break;
+
+                    case 1:
+                        showEmotions(true);
+                        showcaseView.setShowcase(new ViewTarget(rlEmotion), true);
+                        showcaseView.setContentTitle("Emotions");
+                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                        break;
+
+                    case 2:
+                        showEmotions(false);
+                        showcaseView.setShowcase(new ViewTarget(btDescription), true);
+                        showcaseView.setContentTitle("Press here");
+                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                        break;
+
+                    case 3:
+                        showDescription(true);
+                        showcaseView.setShowcase(new ViewTarget(rlDescription), true);
+                        showcaseView.setContentTitle("Description");
+                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+                        break;
+
+                    case 4:
+                        showDescription(false);
+                        showcaseView.hide();
+                        break;
+                }
+                mTourCount ++;
+            });
         }
     }
 }
