@@ -32,8 +32,6 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
     public void getItemDetails() {
         Calendar calendar = Calendar.getInstance();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
-//        getGenericUseCase().executeSearchRealmObject(new ItemDetailSubscriber(), mRealmQuery, Day.class, DayRealmModel.class,
-//                DayViewModel.class);
         getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "date", "", currentDate, Day.class,
                 DayRealmModel.class, DayViewModel.class, false);
     }

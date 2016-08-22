@@ -57,6 +57,9 @@ public interface DataStore {
     Observable<List> dynamicPutList(final String url, final HashMap<String, Object> keyValuePairs,
                                     Class domainClass, Class dataClass, boolean persist);
 
+    Observable<?> dynamicPatchObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
+                                     boolean persist);
+
     /**
      * Delete all items of the same type from cloud or disk which returns an {@link rx.Observable}
      * that will emit a list of ?.

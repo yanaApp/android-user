@@ -46,6 +46,11 @@ public class RestApiImpl implements RestApi {
     }
 
     @Override
+    public Observable<Object> dynamicPatchObject(@Url String url, @Body RequestBody body) {
+        return ApiConnection.dynamicPatchObject(url, body);
+    }
+
+    @Override
     public Observable<Object> dynamicDeleteObject(@Url String url, @Body RequestBody body) {
         return ApiConnection.dynamicDeleteObject(url, body);
     }

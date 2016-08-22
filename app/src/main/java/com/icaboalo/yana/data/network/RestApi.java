@@ -6,6 +6,7 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Url;
@@ -33,6 +34,9 @@ public interface RestApi {
 
     @PUT
     Observable<List> dynamicPutList(@Url String url, @Body RequestBody body);
+
+    @PATCH
+    Observable<Object> dynamicPatchObject(@Url String url, @Body RequestBody body);
 
     @DELETE
     Observable<Object> dynamicDeleteObject(@Url String url, @Body RequestBody body);

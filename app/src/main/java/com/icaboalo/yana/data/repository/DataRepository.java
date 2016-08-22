@@ -77,6 +77,13 @@ public class DataRepository implements Repository {
     }
 
     @Override
+    public Observable<?> patchObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
+                                                boolean persist) {
+        return mDataStoreFactory.dynamically(url, Utils.getDataMapper(dataClass), dataClass)
+                .dynamicPatchObject(url, keyValuePairs, domainClass, dataClass, persist);
+    }
+
+    @Override
     public Observable<?> deleteAllDynamically(String url, Class dataClass, boolean persist) {
         return mDataStoreFactory.dynamically(url, Utils.getDataMapper(dataClass), dataClass)
                 .dynamicDeleteAll(url, dataClass, persist);

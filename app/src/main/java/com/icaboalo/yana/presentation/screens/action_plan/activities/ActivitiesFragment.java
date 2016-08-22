@@ -157,7 +157,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
                         showError("Undo");
                         break;
                     default:
-                        mActivitiesPresenter.attemptSaveEmotion(activityViewModel.getId(), answer);
+                        mActivitiesPresenter.attemptSaveEmotion(activityViewModel, answer);
                         showError("Saved");
                         break;
                 }

@@ -210,6 +210,20 @@ public class CloudDataStore implements DataStore {
     }
 
     @Override
+    public Observable<?> dynamicPatchObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        mDataClass = dataClass;
+        return Observable.defer(() -> {
+            return mRestApi.dynamicPatchObject(url, RequestBody.create(MediaType.parse("application/json"),
+                    new JSONObject(keyValuePairs).toString()))
+                    .doOnNext(object -> {
+                        if (persist)
+                            saveGenericToCache.call(object);
+                    })
+                    .map(object -> mEntityDataMapper.transformToDomain(object, domainClass));
+        });
+    }
+
+    @Override
     public Observable<?> dynamicDeleteAll(String url, Class dataClass, boolean persist) {
         return Observable.error(new Exception("cant delete all from cloud data store"));
     }

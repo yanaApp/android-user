@@ -31,6 +31,9 @@ public interface Repository {
     Observable<List> putListDynamically(String url, HashMap<String, Object> keyValuePairs,
                                         Class domainClass, Class dataClass, boolean persist);
 
+    Observable<?> patchObjectDynamically(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass,
+                                         boolean persist);
+
     Observable<?> deleteAllDynamically(String url, Class dataClass, boolean persist);
 
     Observable<List> searchDisk(String query, String column, Class domainClass, Class dataClass);

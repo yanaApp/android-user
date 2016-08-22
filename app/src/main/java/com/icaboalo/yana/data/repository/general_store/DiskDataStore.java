@@ -72,6 +72,11 @@ public class DiskDataStore implements DataStore {
     }
 
     @Override
+    public Observable<?> dynamicPatchObject(String url, HashMap<String, Object> keyValuePairs, Class domainClass, Class dataClass, boolean persist) {
+        return Observable.error(new Exception("cannot patch object to cloud on disk data store"));
+    }
+
+    @Override
     public Observable<?> dynamicDeleteAll(String url, Class dataClass, boolean persist) {
         return mDataBaseManager.evictAll(dataClass);
     }
