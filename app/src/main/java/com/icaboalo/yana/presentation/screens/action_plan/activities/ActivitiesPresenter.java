@@ -38,15 +38,14 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
 
     public void attemptSaveEmotion(ActivityViewModel activityViewModel, int answer){
         HashMap<String, Object> emotionBundle = new HashMap<>();
-        emotionBundle.put("id", activityViewModel.getId());
-        emotionBundle.put("", activityViewModel.getCategory());
         emotionBundle.put("answer", answer);
-        saveEmotion(emotionBundle);
+        saveEmotion(emotionBundle, activityViewModel.getId());
     }
 
-    private void saveEmotion(HashMap<String, Object> emotionBundle){
-        getGenericUseCase().executeDynamicPutObject(new SaveEmotionSubscriber(), Constants.API_BASE_URL + "", emotionBundle, Activity.class,
-                ActivityRealmModel.class, ActivityViewModel.class, false);
+    private void saveEmotion(HashMap<String, Object> emotionBundle, int activityId){
+        getGenericUseCase().executeDynamicPutObject(new SaveEmotionSubscriber(),
+                Constants.API_BASE_URL + "activity/" + activityId + "/", emotionBundle, Activity.class, ActivityRealmModel.class,
+                ActivityViewModel.class, false);
     }
 
     private void saveSuccess(ActivityViewModel activityViewModel){

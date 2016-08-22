@@ -25,6 +25,9 @@ import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -71,9 +74,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void renderItem(DayViewModel item) {
-        showError(item.getDate());
         tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
         List<ItemInfo> itemList = new ArrayList<>();
+        Collections.sort(item.getActivityList(), (lhs, rhs) ->
+                String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));
         for (ActivityViewModel activityViewModel : item.getActivityList()){
             itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
         }

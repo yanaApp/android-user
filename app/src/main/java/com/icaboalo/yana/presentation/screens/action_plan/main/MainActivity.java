@@ -121,7 +121,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void renderItem(UserViewModel item) {
-        showError(item.getFullName());
         setHeaderInfo(item.getEmail(), item.getFullName());
     }
 
