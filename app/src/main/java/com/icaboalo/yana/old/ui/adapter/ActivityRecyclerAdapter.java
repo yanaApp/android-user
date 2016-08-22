@@ -44,6 +44,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
     public interface OnExpandListener {
         void onExpand(int position, boolean expanded);
     }
+
     public ActivityRecyclerAdapter(Context context, ArrayList<ActivityModel> activityList) {
         this.mContext = context;
         this.mActivityList = activityList;
@@ -88,30 +89,24 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             mOnExpandListener.onExpand(position, false);
         }
 
-        holder.mEmotionImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                descriptionExpandedPosition = -1;
-                if (emotionExpandedPosition == position) {
-                    emotionExpandedPosition = -1;
-                } else {
-                    emotionExpandedPosition = position;
-                }
-                notifyItemRangeChanged(position, getItemCount());
+        holder.mEmotionImage.setOnClickListener(v -> {
+            descriptionExpandedPosition = -1;
+            if (emotionExpandedPosition == position) {
+                emotionExpandedPosition = -1;
+            } else {
+                emotionExpandedPosition = position;
             }
+            notifyItemRangeChanged(position, getItemCount());
         });
 
-        holder.mDescriptionExpand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                emotionExpandedPosition = -1;
-                if (descriptionExpandedPosition == position) {
-                    descriptionExpandedPosition = -1;
-                } else {
-                    descriptionExpandedPosition = position;
-                }
-                notifyItemRangeChanged(position, getItemCount());
+        holder.mDescriptionExpand.setOnClickListener(v -> {
+            emotionExpandedPosition = -1;
+            if (descriptionExpandedPosition == position) {
+                descriptionExpandedPosition = -1;
+            } else {
+                descriptionExpandedPosition = position;
             }
+            notifyItemRangeChanged(position, getItemCount());
         });
 
 
@@ -143,16 +138,16 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
 
         public ActivityViewHolder(View itemView, OnEmotionSelected onEmotionSelected) {
             super(itemView);
-            this.mDescriptionLayout = (RelativeLayout) itemView.findViewById(R.id.description_layout);
-            this.mEmotionLayout = (RelativeLayout) itemView.findViewById(R.id.emotion_layout);
-            this.mVerySadImage = (ImageView) itemView.findViewById(R.id.very_sad);
-            this.mSadImage = (ImageView) itemView.findViewById(R.id.sad);
-            this.mNormalImage = (ImageView) itemView.findViewById(R.id.normal);
-            this.mHappyImage = (ImageView) itemView.findViewById(R.id.happy);
-            this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.very_happy);
-            this.mEmotionImage = (ImageView) itemView.findViewById(R.id.image_emotion);
+            this.mDescriptionLayout = (RelativeLayout) itemView.findViewById(R.id.rlDescription);
+            this.mEmotionLayout = (RelativeLayout) itemView.findViewById(R.id.rlEmotion);
+            this.mVerySadImage = (ImageView) itemView.findViewById(R.id.ivVerySad);
+            this.mSadImage = (ImageView) itemView.findViewById(R.id.ivSad);
+            this.mNormalImage = (ImageView) itemView.findViewById(R.id.ivNormal);
+            this.mHappyImage = (ImageView) itemView.findViewById(R.id.ivHappy);
+            this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.ivVeryHappy);
+            this.mEmotionImage = (ImageView) itemView.findViewById(R.id.btEmotion);
             this.mCancelImage = (ImageView) itemView.findViewById(R.id.cancel);
-            this.mDescriptionExpand = (TextView) itemView.findViewById(R.id.image_description);
+            this.mDescriptionExpand = (TextView) itemView.findViewById(R.id.btDescription);
             mActivityColor = itemView.findViewById(R.id.activity_color);
             mVerySadImage.setOnClickListener(this);
             mSadImage.setOnClickListener(this);
@@ -164,12 +159,12 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
         }
 
         void setTitle(String text) {
-            mActivityTitle = (TextView) itemView.findViewById(R.id.activity_title);
+            mActivityTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             mActivityTitle.setText(text);
         }
 
         void setDescription(String description) {
-            mActivityDescription = (TextView) itemView.findViewById(R.id.activity_description);
+            mActivityDescription = (TextView) itemView.findViewById(R.id.tvDescription);
             if (description.isEmpty() || description == null) {
                 mActivityDescription.setVisibility(View.GONE);
             } else {
@@ -195,35 +190,35 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
                     notifyItemChanged(getAdapterPosition());
                     break;
 
-                case R.id.very_sad:
+                case R.id.ivVerySad:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 1);
                     activity.setAnswer(1);
                     VUtil.setEmotionImage(mContext, 1, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
-                case R.id.sad:
+                case R.id.ivSad:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 2);
                     activity.setAnswer(2);
                     VUtil.setEmotionImage(mContext, 2, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
-                case R.id.normal:
+                case R.id.ivNormal:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 3);
                     activity.setAnswer(3);
                     VUtil.setEmotionImage(mContext, 3, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
-                case R.id.happy:
+                case R.id.ivHappy:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 4);
                     activity.setAnswer(4);
                     VUtil.setEmotionImage(mContext, 4, mEmotionImage);
                     notifyItemChanged(getAdapterPosition());
                     break;
 
-                case R.id.very_happy:
+                case R.id.ivVeryHappy:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 5);
                     activity.setAnswer(5);
                     VUtil.setEmotionImage(mContext, 5, mEmotionImage);

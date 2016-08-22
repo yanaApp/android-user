@@ -10,6 +10,7 @@ import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     public void renderItem(UserViewModel item) {
         showError("Bienvenido " + item.getFullName());
         rlLoadComplete.setVisibility(View.VISIBLE);
+        PrefUtils.setDownloadCompleted(getApplicationContext(), true);
     }
 
     @Override

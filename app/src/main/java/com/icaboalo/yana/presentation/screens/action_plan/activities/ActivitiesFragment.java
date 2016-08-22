@@ -3,6 +3,8 @@ package com.icaboalo.yana.presentation.screens.action_plan.activities;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -16,7 +18,14 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
+import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.util.VUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,7 +35,7 @@ import butterknife.ButterKnife;
 /**
  * @author icaboalo on 13/08/16.
  */
-public class ActivitiesFragment extends BaseFragment implements GenericDetailView<DayViewModel> {
+public class ActivitiesFragment extends BaseFragment implements ActivityView, ActivitiesListener {
 
     @Inject
     ActivitiesPresenter mActivitiesPresenter;
@@ -38,6 +47,7 @@ public class ActivitiesFragment extends BaseFragment implements GenericDetailVie
     RelativeLayout rlRetry;
     @Bind(R.id.rvActivity)
     RecyclerView rvActivity;
+    private ActivitiesRecyclerAdapter mActivitiesRecyclerAdapter;
 
     @Override
     public void initialize() {
@@ -56,12 +66,23 @@ public class ActivitiesFragment extends BaseFragment implements GenericDetailVie
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        setupActivityRecycler();
     }
 
     @Override
     public void renderItem(DayViewModel item) {
         showError(item.getDate());
         tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
+        List<ItemInfo> itemList = new ArrayList<>();
+        for (ActivityViewModel activityViewModel : item.getActivityList()){
+            itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
+        }
+        mActivitiesRecyclerAdapter.setDataList(itemList);
+    }
+
+    @Override
+    public void saveEmotionSuccess(ActivityViewModel activityViewModel) {
+        showError(activityViewModel.getAnswer() + " " + activityViewModel.getTitle());
     }
 
     @Override
@@ -98,7 +119,49 @@ public class ActivitiesFragment extends BaseFragment implements GenericDetailVie
         return MyApplication.getInstance().getApplicationContext();
     }
 
-    private void setupActivityRecycler(){
+    @Override
+    public void onExpand(int position, boolean expanded) {
+        if (expanded){
+            rvActivity.smoothScrollToPosition(position);
+        }
+    }
 
+    @Override
+    public void onSelect(ActivityViewModel activityViewModel, int answer) {
+        showSnackBar(activityViewModel, answer);
+    }
+
+    private void setupActivityRecycler(){
+        mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getApplicationContext(), new ArrayList<>()){
+            @Override
+            public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                switch (viewType){
+                    default:
+                        return new ActivityViewHolder(mLayoutInflater.inflate(R.layout.item_activity_adapter, parent, false));
+                }
+            }
+        };
+        mActivitiesRecyclerAdapter.setOnEmotionSelectedListener(this);
+        rvActivity.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvActivity.setAdapter(mActivitiesRecyclerAdapter);
+    }
+
+    private void showSnackBar(ActivityViewModel activityViewModel, int answer){
+        Snackbar.make(rvActivity, "Changed emotion from " + VUtil.answerToText(activityViewModel.getAnswer()) + " to " +
+                VUtil.answerToText(answer), Snackbar.LENGTH_SHORT).setAction("Undo", v -> {
+                }).setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                switch (event){
+                    case DISMISS_EVENT_ACTION:
+                        showError("Undo");
+                        break;
+                    default:
+                        mActivitiesPresenter.attemptSaveEmotion(activityViewModel.getId(), answer);
+                        showError("Saved");
+                        break;
+                }
+            }
+        }).show();
     }
 }

@@ -13,10 +13,10 @@ import java.util.StringTokenizer;
 /**
  * @author icaboalo on 13/08/16.
  */
-public abstract class GenericRecyclerViewAdapter extends RecyclerView.Adapter<GenericRecyclerViewAdapter.ViewHolder> {
+public abstract class GenericRecyclerViewAdapter<M extends GenericRecyclerViewAdapter.ViewHolder> extends RecyclerView.Adapter<M> {
 
-    private Context mContext;
-    private final LayoutInflater mLayoutInflater;
+    protected Context mContext;
+    public final LayoutInflater mLayoutInflater;
     private List<ItemInfo> mDataList;
     private OnItemClickListener mOnItemClickListener;
     private boolean areItemsClickable = true, areItemsExpandable = false, hasHeader = false, hasFooter = false,
@@ -29,10 +29,10 @@ public abstract class GenericRecyclerViewAdapter extends RecyclerView.Adapter<Ge
     }
 
     @Override
-    public abstract ViewHolder onCreateViewHolder(ViewGroup parent, int viewType);
+    public abstract M onCreateViewHolder(ViewGroup parent, int viewType);
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(M holder, int position) {
         ItemInfo itemInfo = mDataList.get(position);
         holder.bindData(itemInfo, position, itemInfo.isEnabled());
         if (areItemsClickable && !(hasHeader() && position == 0 || hasFooter() && position == mDataList.size() -1)) {
@@ -248,6 +248,22 @@ public abstract class GenericRecyclerViewAdapter extends RecyclerView.Adapter<Ge
 
     public void clearItemList(){
         mDataList.clear();
+    }
+
+    public void setAreItemsClickable(boolean areItemsClickable){
+        this.areItemsClickable = areItemsClickable;
+    }
+
+    public void setAreItemsExpandable(boolean areItemsExpandable) {
+        this.areItemsExpandable = areItemsExpandable;
+    }
+
+    public boolean areItemsClickable() {
+        return areItemsClickable;
+    }
+
+    public boolean areItemsExpandable() {
+        return areItemsExpandable;
     }
 
     private void validateList(List<ItemInfo> dataList) {
