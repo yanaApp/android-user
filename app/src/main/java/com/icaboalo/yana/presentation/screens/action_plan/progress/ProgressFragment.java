@@ -3,8 +3,8 @@ package com.icaboalo.yana.presentation.screens.action_plan.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +20,14 @@ import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.GenericListView;
+import com.icaboalo.yana.presentation.screens.action_plan.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActionPlanViewModel;
-import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.VUtil;
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,6 +58,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
     ProgressBar pbCompleted;
     @Bind(R.id.rvDayProgress)
     RecyclerView rvDayProgress;
+    GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
 
     @Nullable
     @Override
@@ -74,6 +76,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         getComponent(UserComponent.class).inject(this);
         mProgressPresenter.setView(this);
         mProgressPresenter.initialize();
+        setupDayInfoRecyclerView();
     }
 
     @Override
@@ -92,6 +95,11 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         VUtil.setEmotionImage(getApplicationContext(), emotionAverage, ivEmotionAverage);
         pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
         pbCompleted.setProgress(completedActivitiesAverage);
+    }
+
+    @Override
+    public void setDayInfoList(List<ItemInfo> dayItemInfoList) {
+        mDayInfoRecyclerViewAdapter.setDataList(dayItemInfoList);
     }
 
     @Override
@@ -142,6 +150,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 mProgressPresenter.attemptGetActivitiesCount(actionPlanViewModelList.get(position).getDayList());
+                mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
             }
 
             @Override
@@ -150,15 +159,17 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         });
     }
 
-    private void setInformation(ActionPlanViewModel actionPlanViewModel){
-        int completedCount = 0;
-        int incompleteCount = 0;
-        for (DayViewModel day : actionPlanViewModel.getDayList()){
-            for (ActivityViewModel activity : day.getActivityList()){
-                if (activity.getAnswer() > 0)
-                    completedCount ++;
-                else incompleteCount ++;
+    private void setupDayInfoRecyclerView(){
+        mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getApplicationContext(), new ArrayList<>()) {
+            @Override
+            public DayInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                switch (viewType){
+                    default:
+                        return new DayInfoViewHolder(mLayoutInflater.inflate(R.layout.item_day_progress_adapter, parent, false));
+                }
             }
-        }
+        };
+        rvDayProgress.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvDayProgress.setAdapter(mDayInfoRecyclerViewAdapter);
     }
 }

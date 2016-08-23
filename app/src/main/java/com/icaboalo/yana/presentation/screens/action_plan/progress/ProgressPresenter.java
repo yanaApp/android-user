@@ -11,8 +11,11 @@ import com.icaboalo.yana.presentation.screens.GenericListPresenter;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActionPlanViewModel;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.Utils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,6 +43,12 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
         getActivitiesCount(dayList);
     }
 
+    public void attemptGetDayInfoList(List<DayViewModel> dayList){
+        Collections.sort(dayList, (lhs, rhs) ->
+                String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));
+        getDayInfoList(dayList);
+    }
+
     private void getActivitiesCount(List<DayViewModel> dayViewModelList){
         float completedCount = 0, incompleteCount = 0, totalCount, answerTotal = 0;
         int completedAverage, incompleteAverage, answerAverage;
@@ -60,6 +69,16 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
         incompleteAverage = Math.round((incompleteCount / totalCount) * 100);
         answerAverage = Math.round((answerTotal / completedCount) * 100);
         ((ProgressView) getGenericListView()).setActivitiesAverage(completedAverage, incompleteAverage, answerAverage);
+    }
+
+    private void getDayInfoList(List<DayViewModel> dayViewModelList){
+        List<ItemInfo> itemList = new ArrayList<>();
+        for (DayViewModel day : dayViewModelList){
+            itemList.add(new ItemInfo<>(day, ItemInfo.SECTION_ITEM));
+            if (day.getDate().equals(Utils.getCurrentDate()))
+                break;
+        }
+        ((ProgressView) getGenericListView()).setDayInfoList(itemList);
     }
 
     private class ActionPlanListSubscriber extends DefaultSubscriber<List<ActionPlanViewModel>>{
