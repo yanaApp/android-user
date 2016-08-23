@@ -45,7 +45,10 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
 
     @Override
     public Observable<List> getAll(Class clazz) {
-        return Observable.defer(() -> Observable.just(mRealm.where(clazz).findAll()));
+        return Observable.defer(() -> {
+            mRealm = Realm.getDefaultInstance();
+            return Observable.just(mRealm.where(clazz).findAll());
+        });
     }
 
     @Override

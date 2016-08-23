@@ -1,7 +1,6 @@
 package com.icaboalo.yana.presentation.screens.action_plan.main;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
@@ -18,16 +17,14 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.old.ui.fragment.ActionPlanFragment;
 import com.icaboalo.yana.old.ui.fragment.ContactsFragment;
 import com.icaboalo.yana.old.ui.fragment.HelpFragment;
 import com.icaboalo.yana.old.ui.fragment.ProfileFragment;
-import com.icaboalo.yana.old.ui.fragment.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesFragment;
+import com.icaboalo.yana.presentation.screens.action_plan.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
-import com.icaboalo.yana.util.RealmUtils;
 
 import javax.inject.Inject;
 

@@ -14,6 +14,9 @@ import com.icaboalo.yana.data.entities.mappers.EntityDataMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityMapper;
 import com.icaboalo.yana.data.entities.mappers.UserEntityMapper;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * @author icaboalo on 08/08/16.
  */
@@ -66,5 +69,10 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static final String getCurrentDate(){
+        Calendar calendar = Calendar.getInstance();
+        return new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
     }
 }
