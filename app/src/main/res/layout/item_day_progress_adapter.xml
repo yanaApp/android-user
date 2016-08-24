@@ -13,7 +13,7 @@
     android:paddingTop="20dp">
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/day_text"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -39,7 +39,7 @@
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:textColor="@color/secondary_text"
-            android:id="@+id/completed_count"
+            android:id="@+id/tvCompletedCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -56,7 +56,7 @@
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:textColor="@color/secondary_text"
-            android:id="@+id/incomplete_count"
+            android:id="@+id/tvIncompleteCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
