@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
@@ -31,10 +32,23 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 //    RelativeLayout rlProgress;
 //    @Bind(R.id.rlRetry)
 //    RelativeLayout rlRetry;
+    @Bind(R.id.tvFullName)
+    TextView tvFullName;
+    @Bind(R.id.tvEmail)
+    TextView tvEmail;
+    @Bind(R.id.tvBirthDate)
+    TextView tvBirthDate;
+    @Bind(R.id.tvGender)
+    TextView tvGender;
+    @Bind(R.id.tvLocation)
+    TextView tvLocation;
+    @Bind(R.id.tvOccupation)
+    TextView tvOccupation;
 
     @Override
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
+        mProfilePresenter.setView(this);
         mProfilePresenter.initialize("user@test.com");
     }
 
@@ -52,7 +66,16 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @Override
     public void renderItem(UserViewModel item) {
-
+        if (item != null){
+            tvFullName.setText(item.getFullName());
+            tvEmail.setText(item.getEmail());
+            tvBirthDate.setText(item.getBirthDate());
+            tvGender.setText(item.getGender());
+            tvLocation.setText(item.getLocation());
+            tvOccupation.setText(item.getOccupation());
+            setInfo(item.getFullName(), item.getEmail(), item.getBirthDate(), item.getGender(), item.getLocation(),
+                    item.getOccupation());
+        }
     }
 
     @Override
@@ -87,5 +110,49 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @Override
     public Context getApplicationContext() {
         return MyApplication.getInstance().getApplicationContext();
+    }
+
+    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation){
+        if (fullName == null || fullName.length() <= 0)
+            tvFullName.setVisibility(View.GONE);
+        else {
+            tvFullName.setText(fullName);
+            tvFullName.setVisibility(View.VISIBLE);
+        }
+
+        if (email == null || email.length() <= 0)
+            tvEmail.setVisibility(View.GONE);
+        else {
+            tvEmail.setText(email);
+            tvEmail.setVisibility(View.VISIBLE);
+        }
+
+        if (birthDate == null || birthDate.length() <= 0)
+            tvBirthDate.setVisibility(View.GONE);
+        else {
+            tvBirthDate.setText(birthDate);
+            tvBirthDate.setVisibility(View.VISIBLE);
+        }
+
+        if (gender == null || gender.length() <= 0)
+            tvGender.setVisibility(View.GONE);
+        else {
+            tvGender.setText(gender);
+            tvGender.setVisibility(View.VISIBLE);
+        }
+
+        if (location == null || location.length() <= 0)
+            tvLocation.setVisibility(View.GONE);
+        else {
+            tvLocation.setText(location);
+            tvLocation.setVisibility(View.VISIBLE);
+        }
+
+        if (occupation == null || occupation.length() <= 0)
+            tvOccupation.setVisibility(View.GONE);
+        else {
+            tvOccupation.setText(occupation);
+            tvOccupation.setVisibility(View.VISIBLE);
+        }
     }
 }

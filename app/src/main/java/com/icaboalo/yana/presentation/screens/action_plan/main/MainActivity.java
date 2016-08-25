@@ -19,10 +19,10 @@ import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.fragment.ContactsFragment;
 import com.icaboalo.yana.old.ui.fragment.HelpFragment;
-import com.icaboalo.yana.old.ui.fragment.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesFragment;
+import com.icaboalo.yana.presentation.screens.action_plan.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
 
