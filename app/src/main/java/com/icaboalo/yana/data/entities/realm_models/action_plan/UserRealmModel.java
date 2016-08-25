@@ -17,10 +17,15 @@ public class UserRealmModel extends RealmObject{
     private int id;
 
     private String email, location, occupation, gender;
+
     @SerializedName("full_name")
     private String fullName;
+
     @SerializedName("phone_number")
     private String phoneNumber;
+
+    @SerializedName("birth_date")
+    private String birthDate;
 
     @SerializedName("action_plan")
     private RealmList<ActionPlanRealmModel> actionPlanList;
@@ -54,6 +59,10 @@ public class UserRealmModel extends RealmObject{
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public RealmList<ActionPlanRealmModel> getActionPlanList() {

@@ -19,6 +19,9 @@ public class User {
     @SerializedName("phone_number")
     private String phoneNumber;
 
+    @SerializedName("birth_date")
+    private String birthDate;
+
     @SerializedName("action_plan")
     private List<ActionPlan> actionPlanList;
 
@@ -55,6 +58,10 @@ public class User {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public List<ActionPlan> getActionPlanList() {
@@ -95,6 +102,10 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setActionPlanList(List<ActionPlan> actionPlanList) {

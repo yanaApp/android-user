@@ -19,6 +19,9 @@ public class UserViewModel {
     @SerializedName("phone_number")
     private String phoneNumber;
 
+    @SerializedName("birth_date")
+    private String birthDate;
+
     @SerializedName("action_plan")
     private List<ActionPlanViewModel> actionPlanList;
 
@@ -55,6 +58,10 @@ public class UserViewModel {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public List<ActionPlanViewModel> getActionPlanList() {
