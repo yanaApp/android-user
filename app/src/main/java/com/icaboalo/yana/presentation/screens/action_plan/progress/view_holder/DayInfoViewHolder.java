@@ -55,7 +55,8 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
             }
             tvCompletedCount.setText(String.valueOf(completedCount));
             tvIncompleteCount.setText(String.valueOf(incompleteCount));
-            VUtil.setEmotionImage(context, answerTotal / completedCount, ivEmotionAverage);
+            if (completedCount > 0)
+                VUtil.setEmotionImage(context, answerTotal / completedCount, ivEmotionAverage);
         }
     }
 }

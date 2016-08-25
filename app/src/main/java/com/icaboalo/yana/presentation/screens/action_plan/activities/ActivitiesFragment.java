@@ -101,7 +101,13 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void saveEmotionSuccess(ActivityViewModel activityViewModel) {
-        showError(activityViewModel.getAnswer() + " " + activityViewModel.getTitle());
+        showError("SAVED");
+        mActivitiesPresenter.getItemDetails();
+    }
+
+    @Override
+    public void saveEmotionError() {
+        mActivitiesRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -179,12 +185,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
             public void onDismissed(Snackbar snackbar, int event) {
                 switch (event){
                     case DISMISS_EVENT_ACTION:
-                        showError("Undo");
                         mActivitiesRecyclerAdapter.notifyDataSetChanged();
                         break;
                     default:
                         mActivitiesPresenter.attemptSaveEmotion(activityViewModel, answer);
-                        showError("Saved");
                         break;
                 }
             }

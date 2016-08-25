@@ -35,8 +35,6 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         void onSelect(ActivityViewModel activityViewModel, int answer);
     }
 
-
-
     private int emotionExpandedPosition = -1, descriptionExpandedPosition = -1;
     private ActivitiesListener mActivitiesListener;
 
@@ -213,6 +211,9 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                     VUtil.setEmotionImage(mContext, 5, btEmotion);
                     break;
             }
+            showEmotions(false);
+            emotionExpandedPosition = -1;
+            showActivityColorBar(true);
         }
 
         void startTour(){

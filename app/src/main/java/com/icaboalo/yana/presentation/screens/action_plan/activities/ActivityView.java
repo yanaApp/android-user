@@ -10,4 +10,5 @@ import com.icaboalo.yana.presentation.screens.action_plan.view_model.DayViewMode
 public interface ActivityView extends GenericDetailView<DayViewModel> {
 
     void saveEmotionSuccess(ActivityViewModel activityViewModel);
+    void saveEmotionError();
 }

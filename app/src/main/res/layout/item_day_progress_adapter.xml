@@ -75,6 +75,6 @@
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/happy_32" />
+            android:src="@drawable/cancel_outlined_circular_32" />
     </LinearLayout>
 </RelativeLayout>

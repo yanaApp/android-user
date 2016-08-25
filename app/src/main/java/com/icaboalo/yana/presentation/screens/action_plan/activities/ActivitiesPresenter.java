@@ -37,6 +37,7 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
     }
 
     public void attemptSaveEmotion(ActivityViewModel activityViewModel, int answer){
+        showViewLoading();
         HashMap<String, Object> emotionBundle = new HashMap<>();
         emotionBundle.put("answer", answer);
         saveEmotion(emotionBundle, activityViewModel.getId());
@@ -56,12 +57,13 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
 
         @Override
         public void onCompleted() {
-
+            hideViewLoading();
         }
 
         @Override
         public void onError(Throwable e) {
             showErrorMessage(new DefaultErrorBundle((Exception) e));
+            ((ActivityView) getGenericDetailView()).saveEmotionError();
         }
 
         @Override
