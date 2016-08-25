@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author icaboalo on 24/08/16.
@@ -110,6 +111,34 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @Override
     public Context getApplicationContext() {
         return MyApplication.getInstance().getApplicationContext();
+    }
+
+    @OnClick(R.id.rlFullName)
+    void updateFullName(){
+    }
+
+    @OnClick(R.id.rlEmail)
+    void updateEmail(){
+    }
+
+    @OnClick(R.id.rlPassword)
+    void updatePassword(){
+    }
+
+    @OnClick(R.id.rlBirthDate)
+    void updateBirthDate(){
+    }
+
+    @OnClick(R.id.rlGender)
+    void updateGender(){
+    }
+
+    @OnClick(R.id.rlLocation)
+    void updateLocation(){
+    }
+
+    @OnClick(R.id.rlOccupation)
+    void updateOccupation(){
     }
 
     private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation){
