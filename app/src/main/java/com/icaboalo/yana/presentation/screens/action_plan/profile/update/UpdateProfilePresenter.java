@@ -1,8 +1,11 @@
 package com.icaboalo.yana.presentation.screens.action_plan.profile.update;
 
+import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
+import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;
 
@@ -20,6 +23,7 @@ public class UpdateProfilePresenter extends GenericPostPresenter<UserViewModel> 
 
     @Override
     public void post(HashMap<String, Object> postBundle) {
-
+        getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "user/", postBundle, User.class,
+                UserRealmModel.class, UserViewModel.class, true);
     }
 }
