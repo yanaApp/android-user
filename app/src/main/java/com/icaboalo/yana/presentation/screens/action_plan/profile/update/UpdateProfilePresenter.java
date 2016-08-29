@@ -16,6 +16,8 @@ import javax.inject.Inject;
  */
 public class UpdateProfilePresenter extends GenericPostPresenter<UserViewModel> {
 
+    private int userId;
+
     @Inject
     public UpdateProfilePresenter(GenericUseCase genericUseCase) {
         super(genericUseCase);
@@ -23,7 +25,11 @@ public class UpdateProfilePresenter extends GenericPostPresenter<UserViewModel> 
 
     @Override
     public void post(HashMap<String, Object> postBundle) {
-        getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "user/", postBundle, User.class,
-                UserRealmModel.class, UserViewModel.class, true);
+        getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "user/" + userId + "/", postBundle,
+                User.class, UserRealmModel.class, UserViewModel.class, true);
+    }
+
+    public void setId(int id) {
+        userId = id;
     }
 }
