@@ -45,7 +45,7 @@ public class EditProfileActivity extends AppCompatActivity{
     TextView tvDescription;
     @Bind(R.id.etField)
     EditText etField;
-    @Bind(R.id.tvClear)
+    @Bind(R.id.btClear)
     TextView tvClear;
     @Bind(R.id.btSave)
     Button btSave;
@@ -72,7 +72,7 @@ public class EditProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mRealmInstance = Realm.getDefaultInstance();
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.activity_update_profile);
         mBundle = getIntent().getExtras();
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -120,7 +120,7 @@ public class EditProfileActivity extends AppCompatActivity{
             mRealmInstance.close();
     }
 
-    @OnClick(R.id.tvClear)
+    @OnClick(R.id.btClear)
     void clear(){
         etField.setText("");
     }

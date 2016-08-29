@@ -78,6 +78,8 @@
     <string name="already_have_an_account">Already have an account? Log in</string>
     <string name="button_register">Register</string>
     <string name="first_name_input_hint">First name</string>
+    <string name="exit">Exit</string>
+    <string name="stay">Stay</string>
 
     <array name="beck_test">
         <!--1-->

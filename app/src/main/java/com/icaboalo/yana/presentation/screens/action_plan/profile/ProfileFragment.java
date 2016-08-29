@@ -14,6 +14,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.action_plan.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
 
 import javax.inject.Inject;
@@ -115,30 +116,51 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @OnClick(R.id.rlFullName)
     void updateFullName(){
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.FULL_NAME,
+                        tvFullName.getText().toString()));
     }
 
     @OnClick(R.id.rlEmail)
     void updateEmail(){
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.EMAIL,
+                        tvEmail.getText().toString()));
     }
 
     @OnClick(R.id.rlPassword)
     void updatePassword(){
+//        navigator.navigateTo(getApplicationContext(),
+//                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.PASSWORD));
     }
 
     @OnClick(R.id.rlBirthDate)
     void updateBirthDate(){
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
+                        tvBirthDate.getText().toString()));
     }
 
     @OnClick(R.id.rlGender)
     void updateGender(){
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.GENDER,
+                        tvGender.getText().toString()));
     }
 
     @OnClick(R.id.rlLocation)
     void updateLocation(){
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.LOCATION,
+                        tvLocation.getText().toString()));
     }
 
     @OnClick(R.id.rlOccupation)
     void updateOccupation(){
+        showError("BLAAA");
+        navigator.navigateTo(getApplicationContext(),
+                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.OCCUPATION,
+                        tvOccupation.getText().toString()));
     }
 
     private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation){

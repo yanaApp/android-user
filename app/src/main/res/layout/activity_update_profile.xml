@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,62 +12,64 @@
         android:id="@+id/abContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="0dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:theme="@style/AppTheme.WhiteToolbar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.WhiteToolbar"/>
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:layout_below="@+id/abContainer"
-        android:padding="16dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/abContainer"
+        android:orientation="vertical"
+        android:padding="16dp">
+
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/tvDescription"
-            android:textAlignment="center"
-            android:text="De esta manera aparecerás en Snapchat, asi que elige un nombre con el que te conozcan tus amigos."
-            android:textSize="16sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="De esta manera aparecerás en Snapchat, asi que elige un nombre con el que te conozcan tus amigos."
+            android:textAlignment="center"
+            android:textSize="16sp"/>
 
         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-            android:singleLine="true"
-            android:inputType="textPersonName"
             android:id="@+id/etField"
-            android:layout_marginTop="16dp"
-            android:text="Iñaki Cabo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:text="Iñaki Cabo"/>
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-            android:id="@+id/tvClear"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/yana_green"
-            android:layout_gravity="center"
-            android:text="@string/clear_field"
+            android:id="@+id/btClear"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/clear_field"
+            android:textColor="@color/yana_green"/>
     </LinearLayout>
 
     <Button
-        android:visibility="gone"
         android:id="@+id/btSave"
-        android:text="Save"
-        android:layout_margin="32dp"
-        android:layout_alignParentBottom="true"
         style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="32dp"
+        android:text="Save"
+        android:visibility="gone"/>
 
     <include layout="@layout/view_progress"/>
+
     <include layout="@layout/view_retry"/>
 
 </RelativeLayout>
