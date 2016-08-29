@@ -60,7 +60,8 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     }
 
     private boolean saveUserOnRealmHelper(UserViewModel userViewModel){
-        String jsonString = new Gson().toJson(userViewModel).replace("full_name", "fullName").replace("phone_number", "phoneNumber");
+        String jsonString = new Gson().toJson(userViewModel).replace("full_name", "fullName").replace("phone_number", "phoneNumber")
+                .replace("birth_date", "birthDate");
         try {
             JSONObject json = new JSONObject(jsonString);
             getGenericUseCase().executeDynamicPostObject(new SaveSubscriber(), "", json, User.class, UserRealmModel.class,
