@@ -159,9 +159,9 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             showError("ERROR");
     }
 
-    @OnTextChanged(value = R.id.etField, callback = OnTextChanged.Callback.TEXT_CHANGED)
+    @OnTextChanged(value = R.id.etField, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onEditTextChanged(CharSequence text){
-        if (!text.equals(mInfo)){
+        if (!text.toString().equals(mInfo)){
             btSave.setVisibility(View.VISIBLE);
         } else {
             btSave.setVisibility(View.GONE);

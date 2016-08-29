@@ -53,6 +53,7 @@
 
         <activity
             android:name=".presentation.screens.action_plan.profile.update.UpdateProfileActivity"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
         </activity>
