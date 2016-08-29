@@ -146,7 +146,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             this.mHappyImage = (ImageView) itemView.findViewById(R.id.ivHappy);
             this.mVeryHappyImage = (ImageView) itemView.findViewById(R.id.ivVeryHappy);
             this.mEmotionImage = (ImageView) itemView.findViewById(R.id.btEmotion);
-            this.mCancelImage = (ImageView) itemView.findViewById(R.id.cancel);
+            this.mCancelImage = (ImageView) itemView.findViewById(R.id.ivCancel);
             this.mDescriptionExpand = (TextView) itemView.findViewById(R.id.btDescription);
             mActivityColor = itemView.findViewById(R.id.activity_color);
             mVerySadImage.setOnClickListener(this);
@@ -183,7 +183,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<ActivityRecycl
             realm.beginTransaction();
             ActivityModel activity = mActivityList.get(getAdapterPosition());
             switch (v.getId()) {
-                case R.id.cancel:
+                case R.id.ivCancel:
                     mEmotionSelected.onSelect(activity, activity.getAnswer(), 0);
                     activity.setAnswer(0);
                     VUtil.setEmotionImage(mContext, 0, mEmotionImage);

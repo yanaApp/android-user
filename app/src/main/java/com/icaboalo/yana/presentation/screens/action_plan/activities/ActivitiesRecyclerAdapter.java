@@ -1,5 +1,6 @@
 package com.icaboalo.yana.presentation.screens.action_plan.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -14,7 +15,6 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesRecyclerAdapter.ActivityViewHolder;
-import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
@@ -91,8 +91,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             notifyItemRangeChanged(position, getItemCount());
         });
 
-//        if (position == getPureDataList().size() -1)
-//            holder.startTour();
+        if (position == getPureDataList().size() -1)
+            holder.startTour();
 
     }
 
@@ -116,6 +116,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         RelativeLayout rlDescription;
         @Bind(R.id.rlEmotion)
         RelativeLayout rlEmotion;
+        @Bind(R.id.ivCancel)
+        ImageView ivCancel;
         @Bind(R.id.ivVerySad)
         ImageView ivVerySad;
         @Bind(R.id.ivSad)
@@ -151,6 +153,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         }
 
         public void setListeners(){
+            ivCancel.setOnClickListener(this);
             ivVerySad.setOnClickListener(this);
             ivSad.setOnClickListener(this);
             ivNormal.setOnClickListener(this);
@@ -186,7 +189,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.cancel:
+                case R.id.ivCancel:
                     mActivitiesListener.onSelect((ActivityViewModel) getItem(getAdapterPosition()).getData(), 0);
                     VUtil.setEmotionImage(mContext, 0, btEmotion);
                     break;
@@ -217,7 +220,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         }
 
         void startTour(){
-            final ShowcaseView showcaseView = new ShowcaseView.Builder((MainActivity)mContext)
+            final ShowcaseView showcaseView = new ShowcaseView.Builder((Activity) mContext)
                     .setContentTitle("Welcome to your Action Plan")
                     .singleShot(99)
                     .withMaterialShowcase()

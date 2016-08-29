@@ -108,7 +108,7 @@
             android:visibility="invisible"/>
 
         <ImageView
-            android:id="@+id/cancel"
+            android:id="@+id/ivCancel"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
