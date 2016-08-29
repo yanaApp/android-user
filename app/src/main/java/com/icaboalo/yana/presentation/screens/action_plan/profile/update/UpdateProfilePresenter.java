@@ -25,6 +25,7 @@ public class UpdateProfilePresenter extends GenericPostPresenter<UserViewModel> 
 
     @Override
     public void post(HashMap<String, Object> postBundle) {
+        showViewLoading();
         getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "user/" + userId + "/", postBundle,
                 User.class, UserRealmModel.class, UserViewModel.class, true);
     }

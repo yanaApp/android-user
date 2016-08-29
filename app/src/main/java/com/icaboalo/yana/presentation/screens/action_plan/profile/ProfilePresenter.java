@@ -5,6 +5,7 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.util.Constants;
 
 import javax.inject.Inject;
 
@@ -20,7 +21,7 @@ public class ProfilePresenter extends GenericDetailPresenter<UserViewModel> {
 
     @Override
     public void getItemDetails() {
-        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "email", "", mItemId, User.class, UserRealmModel.class,
+        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "id", "", mItemId, User.class, UserRealmModel.class,
                 UserViewModel.class, false);
     }
 }

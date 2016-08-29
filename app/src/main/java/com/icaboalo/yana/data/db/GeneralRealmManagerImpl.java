@@ -39,7 +39,12 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     public Observable<?> getById(String idColumnName, String userId, Class clazz) {
         return Observable.defer(() -> {
             mRealm = Realm.getDefaultInstance();
-            return Observable.just(mRealm.where(clazz).equalTo(idColumnName, userId).findFirst());
+            if (idColumnName.equals("id")){
+//                Log.d("REALM_RESULT", mRealm.where(clazz).equalTo(idColumnName, Integer.valueOf(userId)).findFirst().toString());
+                return Observable.just(mRealm.where(clazz).equalTo(idColumnName, Integer.valueOf(userId)).findFirst());
+            }
+            else
+                return Observable.just(mRealm.where(clazz).equalTo(idColumnName, userId).findFirst());
         });
     }
 
@@ -123,7 +128,11 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
     public boolean isItemValid(String itemId, String columnId, Class clazz) {
         if (columnId.isEmpty())
             return false;
-        Object realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, itemId).findFirst();
+        Object realmObject = null;
+        if (columnId.equals("id"))
+            realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, Integer.valueOf(itemId)).findFirst();
+        else
+            realmObject = Realm.getDefaultInstance().where(clazz).equalTo(columnId, itemId).findFirst();
         return realmObject != null;
     }
 

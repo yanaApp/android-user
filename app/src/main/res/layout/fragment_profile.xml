@@ -42,7 +42,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Iñaki Cabo Alonso"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -87,7 +87,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="icaboalo@gmail.com"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -167,7 +167,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="15-09-1998"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -213,7 +213,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Hombre"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -258,7 +258,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Ciudad de México"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -304,7 +304,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Estudiante"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 

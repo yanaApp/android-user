@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 /**
  * @author icaboalo on 24/08/16.
@@ -51,7 +53,13 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
         mProfilePresenter.setView(this);
-        mProfilePresenter.initialize("user@test.com");
+        mProfilePresenter.initialize("59");
+    }
+
+    @Override
+    public void onResume() {
+        mProfilePresenter.initialize("59");
+        super.onResume();
     }
 
     @Nullable
@@ -69,12 +77,6 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @Override
     public void renderItem(UserViewModel item) {
         if (item != null){
-            tvFullName.setText(item.getFullName());
-            tvEmail.setText(item.getEmail());
-            tvBirthDate.setText(item.getBirthDate());
-            tvGender.setText(item.getGender());
-            tvLocation.setText(item.getLocation());
-            tvOccupation.setText(item.getOccupation());
             setInfo(item.getFullName(), item.getEmail(), item.getBirthDate(), item.getGender(), item.getLocation(),
                     item.getOccupation());
         }

@@ -49,7 +49,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     Button btSave;
     private static String mType, mInfo;
 
-    public static final String FULL_NAME = "full name", EMAIL = "email", BIRTH_DATE = "birth date", GENDER = "gender",
+    public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
             LOCATION = "location", OCCUPATION = "occupation";
 
     @Override
@@ -108,7 +108,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                showConfirmationDialog();
+                if (!mInfo.equals(etField.getText().toString()))
+                    showConfirmationDialog();
+                else
+                    finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
