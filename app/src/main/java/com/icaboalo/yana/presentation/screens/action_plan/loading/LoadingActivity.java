@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -29,6 +30,8 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     RelativeLayout rlLoadComplete;
     @Bind(R.id.rlLoading)
     RelativeLayout rlLoading;
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
 
     @Override
     public void initialize() {
@@ -45,7 +48,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
 
     @Override
     public void renderItem(UserViewModel item) {
-        showError("Bienvenido " + item.getFullName());
+        tvTitle.setText(String.format("%s %s", getString(R.string.loading_complete), item.getFullName()));
         rlLoadComplete.setVisibility(View.VISIBLE);
         PrefUtils.setDownloadCompleted(getApplicationContext(), true);
     }

@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         getComponent().inject(this);
         mMainPresenter.setView(this);
         mMainPresenter.initialize(String.valueOf(PrefUtils.getUserId(getApplicationContext())));
-        showError(PrefUtils.getUserId(getApplicationContext()) + "");
     }
 
     @Override

@@ -87,7 +87,7 @@
     <string name="action_log_out_title">Cerrar sesión</string>
     <string name="restore_password">Restablecer contraseña</string>
     <string name="email_input_hint">CORREO ELECTRONICO</string>
-    <string name="loading_complete">TODO LISTO, HEMOS DESCARGADO TU PLAN DE ACCIÓN</string>
+    <string name="loading_complete">TODO LISTO, HEMOS DESCARGADO TU PLAN DE ACCIÓN, BIENVENIDO </string>
     <string name="birth_date_input_hint">FECHA DE NACIMIENTO</string>
     <string name="full_name_input_hint">NOMBRE COMPLETO</string>
     <string name="gender_input_hint">GENERO</string>
