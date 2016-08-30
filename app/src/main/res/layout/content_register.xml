@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Al registrarte confirmas que has leido y aceptado terminos del servicio y la politica de privacidad"
+        android:text="@string/terms_and_privacy"
         android:gravity="center"
         android:lineSpacingExtra="3dp"
         android:textAllCaps="true"

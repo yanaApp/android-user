@@ -95,7 +95,7 @@
     <string name="occupation_input_hint">OCUPACIÓN</string>
     <string name="slide_to_begin">DESLIZA PARA COMENZAR</string>
     <string name="depression_symptoms">SINTOMAS DE LA DEPRESIÓN</string>
-    <string name="what_is_depression">¿QUÉ ES LA DEPRESIÓN?</string>
+    <string name="what_is_depression">¿Qué es la depresión?</string>
     <string name="action_plan_title">Plan de Acción</string>
     <string name="clear_field">Vaciar campo</string>
     <string name="contacts_title">Contactos</string>
@@ -107,7 +107,7 @@
     <string name="moderate_depression">DEPRESIÓN MODERADA</string>
     <string name="moderate_depression_description">Por las mañanas el sentimiento de tristeza es mayor y fluctúa durante el día, aunque siente constantemente desagrado hacia sí mismo. Se siente aburrido la mayor parte del tiempo y ya no disfruta hacer lo que antes le gustaba. *Una puntuación de 17 o más indica que puede necesitar ayuda profesional.</string>
     <string name="severe_depression">DEPRESIÓN GRAVE</string>
-    <string name="you_are_not_alone">NOSOTROS ESTAMOS AQUÍ PARA TI</string>
+    <string name="you_are_not_alone">No estas solo</string>
     <string name="you_are_not_alone_description">No te alarmes por los resultados de tu test. Nosotros juntos con tu red de apoyo te ayudaremos en  esta etapa de tu vida.  </string>
     <string name="welcome">¡Bienvenido!</string>
     <string name="button_log_in">Iniciar sesión</string>
@@ -116,4 +116,25 @@
     <string name="have_an_account">¿Ya tienes cuenta? <b>Inicia sesión</b></string>
     <string name="button_register">Registrarme</string>
     <string name="skip">Omitir</string>
+    <string name="terms_and_privacy">Al registrarte confirmas que has leido y aceptado <b>terminos del servicio</b> y la <b>politica de privacidad</b></string>
+    <string name="identify">¿Con que caso te identificas mejor?</string>
+    <string name="title_action_plan_evaluation">Personaliza tu plan de acción</string>
+    <string name="description_action_plan_evaluation">Aparte de tu autoevaluación, \nes importante realizar un test \noficial para poder ayudarte \nde una manera más especializada.</string>
+    <string name="description_restore_password">Ingresa el correo electronico con el que te hayas registrado y te enviaremos una solución.</string>
+    <string name="average_emotion">Emoción Promedio</string>
+    <string name="completed">Completadas</string>
+    <string name="create_new_action_plan">Crear un nuevo Plan de Acción</string>
+    <string name="description_autoevaluation">Before we start, please tell us with which situation you identify yourself the best.</string>
+    <string name="exception_message_generic">Hubó un error en el servidor</string>
+    <string name="exception_message_no_connection">Revisa tu conexión a internet</string>
+    <string name="exception_message_user_not_found"></string>
+    <string name="exit">Salir</string>
+    <string name="first_name_input_hint">Nombre</string>
+    <string name="incomplete">Incompletas</string>
+    <string name="live_together">¿Viven juntos?</string>
+    <string name="no_action_plan">No hay planes para mostrar</string>
+    <string name="stay">Quedarme</string>
+    <string name="take_later">Tomar más tarde</string>
+    <string name="take_now">Tomar ahora</string>
+    <string name="title_autoevaluation">Autoevaluation</string>
 </resources>

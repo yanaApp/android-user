@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".old.ui.activity.SplashScreenActivity">
+    tools:context=".presentation.screens.splash.SplashScreenActivity">
 
     <ImageView
         android:src="@mipmap/logo"

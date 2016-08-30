@@ -10,7 +10,8 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/tvDescription"
         android:layout_marginBottom="16dp"
-        android:text="AUTOEVALUACIÓN"
+        android:text="@string/title_autoevaluation"
+        android:textAllCaps="true"
         style="@style/AppTheme.TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -23,7 +24,7 @@
         android:paddingRight="16dp"
         style="@style/AppTheme.TextDescription"
         android:layout_centerVertical="true"
-        android:text="Antes de comenzar, por favor dinos con que situación te identificas mejor."
+        android:text="@string/description_autoevaluation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

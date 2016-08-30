@@ -16,7 +16,7 @@
         android:paddingRight="48dp"
         android:paddingStart="48dp"
         android:paddingTop="24dp"
-        android:text="¿Con que caso te identificas mejor?"/>
+        android:text="@string/identify"/>
 
     <View
         android:layout_width="match_parent"
@@ -112,7 +112,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:text="Siguiente"/>
+            android:text="@string/next_button"/>
     </FrameLayout>
 
 

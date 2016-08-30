@@ -29,7 +29,6 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="36dp"
                 android:layout_marginStart="36dp"
-                android:text="Dia 1  |  Tuesday, March 9"
                 android:textAllCaps="true"/>
         </LinearLayout>
 

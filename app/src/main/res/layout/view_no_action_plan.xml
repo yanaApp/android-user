@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="No action plan to show"
+        android:text="@string/no_action_plan"
         android:textSize="18sp"/>
 
     <Button
@@ -28,5 +28,5 @@
         android:layout_marginTop="20dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="Create new Action plan"/>
+        android:text="@string/create_new_action_plan"/>
 </LinearLayout>

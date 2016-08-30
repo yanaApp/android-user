@@ -12,11 +12,11 @@
     <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
     <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
     <string name="slide_to_begin">SLIDE TO BEGIN</string>
-    <string name="what_is_depression">WHAT IS DEPRESSION?</string>
+    <string name="what_is_depression">What is depression?</string>
     <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
     <string name="moderate_depression">MODERATE DEPRESSION</string>
     <string name="moderate_depression_description"> In the morning the feeling of sadness is higher and fluctuates during the day, but constantly is displeased with himself. Feel it bored most of the time and no longer enjoys doing what he liked before . * A score of 17 or more indicates you may need professional help.</string>
-    <string name="you_are_not_alone">YOU ARE NOT ALONE</string>
+    <string name="you_are_not_alone">You are not alone</string>
     <string name="you_are_not_alone_description">  Do not be alarmed by the results your test. We together with your support network will help in this stage of your life.</string>
     <string name="severe_depression">SEVERE DEPRESSION</string>
     <string name="mild_depression">MILD DEPRESSION</string>
@@ -66,11 +66,11 @@
     <string name="help_title">Help</string>
 
     <!-- Exception messages -->
-    <string name="exception_message_generic">Hubo un error en el servidor</string>
-    <string name="exception_message_no_connection">Revisa tu conexión a internet</string>
-    <string name="exception_message_user_not_found">Cannot retrieve data. Please Check your internet connection</string>
-    <string name="network_error_persisted">No Notwork but post request persisted to queue!\n Request will be posted as soon as network is available.</string>
-    <string name="network_error_not_persisted"><![CDATA[No network & could not persist request to queue!\nGoogle play services not available and android version less than 5.0!]]></string>
+    <string name="exception_message_generic">There was a server error</string>
+    <string name="exception_message_no_connection">Check your internet connection</string>
+    <string name="exception_message_user_not_found" translatable="false">Cannot retrieve data. Please Check your internet connection</string>
+    <string name="network_error_persisted" translatable="false">No Network but post request persisted to queue!\n Request will be posted as soon as network is available.</string>
+    <string name="network_error_not_persisted" translatable="false"><![CDATA[No network & could not persist request to queue!\nGoogle play services not available and android version less than 5.0!]]></string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
@@ -80,6 +80,16 @@
     <string name="first_name_input_hint">First name</string>
     <string name="exit">Exit</string>
     <string name="stay">Stay</string>
+    <string name="completed">Completed</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="average_emotion">Average Emotion</string>
+    <string name="live_together">Live together?</string>
+    <string name="take_now">Take now</string>
+    <string name="take_later">Take later</string>
+    <string name="title_autoevaluation">Autoevaluación</string>
+    <string name="description_autoevaluation">Antes de comenzar, por favor dinos con que situación te identificas mejor.</string>
+    <string name="no_action_plan">No action plan to show</string>
+    <string name="create_new_action_plan">Create new Action plan</string>
 
     <array name="beck_test">
         <!--1-->
@@ -217,4 +227,9 @@
         <item>Friend</item>
         <item>Other</item>
     </array>
+    <string name="description_action_plan_evaluation"></string>
+    <string name="description_restore_password">Type the email that was used for your account, we will send you a confirmation.</string>
+    <string name="identify">With which case you identify the best?</string>
+    <string name="terms_and_privacy"><![CDATA[By registering you confirm that you have read & accepted the]]><b> Terms of service </b><![CDATA[ & the ]]><b>privacy policy</b></string>
+    <string name="title_action_plan_evaluation">Personalize your action plan</string>
 </resources>
