@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -187,6 +188,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case LOCATION:
+                etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case OCCUPATION:
