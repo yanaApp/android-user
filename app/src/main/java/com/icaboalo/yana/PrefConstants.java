@@ -10,6 +10,8 @@ public class PrefConstants {
     public static final String isProgressTourComplete = "isTourCompleted";
     public static final String isProfileCompletedPref = "isProfileCompleted";
     public static final String isDownloadCompletedPref = "isDownloadCompletedPref";
+    public static final String userId = "userId";
+    public static final String userEmail = "userEmail";
 
     public static final String authFile = "AUTH";
     public static final String tokenPref = "TOKEN";

@@ -63,4 +63,24 @@ public class PrefUtils {
     public static int getEvaluationResult(Context context){
         return context.getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE).getInt(PrefConstants.evaluationPref, 0);
     }
+
+    public static void setUserId(Context context, int userId){
+        SharedPreferences.Editor editor = context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).edit();
+        editor.putInt(PrefConstants.userId, userId);
+        editor.apply();
+    }
+
+    public static int getUserId(Context context){
+        return context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).getInt(PrefConstants.userId, 0);
+    }
+
+    public static void setUserEmail(Context context, String userEmail){
+        SharedPreferences.Editor editor = context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).edit();
+        editor.putString(PrefConstants.userEmail, userEmail);
+        editor.apply();
+    }
+
+    public static String getUserEmail(Context context){
+        return context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).getString(PrefConstants.userEmail, "");
+    }
 }
