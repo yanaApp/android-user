@@ -113,7 +113,7 @@
     <string name="button_log_in">Iniciar sesión</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="hello_again">¡Hola de nuevo!</string>
-    <string name="already_have_an_account">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="have_an_account">¿Ya tienes cuenta? <b>Inicia sesión</b></string>
     <string name="button_register">Registrarme</string>
     <string name="skip">Omitir</string>
 </resources>

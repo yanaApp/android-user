@@ -75,7 +75,7 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="skip">Skip</string>
-    <string name="already_have_an_account">Already have an account? Log in</string>
+    <string name="have_an_account">Already have an account? <b>Log in</b></string>
     <string name="button_register">Register</string>
     <string name="first_name_input_hint">First name</string>
     <string name="exit">Exit</string>

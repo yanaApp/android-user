@@ -39,7 +39,7 @@
         android:id="@+id/btLogin"
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        android:text="@string/already_have_an_account"
+        android:text="@string/have_an_account"
         android:gravity="center"
         android:background="#d3d3d3"
         android:layout_width="match_parent"

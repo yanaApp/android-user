@@ -81,6 +81,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:text="@string/already_have_an_account"
+        android:text="@string/have_an_account"
         android:textAllCaps="true" />
 </LinearLayout>
