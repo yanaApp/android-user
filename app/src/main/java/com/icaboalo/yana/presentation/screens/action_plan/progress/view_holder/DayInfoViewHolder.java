@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.action_plan.progress.view_holder;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +42,9 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
     @Override
     public void bindData(Object data, int position, boolean isEnabled) {
         Context context = MyApplication.getInstance().getApplicationContext();
+        completedCount = 0;
+        incompleteCount = 0;
+        answerTotal = 0;
         if (data instanceof ItemInfo){
             ItemInfo item = (ItemInfo) data;
             DayViewModel day = (DayViewModel) item.getData();
@@ -50,8 +54,9 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
                     answerTotal += activity.getAnswer();
                     completedCount ++;
                 }
-                else
+                else {
                     incompleteCount ++;
+                }
             }
             tvCompletedCount.setText(String.valueOf(completedCount));
             tvIncompleteCount.setText(String.valueOf(incompleteCount));
