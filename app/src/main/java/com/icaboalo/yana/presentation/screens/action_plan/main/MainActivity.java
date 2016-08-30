@@ -25,6 +25,7 @@ import com.icaboalo.yana.presentation.screens.action_plan.activities.ActivitiesF
 import com.icaboalo.yana.presentation.screens.action_plan.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
@@ -54,7 +55,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void initialize() {
         getComponent().inject(this);
         mMainPresenter.setView(this);
-        mMainPresenter.initialize("user@test.com");
+        mMainPresenter.initialize(String.valueOf(PrefUtils.getUserId(getApplicationContext())));
+        showError(PrefUtils.getUserId(getApplicationContext()) + "");
     }
 
     @Override

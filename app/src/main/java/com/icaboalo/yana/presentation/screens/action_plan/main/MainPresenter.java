@@ -20,7 +20,7 @@ public class MainPresenter extends GenericDetailPresenter<UserViewModel> {
 
     @Override
     public void getItemDetails() {
-        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "email", "", mItemId, User.class,
+        getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "id", "", mItemId, User.class,
                 UserRealmModel.class, UserViewModel.class, false);
     }
 }

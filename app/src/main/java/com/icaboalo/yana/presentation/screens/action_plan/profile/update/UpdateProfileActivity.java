@@ -19,6 +19,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.action_plan.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.HashMap;
 
@@ -57,7 +58,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     public void initialize() {
         getComponent().inject(this);
         mUpdateProfilePresenter.setView(this);
-        mUpdateProfilePresenter.setId(59);
+        mUpdateProfilePresenter.setId(PrefUtils.getUserId(getApplicationContext()));
     }
 
     @Override

@@ -44,6 +44,10 @@ public abstract class GenericDetailPresenter<M> extends BasePresenter{
         return mItemId;
     }
 
+    public void getSuccessful(M m){
+        mGenericDetailView.renderItem(m);
+    }
+
     /**
      * Initializes the presenter by start retrieving item details.
      */
@@ -101,7 +105,7 @@ public abstract class GenericDetailPresenter<M> extends BasePresenter{
 
         @Override
         public void onNext(M m) {
-            mGenericDetailView.renderItem(m);
+            getSuccessful(m);
         }
     }
 
