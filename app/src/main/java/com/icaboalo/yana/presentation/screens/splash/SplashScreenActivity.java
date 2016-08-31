@@ -4,8 +4,8 @@ import android.view.Window;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
-import com.icaboalo.yana.presentation.screens.action_plan.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.action_plan.main.MainActivity;
+import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
+import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
 import com.icaboalo.yana.util.PrefUtils;
 
