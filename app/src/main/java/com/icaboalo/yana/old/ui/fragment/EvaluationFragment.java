@@ -29,6 +29,8 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
     int mAnswer = -1;
     int mAnswerTotal = 0;
 
+    Button activeButton;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -68,34 +70,22 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.option_1:
                 mAnswer = 1;
-                mOption1.setBackground(getResources().getDrawable(R.drawable.circle_orange));
-                mOption2.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption3.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption4.setBackground(getResources().getDrawable(R.drawable.circle_white));
+                activateButton((Button) mOption1);
                 mAnswer = 0;
                 break;
             case R.id.option_2:
                 mAnswer = 2;
-                mOption1.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption2.setBackground(getResources().getDrawable(R.drawable.circle_orange));
-                mOption3.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption4.setBackground(getResources().getDrawable(R.drawable.circle_white));
+                activateButton((Button) mOption2);
                 mAnswer = 1;
                 break;
             case R.id.option_3:
                 mAnswer = 3;
-                mOption1.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption2.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption3.setBackground(getResources().getDrawable(R.drawable.circle_orange));
-                mOption4.setBackground(getResources().getDrawable(R.drawable.circle_white));
+                activateButton((Button) mOption3);
                 mAnswer = 2;
                 break;
             case R.id.option_4:
                 mAnswer = 4;
-                mOption1.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption2.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption3.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                mOption4.setBackground(getResources().getDrawable(R.drawable.circle_orange));
+                activateButton((Button) mOption4);
                 mAnswer = 3;
                 break;
             case R.id.btContinue:
@@ -109,10 +99,7 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
                         mAnswerTotal += mAnswer;
                         mQuestionPosition++;
                         mAnswer = -1;
-                        mOption1.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                        mOption2.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                        mOption3.setBackground(getResources().getDrawable(R.drawable.circle_white));
-                        mOption4.setBackground(getResources().getDrawable(R.drawable.circle_white));
+                        activeButton.setSelected(false);
                         mQuestionProgress.setProgress(mQuestionPosition);
                         mQuestion.setText(mQuestionList[mQuestionPosition]);
                     }
@@ -121,5 +108,13 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
                 }
                 break;
         }
+    }
+
+    private void activateButton(Button button){
+        if (activeButton != null)
+            activeButton.setSelected(false);
+
+        activeButton = button;
+        button.setSelected(true);
     }
 }

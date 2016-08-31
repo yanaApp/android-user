@@ -127,7 +127,6 @@
     <string name="description_autoevaluation">Before we start, please tell us with which situation you identify yourself the best.</string>
     <string name="exception_message_generic">Hubó un error en el servidor</string>
     <string name="exception_message_no_connection">Revisa tu conexión a internet</string>
-    <string name="exception_message_user_not_found"></string>
     <string name="exit">Salir</string>
     <string name="first_name_input_hint">Nombre</string>
     <string name="incomplete">Incompletas</string>

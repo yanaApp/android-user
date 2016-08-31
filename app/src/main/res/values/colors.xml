@@ -9,6 +9,7 @@
     <color name="gray">#ededed</color>
     <color name="black">#000000</color>
     <color name="yana_orange">#ecd67f</color>
+    <color name="yana_orange_light">#FFE4D7A5</color>
     <color name="yana_pink">#e2b0dc</color>
 
     <color name="primary_text">#1d1d26</color>
