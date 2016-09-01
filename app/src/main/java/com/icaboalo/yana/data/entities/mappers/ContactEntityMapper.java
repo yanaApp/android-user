@@ -4,14 +4,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.DayRealmModel;
-import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
-import com.icaboalo.yana.domain.models.action_plan.Day;
-import com.icaboalo.yana.domain.models.action_plan.User;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel;
+import com.icaboalo.yana.domain.models.action_plan.Contact;
 
 import java.util.ArrayList;
-import java.util.FormatFlagsConversionMismatchException;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -19,13 +15,13 @@ import io.realm.RealmModel;
 import io.realm.RealmObject;
 
 /**
- * @author icaboalo on 13/08/16.
+ * @author icaboalo on 31/08/16.
  */
-public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
+public class ContactEntityMapper implements EntityMapper<Object, Object> {
 
     protected Gson gson;
 
-    public ActionPlanEntityMapper() {
+    public ContactEntityMapper() {
         gson = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
             @Override
             public boolean shouldSkipField(FieldAttributes f) {
@@ -63,11 +59,10 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel) {
         if (realmModel != null){
-            ActionPlanRealmModel model = (ActionPlanRealmModel) realmModel;
-            return transformToDomainHelper(model);
+            ContactRealmModel contactRealmModel = (ContactRealmModel) realmModel;
+            return transformToDomainHelper(contactRealmModel);
         }
-
-        return new ActionPlan();
+        return new Contact();
     }
 
     @Override
@@ -82,36 +77,30 @@ public class ActionPlanEntityMapper implements EntityMapper<Object, Object> {
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
         if (realmModel != null){
-            if (realmModel instanceof ActionPlanRealmModel){
-                ActionPlanRealmModel nActionPlanRealmModel = (ActionPlanRealmModel) realmModel;
-                return transformToDomainHelper(nActionPlanRealmModel);
+            if (realmModel instanceof ContactRealmModel){
+                ContactRealmModel contactRealmModel = (ContactRealmModel) realmModel;
+                return transformToDomainHelper(contactRealmModel);
             }
-            return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
+            return gson.fromJson(gson.toJson(realmModel), domainClass);
         }
-        return new ActionPlan();
+        return new Contact();
     }
 
     @Override
     public List<Object> transformAllToDomain(List<Object> realmModelList, Class domainClass) {
-        List<Object> list = new ArrayList<>();
+        List<Object> objects = new ArrayList<>();
         for (Object object : realmModelList){
-            list.add(transformToDomain(object, domainClass));
+            objects.add(transformToDomain(object, domainClass));
         }
-        return list;
+        return objects;
     }
 
-    public static ActionPlan transformToDomainHelper(ActionPlanRealmModel actionPlanRealmModel) {
-        ActionPlan actionPlan = new ActionPlan();
-        actionPlan.setId(actionPlanRealmModel.getId());
-        actionPlan.setActive(actionPlanRealmModel.isActive());
-        actionPlan.setCategory(actionPlanRealmModel.getCategory());
-        actionPlan.setFinalDate(actionPlanRealmModel.getFinalDate());
-        actionPlan.setInitialDate(actionPlanRealmModel.getInitialDate());
-
-        List<Day> dayList = new ArrayList<>();
-        for (DayRealmModel nDayRealmModel : actionPlanRealmModel.getDayList())
-            dayList.add(DayEntityMapper.transformToDomainHelper(nDayRealmModel));
-        actionPlan.setDayList(dayList);
-        return actionPlan;
+    public Contact transformToDomainHelper(ContactRealmModel contactRealmModel){
+        Contact contact = new Contact();
+        contact.setId(contactRealmModel.getId());
+        contact.setName(contactRealmModel.getName());
+        contact.setPhoneNumber(contactRealmModel.getPhoneNumber());
+        contact.setValidated(contactRealmModel.isValidated());
+        return contact;
     }
 }
