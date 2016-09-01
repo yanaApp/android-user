@@ -95,7 +95,7 @@ public class ContactEntityMapper implements EntityMapper<Object, Object> {
         return objects;
     }
 
-    public Contact transformToDomainHelper(ContactRealmModel contactRealmModel){
+    public static Contact transformToDomainHelper(ContactRealmModel contactRealmModel){
         Contact contact = new Contact();
         contact.setId(contactRealmModel.getId());
         contact.setName(contactRealmModel.getName());

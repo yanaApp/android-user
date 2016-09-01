@@ -9,6 +9,7 @@ import android.os.Build;
 import com.icaboalo.yana.data.entities.mappers.ActionPlanEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.ActivityEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.CategoryEntityMapper;
+import com.icaboalo.yana.data.entities.mappers.ContactEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.DayEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityDataMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityMapper;
@@ -34,6 +35,8 @@ public class Utils {
                 return new CategoryEntityMapper();
             case "com.icaboalo.yana.data.entities.realm_models.action_plan.DayRealmModel":
                 return new DayEntityMapper();
+            case "com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel":
+                return new ContactEntityMapper();
             default:
                 return new EntityDataMapper();
         }

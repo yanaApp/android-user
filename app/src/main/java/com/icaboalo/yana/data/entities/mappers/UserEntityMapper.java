@@ -5,6 +5,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.domain.models.action_plan.Contact;
@@ -120,6 +121,9 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
 
         for (ActionPlanRealmModel actionPlan : userRealmModel.getActionPlanList())
             actionPlanList.add(ActionPlanEntityMapper.transformToDomainHelper(actionPlan));
+
+        for (ContactRealmModel contact: userRealmModel.getContactList())
+            contactList.add(ContactEntityMapper.transformToDomainHelper(contact));
 
         user.setActionPlanList(actionPlanList);
         user.setContactList(contactList);

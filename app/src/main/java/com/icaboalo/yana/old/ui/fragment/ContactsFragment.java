@@ -66,7 +66,7 @@ public class ContactsFragment extends Fragment implements AddContactDialog.OnDia
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mContactRecycler = (RecyclerView) view.findViewById(R.id.contact_recycler);
+        mContactRecycler = (RecyclerView) view.findViewById(R.id.rvContact);
     }
 
     @Override
