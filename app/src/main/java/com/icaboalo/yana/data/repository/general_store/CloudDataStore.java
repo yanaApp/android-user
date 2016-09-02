@@ -63,24 +63,7 @@ public class CloudDataStore implements DataStore {
                 e.printStackTrace();
                 nObservable = Observable.error(e);
             }
-        nObservable.subscribeOn(Schedulers.io()).subscribe(
-                new Subscriber<Object>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(Object o) {
-
-                    }
-                }
-        );
+        nObservable.subscribeOn(Schedulers.io());
 
     };
 

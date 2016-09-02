@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
@@ -21,6 +23,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 /**
  * @author icaboalo on 24/08/16.
@@ -50,13 +53,14 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
         mProfilePresenter.setView(this);
-        mProfilePresenter.initialize("59");
     }
+
+
 
     @Override
     public void onResume() {
-        mProfilePresenter.initialize("59");
         super.onResume();
+        mProfilePresenter.initialize("59");
     }
 
     @Nullable
