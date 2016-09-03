@@ -63,7 +63,7 @@ public class CloudDataStore implements DataStore {
                 e.printStackTrace();
                 nObservable = Observable.error(e);
             }
-        nObservable.subscribeOn(Schedulers.io());
+        nObservable.subscribeOn(Schedulers.io()).subscribe();
 
     };
 
