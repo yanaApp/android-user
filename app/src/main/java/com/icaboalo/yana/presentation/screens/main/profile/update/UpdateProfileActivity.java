@@ -174,10 +174,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         etField.setText(mInfo);
         switch (mType){
             case FULL_NAME:
-                tvDescription.setText(R.string.cupcake_ipsum);
+                tvDescription.setText(R.string.description_full_name);
                 break;
             case EMAIL:
-                tvDescription.setText(R.string.cupcake_ipsum);
+                tvDescription.setText(R.string.description_email);
                 break;
             case BIRTH_DATE:
                 tvDescription.setText(R.string.cupcake_ipsum);
@@ -187,10 +187,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 break;
             case LOCATION:
                 etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
-                tvDescription.setText(R.string.cupcake_ipsum);
+                tvDescription.setText(R.string.description_location);
                 break;
             case OCCUPATION:
-                tvDescription.setText(R.string.cupcake_ipsum);
+                tvDescription.setText(R.string.description_occupation);
                 break;
         }
     }
