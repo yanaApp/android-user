@@ -22,6 +22,19 @@
     <string name="mild_depression">MILD DEPRESSION</string>
     <string name="welcome">Welcome!</string>
     <string name="hello_again">Hello again!</string>
+    <string name="completed">Completed</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="average_emotion">Average Emotion</string>
+    <string name="no_action_plan">No action plan to show</string>
+    <string name="live_together">Live together?</string>
+    <string name="terms_and_privacy"><![CDATA[By registering you confirm that you have read & accepted the]]><b> Terms of service </b><![CDATA[ & the ]]><b>privacy policy</b></string>
+    <string name="title_action_plan_evaluation">Personalize your action plan</string>
+    <string name="description_email"> Choose your email preference to enter Yana.</string>
+    <string name="description_full_name"> This name will use to contact your support network, so choose a name that you locate your loved ones.</string>
+    <string name="description_location">Enter your postal code.</string>
+    <string name="title_autoevaluation">Autoevaluation</string>
+    <string name="description_occupation"> If your occupation is not on the list, select \'\other\\' .</string>
+    <string name="description_password">Choose a password of at least 6 characters.</string>
 
     <!--Hint-->
     <string name="email_input_hint">EMAIL</string>
@@ -31,6 +44,7 @@
     <string name="location_input_hint">POSTAL CODE</string>
     <string name="occupation_input_hint">OCCUPATION</string>
     <string name="password_input_hint">PASSWORD</string>
+    <string name="first_name_input_hint">First name</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
@@ -45,6 +59,18 @@
     <string name="clear_field">Clear field</string>
     <string name="button_log_in">Log in</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="skip">Skip</string>
+    <string name="have_an_account">Already have an account? <b>Log in</b></string>
+    <string name="button_register">Register</string>
+    <string name="create_new_action_plan">Create new Action plan</string>
+    <string name="take_now">Take now</string>
+    <string name="exit">Exit</string>
+    <string name="stay">Stay</string>
+    <string name="take_later">Take later</string>
+    <string name="description_autoevaluation">Before we start, please tell us with which situation you identify yourself the best.</string>
+    <string name="description_action_plan_evaluation"></string>
+    <string name="description_restore_password">Type the email that was used for your account, we will send you a confirmation.</string>
+    <string name="identify">With which case you identify the best?</string>
 
     <!--Label-->
     <string name="label_activity_complete" translatable="false">ACTIVITY_COMPLETE</string>
@@ -74,22 +100,6 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="skip">Skip</string>
-    <string name="have_an_account">Already have an account? <b>Log in</b></string>
-    <string name="button_register">Register</string>
-    <string name="first_name_input_hint">First name</string>
-    <string name="exit">Exit</string>
-    <string name="stay">Stay</string>
-    <string name="completed">Completed</string>
-    <string name="incomplete">Incomplete</string>
-    <string name="average_emotion">Average Emotion</string>
-    <string name="live_together">Live together?</string>
-    <string name="take_now">Take now</string>
-    <string name="take_later">Take later</string>
-    <string name="title_autoevaluation">Autoevaluación</string>
-    <string name="description_autoevaluation">Antes de comenzar, por favor dinos con que situación te identificas mejor.</string>
-    <string name="no_action_plan">No action plan to show</string>
-    <string name="create_new_action_plan">Create new Action plan</string>
 
     <array name="beck_test">
         <!--1-->
@@ -227,9 +237,34 @@
         <item>Friend</item>
         <item>Other</item>
     </array>
-    <string name="description_action_plan_evaluation"></string>
-    <string name="description_restore_password">Type the email that was used for your account, we will send you a confirmation.</string>
-    <string name="identify">With which case you identify the best?</string>
-    <string name="terms_and_privacy"><![CDATA[By registering you confirm that you have read & accepted the]]><b> Terms of service </b><![CDATA[ & the ]]><b>privacy policy</b></string>
-    <string name="title_action_plan_evaluation">Personalize your action plan</string>
+
+    <array name="genders">
+        <item>Select a gender.</item>
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Other</item>
+    </array>
+
+    <array name="occupations">
+        <item>Lawyer</item>
+        <item>Actor/Actress</item>
+        <item>Architect</item>
+        <item>Artist</item>
+        <item>Astronomer</item>
+        <item>Author</item>
+        <item>Scientific</item>
+        <item>Chef/Cook</item>
+        <item>Athlete</item>
+        <item>Designer</item>
+        <item>Doctor</item>
+        <item>Entrepreneur</item>
+        <item>Student</item>
+        <item>Photographer</item>
+        <item>Computer</item>
+        <item>Model</item>
+        <item>Other</item>
+        <item>Journalist</item>
+        <item>Professor</item>
+        <item>Seller</item>
+    </array>
 </resources>

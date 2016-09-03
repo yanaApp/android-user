@@ -124,7 +124,7 @@
     <string name="average_emotion">Emoción Promedio</string>
     <string name="completed">Completadas</string>
     <string name="create_new_action_plan">Crear un nuevo Plan de Acción</string>
-    <string name="description_autoevaluation">Before we start, please tell us with which situation you identify yourself the best.</string>
+    <string name="description_autoevaluation">Antes de comenzar, por favor dinos con que situación te identificas mejor.</string>
     <string name="exception_message_generic">Hubó un error en el servidor</string>
     <string name="exception_message_no_connection">Revisa tu conexión a internet</string>
     <string name="exit">Salir</string>
@@ -135,5 +135,51 @@
     <string name="stay">Quedarme</string>
     <string name="take_later">Tomar más tarde</string>
     <string name="take_now">Tomar ahora</string>
-    <string name="title_autoevaluation">Autoevaluation</string>
+    <string name="title_autoevaluation">Autoevaluación</string>
+
+    <array name="relations">
+        <item>¿Cuál es tu relación?</item>
+        <item>Papá</item>
+        <item>Mamá</item>
+        <item>Hermano/a</item>
+        <item>Novio/a</item>
+        <item>Amigo/a</item>
+        <item>Otro</item>
+    </array>
+
+    <string name="description_full_name">Este nombre usaremos para contactar a tu red de apoyo, así que elige un nombre con el que te ubiquen tus seres queridos.</string>
+    <string name="description_email">Elige tu correo electrónico de preferencia para ingresar a Yana.</string>
+    <string name="description_password">Elige una contraseña de mínimo de 6 caracteres.</string>
+    <string name="description_location">Ingresa tu código postal</string>
+    <string name="description_occupation">Si tu ocupación no aparece en la lista, elige '\otro\'.</string>
+    
+    <array name="genders">
+        <item>Elige un genero</item>
+        <item>Hombre</item>
+        <item>Mujer</item>
+        <item>Otro</item>
+    </array>
+    
+    <array name="occupations">
+        <item>Abogado/a</item>
+        <item>Actor/Actriz</item>
+        <item>Arquitecto/a</item>
+        <item>Artista</item>
+        <item>Astrónomo/a</item>
+        <item>Autor/a</item>
+        <item>Científico/a</item>
+        <item>Chef/Cocinero/a</item>
+        <item>Deportista</item>
+        <item>Diseñador/a</item>
+        <item>Doctor/a</item>
+        <item>Emprendedor/a</item>
+        <item>Estudiante</item>
+        <item>Fotógrafo/a</item>
+        <item>Informatico/a</item>
+        <item>Modelo</item>
+        <item>Otro</item>
+        <item>Periodista</item>
+        <item>Profesor</item>
+        <item>Vendedor/a</item>
+    </array>
 </resources>
