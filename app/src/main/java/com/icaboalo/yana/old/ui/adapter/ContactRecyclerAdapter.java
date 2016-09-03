@@ -54,8 +54,8 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<ContactRecycler
 
         public ContactViewHolder(View itemView) {
             super(itemView);
-            mIsValidated = (ImageView) itemView.findViewById(R.id.is_contact_validated);
-            mContactName = (TextView) itemView.findViewById(R.id.contact_name);
+            mIsValidated = (ImageView) itemView.findViewById(R.id.ivContactValidated);
+            mContactName = (TextView) itemView.findViewById(R.id.tvContactName);
         }
 
         void setValidated(boolean isValidated){

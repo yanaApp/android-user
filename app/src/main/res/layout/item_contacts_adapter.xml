@@ -8,14 +8,14 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/is_contact_validated"
+        android:id="@+id/ivContactValidated"
         android:src="@drawable/check_64"
         android:layout_width="48dp"
         android:layout_height="48dp" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:textColor="@color/primary_text"
-        android:id="@+id/contact_name"
+        android:id="@+id/tvContactName"
         android:layout_marginLeft="32dp"
         android:textSize="20sp"
         android:text="Mayela Guerra"
