@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.main.profile.update;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -172,24 +173,37 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     private void setInfo(){
         etField.setText(mInfo);
+        ActionBar actionBar = getSupportActionBar();
         switch (mType){
             case FULL_NAME:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.full_name_title);
                 tvDescription.setText(R.string.description_full_name);
                 break;
             case EMAIL:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.email_title);
                 tvDescription.setText(R.string.description_email);
                 break;
             case BIRTH_DATE:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.birth_date_title);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case GENDER:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.gender_title);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case LOCATION:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.location_title);
                 etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
                 tvDescription.setText(R.string.description_location);
                 break;
             case OCCUPATION:
+                assert actionBar != null;
+                actionBar.setTitle(R.string.occupation_title);
                 tvDescription.setText(R.string.description_occupation);
                 break;
         }

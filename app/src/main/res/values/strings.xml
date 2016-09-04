@@ -90,6 +90,12 @@
     <string name="progress_title">Progress</string>
     <string name="profile_title">Profile</string>
     <string name="help_title">Help</string>
+    <string name="full_name_title">Full Name</string>
+    <string name="email_title">Email</string>
+    <string name="birth_date_title">Birth Date</string>
+    <string name="gender_title">Gender</string>
+    <string name="location_title">Postal Code</string>
+    <string name="occupation_title">Occupation</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>

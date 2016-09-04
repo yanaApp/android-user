@@ -182,4 +182,10 @@
         <item>Profesor</item>
         <item>Vendedor/a</item>
     </array>
+    <string name="birth_date_title">Fecha de Nacimiento</string>
+    <string name="email_title">Correo Electronico</string>
+    <string name="full_name_title">Nombre Completo</string>
+    <string name="gender_title">Genero</string>
+    <string name="location_title">Codigo Postal</string>
+    <string name="occupation_title">Ocupación</string>
 </resources>
