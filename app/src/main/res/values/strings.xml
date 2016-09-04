@@ -33,7 +33,7 @@
     <string name="description_full_name"> This name will use to contact your support network, so choose a name that you locate your loved ones.</string>
     <string name="description_location">Enter your postal code.</string>
     <string name="title_autoevaluation">Autoevaluation</string>
-    <string name="description_occupation"> If your occupation is not on the list, select \'\other\\' .</string>
+    <string name="description_occupation"> If your occupation is not on the list, select \'other\' .</string>
     <string name="description_password">Choose a password of at least 6 characters.</string>
 
     <!--Hint-->

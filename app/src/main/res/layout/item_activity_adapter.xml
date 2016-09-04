@@ -41,7 +41,8 @@
         android:gravity="center"
         android:text="Ver más"
         android:textColor="@color/secondary_text"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/btEmotion"
@@ -57,7 +58,6 @@
 
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rlDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,7 +66,8 @@
         android:paddingEnd="48dp"
         android:paddingLeft="0dp"
         android:paddingRight="48dp"
-        android:paddingStart="0dp">
+        android:paddingStart="0dp"
+        android:visibility="visible">
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:id="@+id/tvDescription"
@@ -84,7 +85,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:visibility="gone"
         android:id="@+id/rlEmotion"
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -94,7 +94,8 @@
         android:paddingEnd="48dp"
         android:paddingLeft="0dp"
         android:paddingRight="48dp"
-        android:paddingStart="0dp">
+        android:paddingStart="0dp"
+        android:visibility="gone">
 
         <View
             android:id="@+id/emotion_divider"
@@ -207,6 +208,4 @@
             android:scaleType="centerInside"
             android:src="@drawable/very_happy_28"/>
     </RelativeLayout>
-
-
 </RelativeLayout>

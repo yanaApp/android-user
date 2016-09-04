@@ -151,7 +151,7 @@
     <string name="description_email">Elige tu correo electrónico de preferencia para ingresar a Yana.</string>
     <string name="description_password">Elige una contraseña de mínimo de 6 caracteres.</string>
     <string name="description_location">Ingresa tu código postal</string>
-    <string name="description_occupation">Si tu ocupación no aparece en la lista, elige '\otro\'.</string>
+    <string name="description_occupation">Si tu ocupación no aparece en la lista, elige \'otro\'.</string>
     
     <array name="genders">
         <item>Elige un genero</item>

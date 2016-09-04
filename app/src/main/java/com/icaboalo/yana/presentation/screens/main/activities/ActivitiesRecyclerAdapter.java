@@ -53,20 +53,20 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
         if (position == emotionExpandedPosition) {
             holder.showEmotions(true);
-            holder.showDescription(false);
+//            holder.showDescription(false);
             holder.showActivityColorBar(false);
             holder.rlDescription.setVisibility(View.GONE);
             mActivitiesListener.onExpand(position, true);
 
         } else if (position == descriptionExpandedPosition) {
-            holder.showDescription(true);
+//            holder.showDescription(true);
             holder.showEmotions(false);
             holder.showActivityColorBar(false);
             mActivitiesListener.onExpand(position, true);
 
         } else {
             holder.showEmotions(false);
-            holder.showDescription(false);
+//            holder.showDescription(false);
             holder.showActivityColorBar(true);
             mActivitiesListener.onExpand(position, false);
         }
@@ -178,7 +178,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         public void showEmotions(boolean show){
             int visibility = show ? View.VISIBLE : View.GONE;
             rlEmotion.setVisibility(visibility);
-            btDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
+//            btDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
         }
 
         public void showActivityColorBar(boolean show){
