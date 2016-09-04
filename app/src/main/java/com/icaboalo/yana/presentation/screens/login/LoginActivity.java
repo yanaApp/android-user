@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
@@ -133,15 +134,17 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         }
     }
 
+    @OnClick(R.id.btRegister)
+    void goToRegister(){
+        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class));
+    }
+
     void showDialog(){
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Recuperación");
         alertDialog.setMessage("Por favor revisa tu correo electronico para restablecer tu contraseña.");
-        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
+        alertDialog.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
         });
         alertDialog.show();
     }
