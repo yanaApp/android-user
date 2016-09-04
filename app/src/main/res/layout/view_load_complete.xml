@@ -7,16 +7,17 @@
     android:padding="32dp"
     android:visibility="gone">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        style="@style/AppTheme.TextTitle"
         android:text="@string/loading_complete"
-        android:textAlignment="center"
-        android:textSize="28sp" />
+        android:textAlignment="center"/>
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@mipmap/logo" />

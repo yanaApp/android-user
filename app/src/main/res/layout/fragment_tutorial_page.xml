@@ -7,26 +7,24 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/tutorial_image"
+        android:id="@+id/ivTutorial"
         android:src="@drawable/chat_128"
         android:layout_marginBottom="64dp"
         android:layout_width="128dp"
         android:layout_height="128dp" />
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:textAlignment="center"
-        android:id="@+id/title"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvTitle"
         android:text="Recibe Apoyo"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_marginBottom="20dp"
+        style="@style/AppTheme.TextTitle"
         android:layout_height="wrap_content" />
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/description"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvDescription"
         android:text="Apoyate de una red de contactos que te respalde en esta etapa de tu vida"
         android:layout_width="270dp"
-        android:textSize="16sp"
-        android:textAlignment="center"
+        style="@style/AppTheme.TextDescription"
         android:layout_height="wrap_content" />
 </LinearLayout>

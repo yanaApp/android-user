@@ -12,11 +12,12 @@
     android:layout_marginBottom="1dp"
     android:paddingTop="20dp">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/day_text"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:textColor="@color/primary_text"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="Día 1  |  7 de Junio 2016"
@@ -34,10 +35,11 @@
         <View
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:background="@color/colorAccent" />
+            android:background="@color/yana_green" />
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:id="@+id/completed_count"
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/secondary_text"
+            android:id="@+id/tvCompletedCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -50,10 +52,11 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/pink" />
+            android:background="@color/yana_pink" />
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:id="@+id/incomplete_count"
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/secondary_text"
+            android:id="@+id/tvIncompleteCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -65,13 +68,13 @@
             android:layout_height="10dp"
             android:layout_marginLeft="32dp"
             android:layout_marginStart="32dp"
-            android:background="@color/orange" />
+            android:background="@color/yana_orange" />
 
         <ImageView
             android:id="@+id/ivEmotionAverage"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/happy_32" />
+            android:src="@drawable/cancel_outlined_circular_32" />
     </LinearLayout>
 </RelativeLayout>

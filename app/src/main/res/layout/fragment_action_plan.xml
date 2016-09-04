@@ -22,19 +22,18 @@
                 android:layout_height="match_parent"
                 android:background="#E2E2E4"/>
 
-            <com.icaboalo.yana.ui.widget.CustomFontTextView
-                android:id="@+id/activity_date"
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="36dp"
                 android:layout_marginStart="36dp"
-                android:text="Dia 1  |  Tuesday, March 9"
                 android:textAllCaps="true"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/activity_recycler"
+            android:id="@+id/rvActivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/llDayContainer"/>
@@ -42,5 +41,7 @@
 
 
     <include layout="@layout/view_no_action_plan"/>
+    <include layout="@layout/view_progress"/>
+    <include layout="@layout/view_retry"/>
 
 </RelativeLayout>

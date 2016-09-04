@@ -5,33 +5,34 @@
     android:padding="32dp"
     android:orientation="vertical">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/title"
-        android:textAlignment="center"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvTitle"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/description"
+        android:layout_above="@+id/tvDescription"
         android:layout_marginBottom="16dp"
-        android:textSize="24sp"
-        android:text="AUTOEVALUACIÓN"
-        android:layout_width="wrap_content"
+        android:text="@string/title_autoevaluation"
+        android:textAllCaps="true"
+        style="@style/AppTheme.TextTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/description"
-        android:textSize="16sp"
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:textColor="@color/secondary_text"
+        android:id="@+id/tvDescription"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        style="@style/AppTheme.TextDescription"
         android:layout_centerVertical="true"
-        android:text="Antes de comenzar, por favor dinos con que situación te identificas mejor."
-        android:textAlignment="center"
-        android:layout_width="wrap_content"
+        android:text="@string/description_autoevaluation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
         style="@style/AppTheme.ButtonBlue"
         android:layout_alignParentBottom="true"
         android:id="@+id/btContinue"
-        android:text="Continuar"
+        android:text="@string/continue_button"
         android:layout_marginBottom="48dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

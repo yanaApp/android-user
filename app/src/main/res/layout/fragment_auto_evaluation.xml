@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        style="@style/AppTheme.TextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -14,15 +16,12 @@
         android:paddingRight="48dp"
         android:paddingStart="48dp"
         android:paddingTop="24dp"
-        android:text="¿Con que caso te identificas mejor?"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="24sp" />
+        android:text="@string/identify"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorAccent" />
+        android:background="@color/yana_green"/>
 
 
     <LinearLayout
@@ -36,18 +35,19 @@
         android:paddingStart="32dp"
         android:paddingTop="16dp">
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi. "
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#d3d3d3" />
+        android:background="#d3d3d3"/>
 
     <LinearLayout
         android:id="@+id/option_2"
@@ -60,18 +60,19 @@
         android:paddingStart="32dp"
         android:paddingTop="16dp">
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi.."
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#d3d3d3" />
+        android:background="#d3d3d3"/>
 
     <LinearLayout
         android:id="@+id/option_3"
@@ -84,18 +85,19 @@
         android:paddingStart="32dp"
         android:paddingTop="16dp">
 
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra, magna sed blandit accumsan, nunc massa efficitur dui, sed dignissim mi lectus quis mi."
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:background="@color/colorAccent" />
+        android:background="@color/yana_green"/>
 
 
     <FrameLayout
@@ -107,10 +109,10 @@
             style="@style/AppTheme.ButtonBlue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:text="Siguiente"
-            android:layout_gravity="center" />
+            android:text="@string/next_button"/>
     </FrameLayout>
 
 

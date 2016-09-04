@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="1dp"
-    android:animateLayoutChanges="true"
-    android:background="#fff"
-    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:animateLayoutChanges="true"
+                android:background="#fff"
+                android:orientation="vertical">
 
     <View
         android:id="@+id/activity_color"
@@ -13,10 +13,10 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#FFC107" />
+        android:background="#FFC107"/>
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/activity_title"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -25,13 +25,14 @@
         android:paddingStart="48dp"
         android:singleLine="true"
         android:text="Title"
-        android:textSize="20sp" />
+        android:textColor="@color/primary_text"
+        android:textSize="20sp"/>
 
-    <com.icaboalo.yana.ui.widget.CustomFontTextView
-        android:id="@+id/image_description"
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:id="@+id/btDescription"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
-        android:layout_below="@+id/emotion_layout"
+        android:layout_below="@+id/rlEmotion"
         android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
         android:drawableLeft="@drawable/down_arrow_24dp"
@@ -39,45 +40,37 @@
         android:drawableStart="@drawable/down_arrow_24dp"
         android:gravity="center"
         android:text="Ver más"
-        android:textColor="#801d1d26"
-        android:textSize="16sp" />
+        android:textColor="@color/secondary_text"
+        android:textSize="16sp"
+        android:visibility="gone"/>
 
     <ImageView
-        android:id="@+id/image_emotion"
+        android:id="@+id/btEmotion"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
         android:layout_marginEnd="48dp"
         android:layout_marginRight="48dp"
+        android:layout_marginTop="34dp"
         android:background="@drawable/circle_gray"
-        android:clickable="false" />
+        android:clickable="false"/>
 
 
     <RelativeLayout
-        android:id="@+id/description_layout"
+        android:id="@+id/rlDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/activity_title"
+        android:layout_below="@id/tvTitle"
         android:orientation="vertical"
         android:paddingEnd="48dp"
         android:paddingLeft="0dp"
         android:paddingRight="48dp"
-        android:paddingStart="0dp">
+        android:paddingStart="0dp"
+        android:visibility="visible">
 
-
-        <!--<ImageView-->
-        <!--android:id="@+id/icon_description"-->
-        <!--android:layout_width="24dp"-->
-        <!--android:layout_height="24dp"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_marginLeft="48dp"-->
-        <!--android:layout_marginStart="48dp"-->
-        <!--android:src="@drawable/information_outline_circular_64" />-->
-
-        <com.icaboalo.yana.ui.widget.CustomFontTextView
-            android:id="@+id/activity_description"
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvDescription"
             android:layout_width="215dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -85,24 +78,24 @@
             android:layout_marginStart="48dp"
             android:paddingBottom="16dp"
             android:paddingTop="16dp"
-            android:text="Description..." />
-        <!--android:layout_toEndOf="@id/icon_description"-->
-        <!--android:layout_toRightOf="@id/icon_description"-->
+            android:text="Description..."
+            android:textColor="@color/primary_text"/>
 
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/emotion_layout"
+        android:id="@+id/rlEmotion"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_below="@id/description_layout"
+        android:layout_below="@id/rlDescription"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:paddingEnd="48dp"
         android:paddingLeft="0dp"
         android:paddingRight="48dp"
-        android:paddingStart="0dp">
+        android:paddingStart="0dp"
+        android:visibility="gone">
 
         <View
             android:id="@+id/emotion_divider"
@@ -113,10 +106,10 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="10dp"
             android:background="#FFC107"
-            android:visibility="invisible" />
+            android:visibility="invisible"/>
 
         <ImageView
-            android:id="@+id/cancel"
+            android:id="@+id/ivCancel"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
@@ -128,7 +121,7 @@
             android:layout_toLeftOf="@+id/emotion_icon_divider"
             android:layout_toStartOf="@+id/emotion_icon_divider"
             android:scaleType="centerInside"
-            android:src="@drawable/cancel_outlined_circular_28" />
+            android:src="@drawable/cancel_outlined_circular_28"/>
 
         <View
             android:id="@+id/emotion_icon_divider"
@@ -138,12 +131,12 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/very_sad"
-            android:layout_toStartOf="@+id/very_sad"
-            android:background="#000000" />
+            android:layout_toLeftOf="@+id/ivVerySad"
+            android:layout_toStartOf="@+id/ivVerySad"
+            android:background="#000000"/>
 
         <ImageView
-            android:id="@+id/very_sad"
+            android:id="@+id/ivVerySad"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
@@ -152,13 +145,13 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginStart="4dp"
-            android:layout_toLeftOf="@+id/sad"
-            android:layout_toStartOf="@+id/sad"
+            android:layout_toLeftOf="@+id/ivSad"
+            android:layout_toStartOf="@+id/ivSad"
             android:scaleType="centerInside"
-            android:src="@drawable/very_sad_28" />
+            android:src="@drawable/very_sad_28"/>
 
         <ImageView
-            android:id="@+id/sad"
+            android:id="@+id/ivSad"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
@@ -167,13 +160,13 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginStart="4dp"
-            android:layout_toLeftOf="@+id/normal"
-            android:layout_toStartOf="@+id/normal"
+            android:layout_toLeftOf="@+id/ivNormal"
+            android:layout_toStartOf="@+id/ivNormal"
             android:scaleType="centerInside"
-            android:src="@drawable/sad_28" />
+            android:src="@drawable/sad_28"/>
 
         <ImageView
-            android:id="@+id/normal"
+            android:id="@+id/ivNormal"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
@@ -182,13 +175,13 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginStart="4dp"
-            android:layout_toLeftOf="@+id/happy"
-            android:layout_toStartOf="@+id/happy"
+            android:layout_toLeftOf="@+id/ivHappy"
+            android:layout_toStartOf="@+id/ivHappy"
             android:scaleType="centerInside"
-            android:src="@drawable/normal_28" />
+            android:src="@drawable/normal_28"/>
 
         <ImageView
-            android:id="@+id/happy"
+            android:id="@+id/ivHappy"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_below="@id/emotion_divider"
@@ -197,13 +190,13 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginStart="4dp"
-            android:layout_toLeftOf="@+id/very_happy"
-            android:layout_toStartOf="@+id/very_happy"
+            android:layout_toLeftOf="@+id/ivVeryHappy"
+            android:layout_toStartOf="@+id/ivVeryHappy"
             android:scaleType="centerInside"
-            android:src="@drawable/happy_28" />
+            android:src="@drawable/happy_28"/>
 
         <ImageView
-            android:id="@+id/very_happy"
+            android:id="@+id/ivVeryHappy"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_alignParentEnd="true"
@@ -213,8 +206,6 @@
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:scaleType="centerInside"
-            android:src="@drawable/very_happy_28" />
+            android:src="@drawable/very_happy_28"/>
     </RelativeLayout>
-
-
 </RelativeLayout>

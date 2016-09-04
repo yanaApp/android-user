@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-    <string name="app_name">YANA</string>
+    <string name="app_name">Yana</string>
 
     <!--TextView-->
     <string name="progress_dialog_login">Loggin in</string>
@@ -9,19 +9,32 @@
     <string name="beck_title">BECK DEPRESSION INVENTARY</string>
     <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
     <string name="downloading_contents">We\'re downloading your contents</string>
-    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN</string>
+    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN, WELCOME </string>
     <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
-    <string name="slide_to_begin">Slide to begin</string>
-    <string name="what_is_depression">WHAT IS DEPRESSION?</string>
+    <string name="slide_to_begin">SLIDE TO BEGIN</string>
+    <string name="what_is_depression">What is depression?</string>
     <string name="depression_symptoms">DEPRESSION SYMPTOMS</string>
     <string name="moderate_depression">MODERATE DEPRESSION</string>
     <string name="moderate_depression_description"> In the morning the feeling of sadness is higher and fluctuates during the day, but constantly is displeased with himself. Feel it bored most of the time and no longer enjoys doing what he liked before . * A score of 17 or more indicates you may need professional help.</string>
-    <string name="you_are_not_alone">YOU ARE NOT ALONE</string>
+    <string name="you_are_not_alone">You are not alone</string>
     <string name="you_are_not_alone_description">  Do not be alarmed by the results your test. We together with your support network will help in this stage of your life.</string>
     <string name="severe_depression">SEVERE DEPRESSION</string>
     <string name="mild_depression">MILD DEPRESSION</string>
     <string name="welcome">Welcome!</string>
     <string name="hello_again">Hello again!</string>
+    <string name="completed">Completed</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="average_emotion">Average Emotion</string>
+    <string name="no_action_plan">No action plan to show</string>
+    <string name="live_together">Live together?</string>
+    <string name="terms_and_privacy"><![CDATA[By registering you confirm that you have read & accepted the]]><b> Terms of service </b><![CDATA[ & the ]]><b>privacy policy</b></string>
+    <string name="title_action_plan_evaluation">Personalize your action plan</string>
+    <string name="description_email"> Choose your email preference to enter Yana.</string>
+    <string name="description_full_name"> This name will use to contact your support network, so choose a name that you locate your loved ones.</string>
+    <string name="description_location">Enter your postal code.</string>
+    <string name="title_autoevaluation">Autoevaluation</string>
+    <string name="description_occupation"> If your occupation is not on the list, select \'other\' .</string>
+    <string name="description_password">Choose a password of at least 6 characters.</string>
 
     <!--Hint-->
     <string name="email_input_hint">EMAIL</string>
@@ -31,6 +44,7 @@
     <string name="location_input_hint">POSTAL CODE</string>
     <string name="occupation_input_hint">OCCUPATION</string>
     <string name="password_input_hint">PASSWORD</string>
+    <string name="first_name_input_hint">First name</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
@@ -45,6 +59,18 @@
     <string name="clear_field">Clear field</string>
     <string name="button_log_in">Log in</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="skip">Skip</string>
+    <string name="have_an_account">Already have an account? <b>Log in</b></string>
+    <string name="button_register">Register</string>
+    <string name="create_new_action_plan">Create new Action plan</string>
+    <string name="take_now">Take now</string>
+    <string name="exit">Exit</string>
+    <string name="stay">Stay</string>
+    <string name="take_later">Take later</string>
+    <string name="description_autoevaluation">Before we start, please tell us with which situation you identify yourself the best.</string>
+    <string name="description_action_plan_evaluation"></string>
+    <string name="description_restore_password">Type the email that was used for your account, we will send you a confirmation.</string>
+    <string name="identify">With which case you identify the best?</string>
 
     <!--Label-->
     <string name="label_activity_complete" translatable="false">ACTIVITY_COMPLETE</string>
@@ -64,11 +90,22 @@
     <string name="progress_title">Progress</string>
     <string name="profile_title">Profile</string>
     <string name="help_title">Help</string>
+    <string name="full_name_title">Full Name</string>
+    <string name="email_title">Email</string>
+    <string name="birth_date_title">Birth Date</string>
+    <string name="gender_title">Gender</string>
+    <string name="location_title">Postal Code</string>
+    <string name="occupation_title">Occupation</string>
+
+    <!-- Exception messages -->
+    <string name="exception_message_generic">There was a server error</string>
+    <string name="exception_message_no_connection">Check your internet connection</string>
+    <string name="exception_message_user_not_found" translatable="false">Cannot retrieve data. Please Check your internet connection</string>
+    <string name="network_error_persisted" translatable="false">No Network but post request persisted to queue!\n Request will be posted as soon as network is available.</string>
+    <string name="network_error_not_persisted" translatable="false"><![CDATA[No network & could not persist request to queue!\nGoogle play services not available and android version less than 5.0!]]></string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-
-
 
     <array name="beck_test">
         <!--1-->
@@ -195,5 +232,45 @@
             perdido totalmente mi interés por el sexo.
         </item>
 
+    </array>
+
+    <array name="relations">
+        <item>What\'s your relationship?</item>
+        <item>Dad</item>
+        <item>Mom</item>
+        <item>Sibling</item>
+        <item>Partner</item>
+        <item>Friend</item>
+        <item>Other</item>
+    </array>
+
+    <array name="genders">
+        <item>Select a gender.</item>
+        <item>Man</item>
+        <item>Woman</item>
+        <item>Other</item>
+    </array>
+
+    <array name="occupations">
+        <item>Lawyer</item>
+        <item>Actor/Actress</item>
+        <item>Architect</item>
+        <item>Artist</item>
+        <item>Astronomer</item>
+        <item>Author</item>
+        <item>Scientific</item>
+        <item>Chef/Cook</item>
+        <item>Athlete</item>
+        <item>Designer</item>
+        <item>Doctor</item>
+        <item>Entrepreneur</item>
+        <item>Student</item>
+        <item>Photographer</item>
+        <item>Computer</item>
+        <item>Model</item>
+        <item>Other</item>
+        <item>Journalist</item>
+        <item>Professor</item>
+        <item>Seller</item>
     </array>
 </resources>

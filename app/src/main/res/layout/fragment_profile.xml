@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="top"
         android:divider="@drawable/green_divider"
         android:orientation="vertical"
         android:showDividers="middle">
@@ -27,22 +27,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/full_name_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Iñaki Cabo Alonso"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -72,22 +72,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/email_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="icaboalo@gmail.com"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -117,13 +117,13 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/password_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
             </LinearLayout>
@@ -152,22 +152,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/birth_date_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvBirthDate"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="15-09-1998"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -198,22 +198,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/gender_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvGender"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Hombre"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -243,22 +243,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/location_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Ciudad de México"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 
@@ -289,22 +289,22 @@
                 android:paddingRight="16dp"
                 android:paddingTop="8dp">
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/occupation_input_hint"
-                    android:textColor="#801d1d26"
+                    android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
-                <com.icaboalo.yana.ui.widget.CustomFontTextView
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvOccupation"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Estudiante"
+                    android:visibility="gone"
                     android:textColor="#1d1d26"
                     android:textSize="18sp"/>
 

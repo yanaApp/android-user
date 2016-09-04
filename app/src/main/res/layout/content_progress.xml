@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="32dp">
+
+        <Spinner
+            android:id="@+id/spActionPlan"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp" />
+
+        <LinearLayout
+            android:id="@+id/llCompleted"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/spActionPlan"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="@string/completed"
+                android:textSize="12sp" />
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:id="@+id/tvCompleted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="64"
+                android:textSize="32sp" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/yana_green" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llIncomplete"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spActionPlan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="@string/incomplete"
+                android:textSize="12sp" />
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:id="@+id/tvIncomplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="32"
+                android:textSize="32sp" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@color/yana_pink" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAverage"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/spActionPlan"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:text="@string/average_emotion"
+                android:textAlignment="center"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/ivEmotionAverage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/happy_32"
+                android:textSize="32sp" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@color/yana_orange" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pbCompleted"
+            style="@style/AppTheme.ProgressBarGreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llCompleted"
+            android:layout_marginBottom="32dp"
+            android:max="64"
+            android:progress="30" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDayProgress"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
