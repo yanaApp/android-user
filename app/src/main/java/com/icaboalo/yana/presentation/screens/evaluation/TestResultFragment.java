@@ -32,10 +32,7 @@ public class TestResultFragment extends BaseFragment {
     EvaluationClickListener mEvaluationClickListener;
 
     public static TestResultFragment newInstance(){
-        TestResultFragment fragment = new TestResultFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+        return new TestResultFragment();
     }
 
     @Override
