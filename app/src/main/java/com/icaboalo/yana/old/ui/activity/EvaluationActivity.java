@@ -1,8 +1,7 @@
 package com.icaboalo.yana.old.ui.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -15,6 +14,8 @@ import com.icaboalo.yana.old.ui.fragment.TestResultFragment;
 import com.icaboalo.yana.old.ui.fragment.TitleDescriptionFragment;
 import com.icaboalo.yana.old.ui.widget.NonSwipeableViewPager;
 import com.icaboalo.yana.util.EvaluationClickListener;
+
+import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
 
 import java.util.ArrayList;
 
@@ -42,8 +43,7 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
     public void onClick() {
         mCurrentPosition ++;
         if (mCurrentPosition == createFragmentList().size()){
-            Intent goToRegister = new Intent(EvaluationActivity.this, RegisterActivity.class);
-            startActivity(goToRegister);
+            startActivity(RegisterActivity.getCallingIntent(this));
             finish();
         } else {
             viewPager.setCurrentItem(mCurrentPosition, true);
