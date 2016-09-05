@@ -10,12 +10,11 @@ import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.AutoEvaluationFragment;
 import com.icaboalo.yana.old.ui.fragment.EvaluationFragment;
 import com.icaboalo.yana.old.ui.fragment.SelectEvaluationFragment;
-import com.icaboalo.yana.old.ui.fragment.TestResultFragment;
 import com.icaboalo.yana.old.ui.fragment.TitleDescriptionFragment;
 import com.icaboalo.yana.old.ui.widget.NonSwipeableViewPager;
-import com.icaboalo.yana.util.EvaluationClickListener;
-
 import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
+import com.icaboalo.yana.util.EvaluationClickListener;
+import com.icaboalo.yana.presentation.screens.evaluation.TestResultFragment;
 
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluation);
         ButterKnife.bind(this);
-        testResultFragment = TestResultFragment.newInstance("", "", getString(R.string.continue_button), "");
+        testResultFragment = TestResultFragment.newInstance();
         setupViewPager(createFragmentList());
     }
 
