@@ -79,7 +79,16 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
     private void getResultScreen(TestResultFragment testResultFragment, int answer){
 //        int answer = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE).getInt(PrefConstants.scorePref, 0);
 //        Toast.makeText(EvaluationActivity.this, "" + answer, Toast.LENGTH_SHORT).show();
-        if (answer > 0 && answer < 17){
+        if  (answer > 0 && answer <= 10){
+            getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
+                    .edit()
+                    .putInt(PrefConstants.evaluationPref, 1)
+                    .apply();
+            testResultFragment.setTitle("Ups & downs");
+            testResultFragment.setDescription(getString(R.string.cupcake_ipsum));
+        }
+
+        else if (answer >= 11 && answer < 17){
             getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
                     .edit()
                     .putInt(PrefConstants.evaluationPref, 1)

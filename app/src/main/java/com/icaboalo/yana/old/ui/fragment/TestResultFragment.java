@@ -70,12 +70,9 @@ public class TestResultFragment extends Fragment {
         mDescription.setText(getArguments().getString("DESCRIPTION"));
         mContinueButton.setText(getArguments().getString("BUTTON_TEXT"));
 
-        mContinueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mEvaluationClickListener != null)
-                    mEvaluationClickListener.onClick();
-            }
+        mContinueButton.setOnClickListener(v -> {
+            if (mEvaluationClickListener != null)
+                mEvaluationClickListener.onClick();
         });
     }
 }
