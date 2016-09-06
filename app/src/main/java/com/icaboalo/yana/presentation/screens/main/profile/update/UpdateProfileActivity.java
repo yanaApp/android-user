@@ -244,7 +244,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,
+                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         getResources().getStringArray(R.array.genders)));
                 etField.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
@@ -260,7 +260,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.occupation_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item,
+                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         getResources().getStringArray(R.array.occupations)));
                 etField.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_occupation);
