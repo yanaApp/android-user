@@ -2,6 +2,7 @@ package com.icaboalo.yana.old.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -39,6 +40,19 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
     }
 
     @Override
+    public void onBackPressed() {
+        if (mCurrentPosition > 0) {
+            if (mCurrentPosition < 4){
+                mCurrentPosition --;
+                mCurrentPosition --;
+                onClick();
+            }
+        }
+        else
+            super.onBackPressed();
+    }
+
+    @Override
     public void onClick() {
         mCurrentPosition ++;
         if (mCurrentPosition == createFragmentList().size()){
@@ -56,7 +70,7 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
 
     private ArrayList<FragmentPagerModel> createFragmentList(){
         ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
-        fragmentList.add(new FragmentPagerModel(new AutoEvaluationFragment()));
+        fragmentList.add(new FragmentPagerModel(AutoEvaluationFragment.newInstance(0)));
         fragmentList.add(new FragmentPagerModel(TitleDescriptionFragment.newInstance(getString(R.string.depression_title),
                 getString(R.string.depression_description),
                 getString(R.string.continue_button),
