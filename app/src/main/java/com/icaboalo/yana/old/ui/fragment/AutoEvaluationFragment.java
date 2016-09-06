@@ -27,6 +27,14 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
     int mAnswer = 0;
     EvaluationClickListener mEvaluationClickListener;
 
+    public static AutoEvaluationFragment newInstance(int answer){
+        AutoEvaluationFragment fragment = new AutoEvaluationFragment();
+        Bundle args = new Bundle();
+        args.putInt("ANSWER", answer);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -51,6 +59,24 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mAnswer = getArguments().getInt("ANSWER", 0);
+        switch (mAnswer) {
+            case 1:
+                mOption1.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
+                mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
+                break;
+            case 2:
+                mOption2.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
+                mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption3.setBackgroundColor(Color.parseColor("#ffffff"));
+                break;
+            case 3:
+                mOption3.setBackgroundColor(getActivity().getResources().getColor(R.color.opaque_yana_green));
+                mOption1.setBackgroundColor(Color.parseColor("#ffffff"));
+                mOption2.setBackgroundColor(Color.parseColor("#ffffff"));
+                break;
+        }
         mOption1.setOnClickListener(this);
         mOption2.setOnClickListener(this);
         mOption3.setOnClickListener(this);
@@ -86,6 +112,7 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
                 } else {
                     SharedPreferences sharedPref = getActivity().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
                     sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswer).apply();
+//                    mEvaluationClickListener.setAnswer(mAnswer);
                     mEvaluationClickListener.onClick();
                 }
                 break;

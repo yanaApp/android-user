@@ -17,11 +17,11 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.old.ui.fragment.HelpFragment;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
+import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;

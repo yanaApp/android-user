@@ -7,7 +7,6 @@ import com.icaboalo.yana.domain.exception.DefaultErrorBundle;
 import com.icaboalo.yana.domain.exception.ErrorBundle;
 import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
-import com.icaboalo.yana.old.ui.activity.EmptyActivity;
 import com.icaboalo.yana.presentation.exceptions.ErrorMessageFactory;
 
 import java.util.List;

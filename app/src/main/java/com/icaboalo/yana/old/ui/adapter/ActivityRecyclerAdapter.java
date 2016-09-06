@@ -17,7 +17,7 @@ import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.realm.ActivityModel;
-import com.icaboalo.yana.old.ui.activity.MainActivity;
+import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.VUtil;
 

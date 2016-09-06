@@ -1,8 +1,8 @@
 package com.icaboalo.yana.old.ui.activity;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -11,10 +11,11 @@ import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.old.ui.fragment.AutoEvaluationFragment;
 import com.icaboalo.yana.old.ui.fragment.EvaluationFragment;
 import com.icaboalo.yana.old.ui.fragment.SelectEvaluationFragment;
-import com.icaboalo.yana.old.ui.fragment.TestResultFragment;
 import com.icaboalo.yana.old.ui.fragment.TitleDescriptionFragment;
 import com.icaboalo.yana.old.ui.widget.NonSwipeableViewPager;
+import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
 import com.icaboalo.yana.util.EvaluationClickListener;
+import com.icaboalo.yana.presentation.screens.evaluation.TestResultFragment;
 
 import java.util.ArrayList;
 
@@ -34,16 +35,28 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evaluation);
         ButterKnife.bind(this);
-        testResultFragment = TestResultFragment.newInstance("", "", getString(R.string.continue_button), "");
+        testResultFragment = TestResultFragment.newInstance();
         setupViewPager(createFragmentList());
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mCurrentPosition > 0) {
+            if (mCurrentPosition < 4){
+                mCurrentPosition --;
+                mCurrentPosition --;
+                onClick();
+            }
+        }
+        else
+            super.onBackPressed();
     }
 
     @Override
     public void onClick() {
         mCurrentPosition ++;
         if (mCurrentPosition == createFragmentList().size()){
-            Intent goToRegister = new Intent(EvaluationActivity.this, RegisterActivity.class);
-            startActivity(goToRegister);
+            startActivity(RegisterActivity.getCallingIntent(this));
             finish();
         } else {
             viewPager.setCurrentItem(mCurrentPosition, true);
@@ -57,7 +70,7 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
 
     private ArrayList<FragmentPagerModel> createFragmentList(){
         ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
-        fragmentList.add(new FragmentPagerModel(new AutoEvaluationFragment()));
+        fragmentList.add(new FragmentPagerModel(AutoEvaluationFragment.newInstance(0)));
         fragmentList.add(new FragmentPagerModel(TitleDescriptionFragment.newInstance(getString(R.string.depression_title),
                 getString(R.string.depression_description),
                 getString(R.string.continue_button),
@@ -79,7 +92,16 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
     private void getResultScreen(TestResultFragment testResultFragment, int answer){
 //        int answer = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE).getInt(PrefConstants.scorePref, 0);
 //        Toast.makeText(EvaluationActivity.this, "" + answer, Toast.LENGTH_SHORT).show();
-        if (answer > 0 && answer < 17){
+        if  (answer > 0 && answer <= 10){
+            getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
+                    .edit()
+                    .putInt(PrefConstants.evaluationPref, 1)
+                    .apply();
+            testResultFragment.setTitle("Ups & downs");
+            testResultFragment.setDescription(getString(R.string.cupcake_ipsum));
+        }
+
+        else if (answer >= 11 && answer < 17){
             getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
                     .edit()
                     .putInt(PrefConstants.evaluationPref, 1)
