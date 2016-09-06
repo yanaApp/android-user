@@ -253,6 +253,7 @@
     </array>
 
     <array name="occupations">
+        <item>Select an occupation.</item>
         <item>Lawyer</item>
         <item>Actor/Actress</item>
         <item>Architect</item>

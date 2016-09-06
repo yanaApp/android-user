@@ -161,6 +161,7 @@
     </array>
     
     <array name="occupations">
+        <item>Elige una ocupación</item>
         <item>Abogado/a</item>
         <item>Actor/Actriz</item>
         <item>Arquitecto/a</item>
