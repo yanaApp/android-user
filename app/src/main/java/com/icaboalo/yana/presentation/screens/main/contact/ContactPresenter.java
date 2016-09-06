@@ -32,6 +32,7 @@ public class ContactPresenter extends GenericListPresenter<ContactViewModel, Con
     }
 
     public void attemptSaveContact(String name, String phoneNumber, String relation, boolean liveTogether){
+        showViewLoading();
         if (phoneNumber.contains("WORK")){
             phoneNumber = phoneNumber.substring(0, phoneNumber.length() - 8);
         } else if (phoneNumber.contains("HOME")){
@@ -48,7 +49,6 @@ public class ContactPresenter extends GenericListPresenter<ContactViewModel, Con
     }
 
     private void saveContact(HashMap<String, Object> contactBundle){
-        showViewLoading();
         getGenericUseCase().executeDynamicPostObject(new SaveContactSubscriber(), Constants.API_BASE_URL + "contact/",
                 contactBundle, Contact.class, ContactRealmModel.class, ContactViewModel.class, true);
     }

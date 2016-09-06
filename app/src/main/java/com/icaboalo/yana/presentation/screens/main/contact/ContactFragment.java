@@ -54,9 +54,9 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Inject
     ContactPresenter mContactPresenter;
-//    @Bind(R.id.rlProgress)
+    @Bind(R.id.rlProgress)
     RelativeLayout rlProgress;
-//    @Bind(R.id.rlRetry)
+    @Bind(R.id.rlRetry)
     RelativeLayout rlRetry;
     @Bind(R.id.rvContact)
     RecyclerView rvContact;
