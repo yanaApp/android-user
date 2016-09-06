@@ -161,6 +161,7 @@
     </array>
     
     <array name="occupations">
+        <item>Elige una ocupación</item>
         <item>Abogado/a</item>
         <item>Actor/Actriz</item>
         <item>Arquitecto/a</item>
@@ -177,10 +178,10 @@
         <item>Fotógrafo/a</item>
         <item>Informatico/a</item>
         <item>Modelo</item>
-        <item>Otro</item>
         <item>Periodista</item>
         <item>Profesor</item>
         <item>Vendedor/a</item>
+        <item>Otro</item>
     </array>
     <string name="birth_date_title">Fecha de Nacimiento</string>
     <string name="email_title">Correo Electronico</string>

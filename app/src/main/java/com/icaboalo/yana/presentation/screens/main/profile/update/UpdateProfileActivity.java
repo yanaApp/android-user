@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
@@ -19,6 +23,7 @@ import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -26,6 +31,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 import butterknife.OnTextChanged;
 
 /**
@@ -43,6 +49,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     Toolbar toolbar;
     @Bind(R.id.etField)
     EditText etField;
+    @Bind(R.id.spOptions)
+    Spinner spOptions;
     @Bind(R.id.tvDescription)
     TextView tvDescription;
     @Bind(R.id.btSave)
@@ -66,6 +74,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Log.d("Array", getResources().getStringArray(R.array.genders).toString());
         setInfo();
     }
 
@@ -171,6 +180,44 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         }
     }
 
+    @OnItemSelected(value = R.id.spOptions, callback = OnItemSelected.Callback.ITEM_SELECTED)
+    void onSpinnerItemSelected(int position){
+        switch (mType){
+            case GENDER:
+                String[] genders = getResources().getStringArray(R.array.genders);
+                if (position == genders.length - 1) {
+                    etField.setVisibility(View.VISIBLE);
+                    etField.setText("");
+                }
+                else {
+                    etField.setVisibility(View.GONE);
+                    etField.setText(genders[position]);
+                }
+
+                if (position == 0)
+                    btSave.setVisibility(View.GONE);
+                else
+                    btSave.setVisibility(View.VISIBLE);
+                break;
+            case OCCUPATION:
+                String[] occupations = getResources().getStringArray(R.array.occupations);
+                if (position == occupations.length - 1) {
+                    etField.setVisibility(View.VISIBLE);
+                    etField.setText("");
+                }
+                else {
+                    etField.setVisibility(View.GONE);
+                    etField.setText(occupations[position]);
+                }
+
+                if (position == 0)
+                    btSave.setVisibility(View.GONE);
+                else
+                    btSave.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
     private void setInfo(){
         etField.setText(mInfo);
         ActionBar actionBar = getSupportActionBar();
@@ -178,32 +225,44 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             case FULL_NAME:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.full_name_title);
+                spOptions.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_full_name);
                 break;
             case EMAIL:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.email_title);
+                spOptions.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_email);
                 break;
             case BIRTH_DATE:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.birth_date_title);
+                spOptions.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case GENDER:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
+                spOptions.setVisibility(View.VISIBLE);
+                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        getResources().getStringArray(R.array.genders)));
+                etField.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
             case LOCATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.location_title);
+                spOptions.setVisibility(View.GONE);
                 etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
                 tvDescription.setText(R.string.description_location);
                 break;
             case OCCUPATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.occupation_title);
+                spOptions.setVisibility(View.VISIBLE);
+                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        getResources().getStringArray(R.array.occupations)));
+                etField.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_occupation);
                 break;
         }

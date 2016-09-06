@@ -161,7 +161,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void setHeaderInfo(String email, String fullName){
-        if (navigationView !=null){
+        if (navigationView != null){
             View header = navigationView.getHeaderView(0);
             TextView tvFullName = (TextView) header.findViewById(R.id.tvFullName);
             TextView tvEmail = (TextView) header.findViewById(R.id.tvEmail);
