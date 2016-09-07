@@ -107,6 +107,15 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="bt_save">Save</string>
+    <string name="wake_up_hint">WAKE UP</string>
+    <string name="sleep_hint">SLEEP</string>
+    <string name="breakfast_hint">BREAKFAST</string>
+    <string name="lunch_hint">LUNCH</string>
+    <string name="dinner_hint">DINNER</string>
+    <string name="from_hint">FROM</string>
+    <string name="to_hint">TO</string>
+    <string name="study">¿Study?</string>
+    <string name="work">¿Work?</string>
 
     <array name="beck_test">
         <!--1-->
