@@ -50,7 +50,7 @@
             android:id="@+id/llStudyHours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:visibility="visible">
 
             <android.support.design.widget.TextInputLayout
@@ -63,7 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/from_hint"/>
+                    android:hint="@string/from_hint"
+                    android:text="10: a.m."/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -103,8 +104,8 @@
             android:id="@+id/llWorkHours"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:visibility="visible">
+            android:layout_marginTop="15dp"
+            android:visibility="gone">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -148,6 +149,7 @@
             android:textAllCaps="true"/>
 
         <LinearLayout
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -157,6 +159,7 @@
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                    android:textSize="15sp"
                     android:id="@+id/etWakeUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -172,6 +175,7 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etSleep"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/sleep_hint"/>
@@ -188,6 +192,7 @@
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                    android:textSize="15sp"
                     android:id="@+id/etBreakfast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -203,6 +208,7 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etLunch"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/lunch_hint"/>
@@ -215,6 +221,7 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etDinner"
+                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/dinner_hint"/>
