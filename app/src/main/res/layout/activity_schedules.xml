@@ -149,9 +149,9 @@
             android:textAllCaps="true"/>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
@@ -159,12 +159,12 @@
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-                    android:textSize="15sp"
                     android:id="@+id/etWakeUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/wake_up_hint"/>
+                    android:hint="@string/wake_up_hint"
+                    android:textSize="15sp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -175,10 +175,10 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etSleep"
-                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/sleep_hint"/>
+                    android:hint="@string/sleep_hint"
+                    android:textSize="15sp"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
@@ -189,42 +189,45 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-                    android:textSize="15sp"
                     android:id="@+id/etBreakfast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="@string/breakfast_hint"/>
+                    android:hint="@string/breakfast_hint"
+                    android:textSize="15sp"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etLunch"
-                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/lunch_hint"/>
+                    android:hint="@string/lunch_hint"
+                    android:textSize="15sp"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1">
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                     android:id="@+id/etDinner"
-                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/dinner_hint"/>
+                    android:hint="@string/dinner_hint"
+                    android:textSize="15sp"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
