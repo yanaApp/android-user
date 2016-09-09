@@ -115,6 +115,7 @@ public class UserEntityMapper implements EntityMapper<Object, Object> {
         user.setLocation(userRealmModel.getLocation());
         user.setOccupation(userRealmModel.getOccupation());
         user.setBirthDate(userRealmModel.getBirthDate());
+        user.setDepressionMotive(userRealmModel.getDepressionMotive());
 
         List<ActionPlan> actionPlanList = new ArrayList<>();
         List<Contact> contactList = new ArrayList<>();
