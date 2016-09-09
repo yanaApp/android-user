@@ -183,6 +183,17 @@
         <item>Vendedor/a</item>
         <item>Otro</item>
     </array>
+
+    <array name="days">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </array>
+
     <string name="birth_date_title">Fecha de Nacimiento</string>
     <string name="email_title">Correo Electronico</string>
     <string name="full_name_title">Nombre Completo</string>
