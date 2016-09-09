@@ -3,6 +3,8 @@ package com.icaboalo.yana.presentation.screens.schedule;
 import android.app.TimePickerDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -10,6 +12,13 @@ import android.widget.LinearLayout;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
+import com.icaboalo.yana.presentation.screens.GenericPostView;
+import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
+
+import java.security.Key;
+import java.util.HashMap;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,8 +28,10 @@ import butterknife.OnClick;
 /**
  * @author icaboalo on 07/09/16.
  */
-public class ScheduleActivity extends BaseActivity {
+public class ScheduleActivity extends BaseActivity implements GenericPostView<ScheduleViewModel> {
 
+    @Inject
+    SchedulePresenter mSchedulePresenter;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.cbStudies)
@@ -52,13 +63,86 @@ public class ScheduleActivity extends BaseActivity {
 
     @Override
     public void initialize() {
-
+        getComponent().inject(this);
+        mSchedulePresenter.setView(this);
     }
 
     @Override
     public void setupUI() {
         setContentView(R.layout.activity_schedules);
         ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem menuItem = menu.add(Menu.NONE, 1, Menu.FIRST, "TEST");
+        menuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 1:
+                if (validateData()) {
+                    HashMap<String, Object> postBundle = new HashMap<>();
+                    if (cbStudies.isChecked()) {
+                        postBundle.put("studies", true);
+                        postBundle.put("studies_from", etStudyForm.getText().toString());
+                        postBundle.put("studies_to", etStudyTo.getText().toString());
+                    } else
+                        postBundle.put("studies", false);
+
+                    if (cbStudies.isChecked()){
+                        postBundle.put("works", true);
+                        postBundle.put("works_from", etWorkFrom.getText().toString());
+                        postBundle.put("works_to", etWorkTo.getText().toString());
+                    } else
+                        postBundle.put("works", false);
+
+                    postBundle.put("wake_up", etWakeUp.getText().toString());
+                    postBundle.put("sleep", etSleep.getText().toString());
+                    postBundle.put("breakfast", etBreakfast.getText().toString());
+                    postBundle.put("lunch", etLunch.getText().toString());
+                    postBundle.put("dinner", etDinner.getText().toString());
+                    mSchedulePresenter.post(postBundle);
+                }
+                else
+                    showError("Debes llenar todos los campos");
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void postSuccessful(ScheduleViewModel item) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showRetry() {
+
+    }
+
+    @Override
+    public void hideRetry() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+        showToastMessage(message);
     }
 
     @OnCheckedChanged({R.id.cbStudies, R.id.cbWork})
@@ -80,7 +164,7 @@ public class ScheduleActivity extends BaseActivity {
     }
 
     @OnClick({R.id.etStudyFrom, R.id.etStudyTo, R.id.etWorkFrom, R.id.etWorkTo, R.id.etWakeUp, R.id.etSleep, R.id.etBreakfast,
-                R.id.etLunch, R.id.etDinner})
+            R.id.etLunch, R.id.etDinner})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.etStudyFrom:
@@ -156,6 +240,35 @@ public class ScheduleActivity extends BaseActivity {
                 }, 12, 0, false).show();
                 break;
         }
+    }
+
+    private boolean validateData() {
+        if (cbStudies.isChecked()) {
+            if (etStudyForm.getText().toString().isEmpty())
+                return false;
+            else if (etStudyTo.getText().toString().isEmpty())
+                return false;
+        }
+
+        if (cbWork.isChecked()) {
+            if (etWorkFrom.getText().toString().isEmpty())
+                return false;
+            else if (etWorkTo.getText().toString().isEmpty())
+                return false;
+        }
+
+        if (etWakeUp.getText().toString().isEmpty())
+            return false;
+        else if (etSleep.getText().toString().isEmpty())
+            return false;
+        else if (etBreakfast.getText().toString().isEmpty())
+            return false;
+        else if (etLunch.getText().toString().isEmpty())
+            return false;
+        else if (etDinner.getText().toString().isEmpty())
+            return false;
+        else
+            return true;
     }
 
 }

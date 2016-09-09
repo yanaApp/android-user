@@ -12,6 +12,7 @@ import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileA
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
+import com.icaboalo.yana.presentation.screens.schedule.ScheduleActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
 
 import dagger.Component;
@@ -42,4 +43,6 @@ public interface UserComponent {
     void inject(UpdateProfileActivity updateProfileActivity);
 
     void inject(ContactFragment contactFragment);
+
+    void inject(ScheduleActivity scheduleActivity);
 }
