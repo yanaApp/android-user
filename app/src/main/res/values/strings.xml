@@ -117,6 +117,7 @@
     <string name="study">¿Study?</string>
     <string name="work">¿Work?</string>
     <string name="workout">¿Workout?</string>
+    <string name="depression_motive">Why are you depressed?</string>
 
     <array name="beck_test">
         <!--1-->

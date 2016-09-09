@@ -58,7 +58,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     private static String mType, mInfo;
 
     public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
-            LOCATION = "location", OCCUPATION = "occupation";
+            LOCATION = "location", OCCUPATION = "occupation", MOTIVE = "motive";
 
     @Override
     public void initialize() {
@@ -164,6 +164,11 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 updateBundle = new HashMap<>();
                 updateBundle.put("occupation", etField.getText().toString());
                 break;
+
+            case MOTIVE:
+                updateBundle = new HashMap<>();
+                updateBundle.put("depression_motive", etField.getText().toString());
+                break;
         }
         if (updateBundle != null)
             mUpdateProfilePresenter.post(updateBundle);
@@ -208,6 +213,24 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 else {
                     etField.setVisibility(View.GONE);
                     etField.setText(occupations[position]);
+                }
+
+                if (position == 0)
+                    btSave.setVisibility(View.GONE);
+                else
+                    btSave.setVisibility(View.VISIBLE);
+                break;
+
+            //TODO add motives
+            case MOTIVE:
+                String[] motives = {};
+                if (position == motives.length - 1) {
+                    etField.setVisibility(View.VISIBLE);
+                    etField.setText("");
+                }
+                else {
+                    etField.setVisibility(View.GONE);
+                    etField.setText(motives[position]);
                 }
 
                 if (position == 0)
@@ -264,6 +287,16 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                         getResources().getStringArray(R.array.occupations)));
                 etField.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_occupation);
+                break;
+
+            //TODO change source for list
+            case MOTIVE:
+                assert actionBar != null;
+                actionBar.setTitle("Depression Motive");
+                spOptions.setVisibility(View.VISIBLE);
+                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        new ArrayList()));
+                tvDescription.setText(R.string.cupcake_ipsum);
                 break;
         }
     }
