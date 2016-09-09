@@ -102,6 +102,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("studies", true);
                         postBundle.put("studies_from", etStudyForm.getText().toString());
                         postBundle.put("studies_to", etStudyTo.getText().toString());
+                        postBundle.put("studies_day_from", spStudyDayFrom.getSelectedItem());
+                        postBundle.put("studies_day_to", spStudyDayTo.getSelectedItem());
                     } else
                         postBundle.put("studies", false);
 
@@ -109,6 +111,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("works", true);
                         postBundle.put("works_from", etWorkFrom.getText().toString());
                         postBundle.put("works_to", etWorkTo.getText().toString());
+                        postBundle.put("works_day_from", spWorkDayFrom.getSelectedItem());
+                        postBundle.put("works_day_to", spWorkDayTo.getSelectedItem());
                     } else
                         postBundle.put("works", false);
 
@@ -264,12 +268,20 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                 return false;
             else if (etStudyTo.getText().toString().isEmpty())
                 return false;
+            else if (spStudyDayFrom.getSelectedItemPosition() == 0)
+                return false;
+            else if (spStudyDayTo.getSelectedItemPosition() == 0)
+                return false;
         }
 
         if (cbWork.isChecked()) {
             if (etWorkFrom.getText().toString().isEmpty())
                 return false;
             else if (etWorkTo.getText().toString().isEmpty())
+                return false;
+            else if (spWorkDayFrom.getSelectedItemPosition() == 0)
+                return false;
+            else if (spWorkDayTo.getSelectedItemPosition() == 0)
                 return false;
         }
 
