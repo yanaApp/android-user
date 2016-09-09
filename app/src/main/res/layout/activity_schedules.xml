@@ -88,15 +88,15 @@
             android:layout_marginTop="15dp">
 
             <android.support.v7.widget.AppCompatSpinner
-                android:entries="@array/days"
-                android:id="@+id/study_day_from"
+                android:entries="@array/days_from"
+                android:id="@+id/spStudyDayFrom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
             <android.support.v7.widget.AppCompatSpinner
-                android:entries="@array/days"
-                android:id="@+id/study_day_to"
+                android:entries="@array/days_to"
+                android:id="@+id/spStudyDayTo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -163,15 +163,15 @@
             android:layout_marginTop="15dp">
 
             <android.support.v7.widget.AppCompatSpinner
-                android:entries="@array/days"
-                android:id="@+id/work_day_from"
+                android:entries="@array/days_from"
+                android:id="@+id/spWorkDayFrom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
             <android.support.v7.widget.AppCompatSpinner
-                android:entries="@array/days"
-                android:id="@+id/work_day_to"
+                android:entries="@array/days_to"
+                android:id="@+id/spWorkDayTo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>

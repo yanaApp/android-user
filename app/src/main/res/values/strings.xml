@@ -286,7 +286,19 @@
         <item>Other</item>
     </array>
 
-    <array name="days">
+    <array name="days_from">
+        <item>Start day</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </array>
+
+    <array name="days_to">
+        <item>End day</item>
         <item>Monday</item>
         <item>Tuesday</item>
         <item>Wednesday</item>

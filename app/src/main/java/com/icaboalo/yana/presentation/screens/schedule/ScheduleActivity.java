@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -62,6 +63,14 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     EditText etLunch;
     @Bind(R.id.etDinner)
     EditText etDinner;
+    @Bind(R.id.spStudyDayFrom)
+    Spinner spStudyDayFrom;
+    @Bind(R.id.spStudyDayTo)
+    Spinner spStudyDayTo;
+    @Bind(R.id.spWorkDayFrom)
+    Spinner spWorkDayFrom;
+    @Bind(R.id.spWorkDayTo)
+    Spinner spWorkDayTo;
 
     @Override
     public void initialize() {
