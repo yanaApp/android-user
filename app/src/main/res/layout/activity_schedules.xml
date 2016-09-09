@@ -81,6 +81,25 @@
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/llStudyDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/study_day_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/study_day_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,6 +152,45 @@
                     android:hint="@string/to_hint"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWorkDays"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/work_day_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/work_day_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:text="@string/workout"
+                android:textAllCaps="true"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/cbWorkout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"/>
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout

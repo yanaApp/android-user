@@ -116,6 +116,7 @@
     <string name="to_hint">TO</string>
     <string name="study">¿Study?</string>
     <string name="work">¿Work?</string>
+    <string name="workout">¿Workout?</string>
 
     <array name="beck_test">
         <!--1-->

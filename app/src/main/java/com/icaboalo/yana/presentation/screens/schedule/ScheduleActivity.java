@@ -38,6 +38,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     SwitchCompat cbStudies;
     @Bind(R.id.cbWork)
     SwitchCompat cbWork;
+    @Bind(R.id.cbWorkout)
+    SwitchCompat cbWorkout;
     @Bind(R.id.llStudyHours)
     LinearLayout llStudyHours;
     @Bind(R.id.llWorkHours)
@@ -100,6 +102,11 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("works_to", etWorkTo.getText().toString());
                     } else
                         postBundle.put("works", false);
+
+                    if (cbWorkout.isChecked())
+                        postBundle.put("workout", true);
+                    else
+                        postBundle.put("workout", false);
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
