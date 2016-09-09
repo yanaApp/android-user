@@ -22,6 +22,9 @@ public class UserViewModel {
     @SerializedName("birth_date")
     private String birthDate;
 
+    @SerializedName("depression_motive")
+    private String depressionMotive;
+
     @SerializedName("action_plan")
     private List<ActionPlanViewModel> actionPlanList;
 
@@ -62,6 +65,10 @@ public class UserViewModel {
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    public String getDepressionMotive() {
+        return depressionMotive;
     }
 
     public List<ActionPlanViewModel> getActionPlanList() {

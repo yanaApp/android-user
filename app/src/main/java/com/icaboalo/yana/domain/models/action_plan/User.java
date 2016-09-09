@@ -22,6 +22,9 @@ public class User {
     @SerializedName("birth_date")
     private String birthDate;
 
+    @SerializedName("depression_motive")
+    private String depressionMotive;
+
     @SerializedName("action_plan")
     private List<ActionPlan> actionPlanList;
 
@@ -62,6 +65,10 @@ public class User {
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    public String getDepressionMotive() {
+        return depressionMotive;
     }
 
     public List<ActionPlan> getActionPlanList() {
@@ -106,6 +113,10 @@ public class User {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void setDepressionMotive(String depressionMotive) {
+        this.depressionMotive = depressionMotive;
     }
 
     public void setActionPlanList(List<ActionPlan> actionPlanList) {

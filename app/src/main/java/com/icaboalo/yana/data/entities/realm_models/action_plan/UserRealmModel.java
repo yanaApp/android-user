@@ -27,6 +27,9 @@ public class UserRealmModel extends RealmObject{
     @SerializedName("birth_date")
     private String birthDate;
 
+    @SerializedName("depression_motive")
+    private String depressionMotive;
+
     @SerializedName("action_plan")
     private RealmList<ActionPlanRealmModel> actionPlanList;
 
@@ -63,6 +66,10 @@ public class UserRealmModel extends RealmObject{
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    public String getDepressionMotive() {
+        return depressionMotive;
     }
 
     public RealmList<ActionPlanRealmModel> getActionPlanList() {
