@@ -46,7 +46,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @Bind(R.id.tvOccupation)
     TextView tvOccupation;
     @Bind(R.id.tvDepressionMotive)
-    TextView tvDepressed;
+    TextView tvDepressionMotive;
 
     @Override
     public void initialize() {
@@ -77,7 +77,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     public void renderItem(UserViewModel item) {
         if (item != null) {
             setInfo(item.getFullName(), item.getEmail(), item.getBirthDate(), item.getGender(), item.getLocation(),
-                    item.getOccupation());
+                    item.getOccupation(), item.getDepressionMotive());
         }
     }
 
@@ -166,10 +166,11 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @OnClick(R.id.rlDepressionMotive)
     void updateMotive() {
         navigator.navigateTo(getApplicationContext(), UpdateProfileActivity.getCallingIntent(getApplicationContext(),
-                UpdateProfileActivity.MOTIVE, tvOccupation.getText().toString()));
+                UpdateProfileActivity.MOTIVE, tvDepressionMotive.getText().toString()));
     }
 
-    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation) {
+    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation,
+                         String depressionMotive) {
         if (fullName == null || fullName.length() <= 0)
             tvFullName.setVisibility(View.GONE);
         else {
@@ -209,6 +210,13 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
             tvOccupation.setVisibility(View.GONE);
         else {
             tvOccupation.setText(occupation);
+            tvOccupation.setVisibility(View.VISIBLE);
+        }
+
+        if (depressionMotive == null || depressionMotive.length() <= 0)
+            tvDepressionMotive.setVisibility(View.GONE);
+        else {
+            tvDepressionMotive.setText(depressionMotive);
             tvOccupation.setVisibility(View.VISIBLE);
         }
     }
