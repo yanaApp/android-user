@@ -15,6 +15,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import java.security.Key;
 import java.util.HashMap;
@@ -76,6 +77,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     public void initialize() {
         getComponent().inject(this);
         mSchedulePresenter.setView(this);
+        mSchedulePresenter.setId(PrefUtils.getScheduleId(getApplicationContext()));
     }
 
     @Override

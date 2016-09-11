@@ -30,6 +30,7 @@ public class LoadingPresenter extends GenericDetailPresenter<UserViewModel> {
     public void getSuccessful(UserViewModel userViewModel) {
         PrefUtils.setUserId(getGenericDetailView().getApplicationContext(), userViewModel.getId());
         PrefUtils.setUserEmail(getGenericDetailView().getApplicationContext(), userViewModel.getEmail());
+//        PrefUtils.setScheduleId(getGenericDetailView().getApplicationContext(), userViewModel.getSchedule.getId);
         super.getSuccessful(userViewModel);
     }
 }

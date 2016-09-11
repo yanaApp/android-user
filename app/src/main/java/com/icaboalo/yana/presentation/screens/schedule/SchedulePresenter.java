@@ -14,6 +14,8 @@ import javax.inject.Inject;
  */
 public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
+    private int mId;
+
     @Inject
     public SchedulePresenter(GenericUseCase genericUseCase) {
         super(genericUseCase);
@@ -22,7 +24,11 @@ public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
     @Override
     public void post(HashMap<String, Object> postBundle) {
         showViewLoading();
-        getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), Constants.API_BASE_URL + "schedule/", postBundle,
+        getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "schedule/" + mId + "/", postBundle,
                 Object.class, Object.class, ScheduleViewModel.class, true);
+    }
+
+    public void setId(int id) {
+        mId = id;
     }
 }
