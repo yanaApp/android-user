@@ -9,7 +9,7 @@
     <string name="beck_title">BECK DEPRESSION INVENTARY</string>
     <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
     <string name="downloading_contents">We\'re downloading your contents</string>
-    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN, WELCOME </string>
+    <string name="loading_complete">WELCOME </string>
     <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
     <string name="slide_to_begin">SLIDE TO BEGIN</string>
     <string name="what_is_depression">What is depression?</string>

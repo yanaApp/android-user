@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
+import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
@@ -114,7 +115,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     @Override
     public void postSuccessful(ScheduleViewModel item) {
-
+        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
+        finish();
     }
 
     @Override
@@ -277,7 +279,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     }
 
     private void showConfirmationDialog() {
-        AlertDialog confirmationDialog = new AlertDialog.Builder(getApplicationContext())
+        AlertDialog confirmationDialog = new AlertDialog.Builder(this)
                 .setTitle("Are your sure you want to save?")
                 .setMessage("Once data is saved it will not be available for change.")
                 .setPositiveButton("SAVE", (dialogInterface, i) -> {
@@ -322,7 +324,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     }
 
     public static Intent getCallingIntent(Context context) {
-        return new Intent(context, ScheduleActivity.class);
+        return new Intent(context, ScheduleActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
 }

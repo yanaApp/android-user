@@ -11,6 +11,7 @@ import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
+import com.icaboalo.yana.presentation.screens.schedule.ScheduleActivity;
 
 import java.util.HashMap;
 
@@ -52,7 +53,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void postSuccessful(RegisterViewModel item) {
-        navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
+        navigator.navigateTo(getApplicationContext(), ScheduleActivity.getCallingIntent(getApplicationContext()));
         finish();
     }
 
