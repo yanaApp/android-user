@@ -1,6 +1,10 @@
 package com.icaboalo.yana.presentation.screens.schedule;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -99,38 +103,9 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         switch (item.getItemId()) {
             case 1:
                 if (validateData()) {
-                    HashMap<String, Object> postBundle = new HashMap<>();
-                    if (cbStudies.isChecked()) {
-                        postBundle.put("studies", true);
-                        postBundle.put("studies_from", etStudyForm.getText().toString());
-                        postBundle.put("studies_to", etStudyTo.getText().toString());
-                        postBundle.put("studies_day_from", spStudyDayFrom.getSelectedItem());
-                        postBundle.put("studies_day_to", spStudyDayTo.getSelectedItem());
-                    } else
-                        postBundle.put("studies", false);
+                    showConfirmationDialog();
 
-                    if (cbStudies.isChecked()){
-                        postBundle.put("works", true);
-                        postBundle.put("works_from", etWorkFrom.getText().toString());
-                        postBundle.put("works_to", etWorkTo.getText().toString());
-                        postBundle.put("works_day_from", spWorkDayFrom.getSelectedItem());
-                        postBundle.put("works_day_to", spWorkDayTo.getSelectedItem());
-                    } else
-                        postBundle.put("works", false);
-
-                    if (cbWorkout.isChecked())
-                        postBundle.put("workout", true);
-                    else
-                        postBundle.put("workout", false);
-
-                    postBundle.put("wake_up", etWakeUp.getText().toString());
-                    postBundle.put("sleep", etSleep.getText().toString());
-                    postBundle.put("breakfast", etBreakfast.getText().toString());
-                    postBundle.put("lunch", etLunch.getText().toString());
-                    postBundle.put("dinner", etDinner.getText().toString());
-                    mSchedulePresenter.post(postBundle);
-                }
-                else
+                } else
                     showError("Debes llenar todos los campos");
                 break;
         }
@@ -299,6 +274,55 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             return false;
         else
             return true;
+    }
+
+    private void showConfirmationDialog() {
+        AlertDialog confirmationDialog = new AlertDialog.Builder(getApplicationContext())
+                .setTitle("Are your sure you want to save?")
+                .setMessage("Once data is saved it will not be available for change.")
+                .setPositiveButton("SAVE", (dialogInterface, i) -> {
+                    HashMap<String, Object> postBundle = new HashMap<>();
+                    if (cbStudies.isChecked()) {
+                        postBundle.put("studies", true);
+                        postBundle.put("studies_from", etStudyForm.getText().toString());
+                        postBundle.put("studies_to", etStudyTo.getText().toString());
+                        postBundle.put("studies_day_from", spStudyDayFrom.getSelectedItem());
+                        postBundle.put("studies_day_to", spStudyDayTo.getSelectedItem());
+                    } else
+                        postBundle.put("studies", false);
+
+                    if (cbStudies.isChecked()) {
+                        postBundle.put("works", true);
+                        postBundle.put("works_from", etWorkFrom.getText().toString());
+                        postBundle.put("works_to", etWorkTo.getText().toString());
+                        postBundle.put("works_day_from", spWorkDayFrom.getSelectedItem());
+                        postBundle.put("works_day_to", spWorkDayTo.getSelectedItem());
+                    } else
+                        postBundle.put("works", false);
+
+                    if (cbWorkout.isChecked())
+                        postBundle.put("workout", true);
+                    else
+                        postBundle.put("workout", false);
+
+                    postBundle.put("wake_up", etWakeUp.getText().toString());
+                    postBundle.put("sleep", etSleep.getText().toString());
+                    postBundle.put("breakfast", etBreakfast.getText().toString());
+                    postBundle.put("lunch", etLunch.getText().toString());
+                    postBundle.put("dinner", etDinner.getText().toString());
+                    mSchedulePresenter.post(postBundle);
+                })
+                .setNegativeButton("CANCEL", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                })
+                .create();
+
+        confirmationDialog.setCancelable(false);
+        confirmationDialog.show();
+    }
+
+    public static Intent getCallingIntent(Context context) {
+        return new Intent(context, ScheduleActivity.class);
     }
 
 }

@@ -178,10 +178,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 .setMessage("")
                 .setCancelable(false)
                 .setPositiveButton("Sure", (dialog, which) -> {
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-                    realm.deleteAll();
-                    realm.commitTransaction();
+                    mMainPresenter.attemptLogOut();
                     SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
                     sharedPreferences.edit().clear().apply();
                     finish();
