@@ -1,12 +1,16 @@
-package com.icaboalo.yana.presentation.screens.schedule.view_model;
+package com.icaboalo.yana.data.entities.realm_models;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * @author icaboalo on 07/09/16.
- */
-public class ScheduleViewModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+/**
+ * @author icaboalo on 11/09/16.
+ */
+public class ScheduleRealmModel extends RealmObject {
+
+    @PrimaryKey
     private int id;
     private boolean study, work, workout;
 
