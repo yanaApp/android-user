@@ -126,6 +126,13 @@
                     android:textColor="@color/secondary_text"
                     android:textSize="18sp"/>
 
+                <TextView
+                    android:inputType="textPassword"
+                    android:text="Bla ba ba"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             </LinearLayout>
 
             <ImageView

@@ -15,6 +15,7 @@ import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
@@ -58,7 +59,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     @Override
     public void onResume() {
         super.onResume();
-        mProfilePresenter.initialize("59");
+        mProfilePresenter.initialize(String.valueOf(PrefUtils.getUserId(getApplicationContext())));
     }
 
     @Nullable
