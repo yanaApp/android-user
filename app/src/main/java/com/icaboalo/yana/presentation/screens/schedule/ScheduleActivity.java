@@ -10,10 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -47,10 +49,6 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     SwitchCompat cbWork;
     @Bind(R.id.cbWorkout)
     SwitchCompat cbWorkout;
-    @Bind(R.id.llStudyHours)
-    LinearLayout llStudyHours;
-    @Bind(R.id.llWorkHours)
-    LinearLayout llWorkHours;
     @Bind(R.id.etStudyFrom)
     EditText etStudyForm;
     @Bind(R.id.etStudyTo)
@@ -69,14 +67,38 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     EditText etLunch;
     @Bind(R.id.etDinner)
     EditText etDinner;
-    @Bind(R.id.spStudyDayFrom)
-    Spinner spStudyDayFrom;
-    @Bind(R.id.spStudyDayTo)
-    Spinner spStudyDayTo;
-    @Bind(R.id.spWorkDayFrom)
-    Spinner spWorkDayFrom;
-    @Bind(R.id.spWorkDayTo)
-    Spinner spWorkDayTo;
+    @Bind(R.id.llStudyInfo)
+    LinearLayout llStudyInfo;
+    @Bind(R.id.llWorkInfo)
+    LinearLayout llWorkInfo;
+    @Bind(R.id.btStudyMonday)
+    ToggleButton btStudyMonday;
+    @Bind(R.id.btStudyTuesday)
+    ToggleButton btStudyTuesday;
+    @Bind(R.id.btStudyWednesday)
+    ToggleButton btStudyWednesday;
+    @Bind(R.id.btStudyThursday)
+    ToggleButton btStudyThursday;
+    @Bind(R.id.btStudyFriday)
+    ToggleButton btStudyFriday;
+    @Bind(R.id.btStudySaturday)
+    ToggleButton btStudySaturday;
+    @Bind(R.id.btStudySunday)
+    ToggleButton btStudySunday;
+    @Bind(R.id.btWorkMonday)
+    ToggleButton btWorkMonday;
+    @Bind(R.id.btWorkTuesday)
+    ToggleButton btWorkTuesday;
+    @Bind(R.id.btWorkWednesday)
+    ToggleButton btWorkWednesday;
+    @Bind(R.id.btWorkThursday)
+    ToggleButton btWorkThursday;
+    @Bind(R.id.btWorkFriday)
+    ToggleButton btWorkFriday;
+    @Bind(R.id.btWorkSaturday)
+    ToggleButton btWorkSaturday;
+    @Bind(R.id.btWorkSunday)
+    ToggleButton btWorkSunday;
 
     @Override
     public void initialize() {
@@ -149,15 +171,15 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         switch (view.getId()) {
             case R.id.cbStudies:
                 if (checked)
-                    llStudyHours.setVisibility(View.VISIBLE);
+                    llStudyInfo.setVisibility(View.VISIBLE);
                 else
-                    llStudyHours.setVisibility(View.GONE);
+                    llStudyInfo.setVisibility(View.GONE);
                 break;
             case R.id.cbWork:
                 if (checked)
-                    llWorkHours.setVisibility(View.VISIBLE);
+                    llWorkInfo.setVisibility(View.VISIBLE);
                 else
-                    llWorkHours.setVisibility(View.GONE);
+                    llWorkInfo.setVisibility(View.GONE);
                 break;
         }
     }
@@ -247,20 +269,12 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                 return false;
             else if (etStudyTo.getText().toString().isEmpty())
                 return false;
-            else if (spStudyDayFrom.getSelectedItemPosition() == 0)
-                return false;
-            else if (spStudyDayTo.getSelectedItemPosition() == 0)
-                return false;
         }
 
         if (cbWork.isChecked()) {
             if (etWorkFrom.getText().toString().isEmpty())
                 return false;
             else if (etWorkTo.getText().toString().isEmpty())
-                return false;
-            else if (spWorkDayFrom.getSelectedItemPosition() == 0)
-                return false;
-            else if (spWorkDayTo.getSelectedItemPosition() == 0)
                 return false;
         }
 
@@ -288,8 +302,13 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("studies", true);
                         postBundle.put("studies_from", etStudyForm.getText().toString());
                         postBundle.put("studies_to", etStudyTo.getText().toString());
-                        postBundle.put("studies_day_from", spStudyDayFrom.getSelectedItem());
-                        postBundle.put("studies_day_to", spStudyDayTo.getSelectedItem());
+                        postBundle.put("studies_monday", btStudyMonday.isChecked());
+                        postBundle.put("studies_tuesday", btStudyTuesday.isChecked());
+                        postBundle.put("studies_wednesday", btStudyWednesday.isChecked());
+                        postBundle.put("studies_thursday", btStudyThursday.isChecked());
+                        postBundle.put("studies_friday", btStudyFriday.isChecked());
+                        postBundle.put("studies_saturday", btStudySaturday.isChecked());
+                        postBundle.put("studies_sunday", btStudySunday.isChecked());
                     } else
                         postBundle.put("studies", false);
 
@@ -297,8 +316,13 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("works", true);
                         postBundle.put("works_from", etWorkFrom.getText().toString());
                         postBundle.put("works_to", etWorkTo.getText().toString());
-                        postBundle.put("works_day_from", spWorkDayFrom.getSelectedItem());
-                        postBundle.put("works_day_to", spWorkDayTo.getSelectedItem());
+                        postBundle.put("works_monday", btWorkMonday.isChecked());
+                        postBundle.put("works_tuesday", btWorkTuesday.isChecked());
+                        postBundle.put("works_wednesday", btWorkWednesday.isChecked());
+                        postBundle.put("works_thursday", btWorkThursday.isChecked());
+                        postBundle.put("works_friday", btWorkFriday.isChecked());
+                        postBundle.put("works_saturday", btWorkSaturday.isChecked());
+                        postBundle.put("works_sunday", btWorkSunday.isChecked());
                     } else
                         postBundle.put("works", false);
 

@@ -114,9 +114,9 @@
     <string name="dinner_hint">DINNER</string>
     <string name="from_hint">FROM</string>
     <string name="to_hint">TO</string>
-    <string name="study">¿Study?</string>
-    <string name="work">¿Work?</string>
-    <string name="workout">¿Workout?</string>
+    <string name="study">¿Do you study?</string>
+    <string name="work">¿Do you work?</string>
+    <string name="workout">¿Do you workout?</string>
     <string name="depression_motive">Why are you depressed?</string>
 
     <array name="beck_test">

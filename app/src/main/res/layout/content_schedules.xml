@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:animateLayoutChanges="true"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.WhiteToolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_material_white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:text="@string/study"
+                        android:textAllCaps="true"
+                        android:textSize="20sp"/>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/cbStudies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"
+                        android:checked="true"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/llStudyInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:visibility="visible">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                                android:id="@+id/etStudyFrom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/from_hint"
+                                android:singleLine="true"
+                                android:textSize="15sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                                android:id="@+id/etStudyTo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/to_hint"
+                                android:singleLine="true"
+                                android:textSize="15sp"/>
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+
+                        <ToggleButton
+                            android:id="@+id/btStudyMonday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="L"
+                            android:textOn="L"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudyTuesday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="M"
+                            android:textOn="M"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudyWednesday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="M"
+                            android:textOn="M"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudyThursday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="J"
+                            android:textOn="J"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudyFriday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="V"
+                            android:textOn="V"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudySaturday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:textOff="S"
+                            android:textOn="S"/>
+
+                        <ToggleButton
+                            android:id="@+id/btStudySunday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="35dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:textOff="D"
+                            android:textOn="D"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:text="@string/work"
+                        android:textAllCaps="true"
+                        android:textSize="20sp"/>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/cbWork"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"/>
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/llWorkInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                                android:id="@+id/etWorkFrom"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="@string/from_hint"
+                                android:singleLine="true"
+                                android:textSize="15sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                                android:id="@+id/etWorkTo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/to_hint"
+                                android:singleLine="true"
+                                android:textSize="15sp"/>
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center">
+
+                        <ToggleButton
+                            android:id="@+id/btWorkMonday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="L"
+                            android:textOn="L"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkTuesday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="M"
+                            android:textOn="M"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkWednesday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="M"
+                            android:textOn="M"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkThursday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="J"
+                            android:textOn="J"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkFriday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:checked="true"
+                            android:textOff="V"
+                            android:textOn="V"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkSaturday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:textOff="S"
+                            android:textOn="S"/>
+
+                        <ToggleButton
+                            android:id="@+id/btWorkSunday"
+                            style="@style/AppTheme.ButtonBlue"
+                            android:layout_width="35dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="5dp"
+                            android:background="@drawable/selector_day_button"
+                            android:textOff="D"
+                            android:textOn="D"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:text="@string/workout"
+                        android:textAllCaps="true"
+                        android:textSize="20sp"/>
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/cbWorkout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|right"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿A qué hora te comprometes a...?"
+                    android:textAllCaps="true"
+                    android:textSize="20sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            android:id="@+id/etWakeUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/wake_up_hint"
+                            android:singleLine="true"
+                            android:textSize="15sp"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            android:id="@+id/etSleep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sleep_hint"
+                            android:singleLine="true"
+                            android:textSize="15sp"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1">
+
+                        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            android:id="@+id/etBreakfast"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="@string/breakfast_hint"
+                            android:singleLine="true"
+                            android:textSize="15sp"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1">
+
+                        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            android:id="@+id/etLunch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/lunch_hint"
+                            android:singleLine="true"
+                            android:textSize="15sp"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_weight="1">
+
+                        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            android:id="@+id/etDinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dinner_hint"
+                            android:singleLine="true"
+                            android:textSize="15sp"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
