@@ -159,7 +159,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
     }
 
     private void setupDayInfoRecyclerView(){
-        mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getApplicationContext(), new ArrayList<>()) {
+        mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getActivity(), new ArrayList<>()) {
             @Override
             public DayInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 switch (viewType){
