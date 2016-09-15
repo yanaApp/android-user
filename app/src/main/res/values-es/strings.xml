@@ -224,4 +224,5 @@
     <string name="wake_up_hint">DESPERTAR</string>
     <string name="work">¿Trabajas?</string>
     <string name="workout">¿Haces ejercicio?</string>
+    <string name="action_additional_info">Información Adicional</string>
 </resources>
