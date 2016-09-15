@@ -118,7 +118,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem menuItem = menu.add(Menu.NONE, 1, Menu.FIRST, "TEST");
+        MenuItem menuItem = menu.add(Menu.NONE, 1, Menu.FIRST, "SAVE");
+        menuItem.setIcon(R.drawable.ic_done_black_24dp);
         menuItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS);
         return super.onCreateOptionsMenu(menu);
     }
@@ -174,14 +175,18 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             case R.id.cbStudies:
                 if (checked)
                     llStudyInfo.setVisibility(View.VISIBLE);
-                else
+                else{
                     llStudyInfo.setVisibility(View.GONE);
+                    cbStudies.requestFocus();
+                }
                 break;
             case R.id.cbWork:
                 if (checked)
                     llWorkInfo.setVisibility(View.VISIBLE);
-                else
+                else {
                     llWorkInfo.setVisibility(View.GONE);
+                    cbStudies.requestFocus();
+                }
                 break;
         }
     }
