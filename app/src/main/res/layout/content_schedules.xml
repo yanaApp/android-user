@@ -78,12 +78,10 @@
 
                             <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                                 android:id="@+id/etStudyFrom"
+                                style="@style/AppTheme.ScheduleEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:hint="@string/from_hint"
-                                android:singleLine="true"
-                                android:textSize="15sp"/>
+                                android:hint="@string/from_hint"/>
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -94,11 +92,10 @@
 
                             <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                                 android:id="@+id/etStudyTo"
+                                style="@style/AppTheme.ScheduleEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/to_hint"
-                                android:singleLine="true"
-                                android:textSize="15sp"/>
+                                android:hint="@string/to_hint"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
 
@@ -211,7 +208,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -225,12 +222,10 @@
 
                             <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                                 android:id="@+id/etWorkFrom"
+                                style="@style/AppTheme.ScheduleEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:hint="@string/from_hint"
-                                android:singleLine="true"
-                                android:textSize="15sp"/>
+                                android:hint="@string/from_hint"/>
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -241,11 +236,10 @@
 
                             <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                                 android:id="@+id/etWorkTo"
+                                style="@style/AppTheme.ScheduleEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/to_hint"
-                                android:singleLine="true"
-                                android:textSize="15sp"/>
+                                android:hint="@string/to_hint"/>
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
 
@@ -380,12 +374,10 @@
 
                         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                             android:id="@+id/etWakeUp"
+                            style="@style/AppTheme.ScheduleEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/wake_up_hint"
-                            android:singleLine="true"
-                            android:textSize="15sp"/>
+                            android:hint="@string/wake_up_hint"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -396,11 +388,10 @@
 
                         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
                             android:id="@+id/etSleep"
+                            style="@style/AppTheme.ScheduleEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/sleep_hint"
-                            android:singleLine="true"
-                            android:textSize="15sp"/>
+                            android:hint="@string/sleep_hint"/>
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
@@ -415,13 +406,11 @@
                         android:layout_weight="1">
 
                         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            style="@style/AppTheme.ScheduleEditText"
                             android:id="@+id/etBreakfast"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="@string/breakfast_hint"
-                            android:singleLine="true"
-                            android:textSize="15sp"/>
+                            android:hint="@string/breakfast_hint"/>
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -432,12 +421,11 @@
                         android:layout_weight="1">
 
                         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            style="@style/AppTheme.ScheduleEditText"
                             android:id="@+id/etLunch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/lunch_hint"
-                            android:singleLine="true"
-                            android:textSize="15sp"/>
+                            android:hint="@string/lunch_hint"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -447,12 +435,11 @@
                         android:layout_weight="1">
 
                         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                            style="@style/AppTheme.ScheduleEditText"
                             android:id="@+id/etDinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/dinner_hint"
-                            android:singleLine="true"
-                            android:textSize="15sp"/>
+                            android:hint="@string/dinner_hint"/>
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
             </LinearLayout>

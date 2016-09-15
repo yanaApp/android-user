@@ -33,6 +33,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -112,6 +113,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         setContentView(R.layout.activity_schedules);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        cbStudies.requestFocus();
     }
 
     @Override
@@ -182,6 +184,86 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                     llWorkInfo.setVisibility(View.GONE);
                 break;
         }
+    }
+
+    @OnFocusChange({R.id.etStudyFrom, R.id.etStudyTo, R.id.etWorkFrom, R.id.etWorkTo, R.id.etWakeUp, R.id.etSleep, R.id.etBreakfast,
+            R.id.etLunch, R.id.etDinner})
+    void onFocusChanged(View view, boolean focus) {
+        if (focus)
+            switch (view.getId()) {
+                case R.id.etStudyFrom:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etStudyForm.setText(i + ":0" + i1);
+                        else
+                            etStudyForm.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etStudyTo:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etStudyTo.setText(i + ":0" + i1);
+                        else
+                            etStudyTo.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etWorkFrom:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etWorkFrom.setText(i + ":0" + i1);
+                        else
+                            etWorkFrom.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etWorkTo:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etWorkTo.setText(i + ":0" + i1);
+                        else
+                            etWorkTo.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etWakeUp:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etWakeUp.setText(i + ":0" + i1);
+                        else
+                            etWakeUp.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etSleep:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etSleep.setText(i + ":0" + i1);
+                        else
+                            etSleep.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etBreakfast:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etBreakfast.setText(i + ":0" + i1);
+                        else
+                            etBreakfast.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etLunch:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etLunch.setText(i + ":0" + i1);
+                        else
+                            etLunch.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+                case R.id.etDinner:
+                    new TimePickerDialog(this, (timePicker, i, i1) -> {
+                        if (String.valueOf(i1).length() == 1)
+                            etDinner.setText(i + ":0" + i1);
+                        else
+                            etDinner.setText(i + ":" + i1);
+                    }, 12, 0, false).show();
+                    break;
+            }
     }
 
     @OnClick({R.id.etStudyFrom, R.id.etStudyTo, R.id.etWorkFrom, R.id.etWorkTo, R.id.etWakeUp, R.id.etSleep, R.id.etBreakfast,
