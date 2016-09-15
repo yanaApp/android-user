@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="32dp"
-    android:orientation="vertical">
+                android:id="@+id/rlBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="32dp">
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/tvTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/tvDescription"
-        android:layout_marginBottom="16dp"
-        android:text="@string/title_autoevaluation"
-        android:textAllCaps="true"
         style="@style/AppTheme.TextTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="@string/title_autoevaluation"
+        android:textAllCaps="true"/>
 
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:textColor="@color/secondary_text"
         android:id="@+id/tvDescription"
+        style="@style/AppTheme.TextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        style="@style/AppTheme.TextDescription"
-        android:layout_centerVertical="true"
         android:text="@string/description_autoevaluation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/secondary_text"/>
 
     <Button
-        style="@style/AppTheme.ButtonBlue"
-        android:layout_alignParentBottom="true"
         android:id="@+id/btContinue"
-        android:text="@string/continue_button"
-        android:layout_marginBottom="48dp"
+        style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="48dp"
+        android:text="@string/continue_button"/>
 </RelativeLayout>

@@ -212,4 +212,16 @@
     <string name="gender_title">Genero</string>
     <string name="location_title">Codigo Postal</string>
     <string name="occupation_title">Ocupación</string>
+    <string name="breakfast_hint">DESAYUNO</string>
+    <string name="bt_save">Guardar</string>
+    <string name="depression_motive">¿Por qué estas deprimido?</string>
+    <string name="dinner_hint">CENA</string>
+    <string name="from_hint">DE</string>
+    <string name="lunch_hint">COMIDA</string>
+    <string name="sleep_hint">DOMIR</string>
+    <string name="study">¿Estudias?</string>
+    <string name="to_hint">A</string>
+    <string name="wake_up_hint">DESPERTAR</string>
+    <string name="work">¿Trabajas?</string>
+    <string name="workout">¿Haces ejercicio?</string>
 </resources>
