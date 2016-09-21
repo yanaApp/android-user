@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.neenbedankt.android-apt'
 
@@ -49,21 +48,21 @@ repositories {
         url "https://jitpack.io"
     }
 }
-retrolambda {
-    jdk getJavaVersion(8)
-    oldJdk getJavaVersion(8)
-    javaVersion JavaVersion.VERSION_1_7
-    defaultMethods false
-    incremental true
-}
-
-String getJavaVersion(Integer v) {
-    def sout = new StringBuffer()
-    def proc = "/usr/libexec/java_home -v 1.$v".execute()
-    proc.consumeProcessOutput(sout, new StringBuffer())
-    proc.waitForOrKill(1000)
-    return sout.toString().replace("\n", "").replace("\r", "")
-}
+//retrolambda {
+//    jdk getJavaVersion(8)
+//    oldJdk getJavaVersion(8)
+//    javaVersion JavaVersion.VERSION_1_7
+//    defaultMethods false
+//    incremental true
+//}
+//
+//String getJavaVersion(Integer v) {
+//    def sout = new StringBuffer()
+//    def proc = "/usr/libexec/java_home -v 1.$v".execute()
+//    proc.consumeProcessOutput(sout, new StringBuffer())
+//    proc.waitForOrKill(1000)
+//    return sout.toString().replace("\n", "").replace("\r", "")
+//}
 
 ext {
     daggerVersion = '2.2'
@@ -105,9 +104,9 @@ dependencies {
 
 //  Firabase
     // analytics
-    compile 'com.google.firebase:firebase-core:9.2.0'
+    compile 'com.google.firebase:firebase-core:9.4.0'
     // messaging
-    compile 'com.google.firebase:firebase-messaging:9.2.1'
+    compile 'com.google.firebase:firebase-messaging:9.4.0'
 
     //  Injection
     compile 'javax.annotation:jsr250-api:1.0'
@@ -118,3 +117,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
 
 }
+
+apply plugin: 'com.google.gms.google-services'

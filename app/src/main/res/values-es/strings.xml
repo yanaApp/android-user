@@ -87,7 +87,7 @@
     <string name="action_log_out_title">Cerrar sesión</string>
     <string name="restore_password">Restablecer contraseña</string>
     <string name="email_input_hint">CORREO ELECTRONICO</string>
-    <string name="loading_complete">TODO LISTO, HEMOS DESCARGADO TU PLAN DE ACCIÓN, BIENVENIDO </string>
+    <string name="loading_complete">BIENVENIDO </string>
     <string name="birth_date_input_hint">FECHA DE NACIMIENTO</string>
     <string name="full_name_input_hint">NOMBRE COMPLETO</string>
     <string name="gender_input_hint">GENERO</string>
@@ -183,10 +183,46 @@
         <item>Vendedor/a</item>
         <item>Otro</item>
     </array>
+
+    <array name="days_from">
+        <item>Día de inicio</item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </array>
+
+    <array name="days_to">
+        <item>Día de fin</item>
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </array>
+
     <string name="birth_date_title">Fecha de Nacimiento</string>
     <string name="email_title">Correo Electronico</string>
     <string name="full_name_title">Nombre Completo</string>
     <string name="gender_title">Genero</string>
     <string name="location_title">Codigo Postal</string>
     <string name="occupation_title">Ocupación</string>
+    <string name="breakfast_hint">DESAYUNO</string>
+    <string name="bt_save">Guardar</string>
+    <string name="depression_motive">¿Por qué estas deprimido?</string>
+    <string name="dinner_hint">CENA</string>
+    <string name="from_hint">DE</string>
+    <string name="lunch_hint">COMIDA</string>
+    <string name="sleep_hint">DOMIR</string>
+    <string name="study">¿Estudias?</string>
+    <string name="to_hint">A</string>
+    <string name="wake_up_hint">DESPERTAR</string>
+    <string name="work">¿Trabajas?</string>
+    <string name="workout">¿Haces ejercicio?</string>
+    <string name="action_additional_info">Información Adicional</string>
 </resources>

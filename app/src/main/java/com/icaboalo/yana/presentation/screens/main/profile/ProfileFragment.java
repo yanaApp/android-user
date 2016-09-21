@@ -3,7 +3,6 @@ package com.icaboalo.yana.presentation.screens.main.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +10,18 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.Realm;
 
 /**
  * @author icaboalo on 24/08/16.
@@ -32,7 +30,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @Inject
     ProfilePresenter mProfilePresenter;
-//    @Bind(R.id.rlProgress)
+    //    @Bind(R.id.rlProgress)
 //    RelativeLayout rlProgress;
 //    @Bind(R.id.rlRetry)
 //    RelativeLayout rlRetry;
@@ -48,6 +46,8 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     TextView tvLocation;
     @Bind(R.id.tvOccupation)
     TextView tvOccupation;
+    @Bind(R.id.tvDepressionMotive)
+    TextView tvDepressionMotive;
 
     @Override
     public void initialize() {
@@ -56,11 +56,10 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
-        mProfilePresenter.initialize("59");
+        mProfilePresenter.initialize(String.valueOf(PrefUtils.getUserId(getApplicationContext())));
     }
 
     @Nullable
@@ -77,9 +76,9 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @Override
     public void renderItem(UserViewModel item) {
-        if (item != null){
+        if (item != null) {
             setInfo(item.getFullName(), item.getEmail(), item.getBirthDate(), item.getGender(), item.getLocation(),
-                    item.getOccupation());
+                    item.getOccupation(), item.getDepressionMotive());
         }
     }
 
@@ -118,55 +117,61 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
     }
 
     @OnClick(R.id.rlFullName)
-    void updateFullName(){
+    void updateFullName() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.FULL_NAME,
                         tvFullName.getText().toString()));
     }
 
     @OnClick(R.id.rlEmail)
-    void updateEmail(){
+    void updateEmail() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.EMAIL,
                         tvEmail.getText().toString()));
     }
 
     @OnClick(R.id.rlPassword)
-    void updatePassword(){
+    void updatePassword() {
 //        navigator.navigateTo(getApplicationContext(),
 //                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.PASSWORD));
     }
 
     @OnClick(R.id.rlBirthDate)
-    void updateBirthDate(){
+    void updateBirthDate() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
                         tvBirthDate.getText().toString()));
     }
 
     @OnClick(R.id.rlGender)
-    void updateGender(){
+    void updateGender() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.GENDER,
                         tvGender.getText().toString()));
     }
 
     @OnClick(R.id.rlLocation)
-    void updateLocation(){
+    void updateLocation() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.LOCATION,
                         tvLocation.getText().toString()));
     }
 
     @OnClick(R.id.rlOccupation)
-    void updateOccupation(){
-        showError("BLAAA");
+    void updateOccupation() {
         navigator.navigateTo(getApplicationContext(),
                 UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.OCCUPATION,
                         tvOccupation.getText().toString()));
     }
 
-    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation){
+    @OnClick(R.id.rlDepressionMotive)
+    void updateMotive() {
+        navigator.navigateTo(getApplicationContext(), UpdateProfileActivity.getCallingIntent(getApplicationContext(),
+                UpdateProfileActivity.MOTIVE, tvDepressionMotive.getText().toString()));
+    }
+
+    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation,
+                         String depressionMotive) {
         if (fullName == null || fullName.length() <= 0)
             tvFullName.setVisibility(View.GONE);
         else {
@@ -206,6 +211,13 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
             tvOccupation.setVisibility(View.GONE);
         else {
             tvOccupation.setText(occupation);
+            tvOccupation.setVisibility(View.VISIBLE);
+        }
+
+        if (depressionMotive == null || depressionMotive.length() <= 0)
+            tvDepressionMotive.setVisibility(View.GONE);
+        else {
+            tvDepressionMotive.setText(depressionMotive);
             tvOccupation.setVisibility(View.VISIBLE);
         }
     }

@@ -18,18 +18,22 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatSpinner
+        android:layout_marginTop="10dp"
         android:id="@+id/spPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.AppCompatSpinner
+        android:layout_marginTop="10dp"
         android:id="@+id/spRelation"
         android:entries="@array/relations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.AppCompatCheckBox
+        android:layout_marginTop="10dp"
         android:id="@+id/cbLiveTogether"
+        android:textSize="16sp"
         android:text="@string/live_together"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

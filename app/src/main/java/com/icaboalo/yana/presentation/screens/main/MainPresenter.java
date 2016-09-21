@@ -8,6 +8,9 @@ import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
+import rx.Subscriber;
+
 /**
  * @author icaboalo on 13/08/16.
  */
@@ -22,5 +25,12 @@ public class MainPresenter extends GenericDetailPresenter<UserViewModel> {
     public void getItemDetails() {
         getGenericUseCase().executeDynamicGetObject(new ItemDetailSubscriber(), "id", "", mItemId, User.class,
                 UserRealmModel.class, UserViewModel.class, false);
+    }
+
+    public void attemptLogOut() {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.deleteAll();
+        realm.commitTransaction();
     }
 }

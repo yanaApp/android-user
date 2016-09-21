@@ -48,15 +48,20 @@
 
         <activity
             android:name=".presentation.screens.main.profile.update.UpdateProfileActivity"
-            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize">
         </activity>
 
         <activity
             android:name=".old.ui.activity.EvaluationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".presentation.screens.schedule.ScheduleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
 
 
         <service android:name=".presentation.services.YanaFirebaseMessagingService">

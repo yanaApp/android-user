@@ -9,7 +9,7 @@
     <string name="beck_title">BECK DEPRESSION INVENTARY</string>
     <string name="beck_description">En este cuestionario aparecen varios grupos de afirmaciones. A continuación señale cuál de las afirmaciones de cada grupo describe mejor cómo se ha sentido durante esta última semana, incluido el día de hoy. Asegúrese de leer todas las afirmaciones dentro de cada grupo antes de efectuar la elección.</string>
     <string name="downloading_contents">We\'re downloading your contents</string>
-    <string name="loading_complete">ALL SET, WE\'VE DOWNLOADED YOUR ACTION PLAN, WELCOME </string>
+    <string name="loading_complete">WELCOME </string>
     <string name="cupcake_ipsum" translatable="false">Cupcake ipsum dolor sit amet marshmallow chocolate soufflé brownie. Marshmallow marzipan candy biscuit macaroon lollipop. Muffin ice cream dessert caramels. Lollipop halvah marshmallow sugar plum danish chupa chups cheesecake jelly-o chupa chups.</string>
     <string name="slide_to_begin">SLIDE TO BEGIN</string>
     <string name="what_is_depression">What is depression?</string>
@@ -107,6 +107,18 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="bt_save">Save</string>
+    <string name="wake_up_hint">WAKE UP</string>
+    <string name="sleep_hint">SLEEP</string>
+    <string name="breakfast_hint">BREAKFAST</string>
+    <string name="lunch_hint">LUNCH</string>
+    <string name="dinner_hint">DINNER</string>
+    <string name="from_hint">FROM</string>
+    <string name="to_hint">TO</string>
+    <string name="study">¿Do you study?</string>
+    <string name="work">¿Do you work?</string>
+    <string name="workout">¿Do you workout?</string>
+    <string name="depression_motive">Why are you depressed?</string>
+    <string name="action_additional_info">Additional Info</string>
 
     <array name="beck_test">
         <!--1-->
@@ -274,5 +286,27 @@
         <item>Professor</item>
         <item>Seller</item>
         <item>Other</item>
+    </array>
+
+    <array name="days_from">
+        <item>Start day</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </array>
+
+    <array name="days_to">
+        <item>End day</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
     </array>
 </resources>

@@ -12,6 +12,7 @@ public class PrefConstants {
     public static final String isDownloadCompletedPref = "isDownloadCompletedPref";
     public static final String userId = "userId";
     public static final String userEmail = "userEmail";
+    public static final String scheduleId = "scheduleId";
 
     public static final String authFile = "AUTH";
     public static final String tokenPref = "TOKEN";
