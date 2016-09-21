@@ -72,13 +72,17 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         }
 
         holder.btEmotion.setOnClickListener(v -> {
-            descriptionExpandedPosition = -1;
-            if (emotionExpandedPosition == position) {
-                emotionExpandedPosition = -1;
+            if (holder.answer > 0) {
+
             } else {
-                emotionExpandedPosition = position;
+                descriptionExpandedPosition = -1;
+                if (emotionExpandedPosition == position) {
+                    emotionExpandedPosition = -1;
+                } else {
+                    emotionExpandedPosition = position;
+                }
+                notifyItemRangeChanged(position, getItemCount());
             }
-            notifyItemRangeChanged(position, getItemCount());
         });
 
         holder.btDescription.setOnClickListener(v -> {
@@ -129,7 +133,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         @Bind(R.id.ivVeryHappy)
         ImageView ivVeryHappy;
 
-        int mTourCount = 0;
+        int mTourCount = 0, answer = 0;
 
 
         public ActivityViewHolder(View itemView) {
@@ -149,6 +153,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                 tvDescription.setText(activity.getDescription());
                 vColor.setBackgroundColor(Color.parseColor(activity.getCategory().getColor()));
                 VUtil.setEmotionImage(context, activity.getAnswer(), btEmotion);
+                answer = activity.getAnswer();
             }
         }
 
