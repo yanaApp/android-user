@@ -101,6 +101,8 @@ public class ContactEntityMapper implements EntityMapper<Object, Object> {
         contact.setName(contactRealmModel.getName());
         contact.setPhoneNumber(contactRealmModel.getPhoneNumber());
         contact.setValidated(contactRealmModel.isValidated());
+        contact.setLiveTogether(contactRealmModel.isLiveTogether());
+        contact.setRelationship(contactRealmModel.getRelationship());
         return contact;
     }
 }
