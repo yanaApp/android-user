@@ -223,7 +223,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
             //TODO add motives
             case MOTIVE:
-                String[] motives = {};
+                String[] motives = getResources().getStringArray(R.array.motives);
                 if (position == motives.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");

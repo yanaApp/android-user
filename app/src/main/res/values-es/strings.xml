@@ -206,6 +206,24 @@
         <item>Domingo</item>
     </array>
 
+    <array name="motives">
+        <item>Elige un motivo.</item>
+        <item>Abuso de sustancias</item>
+        <item>Abuso físico o social</item>
+        <item>Conflictos de pareja</item>
+        <item>Conflictos escolares</item>
+        <item>Conflictos familiares</item>
+        <item>Conflictos laborales</item>
+        <item>Crisis de desarrollo</item>
+        <item>Enfermedades crónicas o terminales</item>
+        <item>Genético</item>
+        <item>Indiferencia en la vida</item>
+        <item>Muerte o pérdidas</item>
+        <item>Presión social</item>
+        <item>Razón desconocida</item>
+        <item>Otros</item>
+    </array>
+
     <string name="birth_date_title">Fecha de Nacimiento</string>
     <string name="email_title">Correo Electronico</string>
     <string name="full_name_title">Nombre Completo</string>

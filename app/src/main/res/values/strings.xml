@@ -309,4 +309,22 @@
         <item>Saturday</item>
         <item>Sunday</item>
     </array>
+
+    <array name="motives">
+        <item>Choose a reason. </ item>
+        <item>Substance Abuse </ item>
+        <item>Physical or social abuse </ item>
+        <item>Couple conflicts </ item>
+        <item>School Conflicts </ item>
+        <item>Family conflicts </ item>
+        <item>Labour disputes </ item>
+        <item>Development Crisis </ item>
+        <item>Chronic diseases or terminal </ item>
+        <item>Genetic </ item>
+        <item>Indifference in life </ item>
+        <item>Death or loss </ item>
+        <item>Social pressure </ item>
+        <item>Unknown Reason </ item>
+        <item>Other </ item>
+    </array>
 </resources>
