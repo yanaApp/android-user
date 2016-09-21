@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
@@ -73,7 +74,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
         holder.btEmotion.setOnClickListener(v -> {
             if (holder.answer > 0) {
-
+                Toast.makeText(mContext, "No se puede cambiar la respuesta despues de elegirla.",
+                        Toast.LENGTH_SHORT).show();
             } else {
                 descriptionExpandedPosition = -1;
                 if (emotionExpandedPosition == position) {
