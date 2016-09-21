@@ -111,6 +111,10 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     void login(){
         if (etEmail.getText().toString().isEmpty() && etPassword.getText().toString().isEmpty())
             showError("Debes llenar todos los campos.");
+        else if (!etEmail.getText().toString().contains("@"))
+            showError("Ingresa una dirección de correo valida.");
+        else if (etPassword.getText().toString().length() < 6)
+            showError("La contraseña debe de ser mayor a 6 caracteres.");
         else {
             HashMap<String, Object> loginBundle = new HashMap<>(2);
             loginBundle.put("email", etEmail.getText().toString());
