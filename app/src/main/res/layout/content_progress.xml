@@ -5,9 +5,9 @@
               android:layout_height="match_parent">
 
     <RelativeLayout
+        android:background="@color/background_material_white"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:padding="32dp">
 
         <Spinner
@@ -89,7 +89,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llAverage"
+            android:id="@+id/llNotDone"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -103,9 +103,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="Not Done"
+                android:gravity="center_horizontal"
+                android:textSize="12sp" />
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:id="@+id/tvNotDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="12"
+                android:textSize="32sp" />
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:background="@color/yana_orange" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAverage"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pbCompleted"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:textColor="@color/primary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="12dp"
                 android:text="@string/average_emotion"
-                android:textAlignment="center"
+                android:gravity="center_horizontal"
                 android:textSize="12sp" />
 
             <ImageView
@@ -125,20 +160,20 @@
         </LinearLayout>
 
         <ProgressBar
+            android:secondaryProgress="96"
+            android:layout_marginBottom="32dp"
             android:id="@+id/pbCompleted"
             style="@style/AppTheme.ProgressBarGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/llCompleted"
-            android:layout_marginBottom="32dp"
-            android:max="64"
-            android:progress="30" />
+            android:max="108"
+            android:progress="64" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDayProgress"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

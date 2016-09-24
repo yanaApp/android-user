@@ -10,8 +10,9 @@
 
     <style name="AppTheme.ProgressBarGreen" parent="Widget.AppCompat.ProgressBar.Horizontal">
         <item name="colorAccent">@color/yana_green</item>
+        <item name="android:secondaryProgressTint">@color/yana_pink</item>
         <item name="android:minHeight">20dp</item>
-        <item name="android:progressBackgroundTint">@color/yana_pink</item>
+        <item name="android:progressBackgroundTint">@color/yana_orange</item>
     </style>
 
     <style name="AppTheme.ButtonBlue">
