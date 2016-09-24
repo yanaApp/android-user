@@ -16,7 +16,7 @@
     </style>
 
     <style name="AppTheme.ButtonBlue">
-        <item name="android:background">@color/yana_green</item>
+        <item name="android:background">@drawable/button_green</item>
         <item name="android:elevation">0dp</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textAllCaps">false</item>

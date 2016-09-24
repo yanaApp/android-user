@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#d3d3d3</color>
     <color name="yana_green">#4FD2C2</color>
-    <color name="yana_light_green">#e1efeb</color>
+    <color name="yana_light_green">#bb4fd2c2</color>
     <color name="opaque_yana_green">#BFE8E3</color>
     <color name="background_material_white">#F8F8F9</color>
     <color name="white">#ffffff</color>
