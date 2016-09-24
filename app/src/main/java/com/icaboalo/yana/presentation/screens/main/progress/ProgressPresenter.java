@@ -44,33 +44,33 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
     }
 
     public void attemptGetDayInfoList(List<DayViewModel> dayList){
-//        Collections.sort(dayList, (lhs, rhs) ->
-//                String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));
         Collections.sort(dayList, (lhs, rhs) ->
                 lhs.getId() - rhs.getId());
         getDayInfoList(dayList);
     }
 
     private void getActivitiesCount(List<DayViewModel> dayViewModelList){
-        float completedCount = 0, incompleteCount = 0, totalCount, answerTotal = 0;
-        int completedAverage, incompleteAverage, answerAverage;
+        float completedCount = 0, incompleteCount = 0, totalCount, notDoneCount = 0;
+        int completedAverage, incompleteAverage, notDoneAverage;
         for (DayViewModel day : dayViewModelList){
             for (ActivityViewModel activity : day.getActivityList()){
                 if (activity.getAnswer() > 0){
-                    answerTotal = activity.getAnswer();
                     completedCount ++;
                 }
-                else
+                else if (activity.getAnswer() == 0)
                     incompleteCount ++;
+                else
+                    notDoneCount ++;
             }
             if (day.getDate().equals(Utils.getCurrentDate()))
                 break;
         }
-        totalCount = completedCount + incompleteCount;
+        totalCount = completedCount + incompleteCount + notDoneCount;
+        Log.d("Counts", totalCount + " - " + completedCount + " - " + incompleteCount + " - " + notDoneCount);
         completedAverage = Math.round((completedCount / totalCount) * 100);
         incompleteAverage = Math.round((incompleteCount / totalCount) * 100);
-        answerAverage = Math.round((answerTotal / completedCount) * 100);
-        ((ProgressView) getGenericListView()).setActivitiesAverage(completedAverage, incompleteAverage, answerAverage);
+        notDoneAverage = Math.round((notDoneCount / totalCount) * 100);
+        ((ProgressView) getGenericListView()).setActivitiesAverage(completedAverage, incompleteAverage, notDoneAverage);
     }
 
     private void getDayInfoList(List<DayViewModel> dayViewModelList){

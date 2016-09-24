@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ProgressView extends GenericListView<ActionPlanViewModel, RecyclerView.ViewHolder> {
 
-    void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int emotionAverage);
+    void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int notDoneActivitiesAverage);
 
     void setDayInfoList(List<ItemInfo> dayItemInfoList);
 }

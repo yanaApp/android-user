@@ -10,21 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.db.chart.model.BarSet;
+import com.db.chart.view.AxisController;
+import com.db.chart.view.HorizontalStackBarChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
-import com.icaboalo.yana.util.VUtil;
+import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
+import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import butterknife.ButterKnife;
 /**
  * @author icaboalo on 22/08/16.
  */
-public class ProgressFragment extends BaseFragment implements ProgressView{
+public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Inject
     ProgressPresenter mProgressPresenter;
@@ -51,10 +51,10 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
     TextView tvCompleted;
     @Bind(R.id.tvIncomplete)
     TextView tvIncomplete;
-    @Bind(R.id.ivEmotionAverage)
-    ImageView ivEmotionAverage;
+    @Bind(R.id.tvNotDone)
+    TextView tvNotDone;
     @Bind(R.id.pbCompleted)
-    ProgressBar pbCompleted;
+    HorizontalStackBarChartView pbCompleted;
     @Bind(R.id.rvDayProgress)
     RecyclerView rvDayProgress;
     GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
@@ -88,12 +88,13 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
     }
 
     @Override
-    public void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int emotionAverage) {
+    public void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int notDoneActivitiesAverage) {
         tvCompleted.setText(String.format("%s%%", completedActivitiesAverage));
         tvIncomplete.setText(String.format("%s%%", incompleteActivitiesAverage));
-        VUtil.setEmotionImage(getApplicationContext(), emotionAverage, ivEmotionAverage);
-        pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
-        pbCompleted.setProgress(completedActivitiesAverage);
+        tvNotDone.setText(String.format("%s%%", notDoneActivitiesAverage));
+//        pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
+//        pbCompleted.setProgress(completedActivitiesAverage);
+        setProgressInfo(completedActivitiesAverage, incompleteActivitiesAverage, notDoneActivitiesAverage);
     }
 
     @Override
@@ -135,10 +136,10 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         return MyApplication.getInstance().getApplicationContext();
     }
 
-    private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList){
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+    private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item);
-        for (ActionPlanViewModel actionPlan : actionPlanViewModelList){
+        for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
             if (actionPlan.isActive())
                 arrayAdapter.add("Current Plan");
             else
@@ -158,11 +159,11 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         });
     }
 
-    private void setupDayInfoRecyclerView(){
+    private void setupDayInfoRecyclerView() {
         mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getActivity(), new ArrayList<>()) {
             @Override
             public DayInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                switch (viewType){
+                switch (viewType) {
                     default:
                         return new DayInfoViewHolder(mLayoutInflater.inflate(R.layout.item_day_progress_adapter, parent, false));
                 }
@@ -170,5 +171,18 @@ public class ProgressFragment extends BaseFragment implements ProgressView{
         };
         rvDayProgress.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvDayProgress.setAdapter(mDayInfoRecyclerViewAdapter);
+    }
+
+    private void setProgressInfo(float completed, float incomplete, float notDone){
+        pbCompleted.dismiss();
+        float[] [] values = {{completed}, {incomplete}, {notDone}};
+        pbCompleted.addData(new BarSet(new String[]{""}, values[0]).setColor(getResources().getColor(R.color.yana_green)));
+        pbCompleted.addData(new BarSet(new String[]{""}, values[1]).setColor(getResources().getColor(R.color.yana_pink)));
+        pbCompleted.addData(new BarSet(new String[]{""}, values[2]).setColor(getResources().getColor(R.color.yana_orange)));
+        pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
+                .setXLabels(AxisController.LabelPosition.NONE)
+                .setYAxis(false)
+                .setXAxis(false)
+                .show();
     }
 }

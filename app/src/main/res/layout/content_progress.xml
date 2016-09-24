@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@color/background_material_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/background_material_white"
         android:padding="32dp">
 
         <Spinner
@@ -28,22 +28,22 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="@string/completed"
+                android:textColor="@color/primary_text"
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:id="@+id/tvCompleted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="64"
+                android:textColor="@color/primary_text"
                 android:textSize="32sp" />
 
             <View
@@ -63,22 +63,22 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="@string/incomplete"
+                android:textColor="@color/primary_text"
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:id="@+id/tvIncomplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="32"
+                android:textColor="@color/primary_text"
                 android:textSize="32sp" />
 
             <View
@@ -99,57 +99,23 @@
             android:orientation="vertical">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Not Done"
                 android:gravity="center_horizontal"
+                android:text="Not Done"
+                android:textColor="@color/primary_text"
                 android:textSize="12sp" />
 
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                android:textColor="@color/primary_text"
                 android:id="@+id/tvNotDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="12"
-                android:textSize="32sp" />
-
-            <View
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_gravity="center_horizontal|bottom"
-                android:background="@color/yana_orange" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llAverage"
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/pbCompleted"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical">
-
-            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                 android:textColor="@color/primary_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="12dp"
-                android:text="@string/average_emotion"
-                android:gravity="center_horizontal"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/ivEmotionAverage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/happy_32"
                 android:textSize="32sp" />
 
             <View
@@ -159,21 +125,16 @@
                 android:background="@color/yana_orange" />
         </LinearLayout>
 
-        <ProgressBar
-            android:secondaryProgress="96"
-            android:layout_marginBottom="32dp"
+        <com.db.chart.view.HorizontalStackBarChartView
             android:id="@+id/pbCompleted"
-            style="@style/AppTheme.ProgressBarGreen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llCompleted"
-            android:max="108"
-            android:progress="64" />
+            android:layout_height="18dp"
+            android:layout_below="@id/llIncomplete" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDayProgress"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
