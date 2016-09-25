@@ -14,9 +14,13 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.db.chart.Tools;
 import com.db.chart.model.BarSet;
 import com.db.chart.view.AxisController;
 import com.db.chart.view.HorizontalStackBarChartView;
+import com.db.chart.view.animation.Animation;
+import com.db.chart.view.animation.easing.ExpoEase;
+import com.db.chart.view.animation.style.DashAnimation;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
@@ -179,10 +183,13 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         pbCompleted.addData(new BarSet(new String[]{""}, values[0]).setColor(getResources().getColor(R.color.yana_green)));
         pbCompleted.addData(new BarSet(new String[]{""}, values[1]).setColor(getResources().getColor(R.color.yana_pink)));
         pbCompleted.addData(new BarSet(new String[]{""}, values[2]).setColor(getResources().getColor(R.color.yana_orange)));
+        pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
         pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
                 .setXLabels(AxisController.LabelPosition.NONE)
                 .setYAxis(false)
                 .setXAxis(false)
-                .show();
+                .show(new Animation()
+                        .setDuration(2500)
+                        .setEasing(new ExpoEase()));
     }
 }
