@@ -243,4 +243,5 @@
     <string name="work">¿Trabajas?</string>
     <string name="workout">¿Haces ejercicio?</string>
     <string name="action_additional_info">Información Adicional</string>
+    <string name="not_done">No hechas</string>
 </resources>

@@ -119,6 +119,7 @@
     <string name="workout">¿Do you workout?</string>
     <string name="depression_motive">Why are you depressed?</string>
     <string name="action_additional_info">Additional Info</string>
+    <string name="not_done">Not Done</string>
 
     <array name="beck_test">
         <!--1-->
