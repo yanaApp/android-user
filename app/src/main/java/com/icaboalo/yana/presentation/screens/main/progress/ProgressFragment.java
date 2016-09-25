@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,13 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
+        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_green)));
+        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_pink)));
+        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_orange)));
+        pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
+                .setXLabels(AxisController.LabelPosition.NONE)
+                .setYAxis(false)
+                .setXAxis(false).show();
     }
 
     @Override
@@ -145,14 +153,16 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
                 android.R.layout.simple_spinner_dropdown_item);
         for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
             if (actionPlan.isActive())
-                arrayAdapter.add("Current Plan");
+                arrayAdapter.insert("Current Plan", 0);
             else
                 arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
         }
         spActionPlan.setAdapter(arrayAdapter);
+        Log.d("Count", actionPlanViewModelList.size() + "");
         spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Position", position + "");
                 mProgressPresenter.attemptGetActivitiesCount(actionPlanViewModelList.get(position).getDayList());
                 mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
             }
@@ -178,11 +188,12 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     }
 
     private void setProgressInfo(float completed, float incomplete, float notDone){
-        pbCompleted.dismiss();
+//        pbCompleted.dismiss();g
         float[] [] values = {{completed}, {incomplete}, {notDone}};
-        pbCompleted.addData(new BarSet(new String[]{""}, values[0]).setColor(getResources().getColor(R.color.yana_green)));
-        pbCompleted.addData(new BarSet(new String[]{""}, values[1]).setColor(getResources().getColor(R.color.yana_pink)));
-        pbCompleted.addData(new BarSet(new String[]{""}, values[2]).setColor(getResources().getColor(R.color.yana_orange)));
+        pbCompleted.updateValues(0, values[0]);
+        pbCompleted.updateValues(1, values[1]);
+        pbCompleted.updateValues(2, values[2]);
+        pbCompleted.notifyDataUpdate();
         pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
         pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
                 .setXLabels(AxisController.LabelPosition.NONE)
