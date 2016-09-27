@@ -128,11 +128,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                if (validateData()) {
+                if (validateData())
                     showConfirmationDialog();
-
-                } else
-                    showError("Debes llenar todos los campos");
                 break;
         }
         return super.onOptionsItemSelected(item);
