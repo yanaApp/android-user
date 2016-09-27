@@ -43,27 +43,26 @@ public class Utils {
     }
 
 
-    public static boolean hasLollipop(){
+    public static boolean hasLollipop() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
-    public static boolean isNetworkAvailable(Context context){
+    public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager nConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (hasLollipop()){
+        if (hasLollipop()) {
             Network[] nNetworks = nConnectivityManager.getAllNetworks();
             NetworkInfo nNetworkInfo;
-            for (Network nNetwork : nNetworks){
+            for (Network nNetwork : nNetworks) {
                 nNetworkInfo = nConnectivityManager.getNetworkInfo(nNetwork);
                 if (nNetworkInfo.isConnected())
                     return true;
             }
-        }
-        else {
-            if (nConnectivityManager != null){
+        } else {
+            if (nConnectivityManager != null) {
                 NetworkInfo[] nNetworkInfos = nConnectivityManager.getAllNetworkInfo();
-                if (nNetworkInfos != null){
-                    for (NetworkInfo nNetworkInfo : nNetworkInfos){
-                        if (nNetworkInfo.isConnected()){
+                if (nNetworkInfos != null) {
+                    for (NetworkInfo nNetworkInfo : nNetworkInfos) {
+                        if (nNetworkInfo.isConnected()) {
                             return true;
                         }
                     }
@@ -74,15 +73,23 @@ public class Utils {
         return false;
     }
 
-    public static final String getCurrentDate(){
+    public static final String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         return new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
     }
 
-    public static int transformTo24Hours(int hour){
-        switch (hour){
+    public static String transformTo24Hours(int hour, int minutes) {
+        if (hour > 12) {
+            if (minutes == 0)
+                return String.format("%d:0%d PM", hour - 12, minutes);
+            else
+                return String.format("%d:%d PM", hour - 12, minutes);
+        } else {
+            if (minutes == 0)
+                return String.format("%d:0%d AM", hour, minutes);
+            else
+                return String.format("%d:%d AM", hour, minutes);
 
         }
-        return 0;
     }
 }

@@ -196,82 +196,55 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             switch (view.getId()) {
                 case R.id.etStudyFrom:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etStudyForm.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etStudyForm.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etStudyForm.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etStudyTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etStudyTo.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etStudyTo.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etStudyTo.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkFrom:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWorkFrom.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etWorkFrom.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etWorkFrom.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWorkTo.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etWorkTo.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etWorkTo.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etWakeUp:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWakeUp.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etWakeUp.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etWakeUp.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etSleep:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etSleep.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etSleep.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etSleep.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etBreakfast:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etBreakfast.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etBreakfast.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etBreakfast.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etLunch:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etLunch.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etLunch.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etLunch.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
                 case R.id.etDinner:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etDinner.setText(Utils.transformTo24Hours(i) + ":0" + i1);
-                        else
-                            etDinner.setText(Utils.transformTo24Hours(i) + ":" + i1);
+                        etDinner.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
                     ((EditText) view).setError(null);
                     break;
@@ -284,74 +257,47 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         switch (view.getId()) {
             case R.id.etStudyFrom:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etStudyForm.setText(i + ":0" + i1);
-                    else
-                        etStudyForm.setText(i + ":" + i1);
+                    etStudyForm.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etStudyTo:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etStudyTo.setText(i + ":0" + i1);
-                    else
-                        etStudyTo.setText(i + ":" + i1);
+                    etStudyTo.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWorkFrom:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWorkFrom.setText(i + ":0" + i1);
-                    else
-                        etWorkFrom.setText(i + ":" + i1);
+                    etWorkFrom.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWorkTo:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWorkTo.setText(i + ":0" + i1);
-                    else
-                        etWorkTo.setText(i + ":" + i1);
+                    etWorkTo.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWakeUp:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWakeUp.setText(i + ":0" + i1);
-                    else
-                        etWakeUp.setText(i + ":" + i1);
+                    etWakeUp.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etSleep:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etSleep.setText(i + ":0" + i1);
-                    else
-                        etSleep.setText(i + ":" + i1);
+                    etSleep.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etBreakfast:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etBreakfast.setText(i + ":0" + i1);
-                    else
-                        etBreakfast.setText(i + ":" + i1);
+                    etBreakfast.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etLunch:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etLunch.setText(i + ":0" + i1);
-                    else
-                        etLunch.setText(i + ":" + i1);
+                    etLunch.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etDinner:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etDinner.setText(i + ":0" + i1);
-                    else
-                        etDinner.setText(i + ":" + i1);
+                    etDinner.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
         }
