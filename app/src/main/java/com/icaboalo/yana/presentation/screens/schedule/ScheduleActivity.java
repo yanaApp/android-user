@@ -203,6 +203,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etStudyForm.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etStudyTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -211,6 +212,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etStudyTo.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkFrom:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -219,6 +221,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etWorkFrom.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -227,6 +230,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etWorkTo.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWakeUp:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -235,6 +239,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etWakeUp.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etSleep:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -243,6 +248,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etSleep.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etBreakfast:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -251,6 +257,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etBreakfast.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etLunch:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -259,6 +266,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etLunch.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etDinner:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
@@ -267,6 +275,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         else
                             etDinner.setText(i + ":" + i1);
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
             }
     }
@@ -352,29 +361,50 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     private boolean validateData() {
         if (cbStudies.isChecked()) {
-            if (etStudyForm.getText().toString().isEmpty())
+            if (etStudyForm.getText().toString().isEmpty()){
+                etStudyForm.setError(getString(R.string.error_empty_field));
                 return false;
-            else if (etStudyTo.getText().toString().isEmpty())
+            }
+            else if (etStudyTo.getText().toString().isEmpty()){
+                etStudyTo.setError(getString(R.string.error_empty_field));
                 return false;
+            }
         }
 
         if (cbWork.isChecked()) {
-            if (etWorkFrom.getText().toString().isEmpty())
+            if (etWorkFrom.getText().toString().isEmpty()) {
+                etWorkFrom.setError(getString(R.string.error_empty_field));
                 return false;
-            else if (etWorkTo.getText().toString().isEmpty())
+            }
+
+            else if (etWorkTo.getText().toString().isEmpty()){
+                etStudyTo.setError(getString(R.string.error_empty_field));
                 return false;
+            }
         }
 
-        if (etWakeUp.getText().toString().isEmpty())
+        if (etWakeUp.getText().toString().isEmpty()){
+            etWakeUp.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etSleep.getText().toString().isEmpty())
+        }
+
+        else if (etSleep.getText().toString().isEmpty()) {
+            etSleep.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etBreakfast.getText().toString().isEmpty())
+        }
+
+        else if (etBreakfast.getText().toString().isEmpty()) {
+            etBreakfast.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etLunch.getText().toString().isEmpty())
+        }
+        else if (etLunch.getText().toString().isEmpty()){
+            etLunch.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etDinner.getText().toString().isEmpty())
+        }
+        else if (etDinner.getText().toString().isEmpty()){
+            etDinner.setError(getString(R.string.error_empty_field));
             return false;
+        }
         else
             return true;
     }
