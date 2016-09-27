@@ -78,4 +78,11 @@ public class Utils {
         Calendar calendar = Calendar.getInstance();
         return new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
     }
+
+    public static int transformTo24Hours(int hour){
+        switch (hour){
+
+        }
+        return 0;
+    }
 }
