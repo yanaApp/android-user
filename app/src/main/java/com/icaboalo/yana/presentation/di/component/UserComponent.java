@@ -5,6 +5,7 @@ import com.icaboalo.yana.presentation.di.module.ActivityModule;
 import com.icaboalo.yana.presentation.di.module.UserModule;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
+import com.icaboalo.yana.presentation.screens.main.hotline.HotlineActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
@@ -45,4 +46,6 @@ public interface UserComponent {
     void inject(ContactFragment contactFragment);
 
     void inject(ScheduleActivity scheduleActivity);
+
+    void inject(HotlineActivity hotlineActivity);
 }
