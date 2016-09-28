@@ -79,11 +79,18 @@ public class Utils {
     }
 
     public static String transformTo24Hours(int hour, int minutes) {
-        if (hour > 12) {
-            if (minutes == 0)
-                return String.format("%d:0%d PM", hour - 12, minutes);
-            else
-                return String.format("%d:%d PM", hour - 12, minutes);
+        if (hour >= 12) {
+            if (minutes == 0) {
+                if (hour == 12)
+                    return String.format("%d:0%d PM", hour, minutes);
+                else
+                    return String.format("%d:0%d PM", hour - 12, minutes);
+            } else {
+                if (hour == 12)
+                    return String.format("%d:%d PM", hour, minutes);
+                else
+                    return String.format("%d:%d PM", hour - 12, minutes);
+            }
         } else {
             if (minutes == 0)
                 return String.format("%d:0%d AM", hour, minutes);
