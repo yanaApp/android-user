@@ -21,7 +21,9 @@
             android:id="@+id/nav_progress"
             android:icon="@drawable/ic_poll_black_24dp"
             android:title="@string/action_progress_title" />
-
+        <item android:id="@+id/nav_hotline"
+            android:icon="@drawable/phone_call_128dp"
+            android:title="Hotline"/>
     </group>
 
     <group
