@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        android:text="No importa por lo que estés pasando, queremos mostrarte que hay muchas razones por las que vale la pena no rendirse."
+        android:textSize="26sp" />
 
     <ImageView
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/button_phone_call"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_phone_call" />
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Te conectaremos con un asistente profesional localizado en tu area las 24 horas del dia los 7 dias de la semana" />
+
+
 </FrameLayout>

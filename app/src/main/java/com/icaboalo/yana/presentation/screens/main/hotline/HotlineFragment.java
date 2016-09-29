@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.icaboalo.yana.MyApplication;
+import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
@@ -29,7 +30,7 @@ public class HotlineFragment extends BaseFragment implements GenericDetailView<O
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_hotline, container, false);
     }
 
     @Override
@@ -44,30 +45,30 @@ public class HotlineFragment extends BaseFragment implements GenericDetailView<O
         mHotlinePresenter.setView(this);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        checkForPermissions();
+    }
 
     @Override
     public void renderItem(Object item) {
-
     }
 
     @Override
     public void showLoading() {
-
     }
 
     @Override
     public void hideLoading() {
-
     }
 
     @Override
     public void showRetry() {
-
     }
 
     @Override
     public void hideRetry() {
-
     }
 
     @Override
@@ -78,5 +79,9 @@ public class HotlineFragment extends BaseFragment implements GenericDetailView<O
     @Override
     public Context getApplicationContext() {
         return MyApplication.getInstance().getApplicationContext();
+    }
+
+    private void checkForPermissions(){
+
     }
 }

@@ -22,6 +22,7 @@ import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
 import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
+import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
@@ -100,6 +101,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_profile:
                 getSupportActionBar().setTitle(R.string.profile_title);
                 fragment = new ProfileFragment();
+                break;
+            case R.id.nav_hotline:
+                getSupportActionBar().setTitle("Hotline");
+                fragment = new HotlineFragment();
                 break;
             case R.id.nav_log_out:
                 showLogOutConfirmationDialog();
