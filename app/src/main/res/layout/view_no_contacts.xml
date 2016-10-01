@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/flNoContacts"
+    android:visibility="gone"
+    android:orientation="vertical">
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:layout_margin="20dp"
+        android:text="Presiona aqui para añadir un contacto." />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_contacts_black_96dp" />
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="75dp"
+        android:gravity="center"
+        android:text="Aun no has añadido a nadie a tu red de apoyo." />
+
+
+</FrameLayout>

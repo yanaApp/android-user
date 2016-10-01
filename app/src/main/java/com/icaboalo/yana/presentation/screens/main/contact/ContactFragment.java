@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -60,6 +61,8 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
     RelativeLayout rlRetry;
     @Bind(R.id.rvContact)
     RecyclerView rvContact;
+    @Bind(R.id.flNoContacts)
+    FrameLayout flNoContacts;
 
     GenericRecyclerViewAdapter<GenericRecyclerViewAdapter.ViewHolder> mContactRecyclerAdapter;
 
@@ -102,14 +105,19 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void renderItemList(List<ContactViewModel> itemList) {
-        ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
-        Collections.sort(itemList, (lhs, rhs) ->
-                lhs.getName().compareToIgnoreCase(rhs.getName()));
-        for (ContactViewModel contact : itemList){
-            Log.d("ITEM", contact.toString());
-            itemInfoList.add(new ItemInfo<>(contact, ItemInfo.SECTION_ITEM));
+        if (itemList != null && itemList.size() > 0){
+            flNoContacts.setVisibility(View.GONE);
+            ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
+            Collections.sort(itemList, (lhs, rhs) ->
+                    lhs.getName().compareToIgnoreCase(rhs.getName()));
+            for (ContactViewModel contact : itemList){
+                Log.d("ITEM", contact.toString());
+                itemInfoList.add(new ItemInfo<>(contact, ItemInfo.SECTION_ITEM));
+            }
+            mContactRecyclerAdapter.setDataList(itemInfoList);
+        } else {
+            flNoContacts.setVisibility(View.VISIBLE);
         }
-        mContactRecyclerAdapter.setDataList(itemInfoList);
     }
 
     @Override
