@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown;
+package com.icaboalo.yana.presentation.screens.main.progress;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,10 +25,10 @@ import javax.inject.Inject;
 /**
  * @author icaboalo on 22/08/16.
  */
-public class PlanBreakdownPresenter extends GenericListPresenter<ActionPlanViewModel, RecyclerView.ViewHolder> {
+public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel, RecyclerView.ViewHolder> {
 
     @Inject
-    public PlanBreakdownPresenter(GenericUseCase genericUseCase) {
+    public ProgressPresenter(GenericUseCase genericUseCase) {
         super(genericUseCase);
     }
 

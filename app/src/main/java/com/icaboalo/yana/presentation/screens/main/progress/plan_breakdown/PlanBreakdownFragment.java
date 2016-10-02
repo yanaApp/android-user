@@ -16,17 +16,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.db.chart.Tools;
+import com.db.chart.animation.Animation;
+import com.db.chart.animation.easing.ExpoEase;
 import com.db.chart.model.BarSet;
-import com.db.chart.view.AxisController;
+import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.view.HorizontalStackBarChartView;
-import com.db.chart.view.animation.Animation;
-import com.db.chart.view.animation.easing.ExpoEase;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.screens.main.progress.ProgressPresenter;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
@@ -45,7 +46,7 @@ import butterknife.ButterKnife;
 public class PlanBreakdownFragment extends BaseFragment implements ProgressView {
 
     @Inject
-    PlanBreakdownPresenter mPlanBreakdownPresenter;
+    ProgressPresenter mProgressPresenter;
     @Bind(R.id.rlRetry)
     RelativeLayout rlRetry;
     @Bind(R.id.rlProgress)
@@ -76,8 +77,8 @@ public class PlanBreakdownFragment extends BaseFragment implements ProgressView 
         pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_green)));
         pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_pink)));
         pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_orange)));
-        pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
-                .setXLabels(AxisController.LabelPosition.NONE)
+        pbCompleted.setYLabels(AxisRenderer.LabelPosition.NONE)
+                .setXLabels(AxisRenderer.LabelPosition.NONE)
                 .setYAxis(false)
                 .setXAxis(false).show();
     }
@@ -85,8 +86,8 @@ public class PlanBreakdownFragment extends BaseFragment implements ProgressView 
     @Override
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
-        mPlanBreakdownPresenter.setView(this);
-        mPlanBreakdownPresenter.initialize();
+        mProgressPresenter.setView(this);
+        mProgressPresenter.initialize();
         setupDayInfoRecyclerView();
     }
 
@@ -163,8 +164,8 @@ public class PlanBreakdownFragment extends BaseFragment implements ProgressView 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Position", position + "");
-                mPlanBreakdownPresenter.attemptGetActivitiesCount(actionPlanViewModelList.get(position).getDayList());
-                mPlanBreakdownPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
+                mProgressPresenter.attemptGetActivitiesCount(actionPlanViewModelList.get(position).getDayList());
+                mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
             }
 
             @Override
@@ -195,8 +196,8 @@ public class PlanBreakdownFragment extends BaseFragment implements ProgressView 
         pbCompleted.updateValues(2, values[2]);
         pbCompleted.notifyDataUpdate();
         pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
-        pbCompleted.setYLabels(AxisController.LabelPosition.NONE)
-                .setXLabels(AxisController.LabelPosition.NONE)
+        pbCompleted.setYLabels(AxisRenderer.LabelPosition.NONE)
+                .setXLabels(AxisRenderer.LabelPosition.NONE)
                 .setYAxis(false)
                 .setXAxis(false)
                 .show(new Animation()
