@@ -12,7 +12,7 @@ import com.db.chart.view.LineChartView;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericListView;
-import com.icaboalo.yana.presentation.screens.main.progress.ProgressPresenter;
+import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownPresenter;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 
 import java.util.List;
@@ -25,8 +25,6 @@ import javax.inject.Inject;
 
 public class ChartFragment extends BaseFragment implements GenericListView<ActionPlanViewModel, RecyclerView.ViewHolder> {
 
-    @Inject
-    ProgressPresenter mProgressPresenter;
     LineChartView lineChartView;
 
     @Nullable
@@ -39,7 +37,7 @@ public class ChartFragment extends BaseFragment implements GenericListView<Actio
     @Override
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
-        mProgressPresenter.setView(this);
+//        mPlanBreakdownPresenter.setView(this);
     }
 
     @Override

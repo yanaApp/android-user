@@ -10,20 +10,12 @@
         android:background="@color/background_material_white"
         android:padding="32dp">
 
-        <Spinner
-            android:id="@+id/spActionPlan"
-            android:layout_width="160dp"
-            android:layout_height="30dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="32dp" />
-
         <LinearLayout
             android:id="@+id/llCompleted"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@id/spActionPlan"
             android:layout_marginBottom="32dp"
             android:orientation="vertical">
 
@@ -57,7 +49,6 @@
             android:id="@+id/llIncomplete"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/spActionPlan"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="32dp"
             android:orientation="vertical">
@@ -94,7 +85,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/spActionPlan"
             android:layout_marginBottom="32dp"
             android:orientation="vertical">
 
