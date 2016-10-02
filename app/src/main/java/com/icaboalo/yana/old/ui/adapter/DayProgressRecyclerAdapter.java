@@ -36,7 +36,7 @@ public class DayProgressRecyclerAdapter extends RecyclerView.Adapter<DayProgress
 
     @Override
     public DayProgressViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_day_progress_adapter, parent, false);
+        View view = mInflater.inflate(R.layout.item_day_plan_breakdown_adapter, parent, false);
         return new DayProgressViewHolder(view);
     }
 

@@ -11,7 +11,7 @@ import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
-import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
+import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
 import com.icaboalo.yana.presentation.screens.schedule.ScheduleActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
@@ -37,7 +37,7 @@ public interface UserComponent {
 
     void inject(ActivitiesFragment activitiesFragment);
 
-    void inject(ProgressFragment progressFragment);
+    void inject(PlanBreakdownFragment planBreakdownFragment);
 
     void inject(ProfileFragment profileFragment);
 
