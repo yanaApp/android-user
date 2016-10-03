@@ -22,13 +22,10 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
-import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -54,8 +51,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     TextView tvNotDone;
     @Bind(R.id.pbCompleted)
     HorizontalStackBarChartView pbCompleted;
-    @Bind(R.id.rvDayProgress)
-    RecyclerView rvDayProgress;
     GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
 
     @Nullable
@@ -83,7 +78,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
         mPlanBreakdownPresenter.setView(this);
-        setupDayInfoRecyclerView();
     }
 
     @Override
@@ -94,7 +88,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     @Override
     public void getActionPlanList(ActionPlanViewModel actionPlanViewModel) {
         mPlanBreakdownPresenter.attemptGetActivitiesCount(actionPlanViewModel.getDayList());
-        mPlanBreakdownPresenter.attemptGetDayInfoList(actionPlanViewModel.getDayList());
     }
 
     @Override
@@ -105,11 +98,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 //        pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
 //        pbCompleted.setProgress(completedActivitiesAverage);
         setProgressInfo(completedActivitiesAverage, incompleteActivitiesAverage, notDoneActivitiesAverage);
-    }
-
-    @Override
-    public void setDayInfoList(List<ItemInfo> dayItemInfoList) {
-        mDayInfoRecyclerViewAdapter.setDataList(dayItemInfoList);
     }
 
     @Override
@@ -168,20 +156,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 //            }
 //        });
 //    }
-
-    private void setupDayInfoRecyclerView() {
-        mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getActivity(), new ArrayList<>()) {
-            @Override
-            public DayInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                switch (viewType) {
-                    default:
-                        return new DayInfoViewHolder(mLayoutInflater.inflate(R.layout.item_day_plan_breakdown_adapter, parent, false));
-                }
-            }
-        };
-        rvDayProgress.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rvDayProgress.setAdapter(mDayInfoRecyclerViewAdapter);
-    }
 
     private void setProgressInfo(float completed, float incomplete, float notDone) {
 //        pbCompleted.dismiss();

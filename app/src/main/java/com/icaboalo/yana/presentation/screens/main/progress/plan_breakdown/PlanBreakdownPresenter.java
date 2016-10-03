@@ -37,12 +37,6 @@ public class PlanBreakdownPresenter extends GenericDetailPresenter<ActionPlanVie
         getActivitiesCount(dayList);
     }
 
-    public void attemptGetDayInfoList(List<DayViewModel> dayList){
-        Collections.sort(dayList, (lhs, rhs) ->
-                lhs.getId() - rhs.getId());
-        getDayInfoList(dayList);
-    }
-
     private void getActivitiesCount(List<DayViewModel> dayViewModelList){
         float completedCount = 0, incompleteCount = 0, totalCount, notDoneCount = 0;
         int completedAverage, incompleteAverage, notDoneAverage;
@@ -67,19 +61,4 @@ public class PlanBreakdownPresenter extends GenericDetailPresenter<ActionPlanVie
         ((PlanBreakdownView) getGenericDetailView()).setActivitiesAverage(completedAverage, incompleteAverage, notDoneAverage);
     }
 
-    private void getDayInfoList(List<DayViewModel> dayViewModelList){
-        List<ItemInfo> itemList = new ArrayList<>();
-        for (DayViewModel day : dayViewModelList){
-            itemList.add(new ItemInfo<>(day, ItemInfo.SECTION_ITEM));
-            if (day.getDate().equals(Utils.getCurrentDate()))
-                break;
-            else {
-                Log.d("id", String.valueOf(day.getId()));
-                Log.d("date", day.getDate() + " -- " + Utils.getCurrentDate());
-            }
-
-        }
-        Collections.sort(itemList, (itemInfo, t1) -> ((DayViewModel) t1.getData()).getId() - ((DayViewModel) itemInfo.getData()).getId());
-        ((PlanBreakdownView) getGenericDetailView()).setDayInfoList(itemList);
-    }
 }

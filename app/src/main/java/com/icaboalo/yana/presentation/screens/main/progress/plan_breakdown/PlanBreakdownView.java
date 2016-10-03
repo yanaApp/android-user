@@ -17,6 +17,4 @@ public interface PlanBreakdownView extends GenericDetailView<ActionPlanViewModel
     void getActionPlanList(ActionPlanViewModel actionPlanViewModel);
 
     void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int notDoneActivitiesAverage);
-
-    void setDayInfoList(List<ItemInfo> dayItemInfoList);
 }

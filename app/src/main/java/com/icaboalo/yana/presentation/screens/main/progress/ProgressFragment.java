@@ -3,9 +3,9 @@ package com.icaboalo.yana.presentation.screens.main.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,11 +24,13 @@ import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.GenericListView;
+import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartView;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
+import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 
 import java.util.ArrayList;
@@ -43,16 +45,17 @@ import butterknife.ButterKnife;
  * Created by icaboalo on 01/10/16.
  */
 
-public class ProgressFragment extends BaseFragment implements GenericListView<ActionPlanViewModel, RecyclerView.ViewHolder> {
+public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Inject
     ProgressPresenter mProgressPresenter;
-    @Bind(R.id.tabLayout)
-    TabLayout tabLayout;
     @Bind(R.id.viewPager)
     ViewPager viewPager;
+    @Bind(R.id.rvDayProgress)
+    RecyclerView rvDayProgress;
     Spinner spActionPlan;
     PlanBreakdownView mPlanBreakdownView;
+    GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
     ChartView mChartView;
 
     @Nullable
@@ -73,6 +76,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
         setHasOptionsMenu(true);
         getComponent(UserComponent.class).inject(this);
         mProgressPresenter.setView(this);
+        setupDayInfoRecyclerView();
         mProgressPresenter.initialize();
     }
 
@@ -95,6 +99,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
 
     @Override
     public void viewItemDetail(ActionPlanViewModel viewModel, RecyclerView.ViewHolder viewHolder) {
+
     }
 
     @Override
@@ -123,6 +128,25 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
         return MyApplication.getInstance().getApplicationContext();
     }
 
+    @Override
+    public void setDayInfoList(List<ItemInfo> dayItemInfoList) {
+        mDayInfoRecyclerViewAdapter.setDataList(dayItemInfoList);
+    }
+
+    private void setupDayInfoRecyclerView() {
+        mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getActivity(), new ArrayList<>()) {
+            @Override
+            public DayInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                switch (viewType) {
+                    default:
+                        return new DayInfoViewHolder(mLayoutInflater.inflate(R.layout.item_day_plan_breakdown_adapter, parent, false));
+                }
+            }
+        };
+        rvDayProgress.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvDayProgress.setAdapter(mDayInfoRecyclerViewAdapter);
+    }
+
     private void setupViewPager(){
         ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
         PlanBreakdownFragment planBreakdownFragment = new PlanBreakdownFragment();
@@ -133,7 +157,6 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
         fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {
@@ -153,6 +176,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
                 Log.d("Position", position + "");
                 mPlanBreakdownView.getActionPlanList(actionPlanViewModelList.get(position));
                 mChartView.getActionPlan(actionPlanViewModelList.get(position));
+                mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
             }
 
             @Override
