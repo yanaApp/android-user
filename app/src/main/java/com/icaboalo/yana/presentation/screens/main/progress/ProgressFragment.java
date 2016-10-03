@@ -26,6 +26,7 @@ import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericListView;
 import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartFragment;
+import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartView;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
@@ -52,6 +53,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
     ViewPager viewPager;
     Spinner spActionPlan;
     PlanBreakdownView mPlanBreakdownView;
+    ChartView mChartView;
 
     @Nullable
     @Override
@@ -63,14 +65,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
-        PlanBreakdownFragment planBreakdownFragment = new PlanBreakdownFragment();
-        mPlanBreakdownView = planBreakdownFragment;
-        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "Breakdown"));
-        fragmentList.add(new FragmentPagerModel(new ChartFragment(), "Charts"));
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList);
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
+        setupViewPager();
     }
 
     @Override
@@ -95,7 +90,6 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
 
     @Override
     public void renderItemList(List<ActionPlanViewModel> itemList) {
-        showError(itemList.toString());
         setupSpinner(itemList);
     }
 
@@ -129,6 +123,19 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
         return MyApplication.getInstance().getApplicationContext();
     }
 
+    private void setupViewPager(){
+        ArrayList<FragmentPagerModel> fragmentList = new ArrayList<>();
+        PlanBreakdownFragment planBreakdownFragment = new PlanBreakdownFragment();
+        ChartFragment chartFragment = new ChartFragment();
+        mPlanBreakdownView = planBreakdownFragment;
+        mChartView = chartFragment;
+        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "Breakdown"));
+        fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList);
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
     private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item);
@@ -145,8 +152,7 @@ public class ProgressFragment extends BaseFragment implements GenericListView<Ac
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("Position", position + "");
                 mPlanBreakdownView.getActionPlanList(actionPlanViewModelList.get(position));
-//                mProgressPresenter.attemptGetActivitiesCount(actionPlanViewModelList.get(position).getDayList());
-//                mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
+                mChartView.getActionPlan(actionPlanViewModelList.get(position));
             }
 
             @Override
