@@ -4,14 +4,13 @@ import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.db.chart.Tools;
+import com.db.chart.animation.Animation;
+import com.db.chart.animation.easing.BounceEase;
 import com.db.chart.model.LineSet;
 import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.tooltip.Tooltip;
@@ -20,12 +19,7 @@ import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.GenericListView;
-import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownPresenter;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
-
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -101,6 +95,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @Override
     public void getInfoLists(String[] dayList, float[] averageEmotions) {
+        lineChartView.reset();
 
         Tooltip tooltip = new Tooltip(getActivity(), R.layout.tooltip_progress_chart, R.id.value);
         tooltip.setVerticalAlignment(Tooltip.Alignment.BOTTOM_TOP);
@@ -131,6 +126,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
                 .setYAxis(false)
                 .setBorderSpacing(Tools.fromDpToPx(10));
 
-        lineChartView.show();
+        lineChartView.show(new Animation().setEasing(new BounceEase()));
     }
 }

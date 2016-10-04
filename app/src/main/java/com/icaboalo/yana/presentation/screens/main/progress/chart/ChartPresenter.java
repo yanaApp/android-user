@@ -8,6 +8,7 @@ import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,6 +34,8 @@ public class ChartPresenter extends GenericDetailPresenter<ActionPlanViewModel> 
     }
 
     private void getChartData(List<DayViewModel> dayViewModelList) {
+        Collections.sort(dayViewModelList, (lhs, rhs) ->
+                lhs.getId() - rhs.getId());
         ArrayList<String> days = new ArrayList<>();
         ArrayList<Float> averages = new ArrayList<>();
         int count = 0;

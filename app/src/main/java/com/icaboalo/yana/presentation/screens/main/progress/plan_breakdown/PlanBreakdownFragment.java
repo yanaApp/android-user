@@ -3,8 +3,6 @@ package com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +19,7 @@ import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
-
-import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -51,7 +45,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     TextView tvNotDone;
     @Bind(R.id.pbCompleted)
     HorizontalStackBarChartView pbCompleted;
-    GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
 
     @Nullable
     @Override
