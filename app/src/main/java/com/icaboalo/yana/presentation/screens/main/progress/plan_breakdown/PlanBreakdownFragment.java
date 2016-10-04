@@ -49,13 +49,12 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ButterKnife.bind(this, getView());
     }
 
     @Override

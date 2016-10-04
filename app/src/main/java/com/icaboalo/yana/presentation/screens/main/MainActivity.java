@@ -194,7 +194,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
-        showError(getSupportFragmentManager().getBackStackEntryCount() + "");
     }
 
     private void setHeaderInfo(String email, String fullName){
