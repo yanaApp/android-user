@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,17 +31,17 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Inject
     LoginPresenter mLoginPresenter;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.etEmail)
+    @BindView(R.id.etEmail)
     EditText etEmail;
-    @Bind(R.id.etPassword)
+    @BindView(R.id.etPassword)
     EditText etPassword;
-    @Bind(R.id.rlForgotPassword)
+    @BindView(R.id.rlForgotPassword)
     RelativeLayout rlForgotPassword;
-    @Bind(R.id.llLoginForm)
+    @BindView(R.id.llLoginForm)
     LinearLayout llLoginForm;
 
 

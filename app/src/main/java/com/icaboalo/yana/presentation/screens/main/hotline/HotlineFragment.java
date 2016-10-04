@@ -25,7 +25,7 @@ import com.icaboalo.yana.presentation.screens.GenericDetailView;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -37,7 +37,7 @@ public class HotlineFragment extends BaseFragment implements GenericDetailView<O
 
     @Inject
     HotlinePresenter mHotlinePresenter;
-    @Bind(R.id.ivPhoneCall)
+    @BindView(R.id.ivPhoneCall)
     ImageView ivPhoneCall;
 
     @Nullable

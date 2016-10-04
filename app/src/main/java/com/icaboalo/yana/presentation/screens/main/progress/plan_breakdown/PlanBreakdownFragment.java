@@ -17,13 +17,10 @@ import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.view.HorizontalStackBarChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
 
-import javax.inject.Inject;
-
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -31,17 +28,17 @@ import butterknife.ButterKnife;
  */
 public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdownView {
 
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.tvCompleted)
+    @BindView(R.id.tvCompleted)
     TextView tvCompleted;
-    @Bind(R.id.tvIncomplete)
+    @BindView(R.id.tvIncomplete)
     TextView tvIncomplete;
-    @Bind(R.id.tvNotDone)
+    @BindView(R.id.tvNotDone)
     TextView tvNotDone;
-    @Bind(R.id.pbCompleted)
+    @BindView(R.id.pbCompleted)
     HorizontalStackBarChartView pbCompleted;
 
     @Nullable
@@ -52,7 +49,13 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ButterKnife.bind(this, view);
+//        ButterKnife.bind(this, view);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ButterKnife.bind(this, getView());
     }
 
     @Override
@@ -61,14 +64,16 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 
     @Override
     public void renderItem(ActionPlanViewModel item) {
-
     }
 
     @Override
     public void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int notDoneActivitiesAverage) {
-        tvCompleted.setText(String.format("%s%%", completedActivitiesAverage));
-        tvIncomplete.setText(String.format("%s%%", incompleteActivitiesAverage));
-        tvNotDone.setText(String.format("%s%%", notDoneActivitiesAverage));
+        if (tvCompleted != null)
+            tvCompleted.setText(String.format("%s%%", completedActivitiesAverage));
+        if (tvIncomplete != null)
+            tvIncomplete.setText(String.format("%s%%", incompleteActivitiesAverage));
+        if (tvNotDone != null)
+            tvNotDone.setText(String.format("%s%%", notDoneActivitiesAverage));
 //        pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
 //        pbCompleted.setProgress(completedActivitiesAverage);
         setProgressInfo(completedActivitiesAverage, incompleteActivitiesAverage, notDoneActivitiesAverage);
@@ -107,29 +112,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     public Context getApplicationContext() {
         return MyApplication.getInstance().getApplicationContext();
     }
-
-//    private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
-//                android.R.layout.simple_spinner_dropdown_item);
-//        for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
-//            if (actionPlan.isActive())
-//                arrayAdapter.insert("Current Plan", 0);
-//            else
-//                arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
-//        }
-//        spActionPlan.setAdapter(arrayAdapter);
-//        Log.d("Count", actionPlanViewModelList.size() + "");
-//        spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("Position", position + "");
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//            }
-//        });
-//    }
 
     private void setProgressInfo(float completed, float incomplete, float notDone) {
         pbCompleted.reset();

@@ -25,13 +25,12 @@ import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
 import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
-import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -41,16 +40,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Inject
     MainPresenter mMainPresenter;
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.navigationView)
+    @BindView(R.id.navigationView)
     NavigationView navigationView;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
+    Fragment fragment;
 
     @Override
     public void initialize() {
@@ -84,41 +84,72 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment = null;
+        if (fragment == null)
+            fragment = new Fragment();
         switch (item.getItemId()){
             case R.id.nav_action_plan:
                 getSupportActionBar().setTitle(R.string.action_plan_title);
-                fragment = new ActivitiesFragment();
+                if (fragment instanceof ActivitiesFragment)
+                    break;
+                else{
+                    fragment = new ActivitiesFragment();
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.nav_contacts:
                 getSupportActionBar().setTitle(R.string.contacts_title);
-                fragment = new ContactFragment();
+                if (fragment instanceof ContactFragment)
+                    break;
+                else{
+                    fragment = new ContactFragment();
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.nav_progress:
                 getSupportActionBar().setTitle(R.string.progress_title);
-                fragment = new ProgressFragment();
+                if (fragment instanceof ProgressFragment)
+                    break;
+                else{
+                    fragment = new ProgressFragment();
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.nav_profile:
                 getSupportActionBar().setTitle(R.string.profile_title);
-                fragment = new ProfileFragment();
+                if (fragment instanceof ProfileFragment)
+                    break;
+                else{
+                    fragment = new ProfileFragment();
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.nav_hotline:
                 getSupportActionBar().setTitle("Hotline");
-                fragment = new HotlineFragment();
+                if (fragment instanceof HotlineFragment)
+                    break;
+                else{
+                    fragment = new HotlineFragment();
+                    replaceFragment(fragment);
+                }
                 break;
             case R.id.nav_log_out:
                 showLogOutConfirmationDialog();
                 break;
             case R.id.nav_help:
                 getSupportActionBar().setTitle(R.string.help_title);
-                fragment = new HelpFragment();
+                if (fragment instanceof HelpFragment)
+                    break;
+                else{
+                    fragment = new HelpFragment();
+                    replaceFragment(fragment);
+                }
                 break;
         }
 
-        if (fragment != null){
-            replaceFragment(fragment);
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
+//        if (fragment != null){
+//            replaceFragment(fragment);
+//        }
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -163,6 +194,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void replaceFragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+        showError(getSupportFragmentManager().getBackStackEntryCount() + "");
     }
 
     private void setHeaderInfo(String email, String fullName){

@@ -7,7 +7,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,13 +31,14 @@ import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanB
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -49,9 +49,11 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Inject
     ProgressPresenter mProgressPresenter;
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     ViewPager viewPager;
-    @Bind(R.id.rvDayProgress)
+    @BindView(R.id.inkPageIndicator)
+    InkPageIndicator inkPageIndicator;
+    @BindView(R.id.rvDayProgress)
     RecyclerView rvDayProgress;
     Spinner spActionPlan;
     PlanBreakdownView mPlanBreakdownView;
@@ -68,6 +70,8 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        setupDayInfoRecyclerView();
+        setupViewPager();
     }
 
     @Override
@@ -75,19 +79,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         setHasOptionsMenu(true);
         getComponent(UserComponent.class).inject(this);
         mProgressPresenter.setView(this);
-        setupDayInfoRecyclerView();
         mProgressPresenter.initialize();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setupViewPager();
     }
 
     @Override
@@ -172,6 +164,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
+        inkPageIndicator.setViewPager(viewPager);
     }
 
     private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {

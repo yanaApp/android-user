@@ -23,7 +23,7 @@ import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewMode
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 
 public class ChartFragment extends BaseFragment implements ChartView {
 
-    @Bind(R.id.lineChartView)
+    @BindView(R.id.lineChartView)
     LineChartView lineChartView;
 
     @Nullable

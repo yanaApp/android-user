@@ -15,7 +15,7 @@ import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,11 +26,11 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
 
     @Inject
     LoadingPresenter mLoadingPresenter;
-    @Bind(R.id.rlLoadComplete)
+    @BindView(R.id.rlLoadComplete)
     RelativeLayout rlLoadComplete;
-    @Bind(R.id.rlLoading)
+    @BindView(R.id.rlLoading)
     RelativeLayout rlLoading;
-    @Bind(R.id.tvTitle)
+    @BindView(R.id.tvTitle)
     TextView tvTitle;
 
     @Override
