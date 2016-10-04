@@ -32,8 +32,6 @@ import butterknife.ButterKnife;
 
 public class ChartFragment extends BaseFragment implements ChartView {
 
-    @Inject
-    ChartPresenter mChartPresenter;
     @Bind(R.id.lineChartView)
     LineChartView lineChartView;
 
@@ -51,7 +49,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
     @Override
     public void initialize() {
         getComponent(UserComponent.class).inject(this);
-        mChartPresenter.setView(this);
     }
 
     @Override
@@ -86,11 +83,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
     @Override
     public Context getApplicationContext() {
         return MyApplication.getInstance().getApplicationContext();
-    }
-
-    @Override
-    public void getActionPlan(ActionPlanViewModel actionPlanViewModel) {
-        mChartPresenter.attemptGetChartData(actionPlanViewModel.getDayList());
     }
 
     @Override

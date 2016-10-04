@@ -11,7 +11,5 @@ import java.util.ArrayList;
 
 public interface ChartView extends GenericDetailView<ActionPlanViewModel> {
 
-    void getActionPlan(ActionPlanViewModel actionPlanViewModel);
-
     void getInfoLists(String[] dayList, float [] averageEmotions);
 }

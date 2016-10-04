@@ -15,4 +15,8 @@ import java.util.List;
 public interface ProgressView extends GenericListView<ActionPlanViewModel, RecyclerView.ViewHolder> {
 
     void setDayInfoList(List<ItemInfo> dayItemInfoList);
+
+    void sendInfoToBreakdownSuccessful (int completedAverage, int incompleteAverage, int notDoneAverage);
+
+    void sendDataToChartSuccessful(String[] dayList, float [] averageEmotions);
 }

@@ -68,7 +68,6 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        setupViewPager();
     }
 
     @Override
@@ -83,6 +82,12 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setupViewPager();
     }
 
     @Override
@@ -133,6 +138,16 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         mDayInfoRecyclerViewAdapter.setDataList(dayItemInfoList);
     }
 
+    @Override
+    public void sendInfoToBreakdownSuccessful(int completedAverage, int incompleteAverage, int notDoneAverage) {
+        mPlanBreakdownView.setActivitiesAverage(completedAverage, incompleteAverage, notDoneAverage);
+    }
+
+    @Override
+    public void sendDataToChartSuccessful(String[] dayList, float[] averageEmotions) {
+        mChartView.getInfoLists(dayList, averageEmotions);
+    }
+
     private void setupDayInfoRecyclerView() {
         mDayInfoRecyclerViewAdapter = new GenericRecyclerViewAdapter<DayInfoViewHolder>(getActivity(), new ArrayList<>()) {
             @Override
@@ -169,14 +184,12 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
                 arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
         }
         spActionPlan.setAdapter(arrayAdapter);
-        Log.d("Count", actionPlanViewModelList.size() + "");
         spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Position", position + "");
-                mPlanBreakdownView.getActionPlanList(actionPlanViewModelList.get(position));
-                mChartView.getActionPlan(actionPlanViewModelList.get(position));
                 mProgressPresenter.attemptGetDayInfoList(actionPlanViewModelList.get(position).getDayList());
+                mProgressPresenter.attemptSendInfoToBreakdown(actionPlanViewModelList.get(position).getDayList());
+                mProgressPresenter.attemptSendDataToChart(actionPlanViewModelList.get(position).getDayList());
             }
 
             @Override

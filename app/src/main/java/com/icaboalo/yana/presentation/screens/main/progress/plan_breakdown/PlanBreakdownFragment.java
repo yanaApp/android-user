@@ -31,8 +31,6 @@ import butterknife.ButterKnife;
  */
 public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdownView {
 
-    @Inject
-    PlanBreakdownPresenter mPlanBreakdownPresenter;
     @Bind(R.id.rlRetry)
     RelativeLayout rlRetry;
     @Bind(R.id.rlProgress)
@@ -55,32 +53,15 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ButterKnife.bind(this, view);
-        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_green)));
-        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_pink)));
-        pbCompleted.addData(new BarSet(new String[]{""}, new float[]{0}).setColor(getResources().getColor(R.color.yana_orange)));
-        pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
-        pbCompleted.setYLabels(AxisRenderer.LabelPosition.NONE)
-                .setXLabels(AxisRenderer.LabelPosition.NONE)
-                .setAxisBorderValues(-100, 100, 1)
-                .setYAxis(false)
-                .setXAxis(false)
-                .show();
     }
 
     @Override
     public void initialize() {
-        getComponent(UserComponent.class).inject(this);
-        mPlanBreakdownPresenter.setView(this);
     }
 
     @Override
     public void renderItem(ActionPlanViewModel item) {
 
-    }
-
-    @Override
-    public void getActionPlanList(ActionPlanViewModel actionPlanViewModel) {
-        mPlanBreakdownPresenter.attemptGetActivitiesCount(actionPlanViewModel.getDayList());
     }
 
     @Override
@@ -151,14 +132,19 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 //    }
 
     private void setProgressInfo(float completed, float incomplete, float notDone) {
-//        pbCompleted.dismiss();
+        pbCompleted.reset();
         float[][] values = {{completed}, {incomplete}, {notDone}};
-        pbCompleted.updateValues(0, values[0]);
-        pbCompleted.updateValues(1, values[1]);
-        pbCompleted.updateValues(2, values[2]);
-        pbCompleted.notifyDataUpdate();
-        pbCompleted.show(new Animation()
-                .setDuration(2500)
-                .setEasing(new ExpoEase()));
+        pbCompleted.addData(new BarSet(new String[]{""}, values[0]).setColor(getResources().getColor(R.color.yana_green)));
+        pbCompleted.addData(new BarSet(new String[]{""}, values[1]).setColor(getResources().getColor(R.color.yana_pink)));
+        pbCompleted.addData(new BarSet(new String[]{""}, values[2]).setColor(getResources().getColor(R.color.yana_orange)));
+        pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
+        pbCompleted.setYLabels(AxisRenderer.LabelPosition.NONE)
+                .setXLabels(AxisRenderer.LabelPosition.NONE)
+                .setAxisBorderValues(-100, 100, 1)
+                .setYAxis(false)
+                .setXAxis(false)
+                .show(new Animation()
+                        .setDuration(2500)
+                        .setEasing(new ExpoEase()));
     }
 }
