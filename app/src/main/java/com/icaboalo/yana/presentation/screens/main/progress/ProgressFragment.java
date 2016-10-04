@@ -8,6 +8,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -163,7 +164,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         mChartView = chartFragment;
         fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "Breakdown"));
         fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), fragmentList);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
         inkPageIndicator.setViewPager(viewPager);
     }

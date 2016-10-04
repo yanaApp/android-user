@@ -67,12 +67,9 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
 
     @Override
     public void setActivitiesAverage(int completedActivitiesAverage, int incompleteActivitiesAverage, int notDoneActivitiesAverage) {
-        if (tvCompleted != null)
-            tvCompleted.setText(String.format("%s%%", completedActivitiesAverage));
-        if (tvIncomplete != null)
-            tvIncomplete.setText(String.format("%s%%", incompleteActivitiesAverage));
-        if (tvNotDone != null)
-            tvNotDone.setText(String.format("%s%%", notDoneActivitiesAverage));
+        tvCompleted.setText(String.format("%s%%", completedActivitiesAverage));
+        tvIncomplete.setText(String.format("%s%%", incompleteActivitiesAverage));
+        tvNotDone.setText(String.format("%s%%", notDoneActivitiesAverage));
 //        pbCompleted.setMax(completedActivitiesAverage + incompleteActivitiesAverage);
 //        pbCompleted.setProgress(completedActivitiesAverage);
         setProgressInfo(completedActivitiesAverage, incompleteActivitiesAverage, notDoneActivitiesAverage);
