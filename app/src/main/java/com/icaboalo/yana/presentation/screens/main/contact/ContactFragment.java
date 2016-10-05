@@ -126,6 +126,7 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void saveContactSuccess(ContactViewModel contactViewModel) {
+        flNoContacts.setVisibility(View.GONE);
         mContactRecyclerAdapter.addItem(0, new ItemInfo<>(contactViewModel, ItemInfo.SECTION_ITEM));
     }
 
