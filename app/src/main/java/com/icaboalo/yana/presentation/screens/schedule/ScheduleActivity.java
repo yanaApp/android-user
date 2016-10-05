@@ -1,23 +1,29 @@
 package com.icaboalo.yana.presentation.screens.schedule;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
+import com.icaboalo.yana.presentation.notification.DinnerReceiver;
+import com.icaboalo.yana.presentation.notification.LunchReceiver;
+import com.icaboalo.yana.presentation.notification.SleepReceiver;
+import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
@@ -25,7 +31,9 @@ import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewMo
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
-import java.security.Key;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -35,6 +43,8 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+
+import static android.content.Context.ALARM_SERVICE;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -383,10 +393,15 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("workout", false);
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
+                    createNotification(etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id);
                     postBundle.put("sleep", etSleep.getText().toString());
+                    createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
                     postBundle.put("breakfast", etBreakfast.getText().toString());
+                    createNotification(etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id);
                     postBundle.put("lunch", etLunch.getText().toString());
+                    createNotification(etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id);
                     postBundle.put("dinner", etDinner.getText().toString());
+                    createNotification(etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id);
                     mSchedulePresenter.post(postBundle);
                 })
                 .setNegativeButton("CANCEL", (dialogInterface, i) -> {
@@ -400,6 +415,38 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, ScheduleActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    private void createNotification(String time, Class broadcastReceiverClass, int id) {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat date12Format = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm");
+
+        try {
+            Log.d("TIME", date24Format.format(date12Format.parse(time)));
+            String hour = date24Format.format(date12Format.parse(time));
+
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(hour.substring(0, 2)));
+            calendar.set(Calendar.MINUTE, Integer.valueOf(hour.substring(3, 5)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+//        if (time.contains("PM")){
+//            if (Integer.parseInt(time.substring(0, 2)) == 12)
+//                return;
+//            hour = Integer.parseInt(time.substring(0, 2)) + 12;
+//        }
+
+        Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
+
+        Intent intent = new Intent(getApplicationContext(), broadcastReceiverClass);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
 }

@@ -43,7 +43,7 @@ public class ContactPresenter extends GenericListPresenter<ContactViewModel, Con
         HashMap<String, Object> contactBundle = new HashMap<>(4);
         contactBundle.put("name", name);
         contactBundle.put("phone_number", phoneNumber);
-        contactBundle.put("relation", relation);
+        contactBundle.put("relationship", relation);
         contactBundle.put("live_together", liveTogether);
         saveContact(contactBundle);
     }

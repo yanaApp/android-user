@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.screens.main;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
@@ -27,6 +31,8 @@ import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -220,9 +226,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     finish();
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
+//                    createNotification();
                     dialog.dismiss();
                 })
                 .create().show();
+    }
+
+    private void createNotification(){
+
+        Calendar calendar = Calendar.getInstance();
+
+
+        Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
+
+        Intent intent = new Intent(getApplicationContext(), WakeUpReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 5 * 100, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
     }
 
 }
