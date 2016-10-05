@@ -19,7 +19,7 @@ import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,23 +30,23 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @Inject
     ProfilePresenter mProfilePresenter;
-    //    @Bind(R.id.rlProgress)
+    //    @BindView(R.id.rlProgress)
 //    RelativeLayout rlProgress;
-//    @Bind(R.id.rlRetry)
+//    @BindView(R.id.rlRetry)
 //    RelativeLayout rlRetry;
-    @Bind(R.id.tvFullName)
+    @BindView(R.id.tvFullName)
     TextView tvFullName;
-    @Bind(R.id.tvEmail)
+    @BindView(R.id.tvEmail)
     TextView tvEmail;
-    @Bind(R.id.tvBirthDate)
+    @BindView(R.id.tvBirthDate)
     TextView tvBirthDate;
-    @Bind(R.id.tvGender)
+    @BindView(R.id.tvGender)
     TextView tvGender;
-    @Bind(R.id.tvLocation)
+    @BindView(R.id.tvLocation)
     TextView tvLocation;
-    @Bind(R.id.tvOccupation)
+    @BindView(R.id.tvOccupation)
     TextView tvOccupation;
-    @Bind(R.id.tvDepressionMotive)
+    @BindView(R.id.tvDepressionMotive)
     TextView tvDepressionMotive;
 
     @Override

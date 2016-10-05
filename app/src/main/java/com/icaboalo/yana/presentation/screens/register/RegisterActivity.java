@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -28,13 +28,13 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Inject
     RegisterPresenter mRegisterPresenter;
-    @Bind(R.id.etFullName)
+    @BindView(R.id.etFullName)
     EditText etFullName;
-    @Bind(R.id.etEmail)
+    @BindView(R.id.etEmail)
     EditText etEmail;
-    @Bind(R.id.etPassword)
+    @BindView(R.id.etPassword)
     EditText etPassword;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
 //    @Bind(R.id.rlRetry)
 //    RelativeLayout rlRetry;

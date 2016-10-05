@@ -23,7 +23,7 @@ import com.icaboalo.yana.util.VUtil;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -108,31 +108,31 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
     public class ActivityViewHolder extends GenericRecyclerViewAdapter.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.tvTitle)
+        @BindView(R.id.tvTitle)
         TextView tvTitle;
-        @Bind(R.id.tvDescription)
+        @BindView(R.id.tvDescription)
         TextView tvDescription;
-        @Bind(R.id.activity_color)
+        @BindView(R.id.activity_color)
         View vColor;
-        @Bind(R.id.btEmotion)
+        @BindView(R.id.btEmotion)
         ImageView btEmotion;
-        @Bind(R.id.btDescription)
+        @BindView(R.id.btDescription)
         TextView btDescription;
-        @Bind(R.id.rlDescription)
+        @BindView(R.id.rlDescription)
         RelativeLayout rlDescription;
-        @Bind(R.id.rlEmotion)
+        @BindView(R.id.rlEmotion)
         RelativeLayout rlEmotion;
-        @Bind(R.id.ivCancel)
+        @BindView(R.id.ivCancel)
         ImageView ivCancel;
-        @Bind(R.id.ivVerySad)
+        @BindView(R.id.ivVerySad)
         ImageView ivVerySad;
-        @Bind(R.id.ivSad)
+        @BindView(R.id.ivSad)
         ImageView ivSad;
-        @Bind(R.id.ivNormal)
+        @BindView(R.id.ivNormal)
         ImageView ivNormal;
-        @Bind(R.id.ivHappy)
+        @BindView(R.id.ivHappy)
         ImageView ivHappy;
-        @Bind(R.id.ivVeryHappy)
+        @BindView(R.id.ivVeryHappy)
         ImageView ivVeryHappy;
 
         int mTourCount = 0, answer = 0;

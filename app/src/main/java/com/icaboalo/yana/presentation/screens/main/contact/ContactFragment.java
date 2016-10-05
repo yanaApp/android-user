@@ -45,7 +45,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -55,13 +55,13 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Inject
     ContactPresenter mContactPresenter;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.rvContact)
+    @BindView(R.id.rvContact)
     RecyclerView rvContact;
-    @Bind(R.id.flNoContacts)
+    @BindView(R.id.flNoContacts)
     FrameLayout flNoContacts;
 
     GenericRecyclerViewAdapter<GenericRecyclerViewAdapter.ViewHolder> mContactRecyclerAdapter;
