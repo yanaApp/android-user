@@ -18,7 +18,7 @@ import com.icaboalo.yana.old.ui.widget.TypewriterView;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -27,19 +27,19 @@ import butterknife.ButterKnife;
 public class TourPageFragment extends BaseFragment {
 
     @Nullable
-    @Bind(R.id.ivTutorial)
+    @BindView(R.id.ivTutorial)
     ImageView mTutorialImage;
     @Nullable
-    @Bind(R.id.tvTitle)
+    @BindView(R.id.tvTitle)
     TextView mTitle;
     @Nullable
-    @Bind(R.id.tvDescription)
+    @BindView(R.id.tvDescription)
     TextView mDescription;
     @Nullable
-    @Bind(R.id.typeView)
+    @BindView(R.id.typeView)
     TypewriterView typeView;
     @Nullable
-    @Bind(R.id.btContinue)
+    @BindView(R.id.btContinue)
     Button mContinue;
     boolean isCreated = false;
 

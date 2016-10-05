@@ -18,7 +18,7 @@ import com.icaboalo.yana.R;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -26,13 +26,13 @@ import butterknife.ButterKnife;
  */
 public class AddContactDialog extends DialogFragment {
 
-    @Bind(R.id.etFirstName)
+    @BindView(R.id.etFirstName)
     EditText etFirstName;
-    @Bind(R.id.cbLiveTogether)
+    @BindView(R.id.cbLiveTogether)
     AppCompatCheckBox cbLiveTogether;
-    @Bind(R.id.spPhoneNumber)
+    @BindView(R.id.spPhoneNumber)
     Spinner spPhoneNumber;
-    @Bind(R.id.spRelation)
+    @BindView(R.id.spRelation)
     Spinner spRelation;
     OnDialogClickListener mDialogClickListener;
 

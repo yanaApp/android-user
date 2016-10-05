@@ -20,7 +20,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -31,13 +31,13 @@ public class TourActivity extends BaseActivity implements GenericListView<Fragme
 
     @Inject
     TourPresenter mTourPresenter;
-    @Bind(R.id.view_pager)
+    @BindView(R.id.view_pager)
     ViewPager mViewPager;
-    @Bind(R.id.view_pager_indicator)
+    @BindView(R.id.view_pager_indicator)
     InkPageIndicator mViewPagerIndicator;
-    @Bind(R.id.tvSkipTutorial)
+    @BindView(R.id.tvSkipTutorial)
     TextView tvSkipTutorial;
-    @Bind(R.id.btLogin)
+    @BindView(R.id.btLogin)
     TextView btLogin;
 
     @Override

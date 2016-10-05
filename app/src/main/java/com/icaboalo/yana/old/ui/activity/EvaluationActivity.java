@@ -19,12 +19,12 @@ import com.icaboalo.yana.presentation.screens.evaluation.TestResultFragment;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EvaluationActivity extends AppCompatActivity implements EvaluationClickListener {
 
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     NonSwipeableViewPager viewPager;
 
     private int mCurrentPosition = 0;
