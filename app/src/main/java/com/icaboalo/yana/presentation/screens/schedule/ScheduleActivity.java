@@ -19,6 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
+import com.icaboalo.yana.presentation.notification.DinnerReceiver;
+import com.icaboalo.yana.presentation.notification.LunchReceiver;
 import com.icaboalo.yana.presentation.notification.SleepReceiver;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -394,8 +397,11 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                     postBundle.put("sleep", etSleep.getText().toString());
                     createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
                     postBundle.put("breakfast", etBreakfast.getText().toString());
+                    createNotification(etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id);
                     postBundle.put("lunch", etLunch.getText().toString());
+                    createNotification(etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id);
                     postBundle.put("dinner", etDinner.getText().toString());
+                    createNotification(etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id);
                     mSchedulePresenter.post(postBundle);
                 })
                 .setNegativeButton("CANCEL", (dialogInterface, i) -> {
