@@ -35,8 +35,8 @@ public class SleepReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setTicker("Saludos de Yana! :)")
                 .setSmallIcon(R.drawable.happy_28)
-                .setContentTitle("Hora de despertar")
-                .setContentText("Buenos dias por la mañana.")
+                .setContentTitle("Hora de terminar el día")
+                .setContentText("Entra a completar las actividades antes de dormir.")
                 .setAutoCancel(true);
 
         notificationManager.notify(id, notificationBuilder.build());

@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.notification.SleepReceiver;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
@@ -391,6 +392,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                     postBundle.put("wake_up", etWakeUp.getText().toString());
                     createNotification(etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id);
                     postBundle.put("sleep", etSleep.getText().toString());
+                    createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
                     postBundle.put("breakfast", etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
