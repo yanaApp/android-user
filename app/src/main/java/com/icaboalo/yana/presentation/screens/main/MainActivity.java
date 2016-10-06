@@ -216,7 +216,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void showLogOutConfirmationDialog() {
         new AlertDialog.Builder(MainActivity.this)
                 .setIcon(R.drawable.ic_exit_to_app_black_24dp)
-                .setTitle("Are you sure you want to exit?")
+                .setTitle(R.string.log_out_description)
                 .setMessage("")
                 .setCancelable(false)
                 .setPositiveButton("Sure", (dialog, which) -> {

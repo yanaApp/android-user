@@ -120,6 +120,7 @@
     <string name="depression_motive">Why are you depressed?</string>
     <string name="action_additional_info">Additional Info</string>
     <string name="not_done">Not Done</string>
+    <string name="log_out_description">Are you sure you want to exit?</string>
 
     <array name="beck_test">
         <!--1-->

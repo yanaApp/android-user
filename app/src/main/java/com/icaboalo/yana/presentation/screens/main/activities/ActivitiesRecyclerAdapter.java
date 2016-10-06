@@ -97,8 +97,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             notifyItemRangeChanged(position, getItemCount());
         });
 
-//        if (position == getPureDataList().size() -1)
-//            holder.startTour();
+        if (position == getPureDataList().size() -1)
+            holder.startTour();
 
     }
 

@@ -245,4 +245,5 @@
     <string name="action_additional_info">Información Adicional</string>
     <string name="not_done">No hechas</string>
     <string name="error_field_required"></string>
+    <string name="log_out_description">¿Estás seguro que quieres cerrar sesión?</string>
 </resources>

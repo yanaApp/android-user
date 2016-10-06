@@ -159,7 +159,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     }
 
     private void setupActivityRecycler(){
-        mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getApplicationContext(), new ArrayList<>()){
+        mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getActivity(), new ArrayList<>()){
             @Override
             public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 switch (viewType){
