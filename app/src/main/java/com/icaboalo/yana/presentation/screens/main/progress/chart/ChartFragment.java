@@ -48,7 +48,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @Override
     public void initialize() {
-        getComponent(UserComponent.class).inject(this);
     }
 
     @Override

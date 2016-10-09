@@ -39,8 +39,6 @@ public interface UserComponent {
 
     void inject(ActivitiesFragment activitiesFragment);
 
-    void inject(PlanBreakdownFragment planBreakdownFragment);
-
     void inject(ProfileFragment profileFragment);
 
     void inject(UpdateProfileActivity updateProfileActivity);
@@ -50,8 +48,6 @@ public interface UserComponent {
     void inject(ScheduleActivity scheduleActivity);
 
     void inject(HotlineFragment hotlineFragment);
-
-    void inject(ChartFragment chartFragment);
 
     void inject(ProgressFragment progressFragment);
 }

@@ -29,6 +29,7 @@ import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
 import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
+import com.icaboalo.yana.presentation.screens.main.settings.SettingsActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
@@ -137,6 +138,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     fragment = new HotlineFragment();
                     replaceFragment(fragment);
                 }
+                break;
+            case R.id.nav_settings:
+                navigator.navigateTo(getApplicationContext(), SettingsActivity.getCallingIntent(getApplicationContext()));
                 break;
             case R.id.nav_log_out:
                 showLogOutConfirmationDialog();
