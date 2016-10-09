@@ -32,6 +32,7 @@
         android:id="@+id/btLogin"
         android:visibility="invisible"
         android:layout_alignParentBottom="true"
+        android:textAllCaps="true"
         android:text="@string/have_an_account"
         android:gravity="center"
         android:background="#d3d3d3"
