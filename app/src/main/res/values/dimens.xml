@@ -6,4 +6,20 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="divider">1dp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="size_double">32dp</dimen>
+    <dimen name="size_double_unit">2dp</dimen>
+    <dimen name="size_half">8dp</dimen>
+    <dimen name="size_large">20dp</dimen>
+    <dimen name="size_larger">24dp</dimen>
+    <dimen name="size_medium">12dp</dimen>
+    <dimen name="size_micro">4dp</dimen>
+    <dimen name="size_normal">16dp</dimen>
+    <dimen name="size_nothing">0dp</dimen>
+    <dimen name="size_small">6dp</dimen>
+    <dimen name="size_unit">1dp</dimen>
+    <dimen name="default_touch_area">48dp</dimen>
+
 </resources>

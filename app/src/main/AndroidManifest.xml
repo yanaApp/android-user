@@ -73,7 +73,10 @@
         <receiver android:name=".presentation.notification.WakeUpReceiver" />
         <receiver android:name=".presentation.notification.SleepReceiver" />
 
-        <activity android:name=".presentation.screens.main.settings.SettingsActivity"></activity>
+        <activity
+            android:name=".presentation.screens.main.settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
