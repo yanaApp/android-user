@@ -114,7 +114,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @OnClick(R.id.tvFinishPlan)
     void showFinishDialog(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Finish plan")
                 .setMessage("")
                 .setPositiveButton("Si", (dialog, which) -> {
@@ -122,9 +122,9 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
                 })
                 .setNegativeButton("Cancelar", (dialog, which) -> {
 
-                });
+                }).create();
 
-        alertDialog.create().show();
+        alertDialog.show();
     }
 
     public static Intent getCallingIntent(Context context) {
