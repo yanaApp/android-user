@@ -438,13 +438,6 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             e.printStackTrace();
         }
 
-
-//        if (time.contains("PM")){
-//            if (Integer.parseInt(time.substring(0, 2)) == 12)
-//                return;
-//            hour = Integer.parseInt(time.substring(0, 2)) + 12;
-//        }
-
         Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
 
         Intent intent = new Intent(getApplicationContext(), broadcastReceiverClass);
