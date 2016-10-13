@@ -1,0 +1,12 @@
+package com.icaboalo.yana.presentation.screens.main.settings;
+
+import android.os.Bundle;
+
+import com.icaboalo.yana.presentation.screens.GenericDetailView;
+
+/**
+ * Created by icaboalo on 12/10/16.
+ */
+
+public interface SettingsView extends GenericDetailView<Bundle> {
+}
