@@ -1,13 +1,16 @@
 package com.icaboalo.yana.presentation.screens.main.settings;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -17,6 +20,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 public class SettingsActivity extends BaseActivity implements SettingsView {
 
@@ -106,6 +110,21 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
                 mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.nightNotification, isChecked);
                 break;
         }
+    }
+
+    @OnClick(R.id.tvFinishPlan)
+    void showFinishDialog(){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Finish plan")
+                .setMessage("")
+                .setPositiveButton("Si", (dialog, which) -> {
+
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+
+                });
+
+        alertDialog.create().show();
     }
 
     public static Intent getCallingIntent(Context context) {

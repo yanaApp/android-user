@@ -137,6 +137,7 @@
                     android:text="Plan" />
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:id="@+id/tvFinishPlan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
