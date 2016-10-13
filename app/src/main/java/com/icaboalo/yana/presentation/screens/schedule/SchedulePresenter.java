@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.screens.schedule;
 
+import android.content.Context;
+
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
@@ -15,6 +17,9 @@ import javax.inject.Inject;
 public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
     private int mId;
+    public static String wakeUpnotification = "wakeUpNotificationTime", sleepNotification = "sleepNotificationTime",
+            breakfastNotification = "breakfastNotificationTime", lunchNotification = "lunchNotificationTime",
+            dinnerNotification = "dinnerNotificationTime";
 
     @Inject
     public SchedulePresenter(GenericUseCase genericUseCase) {
@@ -30,5 +35,16 @@ public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
     public void setId(int id) {
         mId = id;
+    }
+
+    public void attemptSaveNotificationTime(String type, String hour){
+        saveNotificationTime(type, hour);
+    }
+
+    private void saveNotificationTime(String type, String hour){
+        getGenericPostView().getApplicationContext().getSharedPreferences("notifications", Context.MODE_PRIVATE)
+                .edit()
+                .putString(type, hour)
+                .apply();
     }
 }

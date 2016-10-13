@@ -394,14 +394,19 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
                     createNotification(etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id);
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.wakeUpnotification, etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
                     createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etSleep.getText().toString());
                     postBundle.put("breakfast", etBreakfast.getText().toString());
                     createNotification(etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id);
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
                     createNotification(etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id);
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.lunchNotification, etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
                     createNotification(etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id);
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.dinnerNotification, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);
                 })
                 .setNegativeButton("CANCEL", (dialogInterface, i) -> {
