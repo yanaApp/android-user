@@ -9,4 +9,6 @@ import com.icaboalo.yana.presentation.screens.GenericDetailView;
  */
 
 public interface SettingsView extends GenericDetailView<Bundle> {
+
+    void notificationUpdated(String type);
 }

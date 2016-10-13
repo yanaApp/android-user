@@ -28,14 +28,18 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
     }
 
     public void attemptUpdateNotificationSetting(String type, boolean active) {
+        hideViewRetry();
+        showViewLoading();
         updateNotificationSettings(type, active);
     }
 
     private void updateNotificationSettings(String type, boolean active) {
         getGenericDetailView().getApplicationContext()
-                .getSharedPreferences("", Context.MODE_PRIVATE)
+                .getSharedPreferences("notification", Context.MODE_PRIVATE)
                 .edit()
                 .putBoolean(type, active)
                 .apply();
+        ((SettingsView) getGenericDetailView()).notificationUpdated(type);
+        hideViewLoading();
     }
 }

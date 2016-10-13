@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 
-public class SettingsActivity extends BaseActivity implements SettingsView{
+public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Inject
     SettingsPresenter mSettingsPresenter;
@@ -94,8 +94,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView{
     }
 
     @OnCheckedChanged({R.id.swFoodNotification, R.id.swDayNotification, R.id.swNightNotification})
-    void onCheckChanged(CompoundButton button, boolean isChecked){
-        switch (button.getId()){
+    void onCheckChanged(CompoundButton button, boolean isChecked) {
+        switch (button.getId()) {
             case R.id.swFoodNotification:
                 mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.foodNotification, isChecked);
                 break;
@@ -108,8 +108,12 @@ public class SettingsActivity extends BaseActivity implements SettingsView{
         }
     }
 
-
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    @Override
+    public void notificationUpdated(String type) {
+        showError(type);
     }
 }
