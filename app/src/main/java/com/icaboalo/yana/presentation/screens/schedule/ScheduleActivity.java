@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -43,8 +42,6 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
-
-import static android.content.Context.ALARM_SERVICE;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -394,7 +391,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
                     createNotification(etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.wakeUpnotification, etWakeUp.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.wakeUpNotification, etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
                     createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etSleep.getText().toString());

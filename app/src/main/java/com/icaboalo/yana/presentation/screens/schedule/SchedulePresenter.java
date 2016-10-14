@@ -17,7 +17,7 @@ import javax.inject.Inject;
 public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
     private int mId;
-    public static String wakeUpnotification = "wakeUpNotificationTime", sleepNotification = "sleepNotificationTime",
+    public static String wakeUpNotification = "wakeUpNotificationTime", sleepNotification = "sleepNotificationTime",
             breakfastNotification = "breakfastNotificationTime", lunchNotification = "lunchNotificationTime",
             dinnerNotification = "dinnerNotificationTime";
 
