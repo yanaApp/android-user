@@ -10,6 +10,7 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
 import com.icaboalo.yana.presentation.notification.DinnerReceiver;
 import com.icaboalo.yana.presentation.notification.LunchReceiver;
+import com.icaboalo.yana.presentation.notification.SleepReceiver;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
 import com.icaboalo.yana.util.Utils;
@@ -74,7 +75,12 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), WakeUpReceiver.class, WakeUpReceiver.id);
                 break;
             case PrefConstants.NIGHT_NOTIFICATION_ACTIVE:
-
+                if (active)
+                    Utils.createNotification(getGenericDetailView().getApplicationContext(),
+                            getNotificationTime(PrefConstants.SLEEP_NOTIFICATION), SleepReceiver.class,
+                            SleepReceiver.id, AlarmManager.INTERVAL_DAY);
+                else
+                    Utils.deleteNotification(getGenericDetailView().getApplicationContext(), SleepReceiver.class, SleepReceiver.id);
                 break;
         }
         getGenericDetailView().getApplicationContext()
