@@ -52,7 +52,7 @@
                     android:clickable="true">
 
                     <android.support.v7.widget.SwitchCompat
-                        android:id="@+id/swFoodNotification"
+                        android:id="@+id/swFoodNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"

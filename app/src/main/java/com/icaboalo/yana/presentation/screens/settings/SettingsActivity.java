@@ -37,7 +37,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     RelativeLayout rlDayNotification;
     @BindView(R.id.rlNightNotification)
     RelativeLayout rlNightNotification;
-    @BindView(R.id.swFoodNotification)
+    @BindView(R.id.swFoodNotifications)
     SwitchCompat swFoodNotification;
     @BindView(R.id.swDayNotification)
     SwitchCompat swDayNotification;
@@ -98,10 +98,10 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         showToastMessage(message);
     }
 
-    @OnCheckedChanged({R.id.swFoodNotification, R.id.swDayNotification, R.id.swNightNotification})
+    @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})
     void onCheckChanged(CompoundButton button, boolean isChecked) {
         switch (button.getId()) {
-            case R.id.swFoodNotification:
+            case R.id.swFoodNotifications:
                 mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.FOOD_NOTIFICATION_ACTIVE, isChecked);
                 break;
             case R.id.swDayNotification:

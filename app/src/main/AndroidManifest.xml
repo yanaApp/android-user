@@ -49,7 +49,7 @@
             android:name=".presentation.screens.main.profile.update.UpdateProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".old.ui.activity.EvaluationActivity"
             android:screenOrientation="portrait"
@@ -76,7 +76,8 @@
         <activity
             android:name=".presentation.screens.settings.SettingsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".presentation.screens.settings.food_notifications.FoodNotificationsActivity"></activity>
     </application>
 
 </manifest>
