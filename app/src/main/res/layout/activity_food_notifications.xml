@@ -50,21 +50,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_background"
-        android:clickable="true">
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
 
         <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swBreakfastNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:id="@id/email_notifications_switch"
             android:layout_gravity="right"
-            app:paddingLeft="@dimen/size_normal"
-            app:paddingRight="@dimen/size_normal" />
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:text="Email notifications" />
+            android:text="@string/breakfast_notifications" />
     </FrameLayout>
 
     <View style="@style/SettingsDivider" />
@@ -72,21 +73,22 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_background"
-        android:clickable="true">
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
 
         <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swLunchNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:id="@id/email_notifications_switch"
             android:layout_gravity="right"
-            app:paddingLeft="@dimen/size_normal"
-            app:paddingRight="@dimen/size_normal" />
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:text="Email notifications" />
+            android:text="@string/lunch_notifications" />
     </FrameLayout>
 
     <View style="@style/SettingsDivider" />
@@ -94,20 +96,21 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_background"
-        android:clickable="true">
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
 
         <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swDinnerNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:id="@id/email_notifications_switch"
             android:layout_gravity="right"
-            app:paddingLeft="@dimen/size_normal"
-            app:paddingRight="@dimen/size_normal" />
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:text="Email notifications" />
+            android:text="@string/dinner_notifications" />
     </FrameLayout>
 </LinearLayout>

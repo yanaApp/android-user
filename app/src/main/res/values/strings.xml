@@ -121,6 +121,9 @@
     <string name="action_additional_info">Additional Info</string>
     <string name="not_done">Not Done</string>
     <string name="log_out_description">Are you sure you want to exit?</string>
+    <string name="breakfast_notifications">Breakfast notifications</string>
+    <string name="lunch_notifications">Lunch notifications</string>
+    <string name="dinner_notifications">Dinner notifications</string>
 
     <array name="beck_test">
         <!--1-->
