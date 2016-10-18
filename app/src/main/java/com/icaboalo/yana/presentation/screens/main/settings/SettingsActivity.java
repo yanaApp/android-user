@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 
@@ -61,9 +62,9 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     public void renderItem(Bundle item) {
         hideLoading();
         hideRetry();
-        swFoodNotification.setChecked(item.getBoolean("foodNotificationEnabled", true));
-        swDayNotification.setChecked(item.getBoolean("dayNotificationEnabled", true));
-        swNightNotification.setChecked(item.getBoolean("nightNotificationEnabled", true));
+        swFoodNotification.setChecked(item.getBoolean(PrefConstants.FOOD_NOTIFICATION_ACTIVE));
+        swDayNotification.setChecked(item.getBoolean(PrefConstants.DAY_NOTIFICATION_ACTIVE));
+        swNightNotification.setChecked(item.getBoolean(PrefConstants.NIGHT_NOTIFICATION_ACTIVE));
     }
 
     @Override
@@ -99,13 +100,13 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     void onCheckChanged(CompoundButton button, boolean isChecked) {
         switch (button.getId()) {
             case R.id.swFoodNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.FOOD_NOTIFICATION, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.FOOD_NOTIFICATION_ACTIVE, isChecked);
                 break;
             case R.id.swDayNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.DAY_NOTIFICATION, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DAY_NOTIFICATION_ACTIVE, isChecked);
                 break;
             case R.id.swNightNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.NIGHT_NOTIFICATION, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, isChecked);
                 break;
         }
     }

@@ -398,7 +398,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                     mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION, etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
                     Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFIATION, etLunch.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFICATION, etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
                     Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION, etDinner.getText().toString());
