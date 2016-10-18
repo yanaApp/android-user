@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.main.settings;
+package com.icaboalo.yana.presentation.screens.settings;
 
 import android.content.Context;
 import android.content.Intent;
@@ -126,6 +126,18 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
                 }).create();
 
         alertDialog.show();
+    }
+
+    @OnClick({R.id.rlFoodNotification, R.id.rlDayNotification, R.id.rlNightNotification})
+    void goToNotificationSettings(View view){
+        switch (view.getId()){
+            case R.id.rlFoodNotification:
+                break;
+            case R.id.rlDayNotification:
+                break;
+            case R.id.rlNightNotification:
+                break;
+        }
     }
 
     public static Intent getCallingIntent(Context context) {

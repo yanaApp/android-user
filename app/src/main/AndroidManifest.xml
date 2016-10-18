@@ -74,7 +74,7 @@
         <receiver android:name=".presentation.notification.SleepReceiver" />
 
         <activity
-            android:name=".presentation.screens.main.settings.SettingsActivity"
+            android:name=".presentation.screens.settings.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
     </application>

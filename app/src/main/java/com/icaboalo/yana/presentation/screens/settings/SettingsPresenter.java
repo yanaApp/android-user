@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.main.settings;
+package com.icaboalo.yana.presentation.screens.settings;
 
 import android.app.AlarmManager;
 import android.content.Context;
