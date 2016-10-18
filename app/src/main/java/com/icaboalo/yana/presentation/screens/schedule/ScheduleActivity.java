@@ -1,14 +1,12 @@
 package com.icaboalo.yana.presentation.screens.schedule;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,9 +28,6 @@ import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewMo
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -42,6 +37,9 @@ import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+
+import static com.icaboalo.yana.PrefConstants.*;
+import static com.icaboalo.yana.PrefConstants.SLEEP_NOTIFICATION;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -391,24 +389,22 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
                     Utils.createNotification(getApplicationContext(), etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.wakeUpNotification, etWakeUp.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(WAKE_UP_NOTIFICATION, etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
                     Utils.createNotification(getApplicationContext(), etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etSleep.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(SLEEP_NOTIFICATION, etSleep.getText().toString());
                     postBundle.put("breakfast", etBreakfast.getText().toString());
                     Utils.createNotification(getApplicationContext(), etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etBreakfast.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION, etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
                     Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.lunchNotification, etLunch.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFIATION, etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
                     Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.dinnerNotification, etDinner.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);
                 })
-                .setNegativeButton("CANCEL", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                })
+                .setNegativeButton("CANCEL", (dialogInterface, i) -> dialogInterface.dismiss())
                 .create();
 
         confirmationDialog.setCancelable(false);

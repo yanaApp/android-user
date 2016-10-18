@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.schedule;
 
 import android.content.Context;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
@@ -11,15 +12,14 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
+import static com.icaboalo.yana.PrefConstants.NOTIFICATIONS_FILE;
+
 /**
  * @author icaboalo on 07/09/16.
  */
 public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
     private int mId;
-    public static String wakeUpNotification = "wakeUpNotificationTime", sleepNotification = "sleepNotificationTime",
-            breakfastNotification = "breakfastNotificationTime", lunchNotification = "lunchNotificationTime",
-            dinnerNotification = "dinnerNotificationTime";
 
     @Inject
     public SchedulePresenter(GenericUseCase genericUseCase) {
@@ -41,10 +41,10 @@ public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
         saveNotificationTime(type, hour);
     }
 
-    private void saveNotificationTime(String type, String hour){
-        getGenericPostView().getApplicationContext().getSharedPreferences("notifications", Context.MODE_PRIVATE)
+    private void saveNotificationTime(String prefName, String hour){
+        getGenericPostView().getApplicationContext().getSharedPreferences(NOTIFICATIONS_FILE, Context.MODE_PRIVATE)
                 .edit()
-                .putString(type, hour)
+                .putString(prefName, hour)
                 .apply();
     }
 }

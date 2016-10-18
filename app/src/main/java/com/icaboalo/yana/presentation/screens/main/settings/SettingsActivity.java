@@ -1,7 +1,6 @@
 package com.icaboalo.yana.presentation.screens.main.settings;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -10,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
@@ -101,13 +99,13 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     void onCheckChanged(CompoundButton button, boolean isChecked) {
         switch (button.getId()) {
             case R.id.swFoodNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.foodNotification, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.FOOD_NOTIFICATION, isChecked);
                 break;
             case R.id.swDayNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.dayNotification, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.DAY_NOTIFICATION, isChecked);
                 break;
             case R.id.swNightNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.nightNotification, isChecked);
+                mSettingsPresenter.attemptUpdateNotificationSetting(SettingsPresenter.NIGHT_NOTIFICATION, isChecked);
                 break;
         }
     }
