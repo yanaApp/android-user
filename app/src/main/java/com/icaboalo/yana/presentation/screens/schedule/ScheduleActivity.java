@@ -390,19 +390,19 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("workout", false);
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
-                    createNotification(etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id);
+                    Utils.createNotification(getApplicationContext(), etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.wakeUpNotification, etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
-                    createNotification(etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id);
+                    Utils.createNotification(getApplicationContext(), etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etSleep.getText().toString());
                     postBundle.put("breakfast", etBreakfast.getText().toString());
-                    createNotification(etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id);
+                    Utils.createNotification(getApplicationContext(), etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.sleepNotification, etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
-                    createNotification(etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id);
+                    Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.lunchNotification, etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
-                    createNotification(etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id);
+                    Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SchedulePresenter.dinnerNotification, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);
                 })
@@ -419,29 +419,5 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         return new Intent(context, ScheduleActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
-    private void createNotification(String time, Class broadcastReceiverClass, int id) {
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat date12Format = new SimpleDateFormat("hh:mm a");
-        SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm");
-
-        try {
-            Log.d("TIME", date24Format.format(date12Format.parse(time)));
-            String hour = date24Format.format(date12Format.parse(time));
-
-            calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(hour.substring(0, 2)));
-            calendar.set(Calendar.MINUTE, Integer.valueOf(hour.substring(3, 5)));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
-
-        Intent intent = new Intent(getApplicationContext(), broadcastReceiverClass);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-    }
 
 }
