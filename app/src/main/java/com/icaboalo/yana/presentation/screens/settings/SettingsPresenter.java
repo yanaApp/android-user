@@ -35,6 +35,9 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
         bundle.putBoolean(PrefConstants.FOOD_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.FOOD_NOTIFICATION_ACTIVE, true));
         bundle.putBoolean(PrefConstants.DAY_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.DAY_NOTIFICATION_ACTIVE, true));
         bundle.putBoolean(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, true));
+        bundle.putBoolean(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE, true));
+        bundle.putBoolean(PrefConstants.LUNCH_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.LUNCH_NOTIFICATION_ACTIVE, true));
+        bundle.putBoolean(PrefConstants.DINNER_NOTIFICATION_ACTIVE, sharedPreferences.getBoolean(PrefConstants.DINNER_NOTIFICATION_ACTIVE, true));
         getGenericDetailView().renderItem(bundle);
     }
 

@@ -30,7 +30,10 @@ public class FoodNotificationsActivity extends BaseActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    public static Intent getCallingIntent(Context context){
-        return new Intent(context, FoodNotificationsActivity.class);
+    public static Intent getCallingIntent(Context context, boolean foodNotificationActive, boolean breakfastNotificationActive,
+                                          boolean lunchNotificationActive, boolean dinnerNotificationActive){
+        return new Intent(context, FoodNotificationsActivity.class).putExtra("foodActive", foodNotificationActive)
+                .putExtra("breakfastActive", breakfastNotificationActive).putExtra("lunchActive", lunchNotificationActive)
+                .putExtra("dinnerActive", dinnerNotificationActive);
     }
 }

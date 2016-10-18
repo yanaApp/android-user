@@ -44,12 +44,14 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     SwitchCompat swDayNotification;
     @BindView(R.id.swNightNotification)
     SwitchCompat swNightNotification;
+    boolean foodNotificationActive, breakfastNotificationActive, lunchNotificationActive, dinnerNotificationActive,
+            dayNotificationActive, nightNotificationActive;
 
     @Override
     public void initialize() {
         getComponent().inject(this);
         mSettingsPresenter.setView(this);
-        mSettingsPresenter.initialize("");
+        mSettingsPresenter.initialize(" ");
     }
 
     @Override
@@ -65,6 +67,14 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     public void renderItem(Bundle item) {
         hideLoading();
         hideRetry();
+
+        foodNotificationActive = item.getBoolean(PrefConstants.FOOD_NOTIFICATION_ACTIVE);
+        breakfastNotificationActive = item.getBoolean(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE);
+        lunchNotificationActive = item.getBoolean(PrefConstants.LUNCH_NOTIFICATION_ACTIVE);
+        dinnerNotificationActive = item.getBoolean(PrefConstants.DINNER_NOTIFICATION_ACTIVE);
+        dayNotificationActive = item.getBoolean(PrefConstants.DAY_NOTIFICATION_ACTIVE);
+        nightNotificationActive = item.getBoolean(PrefConstants.NIGHT_NOTIFICATION_ACTIVE);
+
         swFoodNotification.setChecked(item.getBoolean(PrefConstants.FOOD_NOTIFICATION_ACTIVE));
         swDayNotification.setChecked(item.getBoolean(PrefConstants.DAY_NOTIFICATION_ACTIVE));
         swNightNotification.setChecked(item.getBoolean(PrefConstants.NIGHT_NOTIFICATION_ACTIVE));
@@ -133,7 +143,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     void goToNotificationSettings(View view){
         switch (view.getId()){
             case R.id.rlFoodNotification:
-                navigator.navigateToForResult(this, FoodNotificationsActivity.getCallingIntent(getApplicationContext()),
+                navigator.navigateToForResult(this, FoodNotificationsActivity.getCallingIntent(getApplicationContext(), foodNotificationActive,
+                        breakfastNotificationActive, lunchNotificationActive, dinnerNotificationActive),
                         FoodNotificationsActivity.REQUEST_CODE);
                 break;
             case R.id.rlDayNotification:
