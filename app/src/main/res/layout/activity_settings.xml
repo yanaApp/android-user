@@ -57,7 +57,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:checked="true"
                         android:paddingLeft="@dimen/size_normal"
                         android:paddingRight="@dimen/size_normal" />
 
@@ -86,7 +85,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:checked="true"
                         android:paddingLeft="@dimen/size_normal"
                         android:paddingRight="@dimen/size_normal" />
 
@@ -115,7 +113,6 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:checked="true"
                         android:paddingLeft="@dimen/size_normal"
                         android:paddingRight="@dimen/size_normal" />
 

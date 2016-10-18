@@ -109,23 +109,51 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         showToastMessage(message);
     }
 
-    @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})
-    void onCheckChanged(CompoundButton button, boolean isChecked) {
-        switch (button.getId()) {
-            case R.id.swFoodNotifications:
-                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.FOOD_NOTIFICATION_ACTIVE, isChecked);
-                break;
-            case R.id.swDayNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DAY_NOTIFICATION_ACTIVE, isChecked);
-                break;
-            case R.id.swNightNotification:
-                mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, isChecked);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case FoodNotificationsActivity.REQUEST_CODE:
+                if (data != null) {
+                    foodNotificationActive = data.getBooleanExtra("foodNotificationActive", false);
+                    breakfastNotificationActive = data.getBooleanExtra("breakfastNotificationActive", false);
+                    lunchNotificationActive = data.getBooleanExtra("lunchNotificationActive", false);
+                    dinnerNotificationActive = data.getBooleanExtra("dinnerNotificationActive", false);
+                    swFoodNotification.setChecked(foodNotificationActive);
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE,
+                            breakfastNotificationActive);
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.LUNCH_NOTIFICATION_ACTIVE,
+                            lunchNotificationActive);
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DINNER_NOTIFICATION_ACTIVE,
+                            dinnerNotificationActive);
+                }
                 break;
         }
     }
 
+    @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})
+    void onCheckChanged(CompoundButton button, boolean isChecked) {
+        if (button.isPressed())
+            switch (button.getId()) {
+                case R.id.swFoodNotifications:
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.FOOD_NOTIFICATION_ACTIVE, isChecked);
+                    foodNotificationActive = isChecked;
+                    break;
+
+                case R.id.swDayNotification:
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DAY_NOTIFICATION_ACTIVE, isChecked);
+                    dayNotificationActive = isChecked;
+                    break;
+
+                case R.id.swNightNotification:
+                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, isChecked);
+                    nightNotificationActive = isChecked;
+                    break;
+            }
+    }
+
     @OnClick(R.id.tvFinishPlan)
-    void showFinishDialog(){
+    void showFinishDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Finish plan")
                 .setMessage("")
@@ -140,15 +168,17 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     }
 
     @OnClick({R.id.rlFoodNotification, R.id.rlDayNotification, R.id.rlNightNotification})
-    void goToNotificationSettings(View view){
-        switch (view.getId()){
+    void goToNotificationSettings(View view) {
+        switch (view.getId()) {
             case R.id.rlFoodNotification:
                 navigator.navigateToForResult(this, FoodNotificationsActivity.getCallingIntent(getApplicationContext(), foodNotificationActive,
                         breakfastNotificationActive, lunchNotificationActive, dinnerNotificationActive),
                         FoodNotificationsActivity.REQUEST_CODE);
                 break;
+
             case R.id.rlDayNotification:
                 break;
+
             case R.id.rlNightNotification:
                 break;
         }
@@ -160,6 +190,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Override
     public void notificationUpdated(String type) {
+        switch (type) {
 
+        }
     }
 }

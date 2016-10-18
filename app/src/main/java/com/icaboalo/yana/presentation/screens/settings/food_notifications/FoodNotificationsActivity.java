@@ -59,10 +59,10 @@ public class FoodNotificationsActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         Intent resultData = new Intent();
-        resultData.putExtra("", foodActive);
-        resultData.putExtra("", breakfastActive);
-        resultData.putExtra("", lunchActive);
-        resultData.putExtra("", dinnerActive);
+        resultData.putExtra("foodNotificationActive", foodActive);
+        resultData.putExtra("breakfastNotificationActive", breakfastActive);
+        resultData.putExtra("lunchNotificationActive", lunchActive);
+        resultData.putExtra("dinnerNotificationActive", dinnerActive);
 
         setResult(REQUEST_CODE, resultData);
         super.onBackPressed();
