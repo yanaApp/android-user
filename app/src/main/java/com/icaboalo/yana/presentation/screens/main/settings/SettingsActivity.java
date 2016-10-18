@@ -56,6 +56,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         setContentView(R.layout.activity_settings);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -132,6 +134,6 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Override
     public void notificationUpdated(String type) {
-        showError(type);
+
     }
 }
