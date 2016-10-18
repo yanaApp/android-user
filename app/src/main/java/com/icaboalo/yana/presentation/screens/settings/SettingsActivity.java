@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
+import com.icaboalo.yana.presentation.screens.settings.food_notifications.FoodNotificationsActivity;
 
 import javax.inject.Inject;
 
@@ -132,6 +133,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     void goToNotificationSettings(View view){
         switch (view.getId()){
             case R.id.rlFoodNotification:
+                navigator.navigateToForResult(this, FoodNotificationsActivity.getCallingIntent(getApplicationContext()),
+                        FoodNotificationsActivity.REQUEST_CODE);
                 break;
             case R.id.rlDayNotification:
                 break;
