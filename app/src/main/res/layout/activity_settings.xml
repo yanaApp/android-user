@@ -204,6 +204,18 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
+                    android:text="Danos retroalimentación"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
                     android:text="Contactanos"
                     android:textSize="18sp" />
 
