@@ -120,12 +120,15 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
                     lunchNotificationActive = data.getBooleanExtra("lunchNotificationActive", false);
                     dinnerNotificationActive = data.getBooleanExtra("dinnerNotificationActive", false);
                     swFoodNotification.setChecked(foodNotificationActive);
-                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE,
-                            breakfastNotificationActive);
-                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.LUNCH_NOTIFICATION_ACTIVE,
-                            lunchNotificationActive);
-                    mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DINNER_NOTIFICATION_ACTIVE,
-                            dinnerNotificationActive);
+
+                    if (foodNotificationActive) {
+                        mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE,
+                                breakfastNotificationActive);
+                        mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.LUNCH_NOTIFICATION_ACTIVE,
+                                lunchNotificationActive);
+                        mSettingsPresenter.attemptUpdateNotificationSetting(PrefConstants.DINNER_NOTIFICATION_ACTIVE,
+                                dinnerNotificationActive);
+                    }
                 }
                 break;
         }
@@ -156,7 +159,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     void showFinishDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Finish plan")
-                .setMessage("")
+                .setMessage("Mensaje")
                 .setPositiveButton("Si", (dialog, which) -> {
 
                 })

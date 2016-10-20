@@ -96,6 +96,8 @@
     <string name="gender_title">Gender</string>
     <string name="location_title">Postal Code</string>
     <string name="occupation_title">Occupation</string>
+    <string name="settings_title">Settings</string>
+    <string name="food_notification_title">Food Notifications</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>

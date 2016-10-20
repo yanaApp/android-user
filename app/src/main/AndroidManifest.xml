@@ -75,9 +75,14 @@
 
         <activity
             android:name=".presentation.screens.settings.SettingsActivity"
+            android:label="@string/settings_title"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".presentation.screens.settings.food_notifications.FoodNotificationsActivity"></activity>
+        <activity
+            android:name=".presentation.screens.settings.food_notifications.FoodNotificationsActivity"
+            android:label="@string/food_notification_title"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
