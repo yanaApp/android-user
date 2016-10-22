@@ -118,7 +118,6 @@ public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdown
         pbCompleted.setRoundCorners(Tools.fromDpToPx(5));
         pbCompleted.setYLabels(AxisRenderer.LabelPosition.NONE)
                 .setXLabels(AxisRenderer.LabelPosition.NONE)
-                .setAxisBorderValues(-100, 100, 1)
                 .setYAxis(false)
                 .setXAxis(false)
                 .show(new Animation()

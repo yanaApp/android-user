@@ -121,7 +121,11 @@
             android:id="@+id/pbCompleted"
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:layout_below="@id/llIncomplete" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/llCompleted" />
     </RelativeLayout>
 
 </LinearLayout>
