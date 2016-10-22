@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
@@ -22,7 +23,7 @@ import com.icaboalo.yana.util.VUtil;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -72,13 +73,18 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         }
 
         holder.btEmotion.setOnClickListener(v -> {
-            descriptionExpandedPosition = -1;
-            if (emotionExpandedPosition == position) {
-                emotionExpandedPosition = -1;
+            if (holder.answer > 0) {
+                Toast.makeText(mContext, "No se puede cambiar la respuesta despues de elegirla.",
+                        Toast.LENGTH_SHORT).show();
             } else {
-                emotionExpandedPosition = position;
+                descriptionExpandedPosition = -1;
+                if (emotionExpandedPosition == position) {
+                    emotionExpandedPosition = -1;
+                } else {
+                    emotionExpandedPosition = position;
+                }
+                notifyItemRangeChanged(position, getItemCount());
             }
-            notifyItemRangeChanged(position, getItemCount());
         });
 
         holder.btDescription.setOnClickListener(v -> {
@@ -91,8 +97,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             notifyItemRangeChanged(position, getItemCount());
         });
 
-//        if (position == getPureDataList().size() -1)
-//            holder.startTour();
+        if (position == getPureDataList().size() -1)
+            holder.startTour();
 
     }
 
@@ -102,34 +108,34 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
     public class ActivityViewHolder extends GenericRecyclerViewAdapter.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.tvTitle)
+        @BindView(R.id.tvTitle)
         TextView tvTitle;
-        @Bind(R.id.tvDescription)
+        @BindView(R.id.tvDescription)
         TextView tvDescription;
-        @Bind(R.id.activity_color)
+        @BindView(R.id.activity_color)
         View vColor;
-        @Bind(R.id.btEmotion)
+        @BindView(R.id.btEmotion)
         ImageView btEmotion;
-        @Bind(R.id.btDescription)
+        @BindView(R.id.btDescription)
         TextView btDescription;
-        @Bind(R.id.rlDescription)
+        @BindView(R.id.rlDescription)
         RelativeLayout rlDescription;
-        @Bind(R.id.rlEmotion)
+        @BindView(R.id.rlEmotion)
         RelativeLayout rlEmotion;
-        @Bind(R.id.ivCancel)
+        @BindView(R.id.ivCancel)
         ImageView ivCancel;
-        @Bind(R.id.ivVerySad)
+        @BindView(R.id.ivVerySad)
         ImageView ivVerySad;
-        @Bind(R.id.ivSad)
+        @BindView(R.id.ivSad)
         ImageView ivSad;
-        @Bind(R.id.ivNormal)
+        @BindView(R.id.ivNormal)
         ImageView ivNormal;
-        @Bind(R.id.ivHappy)
+        @BindView(R.id.ivHappy)
         ImageView ivHappy;
-        @Bind(R.id.ivVeryHappy)
+        @BindView(R.id.ivVeryHappy)
         ImageView ivVeryHappy;
 
-        int mTourCount = 0;
+        int mTourCount = 0, answer = 0;
 
 
         public ActivityViewHolder(View itemView) {
@@ -149,6 +155,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                 tvDescription.setText(activity.getDescription());
                 vColor.setBackgroundColor(Color.parseColor(activity.getCategory().getColor()));
                 VUtil.setEmotionImage(context, activity.getAnswer(), btEmotion);
+                answer = activity.getAnswer();
             }
         }
 

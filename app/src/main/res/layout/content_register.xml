@@ -64,7 +64,6 @@
         android:text="@string/terms_and_privacy"
         android:gravity="center"
         android:lineSpacingExtra="3dp"
-        android:textAllCaps="true"
         android:textSize="10sp" />
 
     <Button

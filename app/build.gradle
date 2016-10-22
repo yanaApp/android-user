@@ -18,7 +18,7 @@ buildscript {
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '24.0.2'
 
     defaultConfig {
         applicationId "com.icaboalo.yana"
@@ -65,7 +65,7 @@ repositories {
 //}
 
 ext {
-    daggerVersion = '2.2'
+    daggerVersion = '2.5'
     retrofitVersion = '2.0.2'
     okhttpVersion = '3.3.1'
 }
@@ -94,7 +94,9 @@ dependencies {
 
 
 //    Butterknife
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.4.0'
+
 
 //    Animations
     compile 'com.pacioianu.david:ink-page-indicator:1.1.1'
@@ -115,6 +117,9 @@ dependencies {
 //  Rx
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
+
+//    graphs
+    compile 'com.diogobernardino:williamchart:2.3.0'
 
 }
 

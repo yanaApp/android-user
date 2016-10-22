@@ -20,10 +20,10 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
+import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.VUtil;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -43,17 +43,17 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Inject
     ActivitiesPresenter mActivitiesPresenter;
-    @Bind(R.id.tvDate)
+    @BindView(R.id.tvDate)
     TextView tvDate;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.llNoActionPlan)
+    @BindView(R.id.llNoActionPlan)
     LinearLayout llNoActionPlan;
-    @Bind(R.id.llContainer)
+    @BindView(R.id.llContainer)
     LinearLayout llContainer;
-    @Bind(R.id.rvActivity)
+    @BindView(R.id.rvActivity)
     RecyclerView rvActivity;
     private ActivitiesRecyclerAdapter mActivitiesRecyclerAdapter;
 
@@ -159,7 +159,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     }
 
     private void setupActivityRecycler(){
-        mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getApplicationContext(), new ArrayList<>()){
+        mActivitiesRecyclerAdapter = new ActivitiesRecyclerAdapter(getActivity(), new ArrayList<>()){
             @Override
             public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 switch (viewType){

@@ -13,7 +13,10 @@ public class ContactRealmModel extends RealmObject {
     @PrimaryKey
     private int id;
 
-    private String name;
+    private String name, relationship;
+
+    @SerializedName("live_together")
+    boolean liveTogether;
 
     @SerializedName("phone_number")
     private String phoneNumber;
@@ -35,5 +38,13 @@ public class ContactRealmModel extends RealmObject {
 
     public boolean isValidated() {
         return isValidated;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public boolean isLiveTogether() {
+        return liveTogether;
     }
 }

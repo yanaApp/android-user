@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -54,12 +55,14 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Inject
     ContactPresenter mContactPresenter;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.rvContact)
+    @BindView(R.id.rvContact)
     RecyclerView rvContact;
+    @BindView(R.id.flNoContacts)
+    FrameLayout flNoContacts;
 
     GenericRecyclerViewAdapter<GenericRecyclerViewAdapter.ViewHolder> mContactRecyclerAdapter;
 
@@ -102,14 +105,19 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void renderItemList(List<ContactViewModel> itemList) {
-        ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
-        Collections.sort(itemList, (lhs, rhs) ->
-                lhs.getName().compareToIgnoreCase(rhs.getName()));
-        for (ContactViewModel contact : itemList){
-            Log.d("ITEM", contact.toString());
-            itemInfoList.add(new ItemInfo<>(contact, ItemInfo.SECTION_ITEM));
+        if (itemList != null && itemList.size() > 0){
+            flNoContacts.setVisibility(View.GONE);
+            ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
+            Collections.sort(itemList, (lhs, rhs) ->
+                    lhs.getName().compareToIgnoreCase(rhs.getName()));
+            for (ContactViewModel contact : itemList){
+                Log.d("ITEM", contact.toString());
+                itemInfoList.add(new ItemInfo<>(contact, ItemInfo.SECTION_ITEM));
+            }
+            mContactRecyclerAdapter.setDataList(itemInfoList);
+        } else {
+            flNoContacts.setVisibility(View.VISIBLE);
         }
-        mContactRecyclerAdapter.setDataList(itemInfoList);
     }
 
     @Override
@@ -118,6 +126,7 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void saveContactSuccess(ContactViewModel contactViewModel) {
+        flNoContacts.setVisibility(View.GONE);
         mContactRecyclerAdapter.addItem(0, new ItemInfo<>(contactViewModel, ItemInfo.SECTION_ITEM));
     }
 

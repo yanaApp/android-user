@@ -14,7 +14,7 @@ import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerV
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.VUtil;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -22,13 +22,13 @@ import butterknife.ButterKnife;
  */
 public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
 
-    @Bind(R.id.tvDate)
+    @BindView(R.id.tvDate)
     TextView tvDate;
-    @Bind(R.id.tvCompletedCount)
+    @BindView(R.id.tvCompletedCount)
     TextView tvCompletedCount;
-    @Bind(R.id.tvIncompleteCount)
+    @BindView(R.id.tvIncompleteCount)
     TextView tvIncompleteCount;
-    @Bind(R.id.ivEmotionAverage)
+    @BindView(R.id.ivEmotionAverage)
     ImageView ivEmotionAverage;
 
     int completedCount, incompleteCount, answerTotal;

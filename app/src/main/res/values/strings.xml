@@ -27,7 +27,7 @@
     <string name="average_emotion">Average Emotion</string>
     <string name="no_action_plan">No action plan to show</string>
     <string name="live_together">Live together?</string>
-    <string name="terms_and_privacy"><![CDATA[By registering you confirm that you have read & accepted the]]><b> Terms of service </b><![CDATA[ & the ]]><b>privacy policy</b></string>
+    <string name="terms_and_privacy"><![CDATA[BY REGISTERING YOU CONFIRM THAT YOU HAVE READ & ACCEPTED THE ]]><b>TERMS OF SERVICE</b><![CDATA[ & THE ]]><b>PRIVACY POLICY</b></string>
     <string name="title_action_plan_evaluation">Personalize your action plan</string>
     <string name="description_email"> Choose your email preference to enter Yana.</string>
     <string name="description_full_name"> This name will use to contact your support network, so choose a name that you locate your loved ones.</string>
@@ -96,6 +96,8 @@
     <string name="gender_title">Gender</string>
     <string name="location_title">Postal Code</string>
     <string name="occupation_title">Occupation</string>
+    <string name="settings_title">Settings</string>
+    <string name="food_notification_title">Food Notifications</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>
@@ -119,6 +121,11 @@
     <string name="workout">¿Do you workout?</string>
     <string name="depression_motive">Why are you depressed?</string>
     <string name="action_additional_info">Additional Info</string>
+    <string name="not_done">Not Done</string>
+    <string name="log_out_description">Are you sure you want to exit?</string>
+    <string name="breakfast_notifications">Breakfast notifications</string>
+    <string name="lunch_notifications">Lunch notifications</string>
+    <string name="dinner_notifications">Dinner notifications</string>
 
     <array name="beck_test">
         <!--1-->
@@ -308,5 +315,23 @@
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>
+    </array>
+
+    <array name="motives">
+        <item>Choose a reason.</item>
+        <item>Substance Abuse</item>
+        <item>Physical or social abuse</item>
+        <item>Couple conflicts</item>
+        <item>School Conflicts</item>
+        <item>Family conflicts</item>
+        <item>Labour disputes</item>
+        <item>Development Crisis</item>
+        <item>Chronic diseases or terminal</item>
+        <item>Genetic</item>
+        <item>Indifference in life</item>
+        <item>Death or loss</item>
+        <item>Social pressure</item>
+        <item>Unknown Reason</item>
+        <item>Other</item>
     </array>
 </resources>

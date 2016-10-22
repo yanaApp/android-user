@@ -13,7 +13,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.util.EvaluationClickListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -22,11 +22,11 @@ import butterknife.OnClick;
  */
 public class TestResultFragment extends BaseFragment {
 
-    @Bind(R.id.tvTitle)
+    @BindView(R.id.tvTitle)
     TextView tvTitle;
-    @Bind(R.id.tvDescription)
+    @BindView(R.id.tvDescription)
     TextView tvDescription;
-    @Bind(R.id.btContinue)
+    @BindView(R.id.btContinue)
     Button btContinue;
 
     EvaluationClickListener mEvaluationClickListener;

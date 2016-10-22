@@ -12,7 +12,7 @@ import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.view_model.ContactViewModel;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,9 +20,9 @@ import butterknife.ButterKnife;
  */
 public class ContactViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
 
-    @Bind(R.id.tvContactName)
+    @BindView(R.id.tvContactName)
     TextView tvContactName;
-    @Bind(R.id.ivContactValidated)
+    @BindView(R.id.ivContactValidated)
     ImageView ivContactValidated;
 
     public ContactViewHolder(View itemView) {

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.screens.settings.SettingsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.WhiteToolbar" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    style="@style/SettingsTitle"
+                    android:text="Notifications" />
+
+                <RelativeLayout
+                    android:id="@+id/rlFoodNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/swFoodNotifications"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/size_normal"
+                        android:paddingRight="@dimen/size_normal" />
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="16dp"
+                        android:text="Recordatorio de comidas"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <RelativeLayout
+                    android:id="@+id/rlDayNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/swDayNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/size_normal"
+                        android:paddingRight="@dimen/size_normal" />
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="16dp"
+                        android:text="Buenos días"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <View style="@style/SettingsDivider" />
+
+                <RelativeLayout
+                    android:id="@+id/rlNightNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/swNightNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/size_normal"
+                        android:paddingRight="@dimen/size_normal" />
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="16dp"
+                        android:text="Buenas noches"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <!--<View style="@style/SettingsDivider"/>-->
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    style="@style/SettingsTitle"
+                    android:text="Plan" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:id="@+id/tvFinishPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Finalizar el plan"
+                    android:textSize="18sp" />
+
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    style="@style/SettingsTitle"
+                    android:text="Yana" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="FAQ"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Acerca de nosotros"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Valoranos"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Politica de Privacidad"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Danos retroalimentación"
+                    android:textSize="18sp" />
+
+                <View style="@style/SettingsDivider" />
+
+                <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:padding="16dp"
+                    android:text="Contactanos"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include layout="@layout/view_progress" />
+
+        <include layout="@layout/view_retry" />
+
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

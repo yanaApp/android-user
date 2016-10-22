@@ -1,8 +1,8 @@
 package com.icaboalo.yana.presentation.screens.schedule;
 
+import android.app.AlarmManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
@@ -10,30 +10,36 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
+import com.icaboalo.yana.presentation.notification.DinnerReceiver;
+import com.icaboalo.yana.presentation.notification.LunchReceiver;
+import com.icaboalo.yana.presentation.notification.SleepReceiver;
+import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
 import com.icaboalo.yana.util.PrefUtils;
+import com.icaboalo.yana.util.Utils;
 
-import java.security.Key;
 import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
+
+import static com.icaboalo.yana.PrefConstants.*;
+import static com.icaboalo.yana.PrefConstants.SLEEP_NOTIFICATION;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -42,63 +48,63 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     @Inject
     SchedulePresenter mSchedulePresenter;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.cbStudies)
+    @BindView(R.id.cbStudies)
     SwitchCompat cbStudies;
-    @Bind(R.id.cbWork)
+    @BindView(R.id.cbWork)
     SwitchCompat cbWork;
-    @Bind(R.id.cbWorkout)
+    @BindView(R.id.cbWorkout)
     SwitchCompat cbWorkout;
-    @Bind(R.id.etStudyFrom)
+    @BindView(R.id.etStudyFrom)
     EditText etStudyForm;
-    @Bind(R.id.etStudyTo)
+    @BindView(R.id.etStudyTo)
     EditText etStudyTo;
-    @Bind(R.id.etWorkFrom)
+    @BindView(R.id.etWorkFrom)
     EditText etWorkFrom;
-    @Bind(R.id.etWorkTo)
+    @BindView(R.id.etWorkTo)
     EditText etWorkTo;
-    @Bind(R.id.etWakeUp)
+    @BindView(R.id.etWakeUp)
     EditText etWakeUp;
-    @Bind(R.id.etSleep)
+    @BindView(R.id.etSleep)
     EditText etSleep;
-    @Bind(R.id.etBreakfast)
+    @BindView(R.id.etBreakfast)
     EditText etBreakfast;
-    @Bind(R.id.etLunch)
+    @BindView(R.id.etLunch)
     EditText etLunch;
-    @Bind(R.id.etDinner)
+    @BindView(R.id.etDinner)
     EditText etDinner;
-    @Bind(R.id.llStudyInfo)
+    @BindView(R.id.llStudyInfo)
     LinearLayout llStudyInfo;
-    @Bind(R.id.llWorkInfo)
+    @BindView(R.id.llWorkInfo)
     LinearLayout llWorkInfo;
-    @Bind(R.id.btStudyMonday)
+    @BindView(R.id.btStudyMonday)
     ToggleButton btStudyMonday;
-    @Bind(R.id.btStudyTuesday)
+    @BindView(R.id.btStudyTuesday)
     ToggleButton btStudyTuesday;
-    @Bind(R.id.btStudyWednesday)
+    @BindView(R.id.btStudyWednesday)
     ToggleButton btStudyWednesday;
-    @Bind(R.id.btStudyThursday)
+    @BindView(R.id.btStudyThursday)
     ToggleButton btStudyThursday;
-    @Bind(R.id.btStudyFriday)
+    @BindView(R.id.btStudyFriday)
     ToggleButton btStudyFriday;
-    @Bind(R.id.btStudySaturday)
+    @BindView(R.id.btStudySaturday)
     ToggleButton btStudySaturday;
-    @Bind(R.id.btStudySunday)
+    @BindView(R.id.btStudySunday)
     ToggleButton btStudySunday;
-    @Bind(R.id.btWorkMonday)
+    @BindView(R.id.btWorkMonday)
     ToggleButton btWorkMonday;
-    @Bind(R.id.btWorkTuesday)
+    @BindView(R.id.btWorkTuesday)
     ToggleButton btWorkTuesday;
-    @Bind(R.id.btWorkWednesday)
+    @BindView(R.id.btWorkWednesday)
     ToggleButton btWorkWednesday;
-    @Bind(R.id.btWorkThursday)
+    @BindView(R.id.btWorkThursday)
     ToggleButton btWorkThursday;
-    @Bind(R.id.btWorkFriday)
+    @BindView(R.id.btWorkFriday)
     ToggleButton btWorkFriday;
-    @Bind(R.id.btWorkSaturday)
+    @BindView(R.id.btWorkSaturday)
     ToggleButton btWorkSaturday;
-    @Bind(R.id.btWorkSunday)
+    @BindView(R.id.btWorkSunday)
     ToggleButton btWorkSunday;
 
     @Override
@@ -128,11 +134,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                if (validateData()) {
+                if (validateData())
                     showConfirmationDialog();
-
-                } else
-                    showError("Debes llenar todos los campos");
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -175,7 +178,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             case R.id.cbStudies:
                 if (checked)
                     llStudyInfo.setVisibility(View.VISIBLE);
-                else{
+                else {
                     llStudyInfo.setVisibility(View.GONE);
                     cbStudies.requestFocus();
                 }
@@ -198,75 +201,57 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             switch (view.getId()) {
                 case R.id.etStudyFrom:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etStudyForm.setText(i + ":0" + i1);
-                        else
-                            etStudyForm.setText(i + ":" + i1);
+                        etStudyForm.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etStudyTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etStudyTo.setText(i + ":0" + i1);
-                        else
-                            etStudyTo.setText(i + ":" + i1);
+                        etStudyTo.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkFrom:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWorkFrom.setText(i + ":0" + i1);
-                        else
-                            etWorkFrom.setText(i + ":" + i1);
+                        etWorkFrom.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWorkTo:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWorkTo.setText(i + ":0" + i1);
-                        else
-                            etWorkTo.setText(i + ":" + i1);
+                        etWorkTo.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etWakeUp:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etWakeUp.setText(i + ":0" + i1);
-                        else
-                            etWakeUp.setText(i + ":" + i1);
+                        etWakeUp.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etSleep:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etSleep.setText(i + ":0" + i1);
-                        else
-                            etSleep.setText(i + ":" + i1);
+                        etSleep.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etBreakfast:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etBreakfast.setText(i + ":0" + i1);
-                        else
-                            etBreakfast.setText(i + ":" + i1);
+                        etBreakfast.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etLunch:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etLunch.setText(i + ":0" + i1);
-                        else
-                            etLunch.setText(i + ":" + i1);
+                        etLunch.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
                 case R.id.etDinner:
                     new TimePickerDialog(this, (timePicker, i, i1) -> {
-                        if (String.valueOf(i1).length() == 1)
-                            etDinner.setText(i + ":0" + i1);
-                        else
-                            etDinner.setText(i + ":" + i1);
+                        etDinner.setText(Utils.transformTo24Hours(i, i1));
                     }, 12, 0, false).show();
+                    ((EditText) view).setError(null);
                     break;
             }
     }
@@ -277,74 +262,47 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         switch (view.getId()) {
             case R.id.etStudyFrom:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etStudyForm.setText(i + ":0" + i1);
-                    else
-                        etStudyForm.setText(i + ":" + i1);
+                    etStudyForm.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etStudyTo:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etStudyTo.setText(i + ":0" + i1);
-                    else
-                        etStudyTo.setText(i + ":" + i1);
+                    etStudyTo.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWorkFrom:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWorkFrom.setText(i + ":0" + i1);
-                    else
-                        etWorkFrom.setText(i + ":" + i1);
+                    etWorkFrom.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWorkTo:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWorkTo.setText(i + ":0" + i1);
-                    else
-                        etWorkTo.setText(i + ":" + i1);
+                    etWorkTo.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etWakeUp:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etWakeUp.setText(i + ":0" + i1);
-                    else
-                        etWakeUp.setText(i + ":" + i1);
+                    etWakeUp.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etSleep:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etSleep.setText(i + ":0" + i1);
-                    else
-                        etSleep.setText(i + ":" + i1);
+                    etSleep.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etBreakfast:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etBreakfast.setText(i + ":0" + i1);
-                    else
-                        etBreakfast.setText(i + ":" + i1);
+                    etBreakfast.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etLunch:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etLunch.setText(i + ":0" + i1);
-                    else
-                        etLunch.setText(i + ":" + i1);
+                    etLunch.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
             case R.id.etDinner:
                 new TimePickerDialog(this, (timePicker, i, i1) -> {
-                    if (String.valueOf(i1).length() == 1)
-                        etDinner.setText(i + ":0" + i1);
-                    else
-                        etDinner.setText(i + ":" + i1);
+                    etDinner.setText(Utils.transformTo24Hours(i, i1));
                 }, 12, 0, false).show();
                 break;
         }
@@ -352,30 +310,41 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     private boolean validateData() {
         if (cbStudies.isChecked()) {
-            if (etStudyForm.getText().toString().isEmpty())
+            if (etStudyForm.getText().toString().isEmpty()) {
+                etStudyForm.setError(getString(R.string.error_empty_field));
                 return false;
-            else if (etStudyTo.getText().toString().isEmpty())
+            } else if (etStudyTo.getText().toString().isEmpty()) {
+                etStudyTo.setError(getString(R.string.error_empty_field));
                 return false;
+            }
         }
 
         if (cbWork.isChecked()) {
-            if (etWorkFrom.getText().toString().isEmpty())
+            if (etWorkFrom.getText().toString().isEmpty()) {
+                etWorkFrom.setError(getString(R.string.error_empty_field));
                 return false;
-            else if (etWorkTo.getText().toString().isEmpty())
+            } else if (etWorkTo.getText().toString().isEmpty()) {
+                etStudyTo.setError(getString(R.string.error_empty_field));
                 return false;
+            }
         }
 
-        if (etWakeUp.getText().toString().isEmpty())
+        if (etWakeUp.getText().toString().isEmpty()) {
+            etWakeUp.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etSleep.getText().toString().isEmpty())
+        } else if (etSleep.getText().toString().isEmpty()) {
+            etSleep.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etBreakfast.getText().toString().isEmpty())
+        } else if (etBreakfast.getText().toString().isEmpty()) {
+            etBreakfast.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etLunch.getText().toString().isEmpty())
+        } else if (etLunch.getText().toString().isEmpty()) {
+            etLunch.setError(getString(R.string.error_empty_field));
             return false;
-        else if (etDinner.getText().toString().isEmpty())
+        } else if (etDinner.getText().toString().isEmpty()) {
+            etDinner.setError(getString(R.string.error_empty_field));
             return false;
-        else
+        } else
             return true;
     }
 
@@ -419,15 +388,23 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                         postBundle.put("workout", false);
 
                     postBundle.put("wake_up", etWakeUp.getText().toString());
+                    Utils.createNotification(getApplicationContext(), etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
+                    mSchedulePresenter.attemptSaveNotificationTime(WAKE_UP_NOTIFICATION, etWakeUp.getText().toString());
                     postBundle.put("sleep", etSleep.getText().toString());
+                    Utils.createNotification(getApplicationContext(), etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id, AlarmManager.INTERVAL_DAY);
+                    mSchedulePresenter.attemptSaveNotificationTime(SLEEP_NOTIFICATION, etSleep.getText().toString());
                     postBundle.put("breakfast", etBreakfast.getText().toString());
+                    Utils.createNotification(getApplicationContext(), etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
+                    mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION, etBreakfast.getText().toString());
                     postBundle.put("lunch", etLunch.getText().toString());
+                    Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
+                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFICATION, etLunch.getText().toString());
                     postBundle.put("dinner", etDinner.getText().toString());
+                    Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
+                    mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);
                 })
-                .setNegativeButton("CANCEL", (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                })
+                .setNegativeButton("CANCEL", (dialogInterface, i) -> dialogInterface.dismiss())
                 .create();
 
         confirmationDialog.setCancelable(false);
@@ -437,5 +414,6 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, ScheduleActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
+
 
 }

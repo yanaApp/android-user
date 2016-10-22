@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -28,13 +28,13 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Inject
     RegisterPresenter mRegisterPresenter;
-    @Bind(R.id.etFullName)
+    @BindView(R.id.etFullName)
     EditText etFullName;
-    @Bind(R.id.etEmail)
+    @BindView(R.id.etEmail)
     EditText etEmail;
-    @Bind(R.id.etPassword)
+    @BindView(R.id.etPassword)
     EditText etPassword;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
 //    @Bind(R.id.rlRetry)
 //    RelativeLayout rlRetry;
@@ -89,9 +89,13 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
     @OnClick(R.id.btRegister)
     void register(){
         if (etEmail.getText().toString().isEmpty() || etFullName.getText().toString().isEmpty()
-                || etPassword.getText().toString().isEmpty()){
+                || etPassword.getText().toString().isEmpty())
             showError("Debes llenar todos los campos.");
-        } else {
+        else if (!etEmail.getText().toString().contains("@"))
+            showError("Ingresa una dirección de correo valida.");
+        else if (etPassword.getText().toString().length() < 6)
+            showError("La contraseña debe de ser mayor a 6 caracteres.");
+        else {
             HashMap<String, Object> registerBundle = new HashMap<>(4);
             registerBundle.put("email", etEmail.getText().toString());
             registerBundle.put("full_name", etFullName.getText().toString());

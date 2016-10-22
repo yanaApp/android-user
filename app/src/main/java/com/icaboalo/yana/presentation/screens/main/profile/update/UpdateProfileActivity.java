@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
@@ -41,19 +41,19 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     @Inject
     UpdateProfilePresenter mUpdateProfilePresenter;
-    @Bind(R.id.rlProgress)
+    @BindView(R.id.rlProgress)
     RelativeLayout rlProgress;
-    @Bind(R.id.rlRetry)
+    @BindView(R.id.rlRetry)
     RelativeLayout rlRetry;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.etField)
+    @BindView(R.id.etField)
     EditText etField;
-    @Bind(R.id.spOptions)
+    @BindView(R.id.spOptions)
     Spinner spOptions;
-    @Bind(R.id.tvDescription)
+    @BindView(R.id.tvDescription)
     TextView tvDescription;
-    @Bind(R.id.btSave)
+    @BindView(R.id.btSave)
     Button btSave;
     private static String mType, mInfo;
 
@@ -223,7 +223,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
             //TODO add motives
             case MOTIVE:
-                String[] motives = {};
+                String[] motives = getResources().getStringArray(R.array.motives);
                 if (position == motives.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");

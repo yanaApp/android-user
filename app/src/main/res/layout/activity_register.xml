@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".old.ui.activity.RegisterActivity">
 
-    <include layout="@layout/content_register"/>
     <include layout="@layout/view_progress"/>
+
+    <include layout="@layout/content_register" />
 </RelativeLayout>

@@ -9,7 +9,10 @@ public class Contact {
 
     private int id;
 
-    private String name;
+    private String name, relationship;
+
+    @SerializedName("live_together")
+    boolean liveTogether;
 
     @SerializedName("phone_number")
     private String phoneNumber;
@@ -27,6 +30,14 @@ public class Contact {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getRelationship() {
+        return relationship;
+    }
+
+    public boolean isLiveTogether() {
+        return liveTogether;
     }
 
     public boolean isValidated() {
@@ -47,5 +58,13 @@ public class Contact {
 
     public void setValidated(boolean validated) {
         isValidated = validated;
+    }
+
+    public void setRelationship(String relationship) {
+        this.relationship = relationship;
+    }
+
+    public void setLiveTogether(boolean liveTogether) {
+        this.liveTogether = liveTogether;
     }
 }
