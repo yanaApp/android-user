@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -193,8 +194,18 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Override
     public void notificationUpdated(String type) {
+        Snackbar snackbar = Snackbar.make(rlFoodNotification, "", Snackbar.LENGTH_LONG);
         switch (type) {
-
+            case PrefConstants.FOOD_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones de comida.");
+                break;
+            case PrefConstants.DAY_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones del día.");
+                break;
+            case PrefConstants.NIGHT_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones de la noche.");
+                break;
         }
+        snackbar.show();
     }
 }
