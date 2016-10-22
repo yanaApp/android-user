@@ -2,8 +2,11 @@ package com.icaboalo.yana.presentation.screens.settings.food_notifications;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -32,6 +35,12 @@ public class FoodNotificationsActivity extends BaseActivity {
     SwitchCompat swDinnerNotification;
     @BindView(R.id.tvFoodNotifications)
     TextView tvFoodNotifications;
+    @BindView(R.id.tvBreakfast)
+    TextView tvBreakfast;
+    @BindView(R.id.tvLunch)
+    TextView tvLunch;
+    @BindView(R.id.tvDinner)
+    TextView tvDinner;
 
     @Override
     public void initialize() {
@@ -43,12 +52,12 @@ public class FoodNotificationsActivity extends BaseActivity {
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         swFoodNotifications.setChecked(foodActive);
         swBreakfastNotification.setChecked(breakfastActive);
         swLunchNotification.setChecked(lunchActive);
         swDinnerNotification.setChecked(dinnerActive);
+        setEnabled(foodActive);
 
         if (foodActive)
             tvFoodNotifications.setText("On");
@@ -68,11 +77,29 @@ public class FoodNotificationsActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent resultData = new Intent();
+                resultData.putExtra("foodNotificationActive", foodActive);
+                resultData.putExtra("breakfastNotificationActive", breakfastActive);
+                resultData.putExtra("lunchNotificationActive", lunchActive);
+                resultData.putExtra("dinnerNotificationActive", dinnerActive);
+
+                setResult(REQUEST_CODE, resultData);
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @OnCheckedChanged({R.id.swFoodNotifications, R.id.swBreakfastNotification, R.id.swLunchNotification, R.id.swDinnerNotification})
-    void onCheckChanged(CompoundButton compoundButton, boolean checked){
-        switch (compoundButton.getId()){
+    void onCheckChanged(CompoundButton compoundButton, boolean checked) {
+        switch (compoundButton.getId()) {
             case R.id.swFoodNotifications:
                 foodActive = checked;
+                setEnabled(checked);
                 if (checked)
                     tvFoodNotifications.setText("On");
                 else
@@ -91,11 +118,22 @@ public class FoodNotificationsActivity extends BaseActivity {
     }
 
     public static Intent getCallingIntent(Context context, boolean foodNotificationActive, boolean breakfastNotificationActive,
-                                          boolean lunchNotificationActive, boolean dinnerNotificationActive){
+                                          boolean lunchNotificationActive, boolean dinnerNotificationActive) {
         foodActive = foodNotificationActive;
         breakfastActive = breakfastNotificationActive;
         lunchActive = lunchNotificationActive;
         dinnerActive = dinnerNotificationActive;
         return new Intent(context, FoodNotificationsActivity.class);
+    }
+
+    private void setEnabled(boolean enabled){
+        swBreakfastNotification.setEnabled(enabled);
+        swLunchNotification.setEnabled(enabled);
+        swDinnerNotification.setEnabled(enabled);
+
+        int textColor = enabled ? getResources().getColor(R.color.primary_text) : getResources().getColor(R.color.secondary_text);
+        tvBreakfast.setTextColor(textColor);
+        tvLunch.setTextColor(textColor);
+        tvDinner.setTextColor(textColor);
     }
 }

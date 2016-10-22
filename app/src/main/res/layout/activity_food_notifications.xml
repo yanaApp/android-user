@@ -61,6 +61,7 @@
             android:paddingRight="@dimen/size_normal" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvBreakfast"
             android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,6 +88,7 @@
             android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tvLunch"
             android:text="@string/lunch_notifications" />
     </FrameLayout>
 
@@ -107,6 +109,7 @@
             android:paddingRight="@dimen/size_normal" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvDinner"
             android:textColor="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
