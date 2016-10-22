@@ -95,7 +95,7 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_add_contact:
                 checkForContactsPermission();
                 break;
@@ -105,12 +105,12 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void renderItemList(List<ContactViewModel> itemList) {
-        if (itemList != null && itemList.size() > 0){
+        if (itemList != null && itemList.size() > 0) {
             flNoContacts.setVisibility(View.GONE);
             ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
             Collections.sort(itemList, (lhs, rhs) ->
                     lhs.getName().compareToIgnoreCase(rhs.getName()));
-            for (ContactViewModel contact : itemList){
+            for (ContactViewModel contact : itemList) {
                 Log.d("ITEM", contact.toString());
                 itemInfoList.add(new ItemInfo<>(contact, ItemInfo.SECTION_ITEM));
             }
@@ -167,12 +167,12 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case 1:
-                if (resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     Uri contactsData = data.getData();
                     Cursor c = getActivity().getContentResolver().query(contactsData, null, null, null, null);
-                    if (c.moveToFirst()){
+                    if (c.moveToFirst()) {
                         String id = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
 
                         String hasPhone = c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
@@ -180,9 +180,9 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
                         if (hasPhone.equalsIgnoreCase("1")) {
                             Cursor phones = getActivity().getContentResolver().query(
                                     ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
-                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = "+ id,
+                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id,
                                     null, null);
-                            while (phones.moveToNext()){
+                            while (phones.moveToNext()) {
                                 String number = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                                 int type = phones.getInt(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
                                 switch (type) {
@@ -201,15 +201,22 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
                                         break;
                                 }
-                                phoneList.add(number);
+                                if (phoneList.size() > 0)
+                                    for (String phone : phoneList) {
+                                        if (!phone.replaceAll(String.valueOf((char) 32), "").trim().equalsIgnoreCase(number.replaceAll(String.valueOf((char) 32), "").trim())) {
+                                            phoneList.add(number);
+                                        }
+                                    }
+                                else
+                                    phoneList.add(number);
                             }
                             phones.close();
                         } else {
-                            Toast.makeText(getActivity(), "Selected contact doesn't has a saved phone number", Toast.LENGTH_SHORT).show();
+                            showError("Selected contact doesn't has a saved phone number");
                         }
                         String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
 
-                        if (hasPhone.equals("1")){
+                        if (hasPhone.equals("1")) {
                             showContactDialog(name, phoneList);
                         }
                     }
@@ -229,11 +236,11 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
         dialogInterface.dismiss();
     }
 
-    private void setupContactRecycler(){
+    private void setupContactRecycler() {
         mContactRecyclerAdapter = new GenericRecyclerViewAdapter<GenericRecyclerViewAdapter.ViewHolder>(getApplicationContext(), new ArrayList<>()) {
             @Override
             public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                switch (viewType){
+                switch (viewType) {
                     default:
                         return new ContactViewHolder(mLayoutInflater.inflate(R.layout.item_contacts_adapter, parent, false));
                 }
@@ -244,7 +251,7 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
         rvContact.setAdapter(mContactRecyclerAdapter);
     }
 
-    private void checkForContactsPermission(){
+    private void checkForContactsPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.READ_CONTACTS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -261,8 +268,8 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
         }
     }
 
-    private void showContactDialog(String name, ArrayList<String> phoneNumber){
-        AddContactDialog addContactDialog =  AddContactDialog.newInstance(name, phoneNumber);
+    private void showContactDialog(String name, ArrayList<String> phoneNumber) {
+        AddContactDialog addContactDialog = AddContactDialog.newInstance(name, phoneNumber);
         addContactDialog.setCancelable(false);
         addContactDialog.setDialogClickListener(this);
         addContactDialog.show(getActivity().getSupportFragmentManager(), "ADD_CONTACT");
