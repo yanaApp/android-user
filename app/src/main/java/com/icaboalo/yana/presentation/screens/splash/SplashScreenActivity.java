@@ -1,7 +1,9 @@
 package com.icaboalo.yana.presentation.screens.splash;
 
+import android.content.SharedPreferences;
 import android.view.Window;
 
+import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
@@ -30,6 +32,8 @@ public class SplashScreenActivity extends BaseActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+
+                checkForNotifications();
                 checkForToken();
             }
         };
@@ -52,5 +56,14 @@ public class SplashScreenActivity extends BaseActivity {
                 finish();
             }
         }
+    }
+
+    private void checkForNotifications(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.NOTIFICATIONS_FILE, MODE_PRIVATE);
+        sharedPreferences.getString(PrefConstants.WAKE_UP_NOTIFICATION, "9:00 AM");
+        sharedPreferences.getString(PrefConstants.BREAKFAST_NOTIFICATION, "10:00 AM");
+        sharedPreferences.getString(PrefConstants.LUNCH_NOTIFICATION, "15:00 PM");
+        sharedPreferences.getString(PrefConstants.DINNER_NOTIFICATION, "20:00 PM");
+        sharedPreferences.getString(PrefConstants.SLEEP_NOTIFICATION, "21:00 PM");
     }
 }

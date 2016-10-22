@@ -1,10 +1,14 @@
 package com.icaboalo.yana.util;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.util.Log;
 
 import com.icaboalo.yana.data.entities.mappers.ActionPlanEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.ActivityEntityMapper;
@@ -15,6 +19,7 @@ import com.icaboalo.yana.data.entities.mappers.EntityDataMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityMapper;
 import com.icaboalo.yana.data.entities.mappers.UserEntityMapper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -98,5 +103,37 @@ public class Utils {
                 return String.format("%d:%d AM", hour, minutes);
 
         }
+    }
+
+    public static void createNotification(Context context, String time, Class broadcastReceiverClass, int id, long interval){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat date12Format = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm");
+
+        try {
+            Log.d("TIME", date24Format.format(date12Format.parse(time)));
+            String hour = date24Format.format(date12Format.parse(time));
+
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.valueOf(hour.substring(0, 2)));
+            calendar.set(Calendar.MINUTE, Integer.valueOf(hour.substring(3, 5)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
+
+        Intent intent = new Intent(context, broadcastReceiverClass);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), interval, pendingIntent);
+    }
+
+    public static void deleteNotification(Context context, Class broadcastReceiverClass, int id){
+        Intent intent = new Intent(context, broadcastReceiverClass);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
     }
 }

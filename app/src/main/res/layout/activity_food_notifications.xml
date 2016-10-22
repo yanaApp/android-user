@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_food_notifications"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.icaboalo.yana.presentation.screens.settings.food_notifications.FoodNotificationsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.WhiteToolbar" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:id="@+id/tvFoodNotifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="72dp"
+                android:paddingBottom="@dimen/size_large"
+                android:text="On"
+                android:textColor="@color/primary_text" />
+
+            <Switch
+                android:id="@+id/swFoodNotifications"
+                style="@style/SettingsSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingRight="@dimen/size_normal" />
+        </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swBreakfastNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvBreakfast"
+            android:textColor="@color/primary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/breakfast_notifications" />
+    </FrameLayout>
+
+    <View style="@style/SettingsDivider" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swLunchNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textColor="@color/primary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLunch"
+            android:text="@string/lunch_notifications" />
+    </FrameLayout>
+
+    <View style="@style/SettingsDivider" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="@dimen/size_normal">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swDinnerNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal" />
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvDinner"
+            android:textColor="@color/primary_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dinner_notifications" />
+    </FrameLayout>
+</LinearLayout>

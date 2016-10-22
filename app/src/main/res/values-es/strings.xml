@@ -245,4 +245,8 @@
     <string name="action_additional_info">Información Adicional</string>
     <string name="not_done">No hechas</string>
     <string name="log_out_description">¿Estás seguro que quieres cerrar sesión?</string>
+    <string name="breakfast_notifications">Notificaciones de desayuno</string>
+    <string name="food_notification_title">Notificaciones de comida</string>
+    <string name="lunch_notifications">Notificaciones de comida</string>
+    <string name="settings_title">Ajustes</string>
 </resources>

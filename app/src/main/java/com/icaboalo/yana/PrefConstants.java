@@ -20,4 +20,13 @@ public class PrefConstants {
     public static final String evaluationFile = "EVALUATION";
     public static final String evaluationPref = "NUMBER";
     public static final String scorePref = "SCORE";
+
+    public static final String NOTIFICATIONS_FILE = "notifications";
+    public static String WAKE_UP_NOTIFICATION = "wakeUpNotificationTime", SLEEP_NOTIFICATION = "sleepNotificationTime",
+            BREAKFAST_NOTIFICATION = "breakfastNotificationTime", LUNCH_NOTIFICATION = "lunchNotificationTime",
+            DINNER_NOTIFICATION = "dinnerNotificationTime";
+    public final static String FOOD_NOTIFICATION_ACTIVE = "foodNotificationActive", DAY_NOTIFICATION_ACTIVE = "dayNotificationActive",
+            NIGHT_NOTIFICATION_ACTIVE = "nightNotificationActive";
+    public static final String BREAKFAST_NOTIFICATION_ACTIVE = "breakFastNotificationActive",
+            LUNCH_NOTIFICATION_ACTIVE = "lunchNotificationActive", DINNER_NOTIFICATION_ACTIVE = "dinnerNotificationActive";
 }
