@@ -111,7 +111,6 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
     public void initialize() {
         getComponent().inject(this);
         mSchedulePresenter.setView(this);
-        mSchedulePresenter.setId(PrefUtils.getScheduleId(getApplicationContext()));
     }
 
     @Override
@@ -355,51 +354,51 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
                 .setPositiveButton("SAVE", (dialogInterface, i) -> {
                     HashMap<String, Object> postBundle = new HashMap<>();
                     if (cbStudies.isChecked()) {
-                        postBundle.put("studies", true);
-                        postBundle.put("studies_from", etStudyForm.getText().toString());
-                        postBundle.put("studies_to", etStudyTo.getText().toString());
-                        postBundle.put("studies_monday", btStudyMonday.isChecked());
-                        postBundle.put("studies_tuesday", btStudyTuesday.isChecked());
-                        postBundle.put("studies_wednesday", btStudyWednesday.isChecked());
-                        postBundle.put("studies_thursday", btStudyThursday.isChecked());
-                        postBundle.put("studies_friday", btStudyFriday.isChecked());
-                        postBundle.put("studies_saturday", btStudySaturday.isChecked());
-                        postBundle.put("studies_sunday", btStudySunday.isChecked());
+                        postBundle.put("study", true);
+                        postBundle.put("study_from", etStudyForm.getText().toString());
+                        postBundle.put("study_to", etStudyTo.getText().toString());
+                        postBundle.put("study_monday", btStudyMonday.isChecked());
+                        postBundle.put("study_tuesday", btStudyTuesday.isChecked());
+                        postBundle.put("study_wednesday", btStudyWednesday.isChecked());
+                        postBundle.put("study_thursday", btStudyThursday.isChecked());
+                        postBundle.put("study_friday", btStudyFriday.isChecked());
+                        postBundle.put("study_saturday", btStudySaturday.isChecked());
+                        postBundle.put("study_sunday", btStudySunday.isChecked());
                     } else
-                        postBundle.put("studies", false);
+                        postBundle.put("study", false);
 
                     if (cbStudies.isChecked()) {
-                        postBundle.put("works", true);
-                        postBundle.put("works_from", etWorkFrom.getText().toString());
-                        postBundle.put("works_to", etWorkTo.getText().toString());
-                        postBundle.put("works_monday", btWorkMonday.isChecked());
-                        postBundle.put("works_tuesday", btWorkTuesday.isChecked());
-                        postBundle.put("works_wednesday", btWorkWednesday.isChecked());
-                        postBundle.put("works_thursday", btWorkThursday.isChecked());
-                        postBundle.put("works_friday", btWorkFriday.isChecked());
-                        postBundle.put("works_saturday", btWorkSaturday.isChecked());
-                        postBundle.put("works_sunday", btWorkSunday.isChecked());
+                        postBundle.put("work", true);
+                        postBundle.put("work_from", etWorkFrom.getText().toString());
+                        postBundle.put("work_to", etWorkTo.getText().toString());
+                        postBundle.put("work_monday", btWorkMonday.isChecked());
+                        postBundle.put("work_tuesday", btWorkTuesday.isChecked());
+                        postBundle.put("work_wednesday", btWorkWednesday.isChecked());
+                        postBundle.put("work_thursday", btWorkThursday.isChecked());
+                        postBundle.put("work_friday", btWorkFriday.isChecked());
+                        postBundle.put("work_saturday", btWorkSaturday.isChecked());
+                        postBundle.put("work_sunday", btWorkSunday.isChecked());
                     } else
-                        postBundle.put("works", false);
+                        postBundle.put("work", false);
 
                     if (cbWorkout.isChecked())
                         postBundle.put("workout", true);
                     else
                         postBundle.put("workout", false);
 
-                    postBundle.put("wake_up", etWakeUp.getText().toString());
+                    postBundle.put("wake_up_time", etWakeUp.getText().toString());
                     Utils.createNotification(getApplicationContext(), etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(WAKE_UP_NOTIFICATION, etWakeUp.getText().toString());
-                    postBundle.put("sleep", etSleep.getText().toString());
+                    postBundle.put("sleep_time", etSleep.getText().toString());
                     Utils.createNotification(getApplicationContext(), etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(SLEEP_NOTIFICATION, etSleep.getText().toString());
-                    postBundle.put("breakfast", etBreakfast.getText().toString());
+                    postBundle.put("breakfast_time", etBreakfast.getText().toString());
                     Utils.createNotification(getApplicationContext(), etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION, etBreakfast.getText().toString());
-                    postBundle.put("lunch", etLunch.getText().toString());
+                    postBundle.put("lunch_time", etLunch.getText().toString());
                     Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFICATION, etLunch.getText().toString());
-                    postBundle.put("dinner", etDinner.getText().toString());
+                    postBundle.put("dinner_time", etDinner.getText().toString());
                     Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
                     mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);

@@ -3,7 +3,9 @@ package com.icaboalo.yana.presentation.screens.schedule;
 import android.content.Context;
 
 import com.icaboalo.yana.PrefConstants;
+import com.icaboalo.yana.data.entities.realm_models.ScheduleRealmModel;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
+import com.icaboalo.yana.domain.models.Schedule;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
 import com.icaboalo.yana.util.Constants;
@@ -19,8 +21,6 @@ import static com.icaboalo.yana.PrefConstants.NOTIFICATIONS_FILE;
  */
 public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
 
-    private int mId;
-
     @Inject
     public SchedulePresenter(GenericUseCase genericUseCase) {
         super(genericUseCase);
@@ -29,12 +29,8 @@ public class SchedulePresenter extends GenericPostPresenter<ScheduleViewModel> {
     @Override
     public void post(HashMap<String, Object> postBundle) {
         showViewLoading();
-        getGenericUseCase().executeDynamicPatchObject(new PostSubscriber(), Constants.API_BASE_URL + "schedule/" + mId + "/", postBundle,
-                Object.class, Object.class, ScheduleViewModel.class, true);
-    }
-
-    public void setId(int id) {
-        mId = id;
+        getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), Constants.API_BASE_URL + "schedule/", postBundle,
+                Schedule.class, ScheduleRealmModel.class, ScheduleViewModel.class, true);
     }
 
     public void attemptSaveNotificationTime(String type, String hour){

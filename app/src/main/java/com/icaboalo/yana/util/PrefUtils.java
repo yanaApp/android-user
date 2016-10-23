@@ -83,14 +83,4 @@ public class PrefUtils {
     public static String getUserEmail(Context context) {
         return context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).getString(PrefConstants.userEmail, "");
     }
-
-    public static void setScheduleId(Context context, int id) {
-        SharedPreferences.Editor editor = context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).edit();
-        editor.putInt(PrefConstants.scheduleId, id);
-        editor.apply();
-    }
-
-    public static int getScheduleId(Context context) {
-        return context.getSharedPreferences(PrefConstants.settingsFile, Context.MODE_PRIVATE).getInt(PrefConstants.scheduleId, 0);
-    }
 }
