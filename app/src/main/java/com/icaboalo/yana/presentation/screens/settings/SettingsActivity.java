@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.settings;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -189,7 +191,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         alertDialog.show();
     }
 
-    @OnClick({R.id.rlFoodNotification, R.id.rlDayNotification, R.id.rlNightNotification})
+    @OnClick({R.id.rlFoodNotification, R.id.rlDayNotification, R.id.rlNightNotification, R.id.tvFaq, R.id.tvAboutUs, R.id.tvRateUs,
+                R.id.tvPrivacyPolicy, R.id.tvFeedback, R.id.tvContact})
     void goToNotificationSettings(View view) {
         switch (view.getId()) {
             case R.id.rlFoodNotification:
@@ -202,6 +205,37 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
                 break;
 
             case R.id.rlNightNotification:
+                break;
+
+            case R.id.tvFaq:
+                navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yana-app.com/faq")));
+                break;
+
+            case R.id.tvAboutUs:
+                navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yana-app.com/about")));
+                break;
+
+            case R.id.tvRateUs:
+                final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                try {
+                    navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException notFound) {
+                    navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+                break;
+
+            case R.id.tvPrivacyPolicy:
+                navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yana-app.com/privacy")));
+                break;
+
+            case R.id.tvFeedback:
+                navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yana-app.com/feedback")));
+                break;
+
+            case R.id.tvContact:
+                navigator.navigateTo(getApplicationContext(), new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.yana-app.com/contact")));
                 break;
         }
     }
