@@ -135,6 +135,28 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         }
     }
 
+    @Override
+    public void notificationUpdated(String type) {
+        Snackbar snackbar = Snackbar.make(rlFoodNotification, "", Snackbar.LENGTH_LONG);
+        switch (type) {
+            case PrefConstants.FOOD_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones de comida.");
+                break;
+            case PrefConstants.DAY_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones del día.");
+                break;
+            case PrefConstants.NIGHT_NOTIFICATION_ACTIVE:
+                snackbar.setText("Se actualizaron las notificaciones de la noche.");
+                break;
+        }
+        snackbar.show();
+    }
+
+    @Override
+    public void finalizePlanSuccessful() {
+
+    }
+
     @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})
     void onCheckChanged(CompoundButton button, boolean isChecked) {
         if (button.isPressed())
@@ -161,12 +183,8 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Finish plan")
                 .setMessage("Mensaje")
-                .setPositiveButton("Si", (dialog, which) -> {
-
-                })
-                .setNegativeButton("Cancelar", (dialog, which) -> {
-
-                }).create();
+                .setPositiveButton("Si", (dialog, which) -> mSettingsPresenter.attemptFinalizePlan())
+                .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss()).create();
 
         alertDialog.show();
     }
@@ -190,22 +208,5 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, SettingsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    }
-
-    @Override
-    public void notificationUpdated(String type) {
-        Snackbar snackbar = Snackbar.make(rlFoodNotification, "", Snackbar.LENGTH_LONG);
-        switch (type) {
-            case PrefConstants.FOOD_NOTIFICATION_ACTIVE:
-                snackbar.setText("Se actualizaron las notificaciones de comida.");
-                break;
-            case PrefConstants.DAY_NOTIFICATION_ACTIVE:
-                snackbar.setText("Se actualizaron las notificaciones del día.");
-                break;
-            case PrefConstants.NIGHT_NOTIFICATION_ACTIVE:
-                snackbar.setText("Se actualizaron las notificaciones de la noche.");
-                break;
-        }
-        snackbar.show();
     }
 }

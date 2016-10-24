@@ -6,14 +6,21 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.icaboalo.yana.PrefConstants;
+import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmModel;
+import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
+import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
 import com.icaboalo.yana.presentation.notification.DinnerReceiver;
 import com.icaboalo.yana.presentation.notification.LunchReceiver;
 import com.icaboalo.yana.presentation.notification.SleepReceiver;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
+import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.util.Constants;
 import com.icaboalo.yana.util.Utils;
+
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -127,8 +134,38 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
         hideViewLoading();
     }
 
+    public void attemptFinalizePlan() {
+        finalizePlan();
+    }
+
+    private void finalizePlan() {
+        hideViewRetry();
+        showViewLoading();
+        getGenericUseCase().executeDynamicPostObject(new FinalizePlanSubscriber(), Constants.API_BASE_URL + "plan/finalize/",
+                new HashMap<>(), ActionPlan.class, ActionPlanRealmModel.class, ActionPlanViewModel.class, true);
+    }
+
     private String getNotificationTime(String prefName) {
         return getGenericDetailView().getApplicationContext().getSharedPreferences(PrefConstants.NOTIFICATIONS_FILE, Context.MODE_PRIVATE)
                 .getString(prefName, "");
+    }
+
+    class FinalizePlanSubscriber extends DefaultSubscriber<ActionPlanViewModel> {
+        @Override
+        public void onCompleted() {
+            hideViewLoading();
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            showViewRetry();
+            hideViewLoading();
+            getGenericDetailView().showError(e.getMessage());
+        }
+
+        @Override
+        public void onNext(ActionPlanViewModel actionPlanViewModel) {
+            ((SettingsView) getGenericDetailView()).finalizePlanSuccessful();
+        }
     }
 }
