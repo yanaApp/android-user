@@ -79,7 +79,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void renderItem(DayViewModel item) {
-        if (item != null){
+        if (item.getDate() != null && !item.getDate().isEmpty()){
+            showError(item.getDate());
             tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
             List<ItemInfo> itemList = new ArrayList<>();
             Collections.sort(item.getActivityList(), (lhs, rhs) ->
