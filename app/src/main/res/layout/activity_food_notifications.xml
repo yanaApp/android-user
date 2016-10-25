@@ -5,7 +5,6 @@
     android:id="@+id/activity_food_notifications"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.icaboalo.yana.presentation.screens.settings.food_notifications.FoodNotificationsActivity">
 
