@@ -113,7 +113,7 @@
     <string name="button_log_in">Iniciar sesión</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="hello_again">¡Hola de nuevo!</string>
-    <string name="have_an_account">¿Ya tienes cuenta? <b>Inicia sesión</b></string>
+    <string name="have_an_account">¿YA TIENES CUENTA? <b>INICIA SESIÓN</b></string>
     <string name="button_register">Registrarme</string>
     <string name="skip">Omitir</string>
     <string name="terms_and_privacy">AL REGISTRARTE CONFIRMAS QUE HAS LEIDO Y ACEPTAS LOS <b>TERMINOS DE SERVICIO</b> Y LA <b>POLITICA DE PRIVACIDAD</b></string>
@@ -249,4 +249,6 @@
     <string name="food_notification_title">Notificaciones de comida</string>
     <string name="lunch_notifications">Notificaciones de comida</string>
     <string name="settings_title">Ajustes</string>
+    <string name="dinner_notifications">Notificationes de cena</string>
+    <string name="no_account">¿NO TIENES CUENTA? <b>REGISTRATE</b></string>
 </resources>

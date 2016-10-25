@@ -60,7 +60,7 @@
     <string name="button_log_in">Log in</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="skip">Skip</string>
-    <string name="have_an_account">Already have an account? <b>Log in</b></string>
+    <string name="have_an_account">ALREADY HAVE AN ACCOUNT? <b>LOG IN</b></string>
     <string name="button_register">Register</string>
     <string name="create_new_action_plan">Create new Action plan</string>
     <string name="take_now">Take now</string>
@@ -126,6 +126,7 @@
     <string name="breakfast_notifications">Breakfast notifications</string>
     <string name="lunch_notifications">Lunch notifications</string>
     <string name="dinner_notifications">Dinner notifications</string>
+    <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT? <b>REGISTER</b>]]></string>
 
     <array name="beck_test">
         <!--1-->
