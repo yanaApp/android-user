@@ -113,11 +113,13 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
                 count++;
             }
         }
+
         float[] averageArray = new float[averages.size()];
-        String[] dayArray = new String[count];
         for (int i = 0; i < averages.size(); i++) {
             averageArray[i] = averages.get(i);
         }
+
+        String[] dayArray = new String[count];
         ((ProgressView) getGenericListView()).sendDataToChartSuccessful(days.toArray(dayArray), averageArray);
     }
 

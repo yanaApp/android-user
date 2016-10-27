@@ -12,16 +12,12 @@ import com.db.chart.Tools;
 import com.db.chart.animation.Animation;
 import com.db.chart.animation.easing.BounceEase;
 import com.db.chart.model.LineSet;
-import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.tooltip.Tooltip;
 import com.db.chart.view.LineChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
