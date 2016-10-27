@@ -130,6 +130,7 @@
     <string name="action_hotline">Emergency Call</string>
     <string name="hotline_title">Emergency Call</string>
     <string name="current_plan">Current Plan</string>
+    <string name="no_answer_selecter">Please select one from the above</string>
 
     <array name="beck_test">
         <!--1-->

@@ -190,14 +190,14 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         switch (mType){
             case GENDER:
                 String[] genders = getResources().getStringArray(R.array.genders);
-                if (position == genders.length - 1) {
-                    etField.setVisibility(View.VISIBLE);
-                    etField.setText("");
-                }
-                else {
+//                if (position == genders.length - 1) {
+//                    etField.setVisibility(View.VISIBLE);
+//                    etField.setText("");
+//                }
+//                else {
                     etField.setVisibility(View.GONE);
-                    etField.setText(genders[position]);
-                }
+                    etField.setText(position);
+//                }
 
                 if (position == 0)
                     btSave.setVisibility(View.GONE);
