@@ -96,7 +96,7 @@ public class ActivityEntityMapper implements EntityMapper<Object, Object> {
         return list;
     }
 
-    //TODO add category
+
     public static Activity transformToDomainHelper(ActivityRealmModel activityRealmModel){
         Activity activity = new Activity();
         activity.setId(activityRealmModel.getId());

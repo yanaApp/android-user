@@ -74,7 +74,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d("Array", getResources().getStringArray(R.array.genders).toString());
         setInfo();
     }
 
@@ -221,7 +220,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                     btSave.setVisibility(View.VISIBLE);
                 break;
 
-            //TODO add motives
             case MOTIVE:
                 String[] motives = getResources().getStringArray(R.array.motives);
                 if (position == motives.length - 1) {
@@ -289,13 +287,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 tvDescription.setText(R.string.description_occupation);
                 break;
 
-            //TODO change source for list
             case MOTIVE:
                 assert actionBar != null;
                 actionBar.setTitle("Depression Motive");
                 spOptions.setVisibility(View.VISIBLE);
                 spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        new ArrayList()));
+                        getResources().getStringArray(R.array.motives)));
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
         }
