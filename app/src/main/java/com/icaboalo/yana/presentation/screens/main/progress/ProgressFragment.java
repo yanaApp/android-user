@@ -162,7 +162,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         ChartFragment chartFragment = new ChartFragment();
         mPlanBreakdownView = planBreakdownFragment;
         mChartView = chartFragment;
-        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "Breakdown"));
+        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "BreakdCown"));
         fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
@@ -174,7 +174,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
                 android.R.layout.simple_spinner_dropdown_item);
         for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
             if (actionPlan.isActive())
-                arrayAdapter.insert("Current Plan", 0);
+                arrayAdapter.insert(getString(R.string.current_plan), 0);
             else
                 arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
         }

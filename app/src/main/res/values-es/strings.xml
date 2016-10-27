@@ -253,4 +253,5 @@
     <string name="no_account">¿NO TIENES CUENTA? <b>REGISTRATE</b></string>
     <string name="action_hotline">Llamada de Emergencia</string>
     <string name="hotline_title">Llamada de Emergencia</string>
+    <string name="current_plan">Plan Actual</string>
 </resources>
