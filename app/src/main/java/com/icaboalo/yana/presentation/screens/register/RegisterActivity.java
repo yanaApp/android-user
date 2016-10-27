@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
+import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
 import com.icaboalo.yana.presentation.screens.schedule.ScheduleActivity;
@@ -87,7 +88,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
     }
 
     @OnClick(R.id.btRegister)
-    void register(){
+    void register() {
         if (etEmail.getText().toString().isEmpty() || etFullName.getText().toString().isEmpty()
                 || etPassword.getText().toString().isEmpty())
             showError("Debes llenar todos los campos.");
@@ -104,7 +105,12 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
         }
     }
 
-    public static Intent getCallingIntent(Context context){
+    @OnClick(R.id.btLogin)
+    void login() {
+        navigator.navigateTo(getApplicationContext(), LoginActivity.getCallingIntent(getApplicationContext()));
+    }
+
+    public static Intent getCallingIntent(Context context) {
         return new Intent(context, RegisterActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }
