@@ -131,7 +131,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 }
                 break;
             case R.id.nav_hotline:
-                getSupportActionBar().setTitle("Hotline");
+                getSupportActionBar().setTitle(R.string.hotline_title);
                 if (fragment instanceof HotlineFragment)
                     break;
                 else{

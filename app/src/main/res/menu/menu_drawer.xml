@@ -23,7 +23,7 @@
             android:title="@string/action_progress_title" />
         <item android:id="@+id/nav_hotline"
             android:icon="@drawable/phone_call_128dp"
-            android:title="Hotline"/>
+            android:title="@string/action_hotline"/>
     </group>
 
     <group

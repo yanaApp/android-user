@@ -251,4 +251,6 @@
     <string name="settings_title">Ajustes</string>
     <string name="dinner_notifications">Notificationes de cena</string>
     <string name="no_account">¿NO TIENES CUENTA? <b>REGISTRATE</b></string>
+    <string name="action_hotline">Llamada de Emergencia</string>
+    <string name="hotline_title">Llamada de Emergencia</string>
 </resources>

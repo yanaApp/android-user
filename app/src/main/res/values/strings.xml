@@ -127,6 +127,8 @@
     <string name="lunch_notifications">Lunch notifications</string>
     <string name="dinner_notifications">Dinner notifications</string>
     <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT? <b>REGISTER</b>]]></string>
+    <string name="action_hotline">Emergency Call</string>
+    <string name="hotline_title">Emergency Call</string>
 
     <array name="beck_test">
         <!--1-->
