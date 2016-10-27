@@ -81,6 +81,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     @OnClick(R.id.btContinue)
     void continueToMain(){
         navigator.navigateTo(getApplicationContext(), MainActivity.getCallingIntent(getApplicationContext()));
+        finish();
     }
 
     public static Intent getCallingIntent(Context context){
