@@ -103,7 +103,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
         tooltip.setPivotX(Tools.fromDpToPx(65) / 2);
         tooltip.setPivotY(Tools.fromDpToPx(25));
 
-        lineChartView.setTooltips(tooltip);
+//        lineChartView.setTooltips(tooltip);
 
         LineSet dataSet = new LineSet(dayList, averageEmotions);
 
@@ -113,7 +113,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
                 .setSmooth(true);
         lineChartView.addData(dataSet);
 
-        lineChartView.setYLabels(AxisRenderer.LabelPosition.NONE)
+        lineChartView/*.setYLabels(AxisRenderer.LabelPosition.NONE)*/
                 .setYAxis(false)
                 .setBorderSpacing(Tools.fromDpToPx(10));
 
