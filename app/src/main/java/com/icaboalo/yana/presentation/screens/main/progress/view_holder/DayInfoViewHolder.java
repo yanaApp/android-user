@@ -12,6 +12,7 @@ import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
 import butterknife.BindView;
@@ -28,10 +29,12 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
     TextView tvCompletedCount;
     @BindView(R.id.tvIncompleteCount)
     TextView tvIncompleteCount;
+    @BindView(R.id.tvNotDoneCount)
+    TextView tvNotDoneCount;
     @BindView(R.id.ivEmotionAverage)
     ImageView ivEmotionAverage;
 
-    int completedCount, incompleteCount, answerTotal;
+    int completedCount, incompleteCount, answerTotal, notDoneCount;
 
     public DayInfoViewHolder(View itemView) {
         super(itemView);
@@ -44,21 +47,24 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
         completedCount = 0;
         incompleteCount = 0;
         answerTotal = 0;
-        if (data instanceof ItemInfo){
+        if (data instanceof ItemInfo) {
             ItemInfo item = (ItemInfo) data;
             DayViewModel day = (DayViewModel) item.getData();
             tvDate.setText(Html.fromHtml("<b>Día " + day.getDayNumber() + "</b>  |  " + day.getDate()));
-            for (ActivityViewModel activity : day.getActivityList()){
-                if (activity.getAnswer() > 0){
-                    answerTotal += activity.getAnswer();
-                    completedCount ++;
-                }
-                else {
-                    incompleteCount ++;
-                }
+
+            for (ActivityViewModel activity : day.getActivityList()) {
+                if (activity.getAnswer() > 0) {
+                    completedCount++;
+                } else if (activity.getAnswer() == 0)
+                    incompleteCount++;
+                else
+                    notDoneCount++;
             }
+
             tvCompletedCount.setText(String.valueOf(completedCount));
             tvIncompleteCount.setText(String.valueOf(incompleteCount));
+            tvNotDoneCount.setText(String.valueOf(notDoneCount));
+
             if (completedCount > 0)
                 VUtil.setEmotionImage(context, answerTotal / completedCount, ivEmotionAverage);
         }

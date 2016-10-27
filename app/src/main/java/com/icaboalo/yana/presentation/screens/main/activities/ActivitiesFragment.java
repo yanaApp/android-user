@@ -80,7 +80,6 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     @Override
     public void renderItem(DayViewModel item) {
         if (item.getDate() != null && !item.getDate().isEmpty()){
-            showError(item.getDate());
             tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
             List<ItemInfo> itemList = new ArrayList<>();
             Collections.sort(item.getActivityList(), (lhs, rhs) ->
@@ -98,7 +97,6 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void saveEmotionSuccess(ActivityViewModel activityViewModel) {
-        showError("SAVED");
         mActivitiesPresenter.getItemDetails();
     }
 
