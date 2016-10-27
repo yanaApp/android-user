@@ -24,11 +24,15 @@ import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
 import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
+import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -80,7 +84,9 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     @Override
     public void renderItem(DayViewModel item) {
         if (item.getDate() != null && !item.getDate().isEmpty()){
-            tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " + item.getDate()));
+            tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " +
+                    Utils.transformDateToText(item.getDate(), "dd-MM-yyyy", "MMMM dd, yyyy")));
+
             List<ItemInfo> itemList = new ArrayList<>();
             Collections.sort(item.getActivityList(), (lhs, rhs) ->
                     String.valueOf(lhs.getId()).compareToIgnoreCase(String.valueOf(rhs.getId())));

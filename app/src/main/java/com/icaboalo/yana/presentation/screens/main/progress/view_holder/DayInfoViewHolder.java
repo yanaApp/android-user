@@ -50,7 +50,8 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
         if (data instanceof ItemInfo) {
             ItemInfo item = (ItemInfo) data;
             DayViewModel day = (DayViewModel) item.getData();
-            tvDate.setText(Html.fromHtml("<b>Día " + day.getDayNumber() + "</b>  |  " + day.getDate()));
+            tvDate.setText(Html.fromHtml("<b>Día " + day.getDayNumber() + "</b>  |  " +
+                    Utils.transformDateToText(day.getDate(), "dd-MM-yyyy", "MMMM dd, yyyy")));
 
             for (ActivityViewModel activity : day.getActivityList()) {
                 if (activity.getAnswer() > 0) {

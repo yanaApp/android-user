@@ -136,4 +136,14 @@ public class Utils {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
     }
+
+    public static String transformDateToText(String date, String beginFormat, String endFormat) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(endFormat);
+        try {
+            return simpleDateFormat.format(new SimpleDateFormat(beginFormat).parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 }
