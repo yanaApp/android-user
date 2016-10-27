@@ -43,7 +43,7 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     style="@style/SettingsTitle"
-                    android:text="Notifications" />
+                    android:text="@string/notifications" />
 
                 <RelativeLayout
                     android:id="@+id/rlFoodNotification"
@@ -67,7 +67,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_margin="16dp"
-                        android:text="Recordatorio de comidas"
+                        android:text="@string/food_reminders"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -95,7 +95,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_margin="16dp"
-                        android:text="Buenos días"
+                        android:text="@string/good_morning"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -123,7 +123,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:layout_margin="16dp"
-                        android:text="Buenas noches"
+                        android:text="@string/good_night"
                         android:textSize="18sp" />
                 </RelativeLayout>
 
@@ -131,7 +131,7 @@
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     style="@style/SettingsTitle"
-                    android:text="Plan" />
+                    android:text="@string/plan" />
 
                 <com.icaboalo.yana.old.ui.widget.CustomFontTextView
                     android:id="@+id/tvFinishPlan"
@@ -141,7 +141,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Finalizar el plan"
+                    android:text="@string/end_plan"
                     android:textSize="18sp" />
 
 
@@ -157,7 +157,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="FAQ"
+                    android:text="@string/faq"
                     android:textSize="18sp" />
 
                 <View style="@style/SettingsDivider" />
@@ -170,7 +170,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Acerca de nosotros"
+                    android:text="@string/about_us"
                     android:textSize="18sp" />
 
                 <View style="@style/SettingsDivider" />
@@ -183,7 +183,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Valoranos"
+                    android:text="@string/rate_us"
                     android:textSize="18sp" />
 
                 <View style="@style/SettingsDivider" />
@@ -196,7 +196,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Politica de Privacidad"
+                    android:text="@string/politica_de_privacidad"
                     android:textSize="18sp" />
 
                 <View style="@style/SettingsDivider" />
@@ -209,7 +209,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Danos retroalimentación"
+                    android:text="@string/danos_retroalimentaci_n"
                     android:textSize="18sp" />
 
                 <View style="@style/SettingsDivider" />
@@ -222,7 +222,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:padding="16dp"
-                    android:text="Contactanos"
+                    android:text="@string/contactanos"
                     android:textSize="18sp" />
 
             </LinearLayout>

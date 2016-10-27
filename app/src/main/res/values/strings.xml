@@ -35,6 +35,29 @@
     <string name="title_autoevaluation">Autoevaluation</string>
     <string name="description_occupation"> If your occupation is not on the list, select \'other\'.</string>
     <string name="description_password">Choose a password of at least 6 characters.</string>
+    <string name="contactanos">Contact</string>
+    <string name="politica_de_privacidad">Privacy Policy</string>
+    <string name="danos_retroalimentaci_n">Feedback</string>
+    <string name="study">¿Do you study?</string>
+    <string name="work">¿Do you work?</string>
+    <string name="workout">¿Do you workout?</string>
+    <string name="depression_motive">Why are you depressed?</string>
+    <string name="action_additional_info">Additional Info</string>
+    <string name="not_done">Not Done</string>
+    <string name="log_out_description">Are you sure you want to exit?</string>
+    <string name="breakfast_notifications">Breakfast notifications</string>
+    <string name="lunch_notifications">Lunch notifications</string>
+    <string name="dinner_notifications">Dinner notifications</string>
+    <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT? <b>REGISTER</b>]]></string>
+    <string name="notifications">Notifications</string>
+    <string name="food_reminders">Food reminders</string>
+    <string name="good_morning">Good morning</string>
+    <string name="good_night">Good night</string>
+    <string name="end_plan">End plan</string>
+    <string name="plan">Plan</string>
+    <string name="faq">FAQ</string>
+    <string name="about_us">About us</string>
+    <string name="rate_us">Rate us</string>
 
     <!--Hint-->
     <string name="email_input_hint">EMAIL</string>
@@ -45,10 +68,18 @@
     <string name="occupation_input_hint">OCCUPATION</string>
     <string name="password_input_hint">PASSWORD</string>
     <string name="first_name_input_hint">First name</string>
+    <string name="wake_up_hint">WAKE UP</string>
+    <string name="sleep_hint">SLEEP</string>
+    <string name="breakfast_hint">BREAKFAST</string>
+    <string name="lunch_hint">LUNCH</string>
+    <string name="dinner_hint">DINNER</string>
+    <string name="from_hint">FROM</string>
+    <string name="to_hint">TO</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
     <string name="error_invalid_email">Enter a valid email address</string>
+    <string name="no_answer_selecter">Please select one from the above</string>
 
     <!--Button-->
     <string name="continue_button">Continue</string>
@@ -71,6 +102,8 @@
     <string name="description_action_plan_evaluation"></string>
     <string name="description_restore_password">Type the email that was used for your account, we will send you a confirmation.</string>
     <string name="identify">With which case you identify the best?</string>
+    <string name="bt_save">Save</string>
+    <string name="current_plan">Current Plan</string>
 
     <!--Label-->
     <string name="label_activity_complete" translatable="false">ACTIVITY_COMPLETE</string>
@@ -83,6 +116,7 @@
     <string name="action_contacts_title">Contacts</string>
     <string name="action_progress_title">Progress</string>
     <string name="action_log_out_title">Log out</string>
+    <string name="action_hotline">Emergency Call</string>
 
     <!--Title-->
     <string name="action_plan_title">Action Plan</string>
@@ -98,6 +132,7 @@
     <string name="occupation_title">Occupation</string>
     <string name="settings_title">Settings</string>
     <string name="food_notification_title">Food Notifications</string>
+    <string name="hotline_title">Emergency Call</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>
@@ -108,29 +143,6 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="bt_save">Save</string>
-    <string name="wake_up_hint">WAKE UP</string>
-    <string name="sleep_hint">SLEEP</string>
-    <string name="breakfast_hint">BREAKFAST</string>
-    <string name="lunch_hint">LUNCH</string>
-    <string name="dinner_hint">DINNER</string>
-    <string name="from_hint">FROM</string>
-    <string name="to_hint">TO</string>
-    <string name="study">¿Do you study?</string>
-    <string name="work">¿Do you work?</string>
-    <string name="workout">¿Do you workout?</string>
-    <string name="depression_motive">Why are you depressed?</string>
-    <string name="action_additional_info">Additional Info</string>
-    <string name="not_done">Not Done</string>
-    <string name="log_out_description">Are you sure you want to exit?</string>
-    <string name="breakfast_notifications">Breakfast notifications</string>
-    <string name="lunch_notifications">Lunch notifications</string>
-    <string name="dinner_notifications">Dinner notifications</string>
-    <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT? <b>REGISTER</b>]]></string>
-    <string name="action_hotline">Emergency Call</string>
-    <string name="hotline_title">Emergency Call</string>
-    <string name="current_plan">Current Plan</string>
-    <string name="no_answer_selecter">Please select one from the above</string>
 
     <array name="beck_test">
         <!--1-->
