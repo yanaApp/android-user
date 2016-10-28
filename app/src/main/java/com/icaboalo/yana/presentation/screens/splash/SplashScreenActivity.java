@@ -60,10 +60,10 @@ public class SplashScreenActivity extends BaseActivity {
 
     private void checkForNotifications(){
         SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.NOTIFICATIONS_FILE, MODE_PRIVATE);
-        sharedPreferences.getString(PrefConstants.WAKE_UP_NOTIFICATION, "9:00 AM");
-        sharedPreferences.getString(PrefConstants.BREAKFAST_NOTIFICATION, "10:00 AM");
-        sharedPreferences.getString(PrefConstants.LUNCH_NOTIFICATION, "15:00 PM");
-        sharedPreferences.getString(PrefConstants.DINNER_NOTIFICATION, "20:00 PM");
-        sharedPreferences.getString(PrefConstants.SLEEP_NOTIFICATION, "21:00 PM");
+        sharedPreferences.getString(PrefConstants.DAY_NOTIFICATION_TIME, "9:00 AM");
+        sharedPreferences.getString(PrefConstants.BREAKFAST_NOTIFICATION_TIME, "10:00 AM");
+        sharedPreferences.getString(PrefConstants.LUNCH_NOTIFICATION_TIME, "15:00 PM");
+        sharedPreferences.getString(PrefConstants.DINNER_NOTIFICATION_TIME, "20:00 PM");
+        sharedPreferences.getString(PrefConstants.NIGHT_NOTIFICATION_TIME, "21:00 PM");
     }
 }
