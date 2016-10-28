@@ -267,4 +267,5 @@
     <string name="food_reminders">Recordatorios de comidas</string>
     <string name="faq">FAQ</string>
     <string name="end_plan">Finalizar plan</string>
+    <string name="no_graph_data">No hay información necesaria para mostrar los graficos</string>
 </resources>

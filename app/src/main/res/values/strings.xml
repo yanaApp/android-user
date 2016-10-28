@@ -351,4 +351,5 @@
         <item>Unknown Reason</item>
         <item>Other</item>
     </array>
+    <string name="no_graph_data">There\'s not enough data to show the graphics</string>
 </resources>

@@ -33,9 +33,11 @@ import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanB
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -162,7 +164,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         ChartFragment chartFragment = new ChartFragment();
         mPlanBreakdownView = planBreakdownFragment;
         mChartView = chartFragment;
-        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "BreakdCown"));
+        fragmentList.add(new FragmentPagerModel(planBreakdownFragment, "BreakDown"));
         fragmentList.add(new FragmentPagerModel(chartFragment, "Charts"));
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), fragmentList);
         viewPager.setAdapter(viewPagerAdapter);
@@ -170,6 +172,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     }
 
     private void setupSpinner(List<ActionPlanViewModel> actionPlanViewModelList) {
+        Collections.sort(actionPlanViewModelList, (itemInfo, t1) -> t1.getId() - itemInfo.getId());
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item);
         for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
