@@ -13,6 +13,7 @@ public class CustomFontTextView extends TextView {
     final static String DOSIS_FONT = "fonts/Dosis-Regular.ttf";
     final static String AVENIR_FONT = "fonts/AvenirLTStd-Book.otf";
     final static String AVENIR_LIGHT_FONT = "fonts/AvenirLTStd-Light.otf";
+    final static String MAXWELL_LIGHT_FONT = "fonts/MAXWELL_LIGHT.ttf";
 
     public CustomFontTextView(Context context) {
         super(context);
@@ -37,7 +38,7 @@ public class CustomFontTextView extends TextView {
     }
 
     private Typeface getBlackTypeFace(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), AVENIR_LIGHT_FONT);
+        return Typeface.createFromAsset(context.getAssets(), MAXWELL_LIGHT_FONT);
     }
 
 //    @Override
