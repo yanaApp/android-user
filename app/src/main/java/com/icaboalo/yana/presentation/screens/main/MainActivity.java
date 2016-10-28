@@ -20,6 +20,9 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.PreferenceKey;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
@@ -231,6 +234,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
 //                    createNotification();
+                    ManagerPreference.getInstance().set(YanaPreferences.FIRST_TEST_TAKEN, true);
                     dialog.dismiss();
                 })
                 .create().show();

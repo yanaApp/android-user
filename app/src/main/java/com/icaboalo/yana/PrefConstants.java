@@ -31,5 +31,6 @@ public class PrefConstants {
             LUNCH_NOTIFICATION_ACTIVE = "lunchNotificationActive", DINNER_NOTIFICATION_ACTIVE = "dinnerNotificationActive";
 
     public static final String FIRST_TEST_TAKEN = "firstTestTaken", SECOND_TEST_TAKEN = "secondTestTaken",
-            THIRD_TEST_TAKEN = "thirdTestTaken", FOURTH_TEST_TAKEN = "fourthTestTaken";
+            THIRD_TEST_TAKEN = "thirdTestTaken", FOURTH_TEST_TAKEN = "fourthTestTaken", NEXT_DAY_TEST = "nextDayTest",
+            CURRENT_DAY = "currentDay";
 }

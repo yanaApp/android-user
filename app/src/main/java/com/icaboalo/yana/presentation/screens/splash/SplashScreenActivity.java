@@ -5,6 +5,8 @@ import android.view.Window;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
@@ -33,8 +35,29 @@ public class SplashScreenActivity extends BaseActivity {
             @Override
             public void run() {
 
-                checkForNotifications();
-                checkForToken();
+                if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 8
+                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FIRST_TEST_TAKEN)) {
+                    showToastMessage("No se ha tomado el primer test!");
+                }
+                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 16
+                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.SECOND_TEST_TAKEN)) {
+                    showToastMessage("No se ha tomado el segundo test!");
+                }
+
+                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 24
+                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.THIRD_TEST_TAKEN)) {
+                    showToastMessage("No se ha tomado el tercer test!");
+                }
+
+                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 30
+                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FOURTH_TEST_TAKEN)) {
+                    showToastMessage("No se ha tomado el cuarto test!");
+                }
+
+                else {
+                    checkForNotifications();
+                    checkForToken();
+                }
             }
         };
 

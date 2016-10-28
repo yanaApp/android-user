@@ -1,5 +1,6 @@
 package com.icaboalo.yana;
 
+import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.presentation.di.component.ApplicationComponent;
 import com.icaboalo.yana.presentation.di.component.DaggerApplicationComponent;
 import com.icaboalo.yana.presentation.di.module.ApplicationModule;
@@ -25,6 +26,8 @@ public class MyApplication extends android.app.Application {
         instance = this;
         initializeRealm();
         initializeInjection();
+
+        ManagerPreference.init(getApplicationContext());
     }
 
     private void initializeRealm(){
