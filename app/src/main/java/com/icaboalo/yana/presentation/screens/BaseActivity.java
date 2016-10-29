@@ -1,8 +1,10 @@
 package com.icaboalo.yana.presentation.screens;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -75,5 +77,15 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
 
     public void showToastMessage(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showDialog(String title, String message, DialogInterface.OnClickListener onClickListener) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNeutralButton("OK", onClickListener)
+                .create();
+
+        alertDialog.show();
     }
 }

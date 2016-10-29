@@ -8,6 +8,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
+import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
@@ -35,29 +36,8 @@ public class SplashScreenActivity extends BaseActivity {
             @Override
             public void run() {
 
-                if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 8
-                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FIRST_TEST_TAKEN)) {
-                    showToastMessage("No se ha tomado el primer test!");
-                }
-                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 16
-                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.SECOND_TEST_TAKEN)) {
-                    showToastMessage("No se ha tomado el segundo test!");
-                }
+                checkForToken();
 
-                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 24
-                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.THIRD_TEST_TAKEN)) {
-                    showToastMessage("No se ha tomado el tercer test!");
-                }
-
-                else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 30
-                        && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FOURTH_TEST_TAKEN)) {
-                    showToastMessage("No se ha tomado el cuarto test!");
-                }
-
-                else {
-                    checkForNotifications();
-                    checkForToken();
-                }
             }
         };
 
@@ -65,28 +45,18 @@ public class SplashScreenActivity extends BaseActivity {
         new Timer().schedule(task, SPLASH_SCREEN_DELAY);
     }
 
-    private void checkForToken(){
-        if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equalsIgnoreCase("TOKEN")){
+    private void checkForToken() {
+        if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equalsIgnoreCase("TOKEN")) {
             navigator.navigateTo(getApplicationContext(), TourActivity.getCallingContext(getApplicationContext()));
             finish();
         } else {
-            if (!PrefUtils.isDownloadCompleted(getApplicationContext())){
+            if (!PrefUtils.isDownloadCompleted(getApplicationContext())) {
                 navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
                 finish();
-            }
-            else {
+            } else {
                 navigator.navigateTo(getApplicationContext(), MainActivity.getCallingIntent(getApplicationContext()));
                 finish();
             }
         }
-    }
-
-    private void checkForNotifications(){
-        SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.NOTIFICATIONS_FILE, MODE_PRIVATE);
-        sharedPreferences.getString(PrefConstants.DAY_NOTIFICATION_TIME, "9:00 AM");
-        sharedPreferences.getString(PrefConstants.BREAKFAST_NOTIFICATION_TIME, "10:00 AM");
-        sharedPreferences.getString(PrefConstants.LUNCH_NOTIFICATION_TIME, "15:00 PM");
-        sharedPreferences.getString(PrefConstants.DINNER_NOTIFICATION_TIME, "20:00 PM");
-        sharedPreferences.getString(PrefConstants.NIGHT_NOTIFICATION_TIME, "21:00 PM");
     }
 }

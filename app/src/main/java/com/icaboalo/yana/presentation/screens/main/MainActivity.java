@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
@@ -26,6 +27,7 @@ import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
 import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
@@ -34,6 +36,7 @@ import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.splash.SplashScreenActivity;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.Calendar;
@@ -81,6 +84,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
+
+        checkForTest();
     }
 
     @Override
@@ -200,6 +205,36 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         showToastMessage(message);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            switch (requestCode) {
+                case EvaluationActivity.REQUEST_CODE:
+                    showError(data.getIntExtra("answer", 0) + "");
+                    int answer = data.getIntExtra("answer", 0);
+                    switch (data.getIntExtra("testNumber", 0)) {
+                        case 1:
+                            ManagerPreference.getInstance().set(YanaPreferences.FIRST_TEST_TAKEN, true);
+                            showDialog("Puntuación -> " + answer, null, (dialog, which) -> dialog.dismiss());
+                            break;
+                        case 2:
+                            ManagerPreference.getInstance().set(YanaPreferences.SECOND_TEST_TAKEN, true);
+                            showDialog("Puntuación -> " + answer, null, (dialog, which) -> dialog.dismiss());
+                            break;
+                        case 3:
+                            ManagerPreference.getInstance().set(YanaPreferences.THIRD_TEST_TAKEN, true);
+                            showDialog("Puntuación -> " + answer, null, (dialog, which) -> dialog.dismiss());
+                            break;
+                        case 4:
+                            ManagerPreference.getInstance().set(YanaPreferences.FOURTH_TEST_TAKEN, true);
+                            showDialog("Puntuación -> " + answer, null, (dialog, which) -> dialog.dismiss());
+                            break;
+                    }
+                    break;
+            }
+        }
+    }
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -253,6 +288,47 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
 //        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 5 * 100, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+    }
+
+    private void checkForTest() {
+        if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 8
+                && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FIRST_TEST_TAKEN)) {
+            showDialog("Primer examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
+                    (dialog, which) -> {
+                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 1),
+                                EvaluationActivity.REQUEST_CODE);
+                        dialog.dismiss();
+                    });
+        }
+        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 16
+                && !ManagerPreference.getInstance().getBoolean(YanaPreferences.SECOND_TEST_TAKEN)) {
+            showDialog("Segundo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
+                    (dialog, which) -> {
+                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 2),
+                                EvaluationActivity.REQUEST_CODE);
+                        dialog.dismiss();
+                    });
+        }
+
+        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 24
+                && !ManagerPreference.getInstance().getBoolean(YanaPreferences.THIRD_TEST_TAKEN)) {
+            showDialog("Tercer examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
+                    (dialog, which) -> {
+                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 3),
+                                EvaluationActivity.REQUEST_CODE);
+                        dialog.dismiss();
+                    });
+        }
+
+        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 30
+                && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FOURTH_TEST_TAKEN)) {
+            showDialog("Ultimo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
+                    (dialog, which) -> {
+                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 4),
+                                EvaluationActivity.REQUEST_CODE);
+                        dialog.dismiss();
+                    });
+        }
     }
 
 }
