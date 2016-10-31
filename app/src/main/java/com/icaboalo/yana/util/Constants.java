@@ -9,4 +9,6 @@ public class Constants {
     public static String ACCESS_TOKEN = "TOKEN";
 
     public static final String APPLICATION_JSON = "application/json";
+
+    public static final String SETTINGS_FILE_NAME = "settings";
 }

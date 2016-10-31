@@ -96,6 +96,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".presentation.screens.settings.SettingsActivity"/>
         </activity>
+
+        <activity android:name=".presentation.screens.evaluation.EvaluationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

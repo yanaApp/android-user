@@ -25,7 +25,6 @@ import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
-import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.HashMap;
@@ -39,7 +38,7 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 
 import static com.icaboalo.yana.PrefConstants.*;
-import static com.icaboalo.yana.PrefConstants.SLEEP_NOTIFICATION;
+import static com.icaboalo.yana.PrefConstants.NIGHT_NOTIFICATION_TIME;
 
 /**
  * @author icaboalo on 07/09/16.
@@ -388,19 +387,19 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
                     postBundle.put("wake_up_time", etWakeUp.getText().toString());
                     Utils.createNotification(getApplicationContext(), etWakeUp.getText().toString(), WakeUpReceiver.class, WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(WAKE_UP_NOTIFICATION, etWakeUp.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(DAY_NOTIFICATION_TIME, etWakeUp.getText().toString());
                     postBundle.put("sleep_time", etSleep.getText().toString());
                     Utils.createNotification(getApplicationContext(), etSleep.getText().toString(), SleepReceiver.class, SleepReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(SLEEP_NOTIFICATION, etSleep.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(NIGHT_NOTIFICATION_TIME, etSleep.getText().toString());
                     postBundle.put("breakfast_time", etBreakfast.getText().toString());
                     Utils.createNotification(getApplicationContext(), etBreakfast.getText().toString(), BreakfastReceiver.class, BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION, etBreakfast.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(BREAKFAST_NOTIFICATION_TIME, etBreakfast.getText().toString());
                     postBundle.put("lunch_time", etLunch.getText().toString());
                     Utils.createNotification(getApplicationContext(), etLunch.getText().toString(), LunchReceiver.class, LunchReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFICATION, etLunch.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(LUNCH_NOTIFICATION_TIME, etLunch.getText().toString());
                     postBundle.put("dinner_time", etDinner.getText().toString());
                     Utils.createNotification(getApplicationContext(), etDinner.getText().toString(), DinnerReceiver.class, DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
-                    mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION, etDinner.getText().toString());
+                    mSchedulePresenter.attemptSaveNotificationTime(DINNER_NOTIFICATION_TIME, etDinner.getText().toString());
                     mSchedulePresenter.post(postBundle);
                 })
                 .setNegativeButton("CANCEL", (dialogInterface, i) -> dialogInterface.dismiss())

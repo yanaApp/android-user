@@ -59,13 +59,13 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.FOOD_NOTIFICATION_ACTIVE:
                 if (active) {
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.BREAKFAST_NOTIFICATION), BreakfastReceiver.class,
+                            getNotificationTime(PrefConstants.BREAKFAST_NOTIFICATION_TIME), BreakfastReceiver.class,
                             BreakfastReceiver.id, AlarmManager.INTERVAL_DAY);
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.LUNCH_NOTIFICATION), LunchReceiver.class,
+                            getNotificationTime(PrefConstants.LUNCH_NOTIFICATION_TIME), LunchReceiver.class,
                             LunchReceiver.id, AlarmManager.INTERVAL_DAY);
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.DINNER_NOTIFICATION), DinnerReceiver.class,
+                            getNotificationTime(PrefConstants.DINNER_NOTIFICATION_TIME), DinnerReceiver.class,
                             DinnerReceiver.id, AlarmManager.INTERVAL_DAY);
                 } else {
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(),
@@ -80,7 +80,7 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.DAY_NOTIFICATION_ACTIVE:
                 if (active)
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.WAKE_UP_NOTIFICATION), WakeUpReceiver.class,
+                            getNotificationTime(PrefConstants.DAY_NOTIFICATION_TIME), WakeUpReceiver.class,
                             WakeUpReceiver.id, AlarmManager.INTERVAL_DAY);
                 else
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), WakeUpReceiver.class, WakeUpReceiver.id);
@@ -89,7 +89,7 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.NIGHT_NOTIFICATION_ACTIVE:
                 if (active)
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.SLEEP_NOTIFICATION), SleepReceiver.class,
+                            getNotificationTime(PrefConstants.NIGHT_NOTIFICATION_TIME), SleepReceiver.class,
                             SleepReceiver.id, AlarmManager.INTERVAL_DAY);
                 else
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), SleepReceiver.class, SleepReceiver.id);
@@ -98,7 +98,7 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE:
                 if (active)
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.BREAKFAST_NOTIFICATION), BreakfastReceiver.class, BreakfastReceiver.id,
+                            getNotificationTime(PrefConstants.BREAKFAST_NOTIFICATION_TIME), BreakfastReceiver.class, BreakfastReceiver.id,
                             AlarmManager.INTERVAL_DAY);
                 else
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), BreakfastReceiver.class,
@@ -108,7 +108,7 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.LUNCH_NOTIFICATION_ACTIVE:
                 if (active)
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.LUNCH_NOTIFICATION), LunchReceiver.class, LunchReceiver.id,
+                            getNotificationTime(PrefConstants.LUNCH_NOTIFICATION_TIME), LunchReceiver.class, LunchReceiver.id,
                             AlarmManager.INTERVAL_DAY);
                 else
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), LunchReceiver.class,
@@ -118,7 +118,7 @@ public class SettingsPresenter extends GenericDetailPresenter<Bundle> {
             case PrefConstants.DINNER_NOTIFICATION_ACTIVE:
                 if (active)
                     Utils.createNotification(getGenericDetailView().getApplicationContext(),
-                            getNotificationTime(PrefConstants.DINNER_NOTIFICATION), DinnerReceiver.class, DinnerReceiver.id,
+                            getNotificationTime(PrefConstants.DINNER_NOTIFICATION_TIME), DinnerReceiver.class, DinnerReceiver.id,
                             AlarmManager.INTERVAL_DAY);
                 else
                     Utils.deleteNotification(getGenericDetailView().getApplicationContext(), DinnerReceiver.class,

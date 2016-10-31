@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
@@ -84,6 +86,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     @Override
     public void renderItem(DayViewModel item) {
         if (item.getDate() != null && !item.getDate().isEmpty()){
+            ManagerPreference.getInstance().set(YanaPreferences.CURRENT_DAY, item.getDayNumber());
+
             tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " +
                     Utils.transformDateToText(item.getDate(), "dd-MM-yyyy", "MMMM dd, yyyy")));
 
