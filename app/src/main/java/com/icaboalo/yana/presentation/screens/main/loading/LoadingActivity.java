@@ -7,11 +7,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -50,6 +56,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
     public void renderItem(UserViewModel item) {
         tvTitle.setText(String.format("%s %s", getString(R.string.loading_complete), item.getFullName()));
         rlLoadComplete.setVisibility(View.VISIBLE);
+        ManagerPreference.getInstance().set(YanaPreferences.LAST_UPDATE, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
         PrefUtils.setDownloadCompleted(getApplicationContext(), true);
     }
 

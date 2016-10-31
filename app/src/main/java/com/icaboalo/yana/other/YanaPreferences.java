@@ -2,6 +2,10 @@ package com.icaboalo.yana.other;
 
 import com.icaboalo.yana.PrefConstants;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by icaboalo on 28/10/16.
  */
@@ -9,6 +13,7 @@ import com.icaboalo.yana.PrefConstants;
 public class YanaPreferences {
 
     public static PreferenceKey TOKEN = new PreferenceKey(PrefConstants.tokenPref, "");
+    public static PreferenceKey LAST_UPDATE = new PreferenceKey(PrefConstants.LAST_UPDATE, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
 //    NOTIFICATIONS
     public static PreferenceKey FOOD_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.FOOD_NOTIFICATION_ACTIVE, false);

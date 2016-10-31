@@ -10,5 +10,5 @@ public class Constants {
 
     public static final String APPLICATION_JSON = "application/json";
 
-    public static final String SETTINGS_FILE_NAME = "settings";
+    public static final String SETTINGS_FILE_NAME = "SETTINGS";
 }

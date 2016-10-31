@@ -1,6 +1,7 @@
 package com.icaboalo.yana.presentation.screens.splash;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Window;
 
 import com.icaboalo.yana.PrefConstants;
@@ -14,6 +15,8 @@ import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
 import com.icaboalo.yana.util.PrefUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,6 +44,9 @@ public class SplashScreenActivity extends BaseActivity {
             }
         };
 
+        Log.d("DATE", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+        Log.d("PAST", ManagerPreference.getInstance().getString(YanaPreferences.LAST_UPDATE));
+
         long SPLASH_SCREEN_DELAY = 1500;
         new Timer().schedule(task, SPLASH_SCREEN_DELAY);
     }
@@ -53,7 +59,12 @@ public class SplashScreenActivity extends BaseActivity {
             if (!PrefUtils.isDownloadCompleted(getApplicationContext())) {
                 navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
                 finish();
-            } else {
+            } else if (new Date(new SimpleDateFormat("dd/MM/yyyy").format(new Date()))
+                    .after(new Date(ManagerPreference.getInstance().getString(YanaPreferences.LAST_UPDATE)))) {
+                navigator.navigateTo(getApplicationContext(), LoadingActivity.getCallingIntent(getApplicationContext()));
+                finish();
+            }
+            else {
                 navigator.navigateTo(getApplicationContext(), MainActivity.getCallingIntent(getApplicationContext()));
                 finish();
             }

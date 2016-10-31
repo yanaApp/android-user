@@ -6,6 +6,8 @@ package com.icaboalo.yana;
 public class PrefConstants {
 
     public static final String settingsFile = "SETTINGS";
+
+    public static final String LAST_UPDATE = "lastUpdate";
     public static final String isActionPlanTourComplete = "isActionPlanTourCompleted";
     public static final String isProgressTourComplete = "isTourCompleted";
     public static final String isProfileCompletedPref = "isProfileCompleted";
