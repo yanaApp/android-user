@@ -48,7 +48,7 @@
     <string name="breakfast_notifications">Breakfast notifications</string>
     <string name="lunch_notifications">Lunch notifications</string>
     <string name="dinner_notifications">Dinner notifications</string>
-    <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT? <b>REGISTER</b>]]></string>
+    <string name="no_account"><![CDATA[DON\'T HAVE AN ACCOUNT?]]> <b>REGISTER</b></string>
     <string name="notifications">Notifications</string>
     <string name="food_reminders">Food reminders</string>
     <string name="good_morning">Good morning</string>
