@@ -58,36 +58,38 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
 
     @Override
     public Observable<?> put(RealmObject realmModel, Class dataClass) {
-        if (realmModel != null)
-            return Observable.defer(() -> {
-                mRealm = Realm.getDefaultInstance();
-                RealmObject result = executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModel));
-                if (RealmObject.isValid(result))
-                    return Observable.just(true);
-                else
-                    return Observable.error(new Exception("realmModel is invalid"));
-            });
+        if (realmModel != null) {
+//            return Observable.defer(() -> {
+            mRealm = Realm.getDefaultInstance();
+            RealmObject result = executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModel));
+            if (RealmObject.isValid(result))
+                return Observable.just(true);
+            else
+                return Observable.error(new Exception("realmModel is invalid"));
+//            });
+        }
         return Observable.error(new Exception("realmModel cant be null"));
     }
 
     @Override
     public Observable<?> put(RealmModel realmModel, Class dataClass) {
-        if (realmModel != null)
-            return Observable.defer(() -> {
+        if (realmModel != null) {
+//            return Observable.defer(() -> {
                 mRealm = Realm.getDefaultInstance();
                 RealmModel result = executeWriteOperationInRealm(mRealm, () -> mRealm.copyToRealmOrUpdate(realmModel));
                 if (RealmObject.isValid(result))
                     return Observable.just(true);
                 else
                     return Observable.error(new Exception("realmModel is invalid"));
-            });
+//            });
+        }
         return Observable.error(new Exception("realmModel cant be null"));
     }
 
     @Override
     public Observable<?> put(JSONObject realmObject, String idColumnName, Class dataClass) {
-        if (realmObject != null)
-            return Observable.defer(() -> {
+        if (realmObject != null) {
+//            return Observable.defer(() -> {
                 if (idColumnName == null || idColumnName == null)
                     return Observable.error(new Exception("could not find id!"));
                 mRealm = Realm.getDefaultInstance();
@@ -97,7 +99,8 @@ public class GeneralRealmManagerImpl implements DataBaseManager {
                 } else
                     return Observable.error(new Exception("RealmModel is invalid"));
 
-            });
+//            });
+        }
         return Observable.error(new Exception("json cant be null"));
     }
 

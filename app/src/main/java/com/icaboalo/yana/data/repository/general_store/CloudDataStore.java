@@ -30,6 +30,8 @@ import rx.Subscriber;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * @author icaboalo on 07/08/16.
  */
@@ -63,7 +65,7 @@ public class CloudDataStore implements DataStore {
                 e.printStackTrace();
                 nObservable = Observable.error(e);
             }
-        nObservable.subscribeOn(Schedulers.io()).subscribe();
+        nObservable.subscribeOn(Schedulers.io()).subscribe(new SimpleSubscriber(object));
 
     };
 
@@ -91,7 +93,7 @@ public class CloudDataStore implements DataStore {
         return mRestApi.dynamicGetObject(url)
                 .doOnNext(object -> {
                     if (persist)
-                        saveGenericToCache.call(object);
+                        new SaveGenericToRealm(dataClass, idColumnName).call(object);
                 })
                 .map(object -> mEntityDataMapper.transformToDomain(object, domainClass));
     }
@@ -219,5 +221,75 @@ public class CloudDataStore implements DataStore {
     @Override
     public Observable<List> searchDisk(RealmQuery query, Class domainClass) {
         return Observable.error(new Exception("cant search disk in cloud data store"));
+    }
+
+    private static class SimpleSubscriber extends Subscriber<Object> {
+        private final Object mObject;
+
+        public SimpleSubscriber(Object object) {
+            mObject = object;
+        }
+
+        @Override
+        public void onCompleted() {
+            Log.d(TAG, mObject.getClass().getName() + " completed!");
+        }
+
+        @Override
+        public void onError(Throwable e) {
+            e.printStackTrace();
+        }
+
+        @Override
+        public void onNext(Object o) {
+            Log.d(TAG, mObject.getClass().getName() + " added!");
+        }
+    }
+
+    private final class SaveGenericToRealm implements Action1<Object> {
+
+        private Class mDataClass;
+        private String mIdColumnName;
+
+        public SaveGenericToRealm(Class mDataClass, String mIdColumnName) {
+            this.mDataClass = mDataClass;
+            this.mIdColumnName = mIdColumnName;
+        }
+
+        @Override
+        public void call(Object object) {
+            Object mappedObject = mEntityDataMapper.transformToRealm(object, mDataClass);
+            Observable<?> nObservable = null;
+            if (mappedObject instanceof RealmObject)
+                nObservable = mRealmManager.put((RealmObject) mappedObject, mDataClass);
+            else if (mappedObject instanceof RealmModel)
+                nObservable = mRealmManager.put((RealmModel) mappedObject, mDataClass);
+            else
+                try {
+                    nObservable = mRealmManager.put(new JSONObject(new Gson().toJson(object, mDataClass)), mIdColumnName, mDataClass);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    nObservable = Observable.error(e);
+                }
+            if (nObservable != null) {
+                nObservable.subscribeOn(Schedulers.io()).subscribe(new SimpleSubscriber(object));
+            }
+        }
+    }
+
+    private final class SaveAllGenericToRealm implements Action1<List> {
+
+        private Class mDataClass;
+
+        public SaveAllGenericToRealm(Class mDataClass) {
+            this.mDataClass = mDataClass;
+        }
+
+        @Override
+        public void call(List list) {
+            List<RealmObject> realmObjectList = new ArrayList<>();
+            realmObjectList.addAll(mEntityDataMapper.transformAllToDomain(list, mDataClass));
+            mRealmManager.putAll(realmObjectList, mDataClass);
+        }
     }
 }
