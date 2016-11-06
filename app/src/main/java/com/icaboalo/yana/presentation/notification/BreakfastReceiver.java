@@ -31,10 +31,11 @@ public class BreakfastReceiver extends BroadcastReceiver {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, id, repeatingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+//        TODO -> add texts
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setContentIntent(pendingIntent)
                 .setTicker("Saludos de Yana! :)")
-                .setSmallIcon(R.drawable.ic_done_white_24dp)
+                .setSmallIcon(R.drawable.yana_green_notification)
                 .setContentTitle("Momento de desayunar")
                 .setContentText("Recuerda que el desayuno es la comida más importante del día.")
                 .setAutoCancel(true);

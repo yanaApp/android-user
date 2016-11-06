@@ -31,10 +31,11 @@ public class WakeUpReceiver extends BroadcastReceiver {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, id, repeatingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        //        TODO -> add texts
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setContentIntent(pendingIntent)
                 .setTicker("Saludos de Yana! :)")
-                .setSmallIcon(R.drawable.happy_28)
+                .setSmallIcon(R.drawable.yana_green_notification)
                 .setContentTitle("Hora de despertar")
                 .setContentText("Buenos dias por la mañana.")
                 .setAutoCancel(true);
