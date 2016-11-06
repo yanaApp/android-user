@@ -117,7 +117,8 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
         setContentView(R.layout.activity_schedules);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        cbStudies.requestFocus();
+//        TODO -> add dialog texts
+        showDialog("Title", getString(R.string.cupcake_ipsum), null);
     }
 
     @Override
@@ -134,6 +135,9 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
             case 1:
                 if (validateData())
                     showConfirmationDialog();
+                else {
+                    showError(getString(R.string.error_incomplete_form));
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

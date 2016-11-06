@@ -108,7 +108,7 @@ public class AutoEvaluationFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.btContinue:
                 if (mAnswer == 0){
-                    Toast.makeText(getActivity(), R.string.no_answer_selecter, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.error_no_answer_selected, Toast.LENGTH_SHORT).show();
                 } else {
                     SharedPreferences sharedPref = getActivity().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
                     sharedPref.edit().putInt(PrefConstants.evaluationPref, mAnswer).apply();

@@ -83,8 +83,13 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
-                .setNeutralButton("OK", onClickListener)
                 .create();
+
+        if (onClickListener == null)
+            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", (dialog, which) -> {
+                dialog.dismiss();
+            });
+        else alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", onClickListener);
 
         alertDialog.show();
     }

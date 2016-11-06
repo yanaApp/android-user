@@ -79,7 +79,8 @@
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
     <string name="error_invalid_email">Enter a valid email address</string>
-    <string name="no_answer_selecter">Please select one from the above</string>
+    <string name="error_no_answer_selected">Please select one from the above</string>
+    <string name="error_incomplete_form">Please complete all the fields</string>
 
     <!--Button-->
     <string name="continue_button">Continue</string>
