@@ -1,7 +1,6 @@
 package com.icaboalo.yana.presentation.screens.main.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
@@ -29,12 +27,9 @@ import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -163,8 +158,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @OnClick(R.id.btCreateActionPlan)
     void createNewActionPlan(){
-        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)
-                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+//        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), WeekEvaluationActivity.class)
+//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 
     private void setupActivityRecycler(){

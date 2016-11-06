@@ -3,7 +3,6 @@ package com.icaboalo.yana.presentation.screens.main;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
@@ -22,12 +21,11 @@ import android.widget.TextView;
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
-import com.icaboalo.yana.other.PreferenceKey;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
-import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
+import com.icaboalo.yana.presentation.screens.evaluation.WeekEvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
 import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
@@ -36,7 +34,6 @@ import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
 import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
-import com.icaboalo.yana.presentation.screens.splash.SplashScreenActivity;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.Calendar;
@@ -210,7 +207,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             switch (requestCode) {
-                case EvaluationActivity.REQUEST_CODE:
+                case WeekEvaluationActivity.REQUEST_CODE:
                     showError(data.getIntExtra("answer", 0) + "");
                     int answer = data.getIntExtra("answer", 0);
                     switch (data.getIntExtra("testNumber", 0)) {
@@ -295,8 +292,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FIRST_TEST_TAKEN)) {
             showDialog("Primer examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
-                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 1),
-                                EvaluationActivity.REQUEST_CODE);
+                        navigator.navigateToForResult(MainActivity.this, WeekEvaluationActivity.getCallingIntent(getApplicationContext(), 1),
+                                WeekEvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
         }
@@ -304,8 +301,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.SECOND_TEST_TAKEN)) {
             showDialog("Segundo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
-                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 2),
-                                EvaluationActivity.REQUEST_CODE);
+                        navigator.navigateToForResult(MainActivity.this, WeekEvaluationActivity.getCallingIntent(getApplicationContext(), 2),
+                                WeekEvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
         }
@@ -314,8 +311,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.THIRD_TEST_TAKEN)) {
             showDialog("Tercer examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
-                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 3),
-                                EvaluationActivity.REQUEST_CODE);
+                        navigator.navigateToForResult(MainActivity.this, WeekEvaluationActivity.getCallingIntent(getApplicationContext(), 3),
+                                WeekEvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
         }
@@ -324,8 +321,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FOURTH_TEST_TAKEN)) {
             showDialog("Ultimo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
-                        navigator.navigateToForResult(MainActivity.this, EvaluationActivity.getCallingIntent(getApplicationContext(), 4),
-                                EvaluationActivity.REQUEST_CODE);
+                        navigator.navigateToForResult(MainActivity.this, WeekEvaluationActivity.getCallingIntent(getApplicationContext(), 4),
+                                WeekEvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
         }

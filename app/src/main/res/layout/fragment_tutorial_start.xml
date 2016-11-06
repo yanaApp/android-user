@@ -6,6 +6,14 @@
     android:gravity="center"
     android:orientation="vertical">
 
+
+    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="32dp"
+        android:text="@string/slide_to_begin"/>
+
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -61,13 +69,5 @@
             android:textColor="@color/yana_green"
             android:textSize="48sp"/>
     </LinearLayout>
-
-
-    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="32dp"
-        android:text="@string/slide_to_begin"/>
 
 </FrameLayout>

@@ -97,7 +97,7 @@
                 android:value=".presentation.screens.settings.SettingsActivity"/>
         </activity>
 
-        <activity android:name=".presentation.screens.evaluation.EvaluationActivity"
+        <activity android:name=".presentation.screens.evaluation.WeekEvaluationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
     </application>

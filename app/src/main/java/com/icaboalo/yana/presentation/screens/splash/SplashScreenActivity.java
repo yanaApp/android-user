@@ -1,15 +1,12 @@
 package com.icaboalo.yana.presentation.screens.splash;
 
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Window;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
-import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.tour.TourActivity;
