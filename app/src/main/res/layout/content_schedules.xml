@@ -28,6 +28,8 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -43,20 +45,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|left"
-                        android:text="@string/study"
-                        android:textAllCaps="true"
-                        android:textSize="20sp"/>
-
                     <android.support.v7.widget.SwitchCompat
                         android:id="@+id/cbStudies"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|right"
                         android:checked="true"/>
+
+                    <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:text="@string/study"
+                        android:textAllCaps="true"
+                        android:textSize="20sp"
+                        android:id="@+id/customFontTextView" />
                 </FrameLayout>
 
                 <LinearLayout

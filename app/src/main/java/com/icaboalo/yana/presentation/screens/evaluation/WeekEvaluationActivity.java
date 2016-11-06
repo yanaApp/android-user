@@ -3,13 +3,7 @@ package com.icaboalo.yana.presentation.screens.evaluation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,25 +11,14 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.old.domain.FragmentPagerModel;
-import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
-import com.icaboalo.yana.old.ui.fragment.AutoEvaluationFragment;
-import com.icaboalo.yana.old.ui.fragment.EvaluationFragment;
-import com.icaboalo.yana.old.ui.fragment.SelectEvaluationFragment;
-import com.icaboalo.yana.old.ui.fragment.TitleDescriptionFragment;
-import com.icaboalo.yana.old.ui.widget.NonSwipeableViewPager;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
-import com.icaboalo.yana.presentation.screens.register.RegisterActivity;
-import com.icaboalo.yana.util.EvaluationClickListener;
-
-import java.util.ArrayList;
 
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EvaluationActivity extends BaseActivity {
+public class WeekEvaluationActivity extends BaseActivity {
 
     @BindView(R.id.question_progress)
     ProgressBar mQuestionProgress;
@@ -125,6 +108,6 @@ public class EvaluationActivity extends BaseActivity {
 
     public static Intent getCallingIntent(Context context, int testNumber) {
         mTestNumber = testNumber;
-        return new Intent(context, EvaluationActivity.class);
+        return new Intent(context, WeekEvaluationActivity.class);
     }
 }
