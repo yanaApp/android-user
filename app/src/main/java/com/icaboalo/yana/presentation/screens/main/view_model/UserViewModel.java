@@ -1,6 +1,7 @@
 package com.icaboalo.yana.presentation.screens.main.view_model;
 
 import com.google.gson.annotations.SerializedName;
+import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class UserViewModel {
 
     @SerializedName("contacts")
     private List<ContactViewModel> contactList;
+
+    private ScheduleViewModel schedule;
 
     public int getId() {
         return id;
@@ -77,5 +80,9 @@ public class UserViewModel {
 
     public List<ContactViewModel> getContactList() {
         return contactList;
+    }
+
+    public ScheduleViewModel getSchedule() {
+        return schedule;
     }
 }

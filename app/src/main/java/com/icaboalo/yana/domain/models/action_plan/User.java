@@ -1,6 +1,7 @@
 package com.icaboalo.yana.domain.models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
+import com.icaboalo.yana.domain.models.Schedule;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class User {
 
     @SerializedName("contacts")
     private List<Contact> contactList;
+
+    private Schedule schedule;
 
     public int getId() {
         return id;
@@ -79,6 +82,10 @@ public class User {
         return contactList;
     }
 
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -125,5 +132,9 @@ public class User {
 
     public void setContactList(List<Contact> contactList) {
         this.contactList = contactList;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }

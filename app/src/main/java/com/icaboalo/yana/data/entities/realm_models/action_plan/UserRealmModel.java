@@ -1,6 +1,7 @@
 package com.icaboalo.yana.data.entities.realm_models.action_plan;
 
 import com.google.gson.annotations.SerializedName;
+import com.icaboalo.yana.data.entities.realm_models.ScheduleRealmModel;
 
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class UserRealmModel extends RealmObject{
 
     @SerializedName("contacts")
     private RealmList<ContactRealmModel> contactList;
+
+    private ScheduleRealmModel schedule;
 
     public int getId() {
         return id;
@@ -78,5 +81,9 @@ public class UserRealmModel extends RealmObject{
 
     public RealmList<ContactRealmModel> getContactList() {
         return contactList;
+    }
+
+    public ScheduleRealmModel getSchedule() {
+        return schedule;
     }
 }
