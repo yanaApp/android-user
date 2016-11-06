@@ -45,19 +45,24 @@ public class LoadingPresenter extends GenericDetailPresenter<UserViewModel> {
         ScheduleViewModel schedule = userViewModel.getSchedule();
 
         ManagerPreference.getInstance().set(YanaPreferences.BREAKFAST_NOTIFICATIN_TIME, schedule.getBreakfastTime());
-        createNotification(schedule.getBreakfastTime(), BreakfastReceiver.class, BreakfastReceiver.id);
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.BREAKFAST_NOTIFICATION_ACTIVE))
+            createNotification(schedule.getBreakfastTime(), BreakfastReceiver.class, BreakfastReceiver.id);
 
         ManagerPreference.getInstance().set(YanaPreferences.LUNCH_NOTIFICATIN_TIME, schedule.getLunchTime());
-        createNotification(schedule.getLunchTime(), LunchReceiver.class, LunchReceiver.id);
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.LUNCH_NOTIFICATION_ACTIVE))
+            createNotification(schedule.getLunchTime(), LunchReceiver.class, LunchReceiver.id);
 
         ManagerPreference.getInstance().set(YanaPreferences.DINNER_NOTIFICATIN_TIME, schedule.getDinnerTime());
-        createNotification(schedule.getDinnerTime(), DinnerReceiver.class, DinnerReceiver.id);
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DINNER_NOTIFICATION_ACTIVE))
+            createNotification(schedule.getDinnerTime(), DinnerReceiver.class, DinnerReceiver.id);
 
         ManagerPreference.getInstance().set(YanaPreferences.DAY_NOTIFICATIN_TIME, schedule.getWakeUpTime());
-        createNotification(schedule.getWakeUpTime(), WakeUpReceiver.class, WakeUpReceiver.id);
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DINNER_NOTIFICATION_ACTIVE))
+            createNotification(schedule.getWakeUpTime(), WakeUpReceiver.class, WakeUpReceiver.id);
 
         ManagerPreference.getInstance().set(YanaPreferences.NIGHT_NOTIFICATIN_TIME, schedule.getSleepTime());
-        createNotification(schedule.getSleepTime(), SleepReceiver.class, SleepReceiver.id);
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.NIGHT_NOTIFICATION_ACTIVE))
+            createNotification(schedule.getSleepTime(), SleepReceiver.class, SleepReceiver.id);
 
         super.getSuccessful(userViewModel);
     }
