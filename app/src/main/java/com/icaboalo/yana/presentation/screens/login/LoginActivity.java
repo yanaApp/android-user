@@ -140,7 +140,13 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @OnClick(R.id.btRegister)
     void goToRegister(){
-        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class));
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Bla bla bla...")
+                .setMessage(R.string.cupcake_ipsum)
+                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)))
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .create();
+        alertDialog.show();
     }
 
     void showDialog(){
