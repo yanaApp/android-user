@@ -16,7 +16,7 @@ import com.icaboalo.yana.presentation.notification.LunchReceiver;
 import com.icaboalo.yana.presentation.notification.SleepReceiver;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
 import com.icaboalo.yana.util.Constants;
 import com.icaboalo.yana.util.Utils;
 

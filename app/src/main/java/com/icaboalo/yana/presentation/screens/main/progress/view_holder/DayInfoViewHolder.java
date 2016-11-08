@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.util.Utils;

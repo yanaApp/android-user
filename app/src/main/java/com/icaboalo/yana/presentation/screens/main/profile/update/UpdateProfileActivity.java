@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +18,9 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;

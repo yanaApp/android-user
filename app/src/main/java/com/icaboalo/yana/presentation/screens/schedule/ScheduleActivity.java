@@ -24,7 +24,7 @@ import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ScheduleViewModel;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.HashMap;

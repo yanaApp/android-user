@@ -12,11 +12,10 @@ import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.inject.Inject;

@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -25,19 +24,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.GenericListView;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog.OnDialogClickListener;
 import com.icaboalo.yana.presentation.screens.main.contact.view_holder.ContactViewHolder;
-import com.icaboalo.yana.presentation.screens.main.view_model.ContactViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ContactViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;

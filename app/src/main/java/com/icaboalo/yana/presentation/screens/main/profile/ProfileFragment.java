@@ -14,7 +14,7 @@ import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;

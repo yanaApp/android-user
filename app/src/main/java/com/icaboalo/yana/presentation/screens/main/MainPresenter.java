@@ -4,12 +4,11 @@ import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 
 import javax.inject.Inject;
 
 import io.realm.Realm;
-import rx.Subscriber;
 
 /**
  * @author icaboalo on 13/08/16.

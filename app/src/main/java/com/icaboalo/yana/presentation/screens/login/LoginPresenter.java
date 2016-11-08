@@ -12,8 +12,8 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Login;
 import com.icaboalo.yana.domain.models.RecoverPassword;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
-import com.icaboalo.yana.presentation.screens.login.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;

@@ -18,7 +18,7 @@ import com.db.chart.view.HorizontalStackBarChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

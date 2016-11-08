@@ -83,9 +83,7 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.screens.main.MainActivity"/>
-
-
+                android:value=".presentation.screens.main.MainActivity" />
         </activity>
         <activity
             android:name=".presentation.screens.settings.food_notifications.FoodNotificationsActivity"
@@ -94,12 +92,13 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".presentation.screens.settings.SettingsActivity"/>
+                android:value=".presentation.screens.settings.SettingsActivity" />
         </activity>
-
-        <activity android:name=".presentation.screens.evaluation.WeekEvaluationActivity"
+        <activity
+            android:name=".presentation.screens.evaluation.EvaluationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".presentation.screens.evaluation.EvaluationResultActivity"></activity>
     </application>
 
 </manifest>

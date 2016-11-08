@@ -1,7 +1,6 @@
 package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
 
 import java.util.HashMap;
 

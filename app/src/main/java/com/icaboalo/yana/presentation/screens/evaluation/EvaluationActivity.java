@@ -6,20 +6,31 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
+import com.icaboalo.yana.presentation.screens.GenericPostView;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+
+import java.util.HashMap;
+
+import javax.inject.Inject;
 
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class EvaluationActivity extends BaseActivity {
+public class EvaluationActivity extends BaseActivity implements GenericPostView<ActionPlanViewModel> {
 
+    @Inject
+    EvaluationPresenter mEvaluationPresenter;
+    @BindView(R.id.rlProgress)
+    RelativeLayout rlProgress;
     @BindView(R.id.question_progress)
     ProgressBar mQuestionProgress;
     @BindView(R.id.question_text)
@@ -36,7 +47,8 @@ public class EvaluationActivity extends BaseActivity {
 
     @Override
     public void initialize() {
-
+        getComponent().inject(this);
+        mEvaluationPresenter.setView(this);
     }
 
     @Override
@@ -49,6 +61,41 @@ public class EvaluationActivity extends BaseActivity {
 
 
         mQuestion.setText(mQuestionList[mQuestionPosition]);
+    }
+
+
+    @Override
+    public void postSuccessful(ActionPlanViewModel item) {
+        hideLoading();
+        navigator.navigateTo(getApplicationContext(), EvaluationResultActivity.getCallingIntent(getApplicationContext(), mAnswerTotal));
+        finish();
+    }
+
+    @Override
+    public void showLoading() {
+        if (rlProgress != null)
+            rlProgress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        if (rlProgress != null)
+            rlProgress.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRetry() {
+
+    }
+
+    @Override
+    public void hideRetry() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+        showToastMessage(message);
     }
 
     @OnClick({R.id.option_1, R.id.option_2, R.id.option_3, R.id.option_4, R.id.btContinue})
@@ -80,11 +127,22 @@ public class EvaluationActivity extends BaseActivity {
                         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
                         sharedPref.edit().putInt(PrefConstants.scorePref, mAnswerTotal).apply();
 
-                        if (mTestNumber != 0)
+                        if (mTestNumber != 0) {
                             setResult(REQUEST_CODE, new Intent().putExtra("answer", mAnswerTotal).putExtra("testNumber", mTestNumber));
-                        else
-                            navigator.navigateTo(getApplicationContext(), EvaluationResultActivity.getCallingIntent(getApplicationContext(), mAnswerTotal));
-                        finish();
+                            finish();
+                        }
+                        else {
+                            HashMap<String, Object> postBundle = new HashMap<>();
+                            if (mAnswerTotal < 17)
+                                postBundle.put("category", 1);
+                            else if (mAnswerTotal < 31)
+                                postBundle.put("category", 2);
+                            else
+                                postBundle.put("category", 3);
+                            mEvaluationPresenter.post(postBundle);
+                        }
+
+
 
                     } else {
                         mAnswerTotal += mAnswer;
