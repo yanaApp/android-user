@@ -188,14 +188,13 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     void onSpinnerItemSelected(int position){
         switch (mType){
             case GENDER:
-                String[] genders = getResources().getStringArray(R.array.genders);
 //                if (position == genders.length - 1) {
 //                    etField.setVisibility(View.VISIBLE);
 //                    etField.setText("");
 //                }
 //                else {
                     etField.setVisibility(View.GONE);
-                    etField.setText(position);
+                    etField.setText(position + "");
 //                }
 
                 if (position == 0)

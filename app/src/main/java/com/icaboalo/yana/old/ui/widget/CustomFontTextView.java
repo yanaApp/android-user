@@ -38,7 +38,7 @@ public class CustomFontTextView extends TextView {
     }
 
     private Typeface getBlackTypeFace(Context context) {
-        return Typeface.createFromAsset(context.getAssets(), MAXWELL_LIGHT_FONT);
+        return Typeface.createFromAsset(context.getAssets(), AVENIR_LIGHT_FONT);
     }
 
 //    @Override

@@ -104,7 +104,7 @@ public class EvaluationFragment extends Fragment implements View.OnClickListener
                         mQuestion.setText(mQuestionList[mQuestionPosition]);
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Select one from the options above", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.error_no_answer_selected, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
