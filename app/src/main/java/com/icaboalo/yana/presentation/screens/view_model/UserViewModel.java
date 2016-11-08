@@ -1,7 +1,6 @@
-package com.icaboalo.yana.presentation.screens.main.view_model;
+package com.icaboalo.yana.presentation.screens.view_model;
 
 import com.google.gson.annotations.SerializedName;
-import com.icaboalo.yana.presentation.screens.schedule.view_model.ScheduleViewModel;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.main.view_model;
+package com.icaboalo.yana.presentation.screens.view_model;
 
 import com.google.gson.annotations.SerializedName;
 

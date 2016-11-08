@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class WeekEvaluationActivity extends BaseActivity {
+public class EvaluationActivity extends BaseActivity {
 
     @BindView(R.id.question_progress)
     ProgressBar mQuestionProgress;
@@ -80,7 +80,10 @@ public class WeekEvaluationActivity extends BaseActivity {
                         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PrefConstants.evaluationFile, Context.MODE_PRIVATE);
                         sharedPref.edit().putInt(PrefConstants.scorePref, mAnswerTotal).apply();
 
-                        setResult(REQUEST_CODE, new Intent().putExtra("answer", mAnswerTotal).putExtra("testNumber", mTestNumber));
+                        if (mTestNumber != 0)
+                            setResult(REQUEST_CODE, new Intent().putExtra("answer", mAnswerTotal).putExtra("testNumber", mTestNumber));
+                        else
+                            navigator.navigateTo(getApplicationContext(), EvaluationResultActivity.getCallingIntent(getApplicationContext(), mAnswerTotal));
                         finish();
 
                     } else {
@@ -92,7 +95,7 @@ public class WeekEvaluationActivity extends BaseActivity {
                         mQuestion.setText(mQuestionList[mQuestionPosition]);
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Select one from the options above", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.error_no_answer_selected, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -108,6 +111,6 @@ public class WeekEvaluationActivity extends BaseActivity {
 
     public static Intent getCallingIntent(Context context, int testNumber) {
         mTestNumber = testNumber;
-        return new Intent(context, WeekEvaluationActivity.class);
+        return new Intent(context, EvaluationActivity.class);
     }
 }
