@@ -54,8 +54,7 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
     }
 
     public void attemptSendInfoToBreakdown(List<DayViewModel> dayList){
-        Collections.sort(dayList, (lhs, rhs) ->
-                String.valueOf(lhs.getDayNumber()).compareToIgnoreCase(String.valueOf(rhs.getDayNumber())));
+        Collections.sort(dayList, (lhs, rhs) -> lhs.getDayNumber() - rhs.getDayNumber());
         sendInfoToBreakdown(dayList);
     }
 
