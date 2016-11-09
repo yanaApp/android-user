@@ -30,12 +30,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:layout_marginTop="10dp"
-        android:id="@+id/cbLiveTogether"
-        android:textSize="16sp"
-        android:text="@string/live_together"
+    <LinearLayout
+        android:layout_marginTop="@dimen/size_normal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/swLiveTogether"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:textSize="16sp"
+            android:text="@string/live_together"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 </LinearLayout>

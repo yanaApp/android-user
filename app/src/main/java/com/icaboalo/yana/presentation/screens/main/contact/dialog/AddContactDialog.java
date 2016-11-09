@@ -28,7 +28,7 @@ public class AddContactDialog extends DialogFragment {
 
     @BindView(R.id.etFirstName)
     EditText etFirstName;
-    @BindView(R.id.cbLiveTogether)
+    @BindView(R.id.swLiveTogether)
     AppCompatCheckBox cbLiveTogether;
     @BindView(R.id.spPhoneNumber)
     Spinner spPhoneNumber;
