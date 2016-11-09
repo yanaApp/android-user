@@ -31,6 +31,7 @@ import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanB
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
 import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.util.Utils;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
@@ -175,8 +176,11 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
             if (actionPlan.isActive())
                 arrayAdapter.insert(getString(R.string.current_plan), 0);
-            else
-                arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
+            else {
+                arrayAdapter.add(Utils.transformDateToText(actionPlan.getInitialDate(), "dd-MM-yyyy", "MMM dd")
+                        + " - " +
+                        Utils.transformDateToText(actionPlan.getFinalDate(), "dd-MM-yyyy", "MMM dd"));
+            }
         }
         spActionPlan.setAdapter(arrayAdapter);
         spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
