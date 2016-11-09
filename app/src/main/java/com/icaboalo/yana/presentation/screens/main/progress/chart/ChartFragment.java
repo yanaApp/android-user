@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.db.chart.Tools;
@@ -31,6 +32,8 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @BindView(R.id.lineChartView)
     LineChartView lineChartView;
+    @BindView(R.id.llChartContainer)
+    LinearLayout llChartContainer;
     @BindView(R.id.tvNoData)
     TextView tvNoData;
 
@@ -88,7 +91,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
         lineChartView.reset();
 
         if (dayList.length > 0 && averageEmotions.length > 0) {
-            lineChartView.setVisibility(View.VISIBLE);
+            llChartContainer.setVisibility(View.VISIBLE);
             tvNoData.setVisibility(View.GONE);
 
             Tooltip tooltip = new Tooltip(getActivity(), R.layout.tooltip_progress_chart, R.id.value);
@@ -123,7 +126,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
             lineChartView.show(new Animation().setEasing(new BounceEase()));
         }
         else {
-            lineChartView.setVisibility(View.GONE);
+            llChartContainer.setVisibility(View.GONE);
             tvNoData.setVisibility(View.VISIBLE);
         }
     }
