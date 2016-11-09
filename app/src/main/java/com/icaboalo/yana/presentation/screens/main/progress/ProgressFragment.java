@@ -177,8 +177,8 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
             if (actionPlan.isActive())
                 arrayAdapter.insert(getString(R.string.current_plan), 0);
             else {
-                arrayAdapter.add(Utils.transformDateToText(actionPlan.getInitialDate(), "dd-MM-yyyy", "MMM dd")
-                        + " - " +
+                arrayAdapter.add("Plan de " + Utils.transformDateToText(actionPlan.getInitialDate(), "dd-MM-yyyy", "MMM dd")
+                        + " a " +
                         Utils.transformDateToText(actionPlan.getFinalDate(), "dd-MM-yyyy", "MMM dd"));
             }
         }
