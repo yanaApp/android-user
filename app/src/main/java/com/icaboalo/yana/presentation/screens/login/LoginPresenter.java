@@ -66,16 +66,15 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
         recoverPassword(email);
     }
 
-//    TODO create recover url
     private void recoverPassword(String email){
         HashMap<String, Object> recoverBundle = new HashMap<>(1);
         recoverBundle.put("email", email);
-        getGenericUseCase().executeDynamicPostObject(new RecoverPasswordSubscriber(), Constants.API_BASE_URL, recoverBundle,
-                RecoverPassword.class, RecoverPasswordEntity.class, RecoverPasswordViewModel.class, false);
+        getGenericUseCase().executeDynamicPostObject(new RecoverPasswordSubscriber(), Constants.API_BASE_URL + "restore/",
+                recoverBundle, RecoverPassword.class, RecoverPasswordEntity.class, RecoverPasswordViewModel.class, false);
     }
 
-    private void recoverPasswordSuccess(boolean success){
-        ((LoginView) getGenericPostView()).recoverPasswordSuccess(success);
+    private void recoverPasswordSuccess(RecoverPasswordViewModel recoverPasswordViewModel){
+        ((LoginView) getGenericPostView()).recoverPasswordSuccess(recoverPasswordViewModel);
     }
 
     private class RecoverPasswordSubscriber extends DefaultSubscriber<RecoverPasswordViewModel>{
@@ -95,7 +94,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
         @Override
         public void onNext(RecoverPasswordViewModel recoverPasswordViewModel) {
             super.onNext(recoverPasswordViewModel);
-            recoverPasswordSuccess(true);
+            recoverPasswordSuccess(recoverPasswordViewModel);
         }
     }
 }

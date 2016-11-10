@@ -14,6 +14,7 @@ import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
 
 import java.util.HashMap;
 
@@ -63,10 +64,14 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     }
 
     @Override
-    public void recoverPasswordSuccess(boolean success) {
-        rlForgotPassword.setVisibility(View.GONE);
-        llLoginForm.setVisibility(View.VISIBLE);
-        showDialog();
+    public void recoverPasswordSuccess(RecoverPasswordViewModel recoverPasswordViewModel) {
+        if (recoverPasswordViewModel.isSuccess()) {
+            rlForgotPassword.setVisibility(View.GONE);
+            llLoginForm.setVisibility(View.VISIBLE);
+            showDialog();
+        }
+        else
+            showError(recoverPasswordViewModel.getError());
     }
 
     @Override
