@@ -98,7 +98,8 @@
             android:name=".presentation.screens.evaluation.EvaluationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".presentation.screens.evaluation.EvaluationResultActivity"></activity>
+        <activity android:name=".presentation.screens.evaluation.EvaluationResultActivity" />
+        <activity android:name=".presentation.screens.main.profile.change_password.ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
@@ -132,8 +133,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @OnClick(R.id.rlPassword)
     void updatePassword() {
-//        navigator.navigateTo(getApplicationContext(),
-//                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.PASSWORD));
+        navigator.navigateTo(getApplicationContext(), ChangePasswordActivity.getCallingIntent(getApplicationContext()));
     }
 
     @OnClick(R.id.rlBirthDate)
