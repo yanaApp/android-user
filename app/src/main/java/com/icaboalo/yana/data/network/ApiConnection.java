@@ -36,7 +36,8 @@ public class ApiConnection {
     private static Interceptor provideDynamicHeaderInterceptor(){
         return chain -> {
             Request finalRequest = chain.request();
-            if (finalRequest.toString().contains("login/") || finalRequest.toString().contains("register")){
+            if (finalRequest.toString().contains("login/") || finalRequest.toString().contains("register") ||
+                    finalRequest.toString().contains("restore")){
                 finalRequest = chain.request().newBuilder()
                         .header("Content-Type", "application/json")
                         .method(chain.request().method(), chain.request().body())
