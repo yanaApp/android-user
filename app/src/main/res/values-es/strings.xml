@@ -272,4 +272,7 @@
     <string name="change_password_title">Cambio de contraseña</string>
     <string name="new_password">Contraseña nueva</string>
     <string name="old_password">Contraseña antigua</string>
+    <string name="man">Hombre</string>
+    <string name="other">Otro</string>
+    <string name="woman">Mujer</string>
 </resources>

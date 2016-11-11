@@ -196,7 +196,19 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
         if (gender == null || gender.length() <= 0)
             tvGender.setVisibility(View.GONE);
         else {
-            tvGender.setText(gender);
+            switch (gender) {
+                case "1":
+                    tvGender.setText(R.string.man);
+                    break;
+
+                case "2":
+                    tvGender.setText(R.string.woman);
+                    break;
+
+                case "3":
+                    tvGender.setText(R.string.other);
+                    break;
+            }
             tvGender.setVisibility(View.VISIBLE);
         }
 
