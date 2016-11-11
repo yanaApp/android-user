@@ -353,4 +353,7 @@
         <item>Other</item>
     </array>
     <string name="no_graph_data">There\'s not enough data to show the graphics</string>
+    <string name="change_password_title">Change password</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
 </resources>

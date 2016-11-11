@@ -269,4 +269,7 @@
     <string name="end_plan">Finalizar plan</string>
     <string name="no_graph_data">No hay información necesaria para mostrar los graficos</string>
     <string name="error_incomplete_form">Por favor completa todos los campos</string>
+    <string name="change_password_title">Cambio de contraseña</string>
+    <string name="new_password">Contraseña nueva</string>
+    <string name="old_password">Contraseña antigua</string>
 </resources>
