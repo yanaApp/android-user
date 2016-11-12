@@ -97,7 +97,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             notifyItemRangeChanged(position, getItemCount());
         });
 
-        if (position == getPureDataList().size() -1)
+        if (position == 0)
             holder.startTour();
 
     }
@@ -185,6 +185,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         public void showEmotions(boolean show){
             int visibility = show ? View.VISIBLE : View.GONE;
             rlEmotion.setVisibility(visibility);
+            tvDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
 //            btDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
         }
 
@@ -251,22 +252,23 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                         showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
                         break;
 
+//                    case 2:
+//                        showEmotions(false);
+//                        showcaseView.setShowcase(new ViewTarget(btDescription), true);
+//                        showcaseView.setContentTitle("Press here");
+//                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+//                        break;
+//
+//                    case 3:
+//                        showDescription(true);
+//                        showcaseView.setShowcase(new ViewTarget(rlDescription), true);
+//                        showcaseView.setContentTitle("Description");
+//                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
+//                        break;
+
                     case 2:
                         showEmotions(false);
-                        showcaseView.setShowcase(new ViewTarget(btDescription), true);
-                        showcaseView.setContentTitle("Press here");
-                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-                        break;
-
-                    case 3:
-                        showDescription(true);
-                        showcaseView.setShowcase(new ViewTarget(rlDescription), true);
-                        showcaseView.setContentTitle("Description");
-                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-                        break;
-
-                    case 4:
-                        showDescription(false);
+//                        showDescription(false);
                         showcaseView.hide();
                         break;
                 }
