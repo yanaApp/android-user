@@ -3,8 +3,10 @@ package com.icaboalo.yana.presentation.screens.main.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,7 +47,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
     @Override
     public ActivityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return new ActivityViewHolder(mLayoutInflater.inflate(R.layout.item_activity_adapter, parent, false));
     }
 
     @Override
@@ -102,7 +104,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
     }
 
-    public void setOnEmotionSelectedListener(ActivitiesListener emotionSelectedListener){
+    public void setOnEmotionSelectedListener(ActivitiesListener emotionSelectedListener) {
         this.mActivitiesListener = emotionSelectedListener;
     }
 
@@ -137,7 +139,6 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
 
         int mTourCount = 0, answer = 0;
 
-
         public ActivityViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -148,7 +149,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         public void bindData(Object data, int position, boolean isEnabled) {
             super.bindData(data, position, isEnabled);
             Context context = MyApplication.getInstance().getApplicationContext();
-            if (data instanceof ItemInfo){
+            if (data instanceof ItemInfo) {
                 ItemInfo item = (ItemInfo) data;
                 ActivityViewModel activity = (ActivityViewModel) item.getData();
                 tvTitle.setText(activity.getTitle());
@@ -159,7 +160,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             }
         }
 
-        public void setListeners(){
+        public void setListeners() {
             ivCancel.setOnClickListener(this);
             ivVerySad.setOnClickListener(this);
             ivSad.setOnClickListener(this);
@@ -171,7 +172,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         public void showDescription(boolean show) {
             int visibility = show ? View.VISIBLE : View.GONE;
             rlDescription.setVisibility(visibility);
-            if (show){
+            if (show) {
                 btDescription.setVisibility(View.VISIBLE);
                 btDescription.setText("Ver menos");
                 btDescription.setCompoundDrawablesWithIntrinsicBounds(R.drawable.up_arrow_24dp, 0, 0, 0);
@@ -182,21 +183,21 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             }
         }
 
-        public void showEmotions(boolean show){
+        public void showEmotions(boolean show) {
             int visibility = show ? View.VISIBLE : View.GONE;
             rlEmotion.setVisibility(visibility);
             tvDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
 //            btDescription.setVisibility(!show ? View.VISIBLE : View.GONE);
         }
 
-        public void showActivityColorBar(boolean show){
+        public void showActivityColorBar(boolean show) {
             int visibility = show ? View.VISIBLE : View.INVISIBLE;
             vColor.setVisibility(visibility);
         }
 
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.ivCancel:
                     mActivitiesListener.onSelect((ActivityViewModel) getItem(getAdapterPosition()).getData(), 0);
                     VUtil.setEmotionImage(mContext, 0, btEmotion);
@@ -227,7 +228,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             showActivityColorBar(true);
         }
 
-        void startTour(){
+        void startTour() {
             final ShowcaseView showcaseView = new ShowcaseView.Builder((Activity) mContext)
                     .setContentTitle("Welcome to your Action Plan")
                     .singleShot(99)
@@ -238,7 +239,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                     .build();
             showcaseView.setButtonText("Next");
             showcaseView.overrideButtonClick(v -> {
-                switch (mTourCount){
+                switch (mTourCount) {
                     case 0:
                         showcaseView.setShowcase(new ViewTarget(btEmotion), true);
                         showcaseView.setContentTitle("Press here");
@@ -272,7 +273,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
                         showcaseView.hide();
                         break;
                 }
-                mTourCount ++;
+                mTourCount++;
             });
         }
     }
