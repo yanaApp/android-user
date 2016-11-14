@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.splash;
 
 import android.util.Log;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
@@ -29,6 +30,7 @@ public class SplashScreenActivity extends BaseActivity {
 
     @Override
     public void setupUI() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash_screen);
 
