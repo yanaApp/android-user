@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class User {
 
-    private int id;
+    private int id, gender;
 
-    private String email, password, location, occupation, gender;
+    private String email, password, location, occupation;
 
     @SerializedName("full_name")
     private String fullName;
@@ -54,7 +54,7 @@ public class User {
         return occupation;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
@@ -106,7 +106,7 @@ public class User {
         this.occupation = occupation;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 

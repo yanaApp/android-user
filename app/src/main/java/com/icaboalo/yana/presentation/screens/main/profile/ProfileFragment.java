@@ -170,7 +170,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
                 UpdateProfileActivity.MOTIVE, tvDepressionMotive.getText().toString()));
     }
 
-    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation,
+    private void setInfo(String fullName, String email, String birthDate, int gender, String location, String occupation,
                          String depressionMotive) {
         if (fullName == null || fullName.length() <= 0)
             tvFullName.setVisibility(View.GONE);
@@ -193,19 +193,19 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
             tvBirthDate.setVisibility(View.VISIBLE);
         }
 
-        if (gender == null || gender.length() <= 0)
+        if (gender == 0)
             tvGender.setVisibility(View.GONE);
         else {
             switch (gender) {
-                case "1":
+                case 1:
                     tvGender.setText(R.string.man);
                     break;
 
-                case "2":
+                case 2:
                     tvGender.setText(R.string.woman);
                     break;
 
-                case "3":
+                case 3:
                     tvGender.setText(R.string.other);
                     break;
             }

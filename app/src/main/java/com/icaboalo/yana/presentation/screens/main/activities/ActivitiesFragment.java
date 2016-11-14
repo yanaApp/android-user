@@ -104,7 +104,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void saveEmotionSuccess(ActivityViewModel activityViewModel) {
-        mActivitiesPresenter.getItemDetails();
+//        mActivitiesPresenter.getItemDetails();
     }
 
     @Override

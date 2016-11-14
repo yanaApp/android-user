@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class UserViewModel {
 
-    private int id;
+    private int id, gender;
 
-    private String email, password, location, occupation, gender;
+    private String email, password, location, occupation;
 
     @SerializedName("full_name")
     private String fullName;
@@ -53,7 +53,7 @@ public class UserViewModel {
         return occupation;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
