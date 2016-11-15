@@ -43,4 +43,9 @@ public class ContactViewModel {
     public boolean isValidated() {
         return isValidated;
     }
+
+    public boolean isEmpty() {
+        return (this.phoneNumber == null || this.phoneNumber.isEmpty()) && (this.name == null || this.name.isEmpty())
+                && (this.relationship == null || this.relationship.isEmpty());
+    }
 }

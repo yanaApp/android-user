@@ -184,16 +184,4 @@ public class Schedule {
     public void setSleepTime(String sleepTime) {
         this.sleepTime = sleepTime;
     }
-
-    public boolean isEmpty() {
-        if ((this.studyTimeFrom == null || this.studyDayFrom.isEmpty()) && (this.studyTimeTo == null || this.studyTimeTo.isEmpty())
-                && (this.studyDayFrom == null || this.studyDayFrom.isEmpty()) && (this.studyDayTo == null || this.studyDayTo.isEmpty())
-                && (this.workTimeFrom == null || this.workTimeFrom.isEmpty()) && (this.workTimeTo == null || this.workTimeTo.isEmpty())
-                && (this.workDayFrom == null || this.workDayFrom.isEmpty()) && (this.workDayTo == null || this.workDayTo.isEmpty())
-                && (this.breakfastTime == null || this.breakfastTime.isEmpty()) && (this.lunchTime == null || this.lunchTime.isEmpty())
-                && (this.dinnerTime == null || this.dinnerTime.isEmpty()) && (this.wakeUpTime == null || this.wakeUpTime.isEmpty())
-                && (this.sleepTime == null || this.sleepTime.isEmpty()))
-            return true;
-        return false;
-    }
 }

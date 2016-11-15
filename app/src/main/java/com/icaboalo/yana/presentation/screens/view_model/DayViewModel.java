@@ -34,4 +34,8 @@ public class DayViewModel {
     public String getDate() {
         return date;
     }
+
+    public boolean isEmpty() {
+        return (this.date == null || this.date.isEmpty()) && (this.activityList == null || this.activityList.isEmpty());
+    }
 }

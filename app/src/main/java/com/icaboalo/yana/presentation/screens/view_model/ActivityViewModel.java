@@ -29,4 +29,10 @@ public class ActivityViewModel {
     public CategoryViewModel getCategory() {
         return category;
     }
+
+    public boolean isEmpty() {
+        return (this.title == null || this.title.isEmpty()) && (this.description == null || this.description.isEmpty())
+                && category.isEmpty();
+
+    }
 }

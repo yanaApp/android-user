@@ -47,4 +47,9 @@ public class ActionPlanViewModel {
     public List<DayViewModel> getDayList() {
         return dayList;
     }
+
+    public boolean isEmpty() {
+        return (this.category == null || this.category.isEmpty()) && (this.initialDate == null || this.initialDate.isEmpty())
+                && (this.finalDate == null || this.finalDate.isEmpty()) && (this.dayList == null || this.dayList.isEmpty());
+    }
 }

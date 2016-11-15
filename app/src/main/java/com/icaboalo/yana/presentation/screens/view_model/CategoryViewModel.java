@@ -19,4 +19,8 @@ public class CategoryViewModel {
     public String getColor() {
         return color;
     }
+
+    public boolean isEmpty() {
+        return (this.name == null || this.name.isEmpty()) && (this.color == null || this.color.isEmpty());
+    }
 }

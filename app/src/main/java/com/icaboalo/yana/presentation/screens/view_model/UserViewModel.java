@@ -84,4 +84,13 @@ public class UserViewModel {
     public ScheduleViewModel getSchedule() {
         return schedule;
     }
+
+    public boolean isEmpty() {
+        return (this.email == null || this.email.isEmpty()) && (this.location == null || this.location.isEmpty())
+                && (this.occupation == null || this.occupation.isEmpty()) && (this.fullName == null || this.fullName.isEmpty())
+                && (this.phoneNumber == null || this.phoneNumber.isEmpty()) && (this.birthDate == null || this.birthDate.isEmpty())
+                && (this.depressionMotive == null || this.depressionMotive.isEmpty())
+                && (this.actionPlanList == null || this.actionPlanList.isEmpty())
+                && (this.contactList == null || this.contactList.isEmpty()) && this.schedule.isEmpty();
+    }
 }

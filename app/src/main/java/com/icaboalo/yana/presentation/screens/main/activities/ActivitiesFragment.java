@@ -59,6 +59,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     @BindView(R.id.rvActivity)
     RecyclerView rvActivity;
     private ActivitiesRecyclerAdapter mActivitiesRecyclerAdapter;
+    int retryCount = 0;
 
     @Override
     public void initialize() {
@@ -82,7 +83,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void renderItem(DayViewModel item) {
-        if (item.getDate() != null && !item.getDate().isEmpty()){
+        if (!item.isEmpty()){
             ManagerPreference.getInstance().set(YanaPreferences.CURRENT_DAY, item.getDayNumber());
 
             tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " +
@@ -95,6 +96,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
                 itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
             }
             mActivitiesRecyclerAdapter.setDataList(itemList);
+            if (retryCount < 2) {
+                mActivitiesPresenter.getItemDetails();
+                retryCount ++;
+            }
         }
         else {
             llContainer.setVisibility(View.GONE);

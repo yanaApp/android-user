@@ -67,11 +67,4 @@ public class Contact {
     public void setLiveTogether(boolean liveTogether) {
         this.liveTogether = liveTogether;
     }
-
-    public boolean isEmpty() {
-        if ((this.phoneNumber == null || this.phoneNumber.isEmpty()) && (this.name == null || this.name.isEmpty())
-                && (this.relationship == null || this.relationship.isEmpty()))
-            return true;
-        return false;
-    }
 }

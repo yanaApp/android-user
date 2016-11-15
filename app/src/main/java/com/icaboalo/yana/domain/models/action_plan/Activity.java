@@ -49,12 +49,4 @@ public class Activity {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    public boolean isEmpty() {
-        if ((this.title == null || this.title.isEmpty()) && (this.description == null || this.description.isEmpty())
-                && category.isEmpty())
-            return true;
-
-        return false;
-    }
 }
