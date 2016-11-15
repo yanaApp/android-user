@@ -52,4 +52,10 @@ public class Day {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public boolean isEmpty() {
+        if ((this.date == null || this.date.isEmpty()) && (this.activityList == null || this.activityList.isEmpty()))
+            return true;
+        return false;
+    }
 }

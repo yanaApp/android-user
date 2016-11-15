@@ -71,4 +71,12 @@ public class ActionPlan {
     public void setDayList(List<Day> dayList) {
         this.dayList = dayList;
     }
+
+    public boolean isEmpty() {
+        if ((this.category == null || this.category.isEmpty()) && (this.initialDate == null || this.initialDate.isEmpty())
+                && (this.finalDate == null || this.finalDate.isEmpty()) && (this.dayList == null || this.dayList.isEmpty())) {
+            return true;
+        }
+        return false;
+    }
 }

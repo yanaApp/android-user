@@ -12,7 +12,7 @@ public class Contact {
     private String name, relationship;
 
     @SerializedName("live_together")
-    boolean liveTogether;
+    private boolean liveTogether;
 
     @SerializedName("phone_number")
     private String phoneNumber;
@@ -66,5 +66,12 @@ public class Contact {
 
     public void setLiveTogether(boolean liveTogether) {
         this.liveTogether = liveTogether;
+    }
+
+    public boolean isEmpty() {
+        if ((this.phoneNumber == null || this.phoneNumber.isEmpty()) && (this.name == null || this.name.isEmpty())
+                && (this.relationship == null || this.relationship.isEmpty()))
+            return true;
+        return false;
     }
 }

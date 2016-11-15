@@ -31,4 +31,10 @@ public class Category {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public boolean isEmpty() {
+        if ((this.name == null || this.name.isEmpty()) && (this.color == null || this.color.isEmpty()))
+            return true;
+        return false;
+    }
 }
