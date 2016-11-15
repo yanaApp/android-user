@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.profile.change_password;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,12 +55,13 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
         ButterKnife.bind(this);
         toolbar.setTitle(R.string.change_password_title);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public void postSuccessful(UserViewModel item) {
-
+        finish();
     }
 
     @Override
@@ -89,6 +91,17 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
     @Override
     public void showError(String message) {
         showToastMessage(message);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnTextChanged(value = {R.id.etNewPassword, R.id.etOldPassword}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
