@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,7 +29,7 @@ public class AddContactDialog extends DialogFragment {
     @BindView(R.id.etFirstName)
     EditText etFirstName;
     @BindView(R.id.swLiveTogether)
-    AppCompatCheckBox cbLiveTogether;
+    SwitchCompat swLiveTogether;
     @BindView(R.id.spPhoneNumber)
     Spinner spPhoneNumber;
     @BindView(R.id.spRelation)
@@ -69,7 +69,7 @@ public class AddContactDialog extends DialogFragment {
                 Toast.makeText(getActivity(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
             else
                 mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(),
-                        (String)spPhoneNumber.getSelectedItem(), (String)spRelation.getSelectedItem(), cbLiveTogether.isChecked());
+                        (String)spPhoneNumber.getSelectedItem(), (String)spRelation.getSelectedItem(), swLiveTogether.isChecked());
         });
         alertDialog.setNegativeButton("Cancel", (dialog, which) -> {
             mDialogClickListener.onNegativeClick(dialog);
