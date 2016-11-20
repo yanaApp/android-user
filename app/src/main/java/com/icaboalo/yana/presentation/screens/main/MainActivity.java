@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.other.FilePreference;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
@@ -34,6 +35,7 @@ import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
 import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.util.Constants;
 import com.icaboalo.yana.util.PrefUtils;
 
 import java.util.Calendar;
@@ -260,8 +262,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 .setCancelable(false)
                 .setPositiveButton("Sure", (dialog, which) -> {
                     mMainPresenter.attemptLogOut();
-                    SharedPreferences sharedPreferences = getSharedPreferences(PrefConstants.authFile, MODE_PRIVATE);
-                    sharedPreferences.edit().clear().apply();
+                    ManagerPreference.getInstance().resetGroupPreference(FilePreference.DEFAULT_PREFERENCE);
                     finish();
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
@@ -270,21 +271,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     dialog.dismiss();
                 })
                 .create().show();
-    }
-
-    private void createNotification(){
-
-        Calendar calendar = Calendar.getInstance();
-
-
-        Log.d("CALENDAR", calendar.getTime().getHours() + ":" + calendar.getTime().getMinutes());
-
-        Intent intent = new Intent(getApplicationContext(), WakeUpReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 5 * 100, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
     }
 
     private void checkForTest() {

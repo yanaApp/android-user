@@ -44,28 +44,32 @@ public class LoadingPresenter extends GenericDetailPresenter<UserViewModel> {
 //        PrefUtils.setScheduleId(getGenericDetailView().getApplicationContext(), userViewModel.getSchedule.getId);
         ScheduleViewModel schedule = userViewModel.getSchedule();
 
-        ManagerPreference.getInstance().set(YanaPreferences.BREAKFAST_NOTIFICATIN_TIME, schedule.getBreakfastTime());
-        ManagerPreference.getInstance().set(YanaPreferences.LUNCH_NOTIFICATIN_TIME, schedule.getLunchTime());
-        ManagerPreference.getInstance().set(YanaPreferences.DINNER_NOTIFICATIN_TIME, schedule.getDinnerTime());
+        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.NOTIFICATIONS_SET)) {
+            ManagerPreference.getInstance().set(YanaPreferences.BREAKFAST_NOTIFICATION_TIME, schedule.getBreakfastTime());
+            ManagerPreference.getInstance().set(YanaPreferences.LUNCH_NOTIFICATION_TIME, schedule.getLunchTime());
+            ManagerPreference.getInstance().set(YanaPreferences.DINNER_NOTIFICATION_TIME, schedule.getDinnerTime());
 
-        ManagerPreference.getInstance().set(YanaPreferences.DAY_NOTIFICATION_ACTIVE, schedule.getWakeUpTime());
-        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DINNER_NOTIFICATION_ACTIVE))
-            createNotification(schedule.getWakeUpTime(), WakeUpReceiver.class, WakeUpReceiver.id);
+            ManagerPreference.getInstance().set(YanaPreferences.DAY_NOTIFICATION_TIME, schedule.getWakeUpTime());
+            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DAY_NOTIFICATION_ACTIVE))
+                createNotification(schedule.getWakeUpTime(), WakeUpReceiver.class, WakeUpReceiver.id);
 
-        ManagerPreference.getInstance().set(YanaPreferences.NIGHT_NOTIFICATIN_TIME, schedule.getSleepTime());
-        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.NIGHT_NOTIFICATION_ACTIVE))
-            createNotification(schedule.getSleepTime(), SleepReceiver.class, SleepReceiver.id);
+            ManagerPreference.getInstance().set(YanaPreferences.NIGHT_NOTIFICATION_TIME, schedule.getSleepTime());
+            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.NIGHT_NOTIFICATION_ACTIVE))
+                createNotification(schedule.getSleepTime(), SleepReceiver.class, SleepReceiver.id);
 
 
-        if (ManagerPreference.getInstance().getBoolean(YanaPreferences.FOOD_NOTIFICATION_ACTIVE)) {
-            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.BREAKFAST_NOTIFICATION_ACTIVE))
-                createNotification(schedule.getBreakfastTime(), BreakfastReceiver.class, BreakfastReceiver.id);
+            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.FOOD_NOTIFICATION_ACTIVE)) {
+                if (ManagerPreference.getInstance().getBoolean(YanaPreferences.BREAKFAST_NOTIFICATION_ACTIVE))
+                    createNotification(schedule.getBreakfastTime(), BreakfastReceiver.class, BreakfastReceiver.id);
 
-            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.LUNCH_NOTIFICATION_ACTIVE))
-                createNotification(schedule.getLunchTime(), LunchReceiver.class, LunchReceiver.id);
+                if (ManagerPreference.getInstance().getBoolean(YanaPreferences.LUNCH_NOTIFICATION_ACTIVE))
+                    createNotification(schedule.getLunchTime(), LunchReceiver.class, LunchReceiver.id);
 
-            if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DINNER_NOTIFICATION_ACTIVE))
-                createNotification(schedule.getDinnerTime(), DinnerReceiver.class, DinnerReceiver.id);
+                if (ManagerPreference.getInstance().getBoolean(YanaPreferences.DINNER_NOTIFICATION_ACTIVE))
+                    createNotification(schedule.getDinnerTime(), DinnerReceiver.class, DinnerReceiver.id);
+            }
+
+            ManagerPreference.getInstance().set(YanaPreferences.NOTIFICATIONS_SET, true);
         }
 
         super.getSuccessful(userViewModel);

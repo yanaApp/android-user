@@ -35,4 +35,5 @@ public class PrefConstants {
     public static final String FIRST_TEST_TAKEN = "firstTestTaken", SECOND_TEST_TAKEN = "secondTestTaken",
             THIRD_TEST_TAKEN = "thirdTestTaken", FOURTH_TEST_TAKEN = "fourthTestTaken", NEXT_DAY_TEST = "nextDayTest",
             CURRENT_DAY = "currentDay";
+    public static String NOTIFICATIONS_SET = "notificationsSet";
 }

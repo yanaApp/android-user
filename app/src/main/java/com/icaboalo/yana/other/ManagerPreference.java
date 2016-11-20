@@ -21,7 +21,7 @@ public class ManagerPreference {
 
     public static ManagerPreference getInstance() {
         if (sInstance == null)
-            throw new UnsupportedOperationException("Befoere you call this method first you need to instance it");
+            throw new UnsupportedOperationException("Before you call this method first you need to instance it");
         return sInstance;
     }
 
