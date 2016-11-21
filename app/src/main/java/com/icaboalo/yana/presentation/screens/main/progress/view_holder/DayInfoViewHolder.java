@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.main.progress.view_holder;
 
 import android.content.Context;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
             for (ActivityViewModel activity : day.getActivityList()) {
                 if (activity.getAnswer() > 0) {
                     completedCount++;
+                    answerTotal += activity.getAnswer();
                 } else if (activity.getAnswer() == 0)
                     incompleteCount++;
                 else
