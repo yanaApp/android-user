@@ -22,7 +22,7 @@ public class VUtil {
         if (answer >= 0) {
             switch (answer) {
                 case 0:
-                    Picasso.with(context).load(R.drawable.cancel_outlined_circular_32).into(image);
+                    Picasso.with(context).load(R.drawable.cancel_32dp).into(image);
                     break;
                 case 1:
                     Picasso.with(context).load(R.drawable.very_sad_32dp).into(image);
