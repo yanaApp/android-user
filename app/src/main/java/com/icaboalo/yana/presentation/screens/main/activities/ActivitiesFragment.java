@@ -171,9 +171,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
         AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                 .setTitle("Bla bla bla...")
                 .setMessage(R.string.cupcake_ipsum)
-                .setPositiveButton("Ok", (dialog, which) -> {
-                    navigator.navigateTo(getApplicationContext(), EvaluationActivity.getCallingIntent(getApplicationContext(), 0));
-                })
+                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(), EvaluationActivity.getCallingIntent(getApplicationContext(), 0)))
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .create();
         alertDialog.show();

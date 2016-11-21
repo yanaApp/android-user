@@ -74,7 +74,7 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         }
 
         holder.btEmotion.setOnClickListener(v -> {
-            if (holder.answer > 0) {
+            if (holder.btEmotion.getDrawable() != null) {
                 Toast.makeText(mContext, "No se puede cambiar la respuesta despues de elegirla.",
                         Toast.LENGTH_SHORT).show();
             } else {

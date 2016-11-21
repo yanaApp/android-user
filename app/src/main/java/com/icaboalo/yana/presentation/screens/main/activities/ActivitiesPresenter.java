@@ -62,6 +62,7 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
 
         @Override
         public void onError(Throwable e) {
+            hideViewLoading();
             showErrorMessage(new DefaultErrorBundle((Exception) e));
             ((ActivityView) getGenericDetailView()).saveEmotionError();
         }
