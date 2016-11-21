@@ -66,37 +66,10 @@
 
 
     <RelativeLayout
-        android:id="@+id/rlDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitle"
-        android:orientation="vertical"
-        android:paddingEnd="48dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="48dp"
-        android:paddingStart="0dp"
-        android:visibility="visible">
-
-        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-            android:id="@+id/tvDescription"
-            android:layout_width="215dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="48dp"
-            android:layout_marginStart="48dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:text="Description..."
-            android:textColor="@color/primary_text"/>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/rlEmotion"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_below="@id/rlDescription"
+        android:layout_below="@+id/rlDescription"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:paddingEnd="48dp"
@@ -145,8 +118,8 @@
 
         <ImageView
             android:id="@+id/ivVerySad"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/emotion_divider"
             android:layout_centerVertical="true"
             android:layout_marginEnd="4dp"
@@ -156,27 +129,12 @@
             android:layout_toLeftOf="@+id/ivSad"
             android:layout_toStartOf="@+id/ivSad"
             android:scaleType="centerInside"
-            android:src="@drawable/very_sad_28"/>
-
-        <ImageView
-            android:id="@+id/ivSad"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_below="@id/emotion_divider"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_toLeftOf="@+id/ivNormal"
-            android:layout_toStartOf="@+id/ivNormal"
-            android:scaleType="centerInside"
-            android:src="@drawable/sad_28"/>
+            android:src="@drawable/very_sad_32dp"/>
 
         <ImageView
             android:id="@+id/ivNormal"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/emotion_divider"
             android:layout_centerVertical="true"
             android:layout_marginEnd="4dp"
@@ -186,12 +144,12 @@
             android:layout_toLeftOf="@+id/ivHappy"
             android:layout_toStartOf="@+id/ivHappy"
             android:scaleType="centerInside"
-            android:src="@drawable/normal_28"/>
+            android:src="@drawable/normal_32dp"/>
 
         <ImageView
             android:id="@+id/ivHappy"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/emotion_divider"
             android:layout_centerVertical="true"
             android:layout_marginEnd="4dp"
@@ -201,12 +159,12 @@
             android:layout_toLeftOf="@+id/ivVeryHappy"
             android:layout_toStartOf="@+id/ivVeryHappy"
             android:scaleType="centerInside"
-            android:src="@drawable/happy_28"/>
+            android:src="@drawable/happy_32dp"/>
 
         <ImageView
             android:id="@+id/ivVeryHappy"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/emotion_divider"
@@ -214,6 +172,45 @@
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
             android:scaleType="centerInside"
-            android:src="@drawable/very_happy_28"/>
+            android:src="@drawable/very_happy_32dp"/>
+
+        <ImageView
+            android:id="@+id/ivSad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@drawable/sad_32dp"
+            android:layout_below="@+id/emotion_divider"
+            android:layout_toLeftOf="@+id/ivNormal"
+            android:layout_toStartOf="@+id/ivNormal" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingEnd="48dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="48dp"
+        android:paddingStart="0dp"
+        android:visibility="visible"
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="48dp"
+            android:layout_marginStart="48dp"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:text="Description..."
+            android:textColor="@color/primary_text"/>
+
+
     </RelativeLayout>
 </RelativeLayout>

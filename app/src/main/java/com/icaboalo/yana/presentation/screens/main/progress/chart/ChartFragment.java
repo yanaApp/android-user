@@ -94,23 +94,6 @@ public class ChartFragment extends BaseFragment implements ChartView {
             llChartContainer.setVisibility(View.VISIBLE);
             tvNoData.setVisibility(View.GONE);
 
-            Tooltip tooltip = new Tooltip(getActivity(), R.layout.tooltip_progress_chart, R.id.value);
-            tooltip.setVerticalAlignment(Tooltip.Alignment.BOTTOM_TOP);
-            tooltip.setDimensions((int) Tools.fromDpToPx(58), (int) Tools.fromDpToPx(25));
-
-            tooltip.setEnterAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 1),
-                    PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f),
-                    PropertyValuesHolder.ofFloat(View.SCALE_X, 1f)).setDuration(200);
-
-            tooltip.setExitAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 0),
-                    PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f),
-                    PropertyValuesHolder.ofFloat(View.SCALE_X, 0f)).setDuration(200);
-
-            tooltip.setPivotX(Tools.fromDpToPx(65) / 2);
-            tooltip.setPivotY(Tools.fromDpToPx(25));
-
-//        lineChartView.setTooltips(tooltip);
-
             LineSet dataSet = new LineSet(dayList, averageEmotions);
 
             dataSet.setColor(getResources().getColor(R.color.yana_green))

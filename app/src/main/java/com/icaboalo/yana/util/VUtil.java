@@ -25,23 +25,23 @@ public class VUtil {
                     Picasso.with(context).load(R.drawable.cancel_outlined_circular_32).into(image);
                     break;
                 case 1:
-                    Picasso.with(context).load(R.drawable.very_sad_32).into(image);
+                    Picasso.with(context).load(R.drawable.very_sad_32dp).into(image);
                     break;
 
                 case 2:
-                    Picasso.with(context).load(R.drawable.sad_32).into(image);
+                    Picasso.with(context).load(R.drawable.sad_32dp).into(image);
                     break;
 
                 case 3:
-                    Picasso.with(context).load(R.drawable.normal_32).into(image);
+                    Picasso.with(context).load(R.drawable.normal_32dp).into(image);
                     break;
 
                 case 4:
-                    Picasso.with(context).load(R.drawable.happy_32).into(image);
+                    Picasso.with(context).load(R.drawable.happy_32dp).into(image);
                     break;
 
                 case 5:
-                    Picasso.with(context).load(R.drawable.very_happy_32).into(image);
+                    Picasso.with(context).load(R.drawable.very_happy_32dp).into(image);
                     break;
 
             }

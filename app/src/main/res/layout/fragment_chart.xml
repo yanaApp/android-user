@@ -1,86 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingBottom="16dp">
+    android:paddingTop="16dp">
 
     <LinearLayout
         android:id="@+id/llChartContainer"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="1 = "
-                android:gravity="center"
-                android:drawableRight="@drawable/very_sad_28"
-                android:drawableEnd="@drawable/very_sad_28"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:drawableEnd="@drawable/very_sad_24dp"
+                android:drawableRight="@drawable/very_sad_24dp"
+                android:gravity="center"
+                android:text="1 =" />
+
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="2 = "
-                android:gravity="center"
-                android:drawableRight="@drawable/sad_28"
-                android:drawableEnd="@drawable/sad_28"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:drawableEnd="@drawable/sad_24dp"
+                android:drawableRight="@drawable/sad_24dp"
+                android:gravity="center"
+                android:text="2 =" />
+
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="3 = "
-                android:gravity="center"
-                android:drawableRight="@drawable/normal_28"
-                android:drawableEnd="@drawable/normal_28"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:drawableEnd="@drawable/normal_24dp"
+                android:drawableRight="@drawable/normal_24dp"
+                android:gravity="center"
+                android:text="3 =" />
+
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="4 = "
-                android:gravity="center"
-                android:drawableRight="@drawable/happy_28"
-                android:drawableEnd="@drawable/happy_28"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:drawableEnd="@drawable/happy_24dp"
+                android:drawableRight="@drawable/happy_24dp"
+                android:gravity="center"
+                android:text="4 =" />
+
             <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="5 = "
-                android:gravity="center"
-                android:drawableRight="@drawable/very_happy_28"
-                android:drawableEnd="@drawable/very_happy_28"
                 android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:drawableEnd="@drawable/very_happy_24dp"
+                android:drawableRight="@drawable/very_happy_24dp"
+                android:gravity="center"
+                android:text="5 =" />
 
         </LinearLayout>
+
         <com.db.chart.view.LineChartView
             android:id="@+id/lineChartView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/tvNoData"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:text="@string/no_graph_data"
-        android:gravity="center"
         android:layout_width="150dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/no_graph_data"
+        android:visibility="gone" />
 
 
 </RelativeLayout>
