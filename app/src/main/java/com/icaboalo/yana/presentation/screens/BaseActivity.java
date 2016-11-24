@@ -90,7 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
                 dialog.dismiss();
             });
         else alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK", onClickListener);
-
+        alertDialog.setCancelable(false);
         alertDialog.show();
     }
 }

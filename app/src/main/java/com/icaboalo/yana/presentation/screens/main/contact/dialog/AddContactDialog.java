@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnItemSelected;
 
 /**
  * @author icaboalo on 03/09/16.
@@ -77,8 +78,23 @@ public class AddContactDialog extends DialogFragment {
         return alertDialog.create();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        ((AlertDialog) getDialog()).getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
+    }
+
     public void setDialogClickListener(OnDialogClickListener onDialogClickListener){
         this.mDialogClickListener = onDialogClickListener;
+    }
+
+    @OnItemSelected({R.id.spPhoneNumber, R.id.spRelation})
+    void onItemSelected() {
+        if (!etFirstName.toString().isEmpty() && spinnerSelectionValid(spPhoneNumber) && spinnerSelectionValid(spRelation))
+            ((AlertDialog) getDialog()).getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(true);
+        else
+            ((AlertDialog) getDialog()).getButton(DialogInterface.BUTTON_POSITIVE).setEnabled(false);
     }
 
     private void setTexts(String contactName, ArrayList<String> phoneNumber){
@@ -89,5 +105,13 @@ public class AddContactDialog extends DialogFragment {
         ArrayAdapter<String> nArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,
                 phoneNumber);
         spPhoneNumber.setAdapter(nArrayAdapter);
+    }
+
+    private boolean spinnerSelectionValid(Spinner spinner){
+        if (spinner.getCount() == 1)
+            return true;
+        else if (spinner.getSelectedItemPosition() > 0)
+            return true;
+        return false;
     }
 }
