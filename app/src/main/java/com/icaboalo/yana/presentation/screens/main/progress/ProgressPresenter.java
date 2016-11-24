@@ -45,9 +45,9 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
     private void getDayInfoList(List<DayViewModel> dayViewModelList){
         List<ItemInfo> itemList = new ArrayList<>();
         for (DayViewModel day : dayViewModelList){
-            itemList.add(new ItemInfo<>(day, ItemInfo.SECTION_ITEM));
             if (day.getDate().equals(Utils.getCurrentDate()))
                 break;
+            itemList.add(new ItemInfo<>(day, ItemInfo.SECTION_ITEM));
         }
         Collections.sort(itemList, (itemInfo, t1) -> ((DayViewModel) t1.getData()).getId() - ((DayViewModel) itemInfo.getData()).getId());
         ((ProgressView) getGenericListView()).setDayInfoList(itemList);
@@ -63,6 +63,8 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
         int completedAverage, incompleteAverage, notDoneAverage;
         for (DayViewModel day : dayViewModelList){
             for (ActivityViewModel activity : day.getActivityList()){
+                if (day.getDate().equals(Utils.getCurrentDate()))
+                    break;
                 if (activity.getAnswer() > 0){
                     completedCount ++;
                 }
@@ -71,8 +73,6 @@ public class ProgressPresenter extends GenericListPresenter<ActionPlanViewModel,
                 else
                     notDoneCount ++;
             }
-            if (day.getDate().equals(Utils.getCurrentDate()))
-                break;
         }
         totalCount = completedCount + incompleteCount + notDoneCount;
         completedAverage = Math.round((completedCount / totalCount) * 100);
