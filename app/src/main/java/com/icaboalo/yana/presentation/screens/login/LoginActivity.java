@@ -148,7 +148,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Bla bla bla...")
                 .setMessage(R.string.cupcake_ipsum)
-                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)))
+                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(),
+                        new Intent(getApplicationContext(), EvaluationActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
                 .create();
         alertDialog.show();

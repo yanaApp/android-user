@@ -51,7 +51,7 @@ public class SplashScreenActivity extends BaseActivity {
     }
 
     private void checkForToken() {
-        if (PrefUtils.getToken(getApplicationContext()).isEmpty() || PrefUtils.getToken(getApplicationContext()).equalsIgnoreCase("TOKEN")) {
+        if (ManagerPreference.getInstance().getString(YanaPreferences.TOKEN).isEmpty()) {
             navigator.navigateTo(getApplicationContext(), TourActivity.getCallingContext(getApplicationContext()));
             finish();
         } else {

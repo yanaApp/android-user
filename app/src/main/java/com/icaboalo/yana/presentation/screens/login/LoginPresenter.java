@@ -11,6 +11,8 @@ import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Login;
 import com.icaboalo.yana.domain.models.RecoverPassword;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
 import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
@@ -54,10 +56,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
     }
 
     private boolean saveResponseToPrefsHelper(LoginViewModel loginViewModel){
-        Constants.ACCESS_TOKEN = loginViewModel.getToken();
-        SharedPreferences.Editor nEditor = getGenericPostView().getApplicationContext().getSharedPreferences(PrefConstants.authFile, Context.MODE_PRIVATE).edit();
-        nEditor.putString(PrefConstants.tokenPref, loginViewModel.getToken());
-        nEditor.apply();
+        ManagerPreference.getInstance().set(YanaPreferences.TOKEN, loginViewModel.getToken());
         return true;
     }
 
