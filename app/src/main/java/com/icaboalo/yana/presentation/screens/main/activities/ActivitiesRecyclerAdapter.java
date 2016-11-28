@@ -98,9 +98,6 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             notifyItemRangeChanged(position, getItemCount());
         });
 
-        if (position == 0)
-            holder.startTour();
-
     }
 
     public void setOnEmotionSelectedListener(ActivitiesListener emotionSelectedListener) {
@@ -225,55 +222,6 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
             showEmotions(false);
             emotionExpandedPosition = -1;
 //            showActivityColorBar(true);
-        }
-
-        void startTour() {
-            final ShowcaseView showcaseView = new ShowcaseView.Builder((Activity) mContext)
-                    .setContentTitle("Welcome to your Action Plan")
-                    .singleShot(99)
-                    .withMaterialShowcase()
-                    .setTarget(Target.NONE)
-                    .setStyle(R.style.CustomShowcase)
-                    .setContentText("We'll give you a brief tour around, so you can start by yourself.")
-                    .build();
-            showcaseView.setButtonText("Next");
-            showcaseView.overrideButtonClick(v -> {
-                switch (mTourCount) {
-                    case 0:
-                        showcaseView.setShowcase(new ViewTarget(btEmotion), true);
-                        showcaseView.setContentTitle("Press here");
-                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-                        break;
-
-                    case 1:
-                        showEmotions(true);
-                        showcaseView.setShowcase(new ViewTarget(rlEmotion), true);
-                        showcaseView.setContentTitle("Emotions");
-                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-                        break;
-
-//                    case 2:
-//                        showEmotions(false);
-//                        showcaseView.setShowcase(new ViewTarget(btDescription), true);
-//                        showcaseView.setContentTitle("Press here");
-//                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-//                        break;
-//
-//                    case 3:
-//                        showDescription(true);
-//                        showcaseView.setShowcase(new ViewTarget(rlDescription), true);
-//                        showcaseView.setContentTitle("Description");
-//                        showcaseView.setContentText("You'll need to press in here whenever you have finished an activity so you can tell us how you felt.");
-//                        break;
-
-                    case 2:
-                        showEmotions(false);
-//                        showDescription(false);
-                        showcaseView.hide();
-                        break;
-                }
-                mTourCount++;
-            });
         }
     }
 }
