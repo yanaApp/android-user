@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -26,6 +24,7 @@ import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -56,6 +55,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     TextView tvDescription;
     @BindView(R.id.btSave)
     Button btSave;
+    @BindView(R.id.btClear)
+    EditText btClear;
     private static String mType, mInfo;
 
     public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
@@ -189,14 +190,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     void onSpinnerItemSelected(int position) {
         switch (mType) {
             case GENDER:
-//                if (position == genders.length - 1) {
-//                    etField.setVisibility(View.VISIBLE);
-//                    etField.setText("");
-//                }
-//                else {
                 etField.setVisibility(View.GONE);
                 etField.setText(position + "");
-//                }
 
                 if (position == 0)
                     btSave.setVisibility(View.GONE);
@@ -208,8 +203,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 if (position == occupations.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");
+                    btSave.setVisibility(View.VISIBLE);
+                    btClear.setVisibility(View.VISIBLE);
                 } else {
                     etField.setVisibility(View.GONE);
+                    btSave.setVisibility(View.GONE);
+                    btClear.setVisibility(View.GONE);
                     etField.setText(occupations[position]);
                 }
 
@@ -224,8 +223,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 if (position == motives.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");
+                    btSave.setVisibility(View.VISIBLE);
+                    btClear.setVisibility(View.VISIBLE);
                 } else {
                     etField.setVisibility(View.GONE);
+                    btSave.setVisibility(View.GONE);
+                    btClear.setVisibility(View.GONE);
                     etField.setText(motives[position]);
                 }
 
@@ -257,6 +260,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.birth_date_title);
                 spOptions.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 etField.setOnClickListener(v -> {
                     DatePickerDialog datePickerDialog = new DatePickerDialog(UpdateProfileActivity.this,
@@ -266,6 +270,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                     datePickerDialog.show();
                 });
                 break;
+
             case GENDER:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
@@ -273,8 +278,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         getResources().getStringArray(R.array.genders)));
                 etField.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
+
             case LOCATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.location_title);
@@ -282,13 +289,18 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
                 tvDescription.setText(R.string.description_location);
                 break;
+
             case OCCUPATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.occupation_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.occupations)));
+                String[] occupations = getResources().getStringArray(R.array.occupations);
+                occupations[0] = mInfo;
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        occupations);
+                spOptions.setAdapter(arrayAdapter);
                 etField.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_occupation);
                 break;
 
@@ -296,8 +308,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle("Depression Motive");
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.motives)));
+                String[] motives = getResources().getStringArray(R.array.motives);
+                motives[0] = mInfo;
+                ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        motives);
+                spOptions.setAdapter(motivesAdapter);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
         }
