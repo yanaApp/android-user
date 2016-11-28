@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:padding="16dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="16dp">
 
 
     <android.support.design.widget.TextInputLayout
@@ -12,28 +14,29 @@
 
         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
             android:id="@+id/etFirstName"
-            android:hint="@string/first_name_input_hint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="@string/first_name_input_hint" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatSpinner
-        android:layout_marginTop="10dp"
         android:id="@+id/spPhoneNumber"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 
     <android.support.v7.widget.AppCompatSpinner
-        android:layout_marginTop="10dp"
         android:id="@+id/spRelation"
-        android:entries="@array/relations"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:entries="@array/relations" />
 
     <LinearLayout
-        android:layout_marginTop="@dimen/size_normal"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_normal">
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/swLiveTogether"
@@ -41,10 +44,10 @@
             android:layout_height="wrap_content" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-            android:textSize="16sp"
-            android:text="@string/live_together"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/live_together"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

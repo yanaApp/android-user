@@ -359,4 +359,6 @@
     <string name="man">Man</string>
     <string name="woman">Woman</string>
     <string name="other">Other</string>
+    <string name="add_contact">Add contact</string>
+    <string name="contact_dialog_title">Add a new support contact</string>
 </resources>

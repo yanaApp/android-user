@@ -63,18 +63,16 @@ public class AddContactDialog extends DialogFragment {
         alertDialog.setView(view);
         setTexts(getArguments().getString(CONTACT_NAME), getArguments().getStringArrayList(PHONE_NUMBERS));
 
-        alertDialog.setTitle("Add a new support contact");
+        alertDialog.setTitle(R.string.contact_dialog_title);
         alertDialog.setPositiveButton("Add", (dialog, which) -> {
             if (etFirstName.getText().toString().isEmpty() /* || spPhoneNumber.getSelectedItemPosition() == 0 */ ||
                     spRelation.getSelectedItemPosition() == 0)
-                Toast.makeText(getActivity(), "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.error_incomplete_form, Toast.LENGTH_SHORT).show();
             else
                 mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(),
                         (String)spPhoneNumber.getSelectedItem(), (String)spRelation.getSelectedItem(), swLiveTogether.isChecked());
         });
-        alertDialog.setNegativeButton("Cancel", (dialog, which) -> {
-            mDialogClickListener.onNegativeClick(dialog);
-        });
+        alertDialog.setNegativeButton("Cancel", (dialog, which) -> mDialogClickListener.onNegativeClick(dialog));
         return alertDialog.create();
     }
 
