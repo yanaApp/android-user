@@ -156,7 +156,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Override
     public void finalizePlanSuccessful() {
-
+        showError("Plan finalizado con exito");
     }
 
     @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})
