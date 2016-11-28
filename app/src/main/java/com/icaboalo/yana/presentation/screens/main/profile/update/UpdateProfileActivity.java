@@ -262,7 +262,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                     DatePickerDialog datePickerDialog = new DatePickerDialog(UpdateProfileActivity.this,
                             (view, year, month, dayOfMonth) ->
                                     etField.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                            "dd-MM-yyyy")), 1990, 0, 1);
+                                            "MMM dd yy")), 1990, 0, 1);
                     datePickerDialog.show();
                 });
                 break;
