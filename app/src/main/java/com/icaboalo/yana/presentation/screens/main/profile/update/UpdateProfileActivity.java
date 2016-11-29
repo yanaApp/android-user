@@ -56,7 +56,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     @BindView(R.id.btSave)
     Button btSave;
     @BindView(R.id.btClear)
-    EditText btClear;
+    TextView btClear;
     private static String mType, mInfo;
 
     public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
@@ -179,7 +179,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     @OnTextChanged(value = R.id.etField, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onEditTextChanged(CharSequence text) {
-        if (!text.toString().equals(mInfo)) {
+        if (!text.toString().equals(mInfo) || !text.toString().isEmpty()) {
             btSave.setVisibility(View.VISIBLE);
         } else {
             btSave.setVisibility(View.GONE);
@@ -275,8 +275,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.genders)));
+                String[] genders = getResources().getStringArray(R.array.genders);
+                if (mInfo != null || !mInfo.isEmpty())
+                    genders[0] = mInfo;
+                ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+                        genders);
+                spOptions.setAdapter(genderAdapter);
                 etField.setVisibility(View.GONE);
                 btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
@@ -295,7 +299,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 actionBar.setTitle(R.string.occupation_title);
                 spOptions.setVisibility(View.VISIBLE);
                 String[] occupations = getResources().getStringArray(R.array.occupations);
-                occupations[0] = mInfo;
+                if (mInfo != null || !mInfo.isEmpty())
+                    occupations[0] = mInfo;
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         occupations);
                 spOptions.setAdapter(arrayAdapter);
@@ -309,7 +314,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 actionBar.setTitle("Depression Motive");
                 spOptions.setVisibility(View.VISIBLE);
                 String[] motives = getResources().getStringArray(R.array.motives);
-                motives[0] = mInfo;
+                if (mInfo != null || !mInfo.isEmpty())
+                    motives[0] = mInfo;
                 ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         motives);
                 spOptions.setAdapter(motivesAdapter);

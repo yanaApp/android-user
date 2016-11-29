@@ -1,6 +1,5 @@
 package com.icaboalo.yana.presentation.screens.main.progress.chart;
 
-import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import com.db.chart.Tools;
 import com.db.chart.animation.Animation;
 import com.db.chart.animation.easing.BounceEase;
 import com.db.chart.model.LineSet;
-import com.db.chart.tooltip.Tooltip;
 import com.db.chart.view.LineChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
