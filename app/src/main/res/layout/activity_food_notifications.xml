@@ -9,7 +9,7 @@
     tools:context="com.icaboalo.yana.presentation.screens.settings.food_notifications.FoodNotificationsActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/abContainer"
+        android:id="@+id/ab_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"

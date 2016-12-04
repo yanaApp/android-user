@@ -9,7 +9,7 @@
     tools:context=".presentation.screens.main.profile.update.UpdateProfileActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/abContainer"
+        android:id="@+id/ab_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/abContainer"
+        android:layout_below="@+id/ab_container"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -64,7 +64,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btSave"
+        android:id="@+id/bt_save"
         style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
