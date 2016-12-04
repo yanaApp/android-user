@@ -2,11 +2,13 @@ package com.icaboalo.yana.presentation.screens.main.profile.change_password;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,9 +40,13 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
     EditText etOldPassword;
     @BindView(R.id.etNewPassword)
     EditText etNewPassword;
+    @BindView(R.id.tl_new_password)
+    TextInputLayout tlNewPassword;
+    @BindView(R.id.iv_new_password)
+    ImageView ivNewPassword;
     @BindView(R.id.tvDescription)
     TextView tvDescription;
-    @BindView(R.id.btSave)
+    @BindView(R.id.bt_save)
     Button btSave;
 
     @Override
@@ -104,21 +110,59 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
         return super.onOptionsItemSelected(item);
     }
 
-    @OnTextChanged(value = {R.id.etNewPassword, R.id.etOldPassword}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-    void onTextChanged() {
+    @OnTextChanged(value = R.id.etOldPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onOldPasswordTextChanged() {
+        if (etNewPassword.getText().toString().contentEquals(etOldPassword.getText().toString())) {
+            tlNewPassword.setError("Las contraseñas coinciden");
+            ivNewPassword.setVisibility(View.VISIBLE);
+        }
+        else {
+            tlNewPassword.setError(null);
+        }
 
         if (!etNewPassword.getText().toString().isEmpty() && !etOldPassword.getText().toString().isEmpty())
-            btSave.setVisibility(View.VISIBLE);
-
-        else
-            btSave.setVisibility(View.GONE);
-
+            if (tlNewPassword.getError() != null) {
+                btSave.setVisibility(View.GONE);
+                ivNewPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+            } else {
+                btSave.setVisibility(View.VISIBLE);
+                ivNewPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+            }
     }
 
-    @OnClick({R.id.btSave, R.id.btClear})
+    @OnTextChanged(value = R.id.etNewPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onNewPasswordTextChanged() {
+        if (etNewPassword.getText().toString().length() <= 6) {
+            ivNewPassword.setVisibility(View.VISIBLE);
+            tlNewPassword.setError("La contraseña debe de ser mayor a 6 caracteres.");
+        }
+        else if (etNewPassword.getText().toString().contentEquals(etOldPassword.getText().toString())) {
+            tlNewPassword.setError("Las contraseñas coinciden");
+            ivNewPassword.setVisibility(View.VISIBLE);
+        }
+        else if (etNewPassword.getText().toString().length() > 6) {
+            tlNewPassword.setError(null);
+            ivNewPassword.setVisibility(View.VISIBLE);
+
+        } else {
+            tlNewPassword.setError(null);
+            ivNewPassword.setVisibility(View.GONE);
+        }
+
+        if (!etNewPassword.getText().toString().isEmpty() && !etOldPassword.getText().toString().isEmpty())
+            if (tlNewPassword.getError() != null) {
+                btSave.setVisibility(View.GONE);
+                ivNewPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+            } else {
+                btSave.setVisibility(View.VISIBLE);
+                ivNewPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+            }
+    }
+
+    @OnClick({R.id.bt_save, R.id.btClear})
     void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btSave:
+            case R.id.bt_save:
                 if (!etNewPassword.getText().toString().isEmpty() && !etOldPassword.getText().toString().isEmpty()) {
                     HashMap<String, Object> postBundle = new HashMap<>(2);
                     postBundle.put("old_password", etOldPassword.getText().toString());

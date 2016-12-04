@@ -8,7 +8,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,6 @@ import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -53,7 +54,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     Spinner spOptions;
     @BindView(R.id.tvDescription)
     TextView tvDescription;
-    @BindView(R.id.btSave)
+    @BindView(R.id.bt_save)
     Button btSave;
     @BindView(R.id.btClear)
     TextView btClear;
@@ -132,7 +133,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         etField.setText("");
     }
 
-    @OnClick(R.id.btSave)
+    @OnClick(R.id.bt_save)
     void attemptSave() {
         HashMap<String, Object> updateBundle = null;
         switch (mType) {
@@ -259,6 +260,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             case BIRTH_DATE:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.birth_date_title);
+                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 spOptions.setVisibility(View.GONE);
                 btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);

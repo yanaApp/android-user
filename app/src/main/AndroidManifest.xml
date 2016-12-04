@@ -59,23 +59,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <service android:name=".presentation.services.YanaFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name=".presentation.services.YanaFirebaseInstanceIdService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-        <receiver android:name=".presentation.notification.WakeUpReceiver" />
-        <receiver android:name=".presentation.notification.SleepReceiver" />
-        <receiver android:name=".presentation.notification.BreakfastReceiver" />
-        <receiver android:name=".presentation.notification.LunchReceiver" />
-        <receiver android:name=".presentation.notification.DinnerReceiver" />
-
         <activity
             android:name=".presentation.screens.settings.SettingsActivity"
             android:label="@string/settings_title"
@@ -99,7 +82,25 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".presentation.screens.evaluation.EvaluationResultActivity" />
-        <activity android:name=".presentation.screens.main.profile.change_password.ChangePasswordActivity"></activity>
+        <activity android:name=".presentation.screens.main.profile.change_password.ChangePasswordActivity"
+            android:screenOrientation="portrait"/>
+
+        <service android:name=".presentation.services.YanaFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".presentation.services.YanaFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".presentation.notification.WakeUpReceiver" />
+        <receiver android:name=".presentation.notification.SleepReceiver" />
+        <receiver android:name=".presentation.notification.BreakfastReceiver" />
+        <receiver android:name=".presentation.notification.LunchReceiver" />
+        <receiver android:name=".presentation.notification.DinnerReceiver" />
     </application>
 
 </manifest>
