@@ -135,7 +135,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         if (etPassword.getText().length() <= 6) {
             ivPassword.setVisibility(View.VISIBLE);
             tlPassword.setErrorEnabled(true);
-            tlPassword.setError("La contraseña debe de ser mayor a 6 caracteres");
+            tlPassword.setError(getString(R.string.error_password_short));
         }
         else if (etPassword.getText().length() > 6) {
             tlPassword.setError(null);

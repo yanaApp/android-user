@@ -270,9 +270,16 @@
     <string name="no_graph_data">No hay información necesaria para mostrar los graficos</string>
     <string name="error_incomplete_form">Por favor completa todos los campos</string>
     <string name="change_password_title">Cambio de contraseña</string>
-    <string name="new_password">Contraseña nueva</string>
-    <string name="old_password">Contraseña antigua</string>
+    <string name="new_password_input_hint">Contraseña nueva</string>
+    <string name="old_password_input_hint">Contraseña antigua</string>
     <string name="man">Hombre</string>
     <string name="other">Otro</string>
     <string name="woman">Mujer</string>
+    <string name="error_password_short">La contraseña debe de ser mayor a 6 caracteres</string>
+    <string name="error_password_not_match">Las contraseñas no coinciden</string>
+    <string name="error_password_match">Las contraseñas coinciden</string>
+    <string name="action_add_contact">Añadir contacto</string>
+    <string name="clear_fields">Vaciar campos</string>
+    <string name="confirm_password_input_hint">CONFIRMAR CONTRASEÑA</string>
+    <string name="contact_dialog_title">Añadir un nuevo contacto de soporte</string>
 </resources>

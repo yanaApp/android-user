@@ -109,7 +109,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
         if (etPassword.getText().length() <= 6) {
             tlPassword.setErrorEnabled(true);
             ivPassword.setVisibility(View.VISIBLE);
-            tlPassword.setError("La contraseña debe de ser mayor a 6 caracteres");
+            tlPassword.setError(getString(R.string.error_password_short));
         } else if (etPassword.getText().length() > 6) {
             tlPassword.setError(null);
             tlPassword.setErrorEnabled(false);
@@ -137,7 +137,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
         }
         else {
             tlConfirmPassword.setErrorEnabled(true);
-            tlConfirmPassword.setError("Las contraseñas no coinciden");
+            tlConfirmPassword.setError(getString(R.string.error_password_not_match));
         }
 
         if (tlConfirmPassword.getError() != null)

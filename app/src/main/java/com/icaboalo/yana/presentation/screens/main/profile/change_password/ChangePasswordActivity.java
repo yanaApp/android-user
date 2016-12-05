@@ -113,7 +113,7 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
     @OnTextChanged(value = R.id.etOldPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onOldPasswordTextChanged() {
         if (etNewPassword.getText().toString().contentEquals(etOldPassword.getText().toString())) {
-            tlNewPassword.setError("Las contraseñas coinciden");
+            tlNewPassword.setError(getString(R.string.error_password_match));
             ivNewPassword.setVisibility(View.VISIBLE);
         }
         else {
@@ -134,10 +134,10 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
     void onNewPasswordTextChanged() {
         if (etNewPassword.getText().toString().length() <= 6) {
             ivNewPassword.setVisibility(View.VISIBLE);
-            tlNewPassword.setError("La contraseña debe de ser mayor a 6 caracteres.");
+            tlNewPassword.setError(getString(R.string.error_password_short));
         }
         else if (etNewPassword.getText().toString().contentEquals(etOldPassword.getText().toString())) {
-            tlNewPassword.setError("Las contraseñas coinciden");
+            tlNewPassword.setError(getString(R.string.error_password_match));
             ivNewPassword.setVisibility(View.VISIBLE);
         }
         else if (etNewPassword.getText().toString().length() > 6) {

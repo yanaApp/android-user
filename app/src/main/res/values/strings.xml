@@ -58,6 +58,8 @@
     <string name="faq">FAQ</string>
     <string name="about_us">About us</string>
     <string name="rate_us">Rate us</string>
+    <string name="clear_fields">Clear fields</string>
+    <string name="no_graph_data">There\'s not enough data to show the graphics</string>
 
     <!--Hint-->
     <string name="email_input_hint">EMAIL</string>
@@ -75,12 +77,18 @@
     <string name="dinner_hint">DINNER</string>
     <string name="from_hint">FROM</string>
     <string name="to_hint">TO</string>
+    <string name="confirm_password_input_hint">CONFIRM PASSWORD</string>
+    <string name="old_password_input_hint">Old password</string>
+    <string name="new_password_input_hint">New password</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
     <string name="error_invalid_email">Enter a valid email address</string>
     <string name="error_no_answer_selected">Please select one from the above</string>
     <string name="error_incomplete_form">Please complete all the fields</string>
+    <string name="error_password_short">Password should be more than 6 caracters</string>
+    <string name="error_password_not_match">Passwords don\'t match</string>
+    <string name="error_password_match">Passwords match</string>
 
     <!--Button-->
     <string name="continue_button">Continue</string>
@@ -118,6 +126,7 @@
     <string name="action_progress_title">Progress</string>
     <string name="action_log_out_title">Log out</string>
     <string name="action_hotline">Emergency Call</string>
+    <string name="action_add_contact">Add contact</string>
 
     <!--Title-->
     <string name="action_plan_title">Action Plan</string>
@@ -134,6 +143,8 @@
     <string name="settings_title">Settings</string>
     <string name="food_notification_title">Food Notifications</string>
     <string name="hotline_title">Emergency Call</string>
+    <string name="change_password_title">Change password</string>
+    <string name="contact_dialog_title">Add a new support contact</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>
@@ -352,15 +363,9 @@
         <item>Unknown Reason</item>
         <item>Other</item>
     </array>
-    <string name="no_graph_data">There\'s not enough data to show the graphics</string>
-    <string name="change_password_title">Change password</string>
-    <string name="old_password">Old password</string>
-    <string name="new_password">New password</string>
+
     <string name="man">Man</string>
     <string name="woman">Woman</string>
     <string name="other">Other</string>
-    <string name="add_contact">Add contact</string>
-    <string name="contact_dialog_title">Add a new support contact</string>
-    <string name="clear_fields">Clear fields</string>
-    <string name="confirm_password_input_hint">CONFIRM PASSWORD</string>
+
 </resources>
