@@ -33,21 +33,24 @@
         android:entries="@array/relations" />
 
     <LinearLayout
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_normal">
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/size_half"
+            android:layout_marginRight="@dimen/size_half"
+            android:text="@string/live_together"
+            android:textSize="16sp" />
 
         <android.support.v7.widget.SwitchCompat
             android:id="@+id/swLiveTogether"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/live_together"
-            android:textSize="16sp" />
 
     </LinearLayout>
 
