@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="bottom"
-              android:orientation="vertical"
-              android:paddingBottom="32dp"
-              android:paddingLeft="32dp"
-              android:id="@+id/llLoginForm"
-              android:paddingRight="32dp"
-              android:paddingTop="32dp">
+    android:id="@+id/llLoginForm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    android:paddingTop="32dp">
 
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/title_text"
-        android:textColor="@color/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_again"
+        android:textColor="@color/primary_text"
         android:textSize="36sp" />
 
     <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
         android:id="@+id/username_input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp">
+        android:layout_marginTop="64dp"
+        android:textColorHint="@color/secondary_text">
 
         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
             android:id="@+id/etEmail"
@@ -35,22 +35,40 @@
             android:text="user@test.com" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
-        android:id="@+id/password_input_container"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp">
+        android:orientation="horizontal">
 
-        <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-            android:id="@+id/etPassword"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tl_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_input_hint"
-            android:inputType="textPassword"
-            android:text="user123" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/secondary_text">
+
+            <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_input_hint"
+                android:inputType="textPassword"
+                android:text="user123" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:layout_marginLeft="@dimen/size_half"
+            android:layout_marginStart="@dimen/size_half"
+            android:id="@+id/iv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/indicator_input_error"
+            android:visibility="gone" />
+    </LinearLayout>
+
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:id="@+id/forgot_password"

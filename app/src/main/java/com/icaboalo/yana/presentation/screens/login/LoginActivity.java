@@ -2,9 +2,11 @@ package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -23,6 +25,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
+import butterknife.OnTextChanged;
 
 /**
  * @author icaboalo on 09/08/16.
@@ -39,6 +43,10 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     EditText etEmail;
     @BindView(R.id.etPassword)
     EditText etPassword;
+    @BindView(R.id.tl_password)
+    TextInputLayout tlPassword;
+    @BindView(R.id.iv_password)
+    ImageView ivPassword;
     @BindView(R.id.rlForgotPassword)
     RelativeLayout rlForgotPassword;
     @BindView(R.id.llLoginForm)
@@ -110,6 +118,29 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             llLoginForm.setVisibility(View.VISIBLE);
         } else
             super.onBackPressed();
+    }
+
+    @OnTextChanged(value = R.id.etPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onPasswordTextChanged() {
+        if (etPassword.getText().length() <= 6) {
+            ivPassword.setVisibility(View.VISIBLE);
+            tlPassword.setError("La contraseña debe de ser mayor a 6 caracteres");
+        }
+        else if (etPassword.getText().length() > 6) {
+            tlPassword.setError(null);
+            ivPassword.setVisibility(View.VISIBLE);
+        }
+        else {
+            tlPassword.setError(null);
+            ivPassword.setVisibility(View.GONE);
+        }
+
+        if (tlPassword.getError() != null) {
+            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+        } else {
+            ivPassword.setVisibility(View.GONE);
+//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+        }
     }
 
     @OnClick(R.id.btLogin)
