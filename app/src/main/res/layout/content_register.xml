@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:gravity="bottom"
-              android:orientation="vertical"
-              android:padding="32dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="32dp"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp">
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="wrap_content"
@@ -13,61 +15,114 @@
         android:textSize="36sp" />
 
     <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/secondary_text">
 
         <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/full_name_input_hint"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
+        android:id="@+id/tl_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/secondary_text">
 
         <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
-            android:id="@+id/etEmail"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_input_hint"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/primary_text" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:textColorHint="@color/secondary_text"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputEditText
-            android:textColor="@color/primary_text"
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tl_password"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/password_input_hint"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/secondary_text">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password_input_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/primary_text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/size_half"
+            android:layout_marginStart="@dimen/size_half"
+            android:src="@drawable/indicator_input_error"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tl_confirm_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:textColorHint="@color/secondary_text">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/et_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirm_password_input_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/primary_text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_confirm_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/size_half"
+            android:layout_marginStart="@dimen/size_half"
+            android:src="@drawable/indicator_input_error"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/terms_and_privacy"
         android:gravity="center"
         android:lineSpacingExtra="10dp"
+        android:text="@string/terms_and_privacy"
         android:textSize="10sp" />
 
     <Button
-        android:id="@+id/btRegister"
+
+        android:id="@+id/bt_register"
         style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,10 +130,10 @@
         android:text="@string/button_register" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/btLogin"
+        android:id="@+id/bt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:text="@string/have_an_account"/>
+        android:text="@string/have_an_account" />
 </LinearLayout>
