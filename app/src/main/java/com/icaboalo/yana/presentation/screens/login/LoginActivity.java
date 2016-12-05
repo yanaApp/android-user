@@ -26,7 +26,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 
 /**
@@ -36,23 +35,23 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Inject
     LoginPresenter mLoginPresenter;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
-    @BindView(R.id.etEmail)
+    @BindView(R.id.et_email)
     EditText etEmail;
-    @BindView(R.id.etPassword)
+    @BindView(R.id.et_password)
     EditText etPassword;
     @BindView(R.id.tl_password)
     TextInputLayout tlPassword;
     @BindView(R.id.iv_password)
     ImageView ivPassword;
-    @BindView(R.id.rlForgotPassword)
+    @BindView(R.id.rl_forgot_password)
     RelativeLayout rlForgotPassword;
-    @BindView(R.id.llLoginForm)
+    @BindView(R.id.ll_login_form)
     LinearLayout llLoginForm;
-    @BindView(R.id.btLogin)
+    @BindView(R.id.bt_login)
     Button btLogin;
 
 
@@ -123,26 +122,29 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             super.onBackPressed();
     }
 
-    @OnTextChanged(value = {R.id.etEmail, R.id.etPassword}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-    void onEmailTextChanged() {
+    @OnTextChanged(value = {R.id.et_email, R.id.et_password}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onTextChanged() {
         if (isEmailValid() && isPasswordValid())
             btLogin.setEnabled(true);
         else
             btLogin.setEnabled(false);
     }
 
-    @OnTextChanged(value = R.id.etPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    @OnTextChanged(value = R.id.et_password, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onPasswordTextChanged() {
         if (etPassword.getText().length() <= 6) {
             ivPassword.setVisibility(View.VISIBLE);
+            tlPassword.setErrorEnabled(true);
             tlPassword.setError("La contraseña debe de ser mayor a 6 caracteres");
         }
         else if (etPassword.getText().length() > 6) {
             tlPassword.setError(null);
+            tlPassword.setErrorEnabled(false);
             ivPassword.setVisibility(View.VISIBLE);
         }
         else {
             tlPassword.setError(null);
+            tlPassword.setErrorEnabled(false);
             ivPassword.setVisibility(View.GONE);
         }
 
@@ -154,7 +156,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         }
     }
 
-    @OnClick(R.id.btLogin)
+    @OnClick(R.id.bt_login)
     void login(){
         if (etEmail.getText().toString().isEmpty() && etPassword.getText().toString().isEmpty())
             showError("Debes llenar todos los campos.");
@@ -185,7 +187,7 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         }
     }
 
-    @OnClick(R.id.btRegister)
+    @OnClick(R.id.bt_register)
     void goToRegister(){
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Bla bla bla...")
