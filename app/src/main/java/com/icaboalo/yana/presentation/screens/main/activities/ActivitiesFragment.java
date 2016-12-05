@@ -48,9 +48,9 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     ActivitiesPresenter mActivitiesPresenter;
     @BindView(R.id.tvDate)
     TextView tvDate;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.llNoActionPlan)
     LinearLayout llNoActionPlan;

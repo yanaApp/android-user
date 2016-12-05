@@ -29,7 +29,7 @@ public class EvaluationActivity extends BaseActivity implements GenericPostView<
 
     @Inject
     EvaluationPresenter mEvaluationPresenter;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
     @BindView(R.id.question_progress)
     ProgressBar mQuestionProgress;

@@ -32,9 +32,9 @@ public class ChangePasswordActivity extends BaseActivity implements GenericPostV
     ChangePasswordPresenter mChangePasswordPresenter;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.etOldPassword)
     EditText etOldPassword;

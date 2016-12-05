@@ -1,10 +1,7 @@
 package com.icaboalo.yana.presentation.screens.main;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -12,18 +9,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.FilePreference;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
-import com.icaboalo.yana.presentation.notification.WakeUpReceiver;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
@@ -35,10 +29,7 @@ import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
 import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
-import com.icaboalo.yana.util.Constants;
 import com.icaboalo.yana.util.PrefUtils;
-
-import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -58,9 +49,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     NavigationView navigationView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     Fragment fragment;
 

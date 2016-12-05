@@ -362,4 +362,5 @@
     <string name="add_contact">Add contact</string>
     <string name="contact_dialog_title">Add a new support contact</string>
     <string name="clear_fields">Clear fields</string>
+    <string name="confirm_password_input_hint">CONFIRM PASSWORD</string>
 </resources>

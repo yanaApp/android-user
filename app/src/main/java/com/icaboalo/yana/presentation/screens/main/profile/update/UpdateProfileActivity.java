@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,9 +41,9 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     @Inject
     UpdateProfilePresenter mUpdateProfilePresenter;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.toolbar)
     Toolbar toolbar;

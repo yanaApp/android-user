@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
@@ -31,9 +30,9 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     SettingsPresenter mSettingsPresenter;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.rlFoodNotification)
     RelativeLayout rlFoodNotification;

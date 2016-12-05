@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/llLoginForm"
+    android:id="@+id/ll_login_form"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="bottom"
@@ -27,7 +27,7 @@
         android:textColorHint="@color/secondary_text">
 
         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-            android:id="@+id/etEmail"
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email_input_hint"
@@ -50,7 +50,7 @@
             android:textColorHint="@color/secondary_text">
 
             <com.icaboalo.yana.old.ui.widget.CustomFontEditText
-                android:id="@+id/etPassword"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password_input_hint"
@@ -79,7 +79,7 @@
 
     <Button
         android:enabled="false"
-        android:id="@+id/btLogin"
+        android:id="@+id/bt_login"
         style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,7 +87,7 @@
         android:text="@string/button_log_in" />
 
     <com.icaboalo.yana.old.ui.widget.CustomFontTextView
-        android:id="@+id/btRegister"
+        android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

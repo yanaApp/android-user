@@ -28,9 +28,9 @@ import butterknife.ButterKnife;
  */
 public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdownView {
 
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
     @BindView(R.id.tvCompleted)
     TextView tvCompleted;
