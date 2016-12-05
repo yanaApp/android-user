@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +52,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     RelativeLayout rlForgotPassword;
     @BindView(R.id.llLoginForm)
     LinearLayout llLoginForm;
+    @BindView(R.id.btLogin)
+    Button btLogin;
 
 
     @Override
@@ -118,6 +121,14 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             llLoginForm.setVisibility(View.VISIBLE);
         } else
             super.onBackPressed();
+    }
+
+    @OnTextChanged(value = {R.id.etEmail, R.id.etPassword}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onEmailTextChanged() {
+        if (isEmailValid() && isPasswordValid())
+            btLogin.setEnabled(true);
+        else
+            btLogin.setEnabled(false);
     }
 
     @OnTextChanged(value = R.id.etPassword, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -198,5 +209,15 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    private boolean isPasswordValid() {
+        return etPassword.getText().toString().length() > 6;
+    }
+
+    private boolean isEmailValid() {
+        return etEmail.getText().toString().contains("@") && (etEmail.getText().toString().contains(".com")
+                || etEmail.getText().toString().contains(".net") || etEmail.getText().toString().contains(".mx")
+                || etEmail.getText().toString().contains(".org"));
     }
 }

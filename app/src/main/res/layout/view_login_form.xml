@@ -78,6 +78,7 @@
         android:text="@string/forgot_password" />
 
     <Button
+        android:enabled="false"
         android:id="@+id/btLogin"
         style="@style/AppTheme.ButtonBlue"
         android:layout_width="match_parent"
