@@ -11,6 +11,7 @@ import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
 import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
+import com.icaboalo.yana.presentation.screens.main.profile.birth_date.BirthDateActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
@@ -57,4 +58,6 @@ public interface UserComponent {
     void inject(EvaluationActivity evaluationActivity);
 
     void inject(ChangePasswordActivity changePasswordActivity);
+
+    void inject(BirthDateActivity birthDateActivity);
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.screens.main.profile.birth_date.BirthDateActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/ab_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/AppTheme.WhiteToolbar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Button
+        android:id="@+id/bt_save"
+        style="@style/AppTheme.ButtonBlue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/bt_save"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ab_container"
+        android:orientation="vertical"
+        android:padding="@dimen/size_normal">
+
+        <com.icaboalo.yana.old.ui.widget.CustomFontTextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cupcake_ipsum"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/bt_birth_date"
+            android:text="@string/birth_date_title"
+            style="@style/AppTheme.ButtonBlue"
+            android:layout_marginTop="@dimen/size_normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <include layout="@layout/view_progress"/>
+
+    <include layout="@layout/view_retry"/>
+
+
+</RelativeLayout>

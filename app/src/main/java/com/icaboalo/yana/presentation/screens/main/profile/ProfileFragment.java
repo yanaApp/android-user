@@ -14,6 +14,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.main.profile.birth_date.BirthDateActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
 import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
@@ -139,9 +140,11 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @OnClick(R.id.rlBirthDate)
     void updateBirthDate() {
+//        navigator.navigateTo(getApplicationContext(),
+//                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
+//                        tvBirthDate.getText().toString()));
         navigator.navigateTo(getApplicationContext(),
-                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
-                        tvBirthDate.getText().toString()));
+                BirthDateActivity.getCallingIntent(getApplicationContext(), tvBirthDate.getText().toString()));
     }
 
     @OnClick(R.id.rlGender)
