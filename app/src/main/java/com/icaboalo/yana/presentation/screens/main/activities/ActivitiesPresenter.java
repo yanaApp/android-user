@@ -8,8 +8,8 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.Activity;
 import com.icaboalo.yana.domain.models.action_plan.Day;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.text.SimpleDateFormat;
@@ -62,6 +62,7 @@ public class ActivitiesPresenter extends GenericDetailPresenter<DayViewModel> {
 
         @Override
         public void onError(Throwable e) {
+            hideViewLoading();
             showErrorMessage(new DefaultErrorBundle((Exception) e));
             ((ActivityView) getGenericDetailView()).saveEmotionError();
         }

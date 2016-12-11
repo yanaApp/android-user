@@ -3,12 +3,10 @@ package com.icaboalo.yana.presentation.screens.main.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,8 +30,8 @@ import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartView;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
-import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.util.Utils;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 import java.util.ArrayList;
@@ -178,8 +176,11 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
         for (ActionPlanViewModel actionPlan : actionPlanViewModelList) {
             if (actionPlan.isActive())
                 arrayAdapter.insert(getString(R.string.current_plan), 0);
-            else
-                arrayAdapter.add(actionPlan.getInitialDate() + " - " + actionPlan.getFinalDate());
+            else {
+                arrayAdapter.add("Plan de " + Utils.transformDateToText(actionPlan.getInitialDate(), "dd-MM-yyyy", "MMM dd")
+                        + " a " +
+                        Utils.transformDateToText(actionPlan.getFinalDate(), "dd-MM-yyyy", "MMM dd"));
+            }
         }
         spActionPlan.setAdapter(arrayAdapter);
         spActionPlan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

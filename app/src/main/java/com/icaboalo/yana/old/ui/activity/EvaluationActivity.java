@@ -91,7 +91,7 @@ public class EvaluationActivity extends AppCompatActivity implements EvaluationC
 
     private void getResultScreen(TestResultFragment testResultFragment, int answer){
 //        int answer = getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE).getInt(PrefConstants.scorePref, 0);
-//        Toast.makeText(WeekEvaluationActivity.this, "" + answer, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(EvaluationActivity.this, "" + answer, Toast.LENGTH_SHORT).show();
         if  (answer > 0 && answer <= 10){
             getSharedPreferences(PrefConstants.evaluationFile, MODE_PRIVATE)
                     .edit()

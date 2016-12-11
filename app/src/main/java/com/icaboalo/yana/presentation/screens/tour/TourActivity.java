@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
@@ -37,7 +36,7 @@ public class TourActivity extends BaseActivity implements GenericListView<Fragme
     InkPageIndicator mViewPagerIndicator;
     @BindView(R.id.tvSkipTutorial)
     TextView tvSkipTutorial;
-    @BindView(R.id.btLogin)
+    @BindView(R.id.bt_login)
     TextView btLogin;
 
     @Override
@@ -107,7 +106,7 @@ public class TourActivity extends BaseActivity implements GenericListView<Fragme
         showToastMessage(message);
     }
 
-    @OnClick(R.id.btLogin)
+    @OnClick(R.id.bt_login)
     void goToLogin(){
         navigator.navigateTo(getApplicationContext(), LoginActivity.getCallingIntent(getApplicationContext()));
     }

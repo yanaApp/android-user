@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -21,9 +22,10 @@ import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.main.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -46,9 +48,9 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     ActivitiesPresenter mActivitiesPresenter;
     @BindView(R.id.tvDate)
     TextView tvDate;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.llNoActionPlan)
     LinearLayout llNoActionPlan;
@@ -57,6 +59,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     @BindView(R.id.rvActivity)
     RecyclerView rvActivity;
     private ActivitiesRecyclerAdapter mActivitiesRecyclerAdapter;
+    int retryCount = 0;
 
     @Override
     public void initialize() {
@@ -80,7 +83,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void renderItem(DayViewModel item) {
-        if (item.getDate() != null && !item.getDate().isEmpty()){
+        if (!item.isEmpty()){
             ManagerPreference.getInstance().set(YanaPreferences.CURRENT_DAY, item.getDayNumber());
 
             tvDate.setText(Html.fromHtml("<b>Día " + item.getDayNumber() + "</b>  |  " +
@@ -93,6 +96,10 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
                 itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
             }
             mActivitiesRecyclerAdapter.setDataList(itemList);
+            if (retryCount < 2) {
+                mActivitiesPresenter.getItemDetails();
+                retryCount ++;
+            }
         }
         else {
             llContainer.setVisibility(View.GONE);
@@ -102,7 +109,7 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void saveEmotionSuccess(ActivityViewModel activityViewModel) {
-        mActivitiesPresenter.getItemDetails();
+//        mActivitiesPresenter.getItemDetails();
     }
 
     @Override
@@ -156,10 +163,18 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
         showSnackBar(activityViewModel, answer);
     }
 
+//    TODO -> set texts
     @OnClick(R.id.btCreateActionPlan)
     void createNewActionPlan(){
-//        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), WeekEvaluationActivity.class)
+//        navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)
 //                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                .setTitle("Bla bla bla...")
+                .setMessage(R.string.cupcake_ipsum)
+                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(), EvaluationActivity.getCallingIntent(getApplicationContext(), 0)))
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .create();
+        alertDialog.show();
     }
 
     private void setupActivityRecycler(){

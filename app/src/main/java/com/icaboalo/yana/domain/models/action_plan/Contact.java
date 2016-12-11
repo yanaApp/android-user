@@ -12,7 +12,7 @@ public class Contact {
     private String name, relationship;
 
     @SerializedName("live_together")
-    boolean liveTogether;
+    private boolean liveTogether;
 
     @SerializedName("phone_number")
     private String phoneNumber;

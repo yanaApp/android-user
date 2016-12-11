@@ -1,11 +1,13 @@
 package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -14,7 +16,8 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
 
 import java.util.HashMap;
 
@@ -23,6 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 /**
  * @author icaboalo on 09/08/16.
@@ -31,18 +35,24 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Inject
     LoginPresenter mLoginPresenter;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
-    @BindView(R.id.etEmail)
+    @BindView(R.id.et_email)
     EditText etEmail;
-    @BindView(R.id.etPassword)
+    @BindView(R.id.et_password)
     EditText etPassword;
-    @BindView(R.id.rlForgotPassword)
+    @BindView(R.id.tl_password)
+    TextInputLayout tlPassword;
+    @BindView(R.id.iv_password)
+    ImageView ivPassword;
+    @BindView(R.id.rl_forgot_password)
     RelativeLayout rlForgotPassword;
-    @BindView(R.id.llLoginForm)
+    @BindView(R.id.ll_login_form)
     LinearLayout llLoginForm;
+    @BindView(R.id.bt_login)
+    Button btLogin;
 
 
     @Override
@@ -64,10 +74,14 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     }
 
     @Override
-    public void recoverPasswordSuccess(boolean success) {
-        rlForgotPassword.setVisibility(View.GONE);
-        llLoginForm.setVisibility(View.VISIBLE);
-        showDialog();
+    public void recoverPasswordSuccess(RecoverPasswordViewModel recoverPasswordViewModel) {
+        if (recoverPasswordViewModel.isSuccess()) {
+            rlForgotPassword.setVisibility(View.GONE);
+            llLoginForm.setVisibility(View.VISIBLE);
+            showDialog();
+        }
+        else
+            showError(recoverPasswordViewModel.getError());
     }
 
     @Override
@@ -108,7 +122,41 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
             super.onBackPressed();
     }
 
-    @OnClick(R.id.btLogin)
+    @OnTextChanged(value = {R.id.et_email, R.id.et_password}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onTextChanged() {
+        if (isEmailValid() && isPasswordValid())
+            btLogin.setEnabled(true);
+        else
+            btLogin.setEnabled(false);
+    }
+
+    @OnTextChanged(value = R.id.et_password, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onPasswordTextChanged() {
+        if (etPassword.getText().length() <= 6) {
+            ivPassword.setVisibility(View.VISIBLE);
+            tlPassword.setErrorEnabled(true);
+            tlPassword.setError(getString(R.string.error_password_short));
+        }
+        else if (etPassword.getText().length() > 6) {
+            tlPassword.setError(null);
+            tlPassword.setErrorEnabled(false);
+            ivPassword.setVisibility(View.VISIBLE);
+        }
+        else {
+            tlPassword.setError(null);
+            tlPassword.setErrorEnabled(false);
+            ivPassword.setVisibility(View.GONE);
+        }
+
+        if (tlPassword.getError() != null) {
+            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+        } else {
+            ivPassword.setVisibility(View.GONE);
+//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+        }
+    }
+
+    @OnClick(R.id.bt_login)
     void login(){
         if (etEmail.getText().toString().isEmpty() && etPassword.getText().toString().isEmpty())
             showError("Debes llenar todos los campos.");
@@ -139,12 +187,13 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
         }
     }
 
-    @OnClick(R.id.btRegister)
+    @OnClick(R.id.bt_register)
     void goToRegister(){
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Bla bla bla...")
                 .setMessage(R.string.cupcake_ipsum)
-                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(), new Intent(getApplicationContext(), EvaluationActivity.class)))
+                .setPositiveButton("Ok", (dialog, which) -> navigator.navigateTo(getApplicationContext(),
+                        new Intent(getApplicationContext(), EvaluationActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)))
                 .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
                 .create();
         alertDialog.show();
@@ -162,5 +211,15 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     public static Intent getCallingIntent(Context context){
         return new Intent(context, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    }
+
+    private boolean isPasswordValid() {
+        return etPassword.getText().toString().length() > 6;
+    }
+
+    private boolean isEmailValid() {
+        return etEmail.getText().toString().contains("@") && (etEmail.getText().toString().contains(".com")
+                || etEmail.getText().toString().contains(".net") || etEmail.getText().toString().contains(".mx")
+                || etEmail.getText().toString().contains(".org"));
     }
 }

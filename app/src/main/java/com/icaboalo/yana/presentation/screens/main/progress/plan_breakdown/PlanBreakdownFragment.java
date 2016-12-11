@@ -18,7 +18,7 @@ import com.db.chart.view.HorizontalStackBarChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,9 +28,9 @@ import butterknife.ButterKnife;
  */
 public class PlanBreakdownFragment extends BaseFragment implements PlanBreakdownView {
 
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
     @BindView(R.id.tvCompleted)
     TextView tvCompleted;

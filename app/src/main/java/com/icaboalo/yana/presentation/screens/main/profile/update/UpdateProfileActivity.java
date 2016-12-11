@@ -1,15 +1,15 @@
 package com.icaboalo.yana.presentation.screens.main.profile.update;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,10 +20,10 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
+import com.icaboalo.yana.util.Utils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -41,9 +41,9 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     @Inject
     UpdateProfilePresenter mUpdateProfilePresenter;
-    @BindView(R.id.rlProgress)
+    @BindView(R.id.rl_progress)
     RelativeLayout rlProgress;
-    @BindView(R.id.rlRetry)
+    @BindView(R.id.rl_retry)
     RelativeLayout rlRetry;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -53,8 +53,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     Spinner spOptions;
     @BindView(R.id.tvDescription)
     TextView tvDescription;
-    @BindView(R.id.btSave)
+    @BindView(R.id.bt_save)
     Button btSave;
+    @BindView(R.id.btClear)
+    TextView btClear;
     private static String mType, mInfo;
 
     public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
@@ -126,14 +128,14 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     }
 
     @OnClick(R.id.btClear)
-    void clearText(){
+    void clearText() {
         etField.setText("");
     }
 
-    @OnClick(R.id.btSave)
-    void attemptSave(){
+    @OnClick(R.id.bt_save)
+    void attemptSave() {
         HashMap<String, Object> updateBundle = null;
-        switch (mType){
+        switch (mType) {
             case FULL_NAME:
                 updateBundle = new HashMap<>();
                 updateBundle.put("full_name", etField.getText().toString());
@@ -176,8 +178,8 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     }
 
     @OnTextChanged(value = R.id.etField, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
-    void onEditTextChanged(CharSequence text){
-        if (!text.toString().equals(mInfo)){
+    void onEditTextChanged(CharSequence text) {
+        if (!text.toString().equals(mInfo) || !text.toString().isEmpty()) {
             btSave.setVisibility(View.VISIBLE);
         } else {
             btSave.setVisibility(View.GONE);
@@ -185,17 +187,11 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     }
 
     @OnItemSelected(value = R.id.spOptions, callback = OnItemSelected.Callback.ITEM_SELECTED)
-    void onSpinnerItemSelected(int position){
-        switch (mType){
+    void onSpinnerItemSelected(int position) {
+        switch (mType) {
             case GENDER:
-//                if (position == genders.length - 1) {
-//                    etField.setVisibility(View.VISIBLE);
-//                    etField.setText("");
-//                }
-//                else {
-                    etField.setVisibility(View.GONE);
-                    etField.setText(position + "");
-//                }
+                etField.setVisibility(View.GONE);
+                etField.setText(position + "");
 
                 if (position == 0)
                     btSave.setVisibility(View.GONE);
@@ -207,9 +203,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 if (position == occupations.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");
-                }
-                else {
+                    btSave.setVisibility(View.VISIBLE);
+                    btClear.setVisibility(View.VISIBLE);
+                } else {
                     etField.setVisibility(View.GONE);
+                    btSave.setVisibility(View.GONE);
+                    btClear.setVisibility(View.GONE);
                     etField.setText(occupations[position]);
                 }
 
@@ -224,9 +223,12 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 if (position == motives.length - 1) {
                     etField.setVisibility(View.VISIBLE);
                     etField.setText("");
-                }
-                else {
+                    btSave.setVisibility(View.VISIBLE);
+                    btClear.setVisibility(View.VISIBLE);
+                } else {
                     etField.setVisibility(View.GONE);
+                    btSave.setVisibility(View.GONE);
+                    btClear.setVisibility(View.GONE);
                     etField.setText(motives[position]);
                 }
 
@@ -238,10 +240,10 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         }
     }
 
-    private void setInfo(){
+    private void setInfo() {
         etField.setText(mInfo);
         ActionBar actionBar = getSupportActionBar();
-        switch (mType){
+        switch (mType) {
             case FULL_NAME:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.full_name_title);
@@ -257,18 +259,34 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             case BIRTH_DATE:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.birth_date_title);
+                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                 spOptions.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
+                etField.setOnClickListener(v -> {
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(UpdateProfileActivity.this,
+                            (view, year, month, dayOfMonth) ->
+                                    etField.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
+                                            "MMM dd yy")), 1990, 0, 1);
+                    datePickerDialog.show();
+                });
                 break;
+
             case GENDER:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.genders)));
+                String[] genders = getResources().getStringArray(R.array.genders);
+                if (mInfo != null || !mInfo.isEmpty())
+                    genders[0] = mInfo;
+                ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+                        genders);
+                spOptions.setAdapter(genderAdapter);
                 etField.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
+
             case LOCATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.location_title);
@@ -276,13 +294,19 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 etField.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
                 tvDescription.setText(R.string.description_location);
                 break;
+
             case OCCUPATION:
                 assert actionBar != null;
                 actionBar.setTitle(R.string.occupation_title);
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.occupations)));
+                String[] occupations = getResources().getStringArray(R.array.occupations);
+                if (mInfo != null || !mInfo.isEmpty())
+                    occupations[0] = mInfo;
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        occupations);
+                spOptions.setAdapter(arrayAdapter);
                 etField.setVisibility(View.GONE);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_occupation);
                 break;
 
@@ -290,14 +314,19 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle("Depression Motive");
                 spOptions.setVisibility(View.VISIBLE);
-                spOptions.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                        getResources().getStringArray(R.array.motives)));
+                String[] motives = getResources().getStringArray(R.array.motives);
+                if (mInfo != null || !mInfo.isEmpty())
+                    motives[0] = mInfo;
+                ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                        motives);
+                spOptions.setAdapter(motivesAdapter);
+                btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
         }
     }
 
-    private void showConfirmationDialog(){
+    private void showConfirmationDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle("Title")
                 .setMessage(R.string.cupcake_ipsum)
@@ -313,7 +342,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
         alertDialog.show();
     }
 
-    public static Intent getCallingIntent(Context context, String type, String info){
+    public static Intent getCallingIntent(Context context, String type, String info) {
         mType = type;
         mInfo = info;
         return new Intent(context, UpdateProfileActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

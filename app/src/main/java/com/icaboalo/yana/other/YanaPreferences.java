@@ -16,17 +16,18 @@ public class YanaPreferences {
     public static PreferenceKey LAST_UPDATE = new PreferenceKey(PrefConstants.LAST_UPDATE, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
 //    NOTIFICATIONS
+    public static PreferenceKey NOTIFICATIONS_SET = new PreferenceKey(PrefConstants.NOTIFICATIONS_SET, false);
     public static PreferenceKey FOOD_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.FOOD_NOTIFICATION_ACTIVE, true);
     public static PreferenceKey BREAKFAST_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.BREAKFAST_NOTIFICATION_ACTIVE, true);
-    public static PreferenceKey BREAKFAST_NOTIFICATIN_TIME = new PreferenceKey(PrefConstants.BREAKFAST_NOTIFICATION_TIME, "10:00 AM");
+    public static PreferenceKey BREAKFAST_NOTIFICATION_TIME = new PreferenceKey(PrefConstants.BREAKFAST_NOTIFICATION_TIME, "10:00 AM");
     public static PreferenceKey LUNCH_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.LUNCH_NOTIFICATION_ACTIVE, true);
-    public static PreferenceKey LUNCH_NOTIFICATIN_TIME = new PreferenceKey(PrefConstants.LUNCH_NOTIFICATION_TIME, "3:00 PM");
+    public static PreferenceKey LUNCH_NOTIFICATION_TIME = new PreferenceKey(PrefConstants.LUNCH_NOTIFICATION_TIME, "3:00 PM");
     public static PreferenceKey DINNER_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.DINNER_NOTIFICATION_ACTIVE, true);
-    public static PreferenceKey DINNER_NOTIFICATIN_TIME = new PreferenceKey(PrefConstants.DINNER_NOTIFICATION_TIME, "9:00 PM");
+    public static PreferenceKey DINNER_NOTIFICATION_TIME = new PreferenceKey(PrefConstants.DINNER_NOTIFICATION_TIME, "9:00 PM");
     public static PreferenceKey DAY_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.DAY_NOTIFICATION_ACTIVE, true);
-    public static PreferenceKey DAY_NOTIFICATIN_TIME = new PreferenceKey(PrefConstants.DAY_NOTIFICATION_TIME, "8:00 AM");
+    public static PreferenceKey DAY_NOTIFICATION_TIME = new PreferenceKey(PrefConstants.DAY_NOTIFICATION_TIME, "8:00 AM");
     public static PreferenceKey NIGHT_NOTIFICATION_ACTIVE = new PreferenceKey(PrefConstants.NIGHT_NOTIFICATION_ACTIVE, true);
-    public static PreferenceKey NIGHT_NOTIFICATIN_TIME = new PreferenceKey(PrefConstants.NIGHT_NOTIFICATION_TIME, "10:00 PM");
+    public static PreferenceKey NIGHT_NOTIFICATION_TIME = new PreferenceKey(PrefConstants.NIGHT_NOTIFICATION_TIME, "10:00 PM");
 
 //    RETAKE TEST
     public static PreferenceKey FIRST_TEST_TAKEN = new PreferenceKey(FilePreference.TEST, PrefConstants.FIRST_TEST_TAKEN, false);

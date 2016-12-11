@@ -11,9 +11,11 @@ import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Login;
 import com.icaboalo.yana.domain.models.RecoverPassword;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.login.view_model.LoginViewModel;
-import com.icaboalo.yana.presentation.screens.login.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;
@@ -54,10 +56,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
     }
 
     private boolean saveResponseToPrefsHelper(LoginViewModel loginViewModel){
-        Constants.ACCESS_TOKEN = loginViewModel.getToken();
-        SharedPreferences.Editor nEditor = getGenericPostView().getApplicationContext().getSharedPreferences(PrefConstants.authFile, Context.MODE_PRIVATE).edit();
-        nEditor.putString(PrefConstants.tokenPref, loginViewModel.getToken());
-        nEditor.apply();
+        ManagerPreference.getInstance().set(YanaPreferences.TOKEN, loginViewModel.getToken());
         return true;
     }
 
@@ -66,16 +65,15 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
         recoverPassword(email);
     }
 
-//    TODO create recover url
     private void recoverPassword(String email){
         HashMap<String, Object> recoverBundle = new HashMap<>(1);
         recoverBundle.put("email", email);
-        getGenericUseCase().executeDynamicPostObject(new RecoverPasswordSubscriber(), Constants.API_BASE_URL, recoverBundle,
-                RecoverPassword.class, RecoverPasswordEntity.class, RecoverPasswordViewModel.class, false);
+        getGenericUseCase().executeDynamicPostObject(new RecoverPasswordSubscriber(), Constants.API_BASE_URL + "user/restore/",
+                recoverBundle, RecoverPassword.class, RecoverPasswordEntity.class, RecoverPasswordViewModel.class, false);
     }
 
-    private void recoverPasswordSuccess(boolean success){
-        ((LoginView) getGenericPostView()).recoverPasswordSuccess(success);
+    private void recoverPasswordSuccess(RecoverPasswordViewModel recoverPasswordViewModel){
+        ((LoginView) getGenericPostView()).recoverPasswordSuccess(recoverPasswordViewModel);
     }
 
     private class RecoverPasswordSubscriber extends DefaultSubscriber<RecoverPasswordViewModel>{
@@ -95,7 +93,7 @@ public class LoginPresenter extends GenericPostPresenter<LoginViewModel>{
         @Override
         public void onNext(RecoverPasswordViewModel recoverPasswordViewModel) {
             super.onNext(recoverPasswordViewModel);
-            recoverPasswordSuccess(true);
+            recoverPasswordSuccess(recoverPasswordViewModel);
         }
     }
 }

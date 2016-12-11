@@ -35,9 +35,9 @@ public class TourPageFragment extends BaseFragment {
     @Nullable
     @BindView(R.id.tvDescription)
     TextView mDescription;
-    @Nullable
-    @BindView(R.id.typeView)
-    TypewriterView typeView;
+//    @Nullable
+//    @BindView(R.id.typeView)
+//    TypewriterView typeView;
     @Nullable
     @BindView(R.id.btContinue)
     Button mContinue;
@@ -89,19 +89,19 @@ public class TourPageFragment extends BaseFragment {
         switch (position){
             case 0:
                 if (!isCreated){
-                    typeView.type("jugar.")
-                            .pause(500)
-                            .delete("jugar.")
-                            .pause(200)
-                            .type("divertirte.")
-                            .pause(500)
-                            .delete("divertirte.")
-                            .pause(200)
-                            .type("sonreir.")
-                            .pause(500)
-                            .delete("sonreir.")
-                            .pause(200)
-                            .type("vivir...");
+//                    typeView.type("jugar.")
+//                            .pause(500)
+//                            .delete("jugar.")
+//                            .pause(200)
+//                            .type("divertirte.")
+//                            .pause(500)
+//                            .delete("divertirte.")
+//                            .pause(200)
+//                            .type("sonreir.")
+//                            .pause(500)
+//                            .delete("sonreir.")
+//                            .pause(200)
+//                            .type("vivir...");
                 }
                 break;
             case 1:

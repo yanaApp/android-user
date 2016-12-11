@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,10 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.main.profile.birth_date.BirthDateActivity;
+import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
-import com.icaboalo.yana.presentation.screens.main.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
@@ -132,15 +135,16 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @OnClick(R.id.rlPassword)
     void updatePassword() {
-//        navigator.navigateTo(getApplicationContext(),
-//                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.PASSWORD));
+        navigator.navigateTo(getApplicationContext(), ChangePasswordActivity.getCallingIntent(getApplicationContext()));
     }
 
     @OnClick(R.id.rlBirthDate)
     void updateBirthDate() {
+//        navigator.navigateTo(getApplicationContext(),
+//                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
+//                        tvBirthDate.getText().toString()));
         navigator.navigateTo(getApplicationContext(),
-                UpdateProfileActivity.getCallingIntent(getApplicationContext(), UpdateProfileActivity.BIRTH_DATE,
-                        tvBirthDate.getText().toString()));
+                BirthDateActivity.getCallingIntent(getApplicationContext(), tvBirthDate.getText().toString()));
     }
 
     @OnClick(R.id.rlGender)
@@ -170,7 +174,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
                 UpdateProfileActivity.MOTIVE, tvDepressionMotive.getText().toString()));
     }
 
-    private void setInfo(String fullName, String email, String birthDate, String gender, String location, String occupation,
+    private void setInfo(String fullName, String email, String birthDate, int gender, String location, String occupation,
                          String depressionMotive) {
         if (fullName == null || fullName.length() <= 0)
             tvFullName.setVisibility(View.GONE);
@@ -193,10 +197,22 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
             tvBirthDate.setVisibility(View.VISIBLE);
         }
 
-        if (gender == null || gender.length() <= 0)
+        if (gender == 0)
             tvGender.setVisibility(View.GONE);
         else {
-            tvGender.setText(gender);
+            switch (gender) {
+                case 1:
+                    tvGender.setText(R.string.man);
+                    break;
+
+                case 2:
+                    tvGender.setText(R.string.woman);
+                    break;
+
+                case 3:
+                    tvGender.setText(R.string.other);
+                    break;
+            }
             tvGender.setVisibility(View.VISIBLE);
         }
 
@@ -218,7 +234,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
             tvDepressionMotive.setVisibility(View.GONE);
         else {
             tvDepressionMotive.setText(depressionMotive);
-            tvOccupation.setVisibility(View.VISIBLE);
+            tvDepressionMotive.setVisibility(View.VISIBLE);
         }
     }
 }

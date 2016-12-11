@@ -8,6 +8,8 @@ import com.google.gson.GsonBuilder;
 import com.icaboalo.yana.BuildConfig;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.data.executor.JobExecutor;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.util.Constants;
 import com.icaboalo.yana.util.PrefUtils;
 
@@ -36,7 +38,8 @@ public class ApiConnection {
     private static Interceptor provideDynamicHeaderInterceptor(){
         return chain -> {
             Request finalRequest = chain.request();
-            if (finalRequest.toString().contains("login/") || finalRequest.toString().contains("register")){
+            if (finalRequest.toString().contains("login/") || finalRequest.toString().contains("register") ||
+                    finalRequest.toString().contains("restore")){
                 finalRequest = chain.request().newBuilder()
                         .header("Content-Type", "application/json")
                         .method(chain.request().method(), chain.request().body())
@@ -45,7 +48,7 @@ public class ApiConnection {
             } else {
                 finalRequest = chain.request().newBuilder()
                         .header("Content-Type", "application/json")
-                        .header("Authorization", "Token " + PrefUtils.getToken(MyApplication.getInstance().getApplicationContext()))
+                        .header("Authorization", "Token " + ManagerPreference.getInstance().getString(YanaPreferences.TOKEN))
                         .method(chain.request().method(), chain.request().body())
                         .build();
             }

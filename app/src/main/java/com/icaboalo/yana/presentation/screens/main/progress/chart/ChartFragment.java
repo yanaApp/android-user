@@ -1,24 +1,23 @@
 package com.icaboalo.yana.presentation.screens.main.progress.chart;
 
-import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.db.chart.Tools;
 import com.db.chart.animation.Animation;
 import com.db.chart.animation.easing.BounceEase;
 import com.db.chart.model.LineSet;
-import com.db.chart.tooltip.Tooltip;
 import com.db.chart.view.LineChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.main.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +30,8 @@ public class ChartFragment extends BaseFragment implements ChartView {
 
     @BindView(R.id.lineChartView)
     LineChartView lineChartView;
+    @BindView(R.id.llChartContainer)
+    LinearLayout llChartContainer;
     @BindView(R.id.tvNoData)
     TextView tvNoData;
 
@@ -88,25 +89,8 @@ public class ChartFragment extends BaseFragment implements ChartView {
         lineChartView.reset();
 
         if (dayList.length > 0 && averageEmotions.length > 0) {
-            lineChartView.setVisibility(View.VISIBLE);
+            llChartContainer.setVisibility(View.VISIBLE);
             tvNoData.setVisibility(View.GONE);
-
-            Tooltip tooltip = new Tooltip(getActivity(), R.layout.tooltip_progress_chart, R.id.value);
-            tooltip.setVerticalAlignment(Tooltip.Alignment.BOTTOM_TOP);
-            tooltip.setDimensions((int) Tools.fromDpToPx(58), (int) Tools.fromDpToPx(25));
-
-            tooltip.setEnterAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 1),
-                    PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f),
-                    PropertyValuesHolder.ofFloat(View.SCALE_X, 1f)).setDuration(200);
-
-            tooltip.setExitAnimation(PropertyValuesHolder.ofFloat(View.ALPHA, 0),
-                    PropertyValuesHolder.ofFloat(View.SCALE_Y, 0f),
-                    PropertyValuesHolder.ofFloat(View.SCALE_X, 0f)).setDuration(200);
-
-            tooltip.setPivotX(Tools.fromDpToPx(65) / 2);
-            tooltip.setPivotY(Tools.fromDpToPx(25));
-
-//        lineChartView.setTooltips(tooltip);
 
             LineSet dataSet = new LineSet(dayList, averageEmotions);
 
@@ -123,7 +107,7 @@ public class ChartFragment extends BaseFragment implements ChartView {
             lineChartView.show(new Animation().setEasing(new BounceEase()));
         }
         else {
-            lineChartView.setVisibility(View.GONE);
+            llChartContainer.setVisibility(View.GONE);
             tvNoData.setVisibility(View.VISIBLE);
         }
     }
