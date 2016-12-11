@@ -6,6 +6,7 @@
     <item android:state_pressed="true">
         <shape>
             <solid android:color="@color/yana_light_green" />
+            <corners android:radius="10dp" />
             <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
         </shape>
     </item>
@@ -13,6 +14,7 @@
     <item android:state_enabled="false">
         <shape>
             <solid android:color="@color/opaque_yana_green" />
+            <corners android:radius="10dp" />
             <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
         </shape>
     </item>
@@ -20,7 +22,10 @@
     <item>
         <shape>
             <solid android:color="@color/yana_green" />
+            <corners android:radius="10dp" />
             <padding android:bottom="6dp" android:left="6dp" android:right="6dp" android:top="6dp" />
         </shape>
     </item>
+
+
 </selector>

@@ -80,7 +80,7 @@
     <Button
         android:enabled="false"
         android:id="@+id/bt_login"
-        style="@style/AppTheme.ButtonBlue"
+        style="@style/AppTheme.ButtonGreen.Cornered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"

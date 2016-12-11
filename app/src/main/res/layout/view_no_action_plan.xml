@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/btCreateActionPlan"
-        style="@style/AppTheme.ButtonBlue"
+        style="@style/AppTheme.ButtonGreen.Cornered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

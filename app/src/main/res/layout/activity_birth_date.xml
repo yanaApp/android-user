@@ -26,7 +26,7 @@
 
     <Button
         android:id="@+id/bt_save"
-        style="@style/AppTheme.ButtonBlue"
+        style="@style/AppTheme.ButtonGreen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -51,7 +51,7 @@
         <Button
             android:id="@+id/bt_birth_date"
             android:text="@string/birth_date_title"
-            style="@style/AppTheme.ButtonBlue"
+            style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_marginTop="@dimen/size_normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
