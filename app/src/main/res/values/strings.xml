@@ -367,5 +367,6 @@
     <string name="man">Man</string>
     <string name="woman">Woman</string>
     <string name="other">Other</string>
+    <string name="hint_message_field">Respond here</string>
 
 </resources>
