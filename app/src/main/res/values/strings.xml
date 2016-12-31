@@ -156,6 +156,15 @@
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="other">Other</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_phone_number">Select a phone number</string>
+    <string name="undo">Undo</string>
+    <string name="snackbar_emotion">Changed emotion to %s</string>
+
     <array name="beck_test">
         <!--1-->
         <item>1. No me siento triste. \n\n2. Me siento triste. \n\n3. Me siento triste continuamente
@@ -363,12 +372,5 @@
         <item>Unknown Reason</item>
         <item>Other</item>
     </array>
-
-    <string name="man">Man</string>
-    <string name="woman">Woman</string>
-    <string name="other">Other</string>
-    <string name="add">Add</string>
-    <string name="cancel">Cancel</string>
-    <string name="select_phone_number">Select a phone number</string>
 
 </resources>

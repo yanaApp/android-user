@@ -285,4 +285,6 @@
     <string name="add">Añadir</string>
     <string name="cancel">Cancelar</string>
     <string name="select_phone_number">Elige un telefono</string>
+    <string name="undo">Deshacer</string>
+    <string name="snackbar_emotion">Cambio de respuesta a %s</string>
 </resources>

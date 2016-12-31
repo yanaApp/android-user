@@ -193,9 +193,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
     }
 
     private void showSnackBar(ActivityViewModel activityViewModel, int answer){
-        Snackbar.make(rvActivity, "Changed emotion from " + VUtil.answerToText(activityViewModel.getAnswer()) + " to " +
-                VUtil.answerToText(answer), Snackbar.LENGTH_SHORT).setAction("Undo", v -> {
-                }).setCallback(new Snackbar.Callback() {
+        Snackbar.make(rvActivity, getString(R.string.snackbar_emotion, VUtil.answerToText(answer)) ,
+                Snackbar.LENGTH_SHORT).setAction(R.string.undo, v -> {}).setCallback(new Snackbar.Callback() {
             @Override
             public void onDismissed(Snackbar snackbar, int event) {
                 switch (event){
