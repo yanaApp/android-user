@@ -281,5 +281,8 @@
     <string name="action_add_contact">Añadir contacto</string>
     <string name="clear_fields">Vaciar campos</string>
     <string name="confirm_password_input_hint">CONFIRMAR CONTRASEÑA</string>
-    <string name="contact_dialog_title">Añadir un nuevo contacto de soporte</string>
+    <string name="contact_dialog_title">Añadir un nuevo contacto a tu red de apoyo</string>
+    <string name="add">Añadir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="select_phone_number">Elige un telefono</string>
 </resources>
