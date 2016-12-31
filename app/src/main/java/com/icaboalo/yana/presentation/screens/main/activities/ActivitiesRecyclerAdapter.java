@@ -145,9 +145,8 @@ public class ActivitiesRecyclerAdapter extends GenericRecyclerViewAdapter<Activi
         public void bindData(Object data, int position, boolean isEnabled) {
             super.bindData(data, position, isEnabled);
             Context context = MyApplication.getInstance().getApplicationContext();
-            if (data instanceof ItemInfo) {
-                ItemInfo item = (ItemInfo) data;
-                ActivityViewModel activity = (ActivityViewModel) item.getData();
+            if (data instanceof ActivityViewModel) {
+                ActivityViewModel activity = (ActivityViewModel) data;
                 tvTitle.setText(activity.getTitle());
                 tvDescription.setText(activity.getDescription());
                 vColor.setBackgroundColor(Color.parseColor(activity.getCategory().getColor()));

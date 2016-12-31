@@ -20,6 +20,7 @@ import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.chat_bot.ChatBotActivity;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
@@ -258,7 +259,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
 //                    createNotification();
-                    ManagerPreference.getInstance().set(YanaPreferences.FIRST_TEST_TAKEN, true);
+                    navigator.navigateTo(getApplicationContext(), ChatBotActivity.getCallingIntent(getApplicationContext()));
                     dialog.dismiss();
                 })
                 .create().show();

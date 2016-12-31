@@ -8,13 +8,16 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
+        app:elevation="0dp"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            app:theme="@style/AppTheme.WhiteToolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -27,17 +30,22 @@
             android:id="@+id/rv_chat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/rv_answers" />
+            android:layout_above="@+id/fl_answers" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_answers"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:layout_alignParentBottom="true">
+        <FrameLayout
+            android:background="@color/white"
+            android:id="@+id/fl_answers"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_answers"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"/>
+        </FrameLayout>
 
-        </android.support.v7.widget.RecyclerView>
-
+        <include layout="@layout/view_progress"/>
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

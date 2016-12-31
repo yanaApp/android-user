@@ -102,8 +102,9 @@
         <receiver android:name=".presentation.notification.LunchReceiver" />
         <receiver android:name=".presentation.notification.DinnerReceiver" />
 
-        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity"></activity>
-        <activity android:name=".presentation.screens.chat_bot.ChatBotActivity"></activity>
+        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.screens.chat_bot.ChatBotActivity"
+            android:label="Chat bot" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

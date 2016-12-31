@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     android:gravity="start"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/size_micro"
     android:paddingLeft="@dimen/spacing_xlarge"
     android:paddingRight="@dimen/spacing_xlarge"
-    android:paddingTop="@dimen/spacing_medium">
+    android:paddingTop="@dimen/size_micro">
 
     <RelativeLayout
         android:id="@+id/layout_message"

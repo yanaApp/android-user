@@ -34,7 +34,7 @@ public abstract class GenericRecyclerViewAdapter<M extends GenericRecyclerViewAd
     @Override
     public void onBindViewHolder(M holder, int position) {
         ItemInfo itemInfo = mDataList.get(position);
-        holder.bindData(itemInfo, position, itemInfo.isEnabled());
+        holder.bindData(itemInfo.getData(), position, itemInfo.isEnabled());
         if (areItemsClickable && !(hasHeader() && position == 0 || hasFooter() && position == mDataList.size() -1)) {
             if (mOnItemClickListener != null)
                 holder.itemView.setOnClickListener(v -> mOnItemClickListener.onItemClicked(holder.getAdapterPosition(), itemInfo, holder));
