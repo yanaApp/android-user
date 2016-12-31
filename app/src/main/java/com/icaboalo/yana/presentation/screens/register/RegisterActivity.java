@@ -38,6 +38,8 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
     EditText etEmail;
     @BindView(R.id.tl_email)
     TextInputLayout tlEmail;
+    @BindView(R.id.iv_email)
+    ImageView ivEmail;
     @BindView(R.id.et_password)
     EditText etPassword;
     @BindView(R.id.tl_password)
@@ -144,6 +146,28 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
             ivConfirmPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
         else
             ivConfirmPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+    }
+
+    @OnTextChanged(value = R.id.et_email, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onEmailPasswordTextChanged() {
+        if (!isEmailValid()) {
+            tlEmail.setErrorEnabled(true);
+            ivEmail.setVisibility(View.VISIBLE);
+            tlEmail.setError(getString(R.string.error_invalid_email));
+        } else if (isEmailValid()) {
+            tlEmail.setError(null);
+            tlEmail.setErrorEnabled(false);
+            ivEmail.setVisibility(View.VISIBLE);
+        } else {
+            tlEmail.setError(null);
+            tlEmail.setErrorEnabled(false);
+            ivEmail.setVisibility(View.GONE);
+        }
+
+        if (tlEmail.getError() != null)
+            ivEmail.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+        else
+            ivEmail.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
     }
 
     @OnTextChanged(value = {R.id.et_password, R.id.et_confirm_password, R.id.et_email}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
