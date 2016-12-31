@@ -132,7 +132,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
     }
 
     private void showBirthDialog(String birthDate) {
-        if (birthDate == null && birthDate.isEmpty()) {
+        if (birthDate == null || birthDate.isEmpty()) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                     (view, year, month, dayOfMonth) ->
                             btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
