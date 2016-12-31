@@ -277,6 +277,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
                 spOptions.setVisibility(View.VISIBLE);
+                btClear.setVisibility(View.GONE);
                 String[] genders = getResources().getStringArray(R.array.genders);
                 if (mInfo != null && !mInfo.isEmpty())
                     genders[0] = mInfo;
