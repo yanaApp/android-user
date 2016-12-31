@@ -114,7 +114,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
             DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                     (view, year, month, dayOfMonth) ->
                             btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                    "MMM dd yy")), 1990, 0, 1);
+                                    "MMMM dd, yy")), 1990, 0, 1);
             datePickerDialog.show();
         }
         else {
