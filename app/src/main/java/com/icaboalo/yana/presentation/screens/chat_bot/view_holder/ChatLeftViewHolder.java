@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotAnswerViewModel;
 import com.icaboalo.yana.presentation.screens.view_model.ChatBotViewModel;
 
 import butterknife.BindView;
@@ -34,23 +33,24 @@ public class ChatLeftViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
     public void bindData(Object data, int position, boolean isEnabled) {
         if (data instanceof ChatBotViewModel) {
             ChatBotViewModel chatBotViewModel = (ChatBotViewModel) data;
-            if (chatBotViewModel.getSender() == 0)
-                switch (chatBotViewModel.getAnswerType()) {
-                    case ChatBotViewModel.OPTIONS:
-                        etResponse.setVisibility(View.GONE);
-                        tvMessage.setText(chatBotViewModel.getQuestion());
-                        break;
+            tvMessage.setText(chatBotViewModel.getQuestion());
+            switch (chatBotViewModel.getQuestionType()) {
+                case ChatBotViewModel.OPTIONS:
+                    etResponse.setVisibility(View.GONE);
+                    break;
 
-                    case ChatBotViewModel.KEYBOARD:
-                        tvMessage.setVisibility(View.GONE);
-                        etResponse.setVisibility(View.VISIBLE);
-                        etResponse.setHint("Respuesta");
-                        break;
-                }
-        }
-        else if (data instanceof ChatBotAnswerViewModel) {
-            ChatBotAnswerViewModel chatBotAnswerViewModel = (ChatBotAnswerViewModel) data;
-            tvMessage.setText(chatBotAnswerViewModel.getAnswer());
+                case ChatBotViewModel.KEYBOARD:
+//                        etResponse.setVisibility(View.VISIBLE);
+//                        etResponse.setHint("Respuesta");
+                    break;
+
+                case ChatBotViewModel.TEXT:
+                    etResponse.setVisibility(View.GONE);
+                    break;
+            }
+
+        } else if (data instanceof String) {
+            tvMessage.setText((String) data);
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.screens.view_model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -8,20 +10,40 @@ import java.util.ArrayList;
 
 public class ChatBotViewModel {
 
-    public static final int KEYBOARD = 0, OPTIONS = 1;
-    public static final int BOT = 0, USER = 1;
+    public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2;
+    public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
 
-    private int type, answerPositionForSubQuestions, sender;
+    private int category;
+
+    @SerializedName("question_type")
+    private int questionType;
     private String question, answer;
-    private ArrayList<ChatBotAnswerViewModel> answers;
+
+    @SerializedName("save_field_name")
+    private String saveFieldName;
+
+    @SerializedName("support_question")
+    private String supportQuestion;
+
+    @SerializedName("answer_for_sub_questions")
+    private String answerForSubQuestions;
+    private ArrayList<String> answers;
+
+    @SerializedName("sub_questions")
     private ArrayList<ChatBotViewModel> subQuestions;
 
-    public int getType() {
-        return type;
+    @SerializedName("needs_answer")
+    private boolean needsAnswer;
+
+    @SerializedName("needs_save")
+    private boolean needsSave;
+
+    public int getQuestionType() {
+        return questionType;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setQuestionType(int questionType) {
+        this.questionType = questionType;
     }
 
     public String getQuestion() {
@@ -36,23 +58,51 @@ public class ChatBotViewModel {
         return answer;
     }
 
+    public boolean isNeedsAnswer() {
+        return needsAnswer;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public String getSaveFieldName() {
+        return saveFieldName;
+    }
+
+    public boolean isNeedsSave() {
+        return needsSave;
+    }
+
+    public void setNeedsSave(boolean needsSave) {
+        this.needsSave = needsSave;
+    }
+
     public void setAnswer(String answer) {
         this.answer = answer;
     }
 
-    public int getAnswerPositionForSubQuestions() {
-        return answerPositionForSubQuestions;
+    public String getAnswerForSubQuestions() {
+        return answerForSubQuestions;
     }
 
-    public void setAnswerPositionForSubQuestions(int answerPositionForSubQuestions) {
-        this.answerPositionForSubQuestions = answerPositionForSubQuestions;
+    public String getSupportQuestion() {
+        return supportQuestion;
     }
 
-    public ArrayList<ChatBotAnswerViewModel> getAnswers() {
+    public void setSupportQuestion(String supportQuestion) {
+        this.supportQuestion = supportQuestion;
+    }
+
+    public void setAnswerForSubQuestions(String answerForSubQuestions) {
+        this.answerForSubQuestions = answerForSubQuestions;
+    }
+
+    public ArrayList<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<ChatBotAnswerViewModel> answers) {
+    public void setAnswers(ArrayList<String> answers) {
         this.answers = answers;
     }
 
@@ -64,11 +114,15 @@ public class ChatBotViewModel {
         this.subQuestions = subQuestions;
     }
 
-    public int getSender() {
-        return sender;
+    public void setNeedsAnswer(boolean needsAnswer) {
+        this.needsAnswer = needsAnswer;
     }
 
-    public void setSender(int sender) {
-        this.sender = sender;
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    public void setSaveFieldName(String saveFieldName) {
+        this.saveFieldName = saveFieldName;
     }
 }
