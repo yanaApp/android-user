@@ -169,6 +169,6 @@ public class EvaluationActivity extends BaseActivity implements GenericPostView<
 
     public static Intent getCallingIntent(Context context, int testNumber) {
         mTestNumber = testNumber;
-        return new Intent(context, EvaluationActivity.class);
+        return new Intent(context, EvaluationActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }

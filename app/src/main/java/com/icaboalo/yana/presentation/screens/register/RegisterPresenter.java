@@ -11,6 +11,8 @@ import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Register;
 import com.icaboalo.yana.domain.models.action_plan.User;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
 import com.icaboalo.yana.presentation.screens.register.view_model.RegisterViewModel;
 import com.icaboalo.yana.presentation.screens.register.view_model.UserViewModel;
@@ -74,9 +76,7 @@ public class RegisterPresenter extends GenericPostPresenter<RegisterViewModel> {
     }
 
     private void saveResponseToPrefs(String token){
-        Observable.defer(() -> Observable.just(saveResponseToPrefsHelper(token))
-                .subscribeOn(Schedulers.io()))
-                .subscribe();
+        ManagerPreference.getInstance().set(YanaPreferences.TOKEN, token);
     }
 
     private boolean saveResponseToPrefsHelper(String token){

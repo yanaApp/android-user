@@ -132,28 +132,28 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @OnTextChanged(value = R.id.et_password, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onPasswordTextChanged() {
-        if (etPassword.getText().length() <= 6) {
-            ivPassword.setVisibility(View.VISIBLE);
-            tlPassword.setErrorEnabled(true);
-            tlPassword.setError(getString(R.string.error_password_short));
-        }
-        else if (etPassword.getText().length() > 6) {
-            tlPassword.setError(null);
-            tlPassword.setErrorEnabled(false);
-            ivPassword.setVisibility(View.VISIBLE);
-        }
-        else {
-            tlPassword.setError(null);
-            tlPassword.setErrorEnabled(false);
-            ivPassword.setVisibility(View.GONE);
-        }
-
-        if (tlPassword.getError() != null) {
-            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
-        } else {
-            ivPassword.setVisibility(View.GONE);
-//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
-        }
+//        if (etPassword.getText().length() <= 6) {
+//            ivPassword.setVisibility(View.VISIBLE);
+//            tlPassword.setErrorEnabled(true);
+//            tlPassword.setError(getString(R.string.error_password_short));
+//        }
+//        else if (etPassword.getText().length() > 6) {
+//            tlPassword.setError(null);
+//            tlPassword.setErrorEnabled(false);
+//            ivPassword.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            tlPassword.setError(null);
+//            tlPassword.setErrorEnabled(false);
+//            ivPassword.setVisibility(View.GONE);
+//        }
+//
+//        if (tlPassword.getError() != null) {
+//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+//        } else {
+//            ivPassword.setVisibility(View.GONE);
+////            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+//        }
     }
 
     @OnClick(R.id.bt_login)
@@ -214,7 +214,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     }
 
     private boolean isPasswordValid() {
-        return etPassword.getText().toString().length() > 6;
+//        return etPassword.getText().toString().length() > 6;
+        return !etPassword.getText().toString().isEmpty();
     }
 
     private boolean isEmailValid() {

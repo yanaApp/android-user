@@ -85,6 +85,15 @@
             android:name=".presentation.screens.main.profile.change_password.ChangePasswordActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.screens.chat_bot.ChatBotActivity"
+            android:label="Chat bot" android:screenOrientation="portrait"/>
+
         <service android:name=".presentation.services.YanaFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -101,10 +110,11 @@
         <receiver android:name=".presentation.notification.BreakfastReceiver" />
         <receiver android:name=".presentation.notification.LunchReceiver" />
         <receiver android:name=".presentation.notification.DinnerReceiver" />
-
-        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".presentation.screens.chat_bot.ChatBotActivity"
-            android:label="Chat bot" android:screenOrientation="portrait"/>
+        <receiver android:name=".presentation.notification.WakeUpReceiver"/>
+        <receiver android:name=".presentation.notification.SleepReceiver"/>
+        <receiver android:name=".presentation.notification.BreakfastReceiver"/>
+        <receiver android:name=".presentation.notification.LunchReceiver"/>
+        <receiver android:name=".presentation.notification.DinnerReceiver"/>
     </application>
 
 </manifest>

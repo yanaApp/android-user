@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -276,8 +277,9 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 assert actionBar != null;
                 actionBar.setTitle(R.string.gender_title);
                 spOptions.setVisibility(View.VISIBLE);
+                btClear.setVisibility(View.GONE);
                 String[] genders = getResources().getStringArray(R.array.genders);
-                if (mInfo != null || !mInfo.isEmpty())
+                if (mInfo != null && !mInfo.isEmpty())
                     genders[0] = mInfo;
                 ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
                         genders);
@@ -300,8 +302,9 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 actionBar.setTitle(R.string.occupation_title);
                 spOptions.setVisibility(View.VISIBLE);
                 String[] occupations = getResources().getStringArray(R.array.occupations);
-                if (mInfo != null || !mInfo.isEmpty())
+                if (mInfo != null && !mInfo.isEmpty())
                     occupations[0] = mInfo;
+                Log.d("INFO", mInfo);
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         occupations);
                 spOptions.setAdapter(arrayAdapter);
@@ -315,7 +318,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 actionBar.setTitle("Depression Motive");
                 spOptions.setVisibility(View.VISIBLE);
                 String[] motives = getResources().getStringArray(R.array.motives);
-                if (mInfo != null || !mInfo.isEmpty())
+                if (mInfo != null && !mInfo.isEmpty())
                     motives[0] = mInfo;
                 ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         motives);
