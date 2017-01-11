@@ -127,7 +127,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
     void onSaveClick() {
         HashMap<String, Object> postBundle = new HashMap<>();
         postBundle.put("birth_date", btBirthDate.getText().toString());
-        postBundle.put("birth_date_format", "MMMM dd, yyyy");
+        postBundle.put("date_format", "MMMM dd, yyyy");
         mBirthDatePresenter.post(postBundle);
     }
 
@@ -146,10 +146,15 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
                 DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                         (view, year, month, dayOfMonth) ->
                                 btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                        "MMM dd yy")), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                                        "MMMM dd, yy")), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
             } catch (ParseException e) {
                 e.printStackTrace();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
+                        (view, year, month, dayOfMonth) ->
+                                btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
+                                        "MMMM dd, yy")), 1990, 0, 1);
+                datePickerDialog.show();
             }
         }
     }
