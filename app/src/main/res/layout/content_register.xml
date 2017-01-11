@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="bottom"
     android:orientation="vertical"
     android:paddingBottom="32dp"
@@ -72,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            app:passwordToggleEnabled="false"
             android:textColorHint="@color/secondary_text">
 
             <android.support.design.widget.TextInputEditText
@@ -100,6 +102,7 @@
         android:orientation="horizontal">
 
         <android.support.design.widget.TextInputLayout
+            app:passwordToggleEnabled="false"
             android:id="@+id/tl_confirm_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
