@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotAnswerViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,10 +25,8 @@ public class ChatAnswerViewHolder extends GenericRecyclerViewAdapter.ViewHolder 
 
     @Override
     public void bindData(Object data, int position, boolean isEnabled) {
-        if (data instanceof ChatBotAnswerViewModel) {
-            ChatBotAnswerViewModel chatAnswer = (ChatBotAnswerViewModel) data;
-
-            tvAnswer.setText(chatAnswer.getAnswer());
+        if (data instanceof String) {
+            tvAnswer.setText((String) data);
         }
     }
 }

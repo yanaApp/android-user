@@ -26,6 +26,7 @@
             android:visibility="visible" />
 
         <com.icaboalo.yana.old.ui.widget.CustomFontEditText
+            android:visibility="gone"
             android:id="@+id/et_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

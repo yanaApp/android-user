@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
  * Created by icaboalo on 12/12/16.
  */
 
-public class ChatViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
+public class ChatLeftViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
 
     @BindView(R.id.tv_message)
     TextView tvMessage;
@@ -25,7 +25,7 @@ public class ChatViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
     @BindView(R.id.et_response)
     EditText etResponse;
 
-    public ChatViewHolder(View itemView) {
+    public ChatLeftViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
@@ -35,7 +35,7 @@ public class ChatViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
         if (data instanceof ChatBotViewModel) {
             ChatBotViewModel chatBotViewModel = (ChatBotViewModel) data;
             if (chatBotViewModel.getSender() == 0)
-                switch (chatBotViewModel.getType()) {
+                switch (chatBotViewModel.getAnswerType()) {
                     case ChatBotViewModel.OPTIONS:
                         etResponse.setVisibility(View.GONE);
                         tvMessage.setText(chatBotViewModel.getQuestion());
