@@ -80,12 +80,7 @@ public class ErrorMessageFactory {
                 return exception.getMessage();
             }
         }
-//        String s = Arrays.toString(exception.getStackTrace()) + "\n" + exception.getMessage() + "\n"
-//                + exception.getLocalizedMessage();
-//        File file = new File(Constants.EXTERNAL_DIR, "/unknown_errors.txt");
-//        if (!file.exists())
-//            file.mkdir();
-//        GenericUseCase.getInstance().writeToFile(file.getAbsolutePath(), s).subscribe();
+
         return context.getString(R.string.unknown_error);
     }
 }

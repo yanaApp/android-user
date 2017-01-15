@@ -1,6 +1,4 @@
-package com.icaboalo.yana.presentation.screens.component.adapter;
-
-import com.google.gson.annotations.SerializedName;
+package com.icaboalo.yana.presentation.component.adapter;
 
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;

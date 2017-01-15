@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.component.adapter;
+package com.icaboalo.yana.presentation.component.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * @author icaboalo on 13/08/16.

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
