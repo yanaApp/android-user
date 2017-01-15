@@ -90,7 +90,6 @@
 
         </activity>
 
-        <activity android:name=".presentation.screens.main.profile.birth_date.BirthDateActivity" android:screenOrientation="portrait"/>
         <activity android:name=".presentation.screens.chat_bot.ChatBotActivity"
             android:label="Chat bot" android:screenOrientation="portrait"/>
 

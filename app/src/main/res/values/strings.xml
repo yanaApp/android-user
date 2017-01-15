@@ -165,6 +165,7 @@
     <string name="select_phone_number">Select a phone number</string>
     <string name="undo">Undo</string>
     <string name="snackbar_emotion">Changed emotion to %s</string>
+    <string name="unknown_error">Unkown error</string>
 
     <array name="beck_test">
         <!--1-->
