@@ -289,4 +289,5 @@
     <string name="select_phone_number">Elige un telefono</string>
     <string name="undo">Deshacer</string>
     <string name="snackbar_emotion">Cambio de respuesta a %s</string>
+    <string name="unknown_error">Error desconocido</string>
 </resources>
