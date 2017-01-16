@@ -8,9 +8,9 @@ import com.icaboalo.yana.domain.models.Schedule;
 import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.presentation.screens.GenericListPresenter;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.ScheduleViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ScheduleViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

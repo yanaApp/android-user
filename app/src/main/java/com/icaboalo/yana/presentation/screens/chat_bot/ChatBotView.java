@@ -2,7 +2,7 @@ package com.icaboalo.yana.presentation.screens.chat_bot;
 
 import com.icaboalo.yana.presentation.screens.GenericListView;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
 
 /**
  * Created by icaboalo on 12/12/16.

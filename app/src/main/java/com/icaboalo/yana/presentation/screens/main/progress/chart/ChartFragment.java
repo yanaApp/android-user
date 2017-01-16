@@ -17,7 +17,7 @@ import com.db.chart.view.LineChartView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

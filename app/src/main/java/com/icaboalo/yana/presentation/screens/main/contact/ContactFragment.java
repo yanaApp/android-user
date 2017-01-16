@@ -36,7 +36,7 @@ import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog.OnDialogClickListener;
 import com.icaboalo.yana.presentation.screens.main.contact.view_holder.ContactViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ContactViewModel;
+import com.icaboalo.yana.presentation.view_model.ContactViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;

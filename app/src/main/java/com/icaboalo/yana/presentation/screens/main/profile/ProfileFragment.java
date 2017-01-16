@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,7 @@ import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.profile.birth_date.BirthDateActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;

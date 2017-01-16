@@ -19,7 +19,7 @@ import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatAnswerVie
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
 import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

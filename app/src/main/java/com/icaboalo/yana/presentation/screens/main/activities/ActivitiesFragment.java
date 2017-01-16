@@ -25,8 +25,8 @@ import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 

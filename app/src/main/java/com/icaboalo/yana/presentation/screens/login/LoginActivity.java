@@ -11,15 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
 import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.view_model.RecoverPasswordViewModel;
 
 import java.util.HashMap;
 

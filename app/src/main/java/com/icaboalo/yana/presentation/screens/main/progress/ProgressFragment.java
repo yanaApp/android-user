@@ -32,7 +32,7 @@ import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartView;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 

@@ -31,7 +31,7 @@ import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;

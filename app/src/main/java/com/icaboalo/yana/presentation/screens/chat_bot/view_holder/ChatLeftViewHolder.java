@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

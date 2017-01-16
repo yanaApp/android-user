@@ -4,7 +4,7 @@ import com.icaboalo.yana.data.entities.realm_models.action_plan.ActionPlanRealmM
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 
 import java.util.HashMap;
 

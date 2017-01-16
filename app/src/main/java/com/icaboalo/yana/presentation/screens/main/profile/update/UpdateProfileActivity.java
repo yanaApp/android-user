@@ -23,7 +23,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
