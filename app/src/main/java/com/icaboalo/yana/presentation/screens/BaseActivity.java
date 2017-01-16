@@ -78,14 +78,31 @@ public abstract class BaseActivity extends AppCompatActivity implements HasCompo
         return componentType.cast(((HasComponent<C>) this).getComponent());
     }
 
+    /**
+     * Shows a {@link Toast}
+     *
+     * @param message the message to be shown
+     */
     public void showToastMessage(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Shows a {@link android.support.design.widget.Snackbar}
+     *
+     * @param message the message to be shown
+     * @param type    whether is error or info
+     */
     public void showSnackbarMessage(@SnackbarFactory.SnackbarType String type, View view, String message, int duration) {
         SnackbarFactory.getSnackbar(type, view, message, duration).show();
     }
 
+    /**
+     * Shows a {@link android.support.design.widget.Snackbar}
+     *
+     * @param stringId the message to be shown
+     * @param type     whether is error or info
+     */
     public void showSnackbarMessage(@SnackbarFactory.SnackbarType String type, View view, @StringRes int stringId, int duration) {
         SnackbarFactory.getSnackbar(type, view, stringId, duration).show();
     }

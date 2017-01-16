@@ -17,7 +17,7 @@ import com.icaboalo.yana.presentation.component.widget.ColoredSnackbar;
 
 public class SnackbarFactory {
 
-    @StringDef({TYPE_ERROR})
+    @StringDef({TYPE_ERROR, TYPE_INFO})
     public @interface SnackbarType {
     }
 
