@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
@@ -119,7 +121,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, viewPager, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override

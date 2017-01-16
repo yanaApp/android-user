@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.evaluation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
@@ -95,7 +97,7 @@ public class EvaluationActivity extends BaseActivity implements GenericPostView<
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, mQuestion, message, Snackbar.LENGTH_SHORT);
     }
 
     @OnClick({R.id.option_1, R.id.option_2, R.id.option_3, R.id.option_4, R.id.btContinue})

@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.main.loading;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
@@ -81,7 +83,7 @@ public class LoadingActivity extends BaseActivity implements GenericDetailView<U
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, tvTitle, message, Snackbar.LENGTH_SHORT);
     }
 
     @OnClick(R.id.btContinue)

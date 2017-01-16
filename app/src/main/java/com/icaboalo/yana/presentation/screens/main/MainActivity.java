@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,6 +19,7 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.FilePreference;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.chat_bot.ChatBotActivity;
@@ -193,7 +195,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, navigationView, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override
@@ -202,7 +204,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (data != null) {
             switch (requestCode) {
                 case EvaluationActivity.REQUEST_CODE:
-                    showError(data.getIntExtra("answer", 0) + "");
+                    showSnackbarMessage(SnackbarFactory.TYPE_INFO, navigationView, data.getIntExtra("answer", 0) + "", Snackbar.LENGTH_SHORT);
                     int answer = data.getIntExtra("answer", 0);
                     switch (data.getIntExtra("testNumber", 0)) {
                         case 1:

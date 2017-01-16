@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
@@ -110,7 +112,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Override
     public void showError(String message) {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+//        showError(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, btLogin, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override

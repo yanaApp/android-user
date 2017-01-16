@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.notification.BreakfastReceiver;
 import com.icaboalo.yana.presentation.notification.DinnerReceiver;
 import com.icaboalo.yana.presentation.notification.LunchReceiver;
@@ -171,7 +173,7 @@ public class ScheduleActivity extends BaseActivity implements GenericPostView<Sc
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, toolbar, message, Snackbar.LENGTH_SHORT);
     }
 
     @OnCheckedChanged({R.id.cbStudies, R.id.cbWork})
