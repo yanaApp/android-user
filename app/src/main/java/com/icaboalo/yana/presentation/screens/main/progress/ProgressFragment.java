@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.icaboalo.yana.MyApplication;
@@ -59,6 +60,8 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     InkPageIndicator inkPageIndicator;
     @BindView(R.id.rvDayProgress)
     RecyclerView rvDayProgress;
+    @BindView(R.id.fl_no_info)
+    FrameLayout flNoInfo;
     Spinner spActionPlan;
     PlanBreakdownView mPlanBreakdownView;
     GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
@@ -95,7 +98,12 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Override
     public void renderItemList(List<ActionPlanViewModel> itemList) {
-        setupSpinner(itemList);
+        if (itemList == null || itemList.isEmpty())
+            flNoInfo.setVisibility(View.VISIBLE);
+        else {
+            setupSpinner(itemList);
+            flNoInfo.setVisibility(View.GONE);
+        }
     }
 
     @Override
