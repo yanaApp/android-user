@@ -290,4 +290,5 @@
     <string name="undo">Deshacer</string>
     <string name="snackbar_emotion">Cambio de respuesta a %s</string>
     <string name="unknown_error">Error desconocido</string>
+    <string name="depression_motive_title">Motivo de Depresión</string>
 </resources>

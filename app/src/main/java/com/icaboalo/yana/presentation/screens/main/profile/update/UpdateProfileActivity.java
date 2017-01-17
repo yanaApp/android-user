@@ -317,7 +317,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
             case MOTIVE:
                 assert actionBar != null;
-                actionBar.setTitle("Depression Motive");
+                actionBar.setTitle(R.string.depression_motive_title);
                 spOptions.setVisibility(View.VISIBLE);
                 String[] motives = getResources().getStringArray(R.array.motives);
                 if (mInfo != null && !mInfo.isEmpty())

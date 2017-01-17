@@ -166,6 +166,7 @@
     <string name="undo">Undo</string>
     <string name="snackbar_emotion">Changed emotion to %s</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="depression_motive_title">Depression Motive</string>
 
     <array name="beck_test">
         <!--1-->
