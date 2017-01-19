@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/yana_green</item>
-        <item name="toolbarStyle">@style/AppTheme.WhiteToolbar</item>
+        <!--<item name="toolbarStyle">@style/AppTheme.WhiteToolbar</item>-->
         <item name="android:colorBackground">@color/background_material_white</item>
     </style>
 
