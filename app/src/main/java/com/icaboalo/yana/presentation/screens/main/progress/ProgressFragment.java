@@ -98,9 +98,14 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Override
     public void renderItemList(List<ActionPlanViewModel> itemList) {
-        if (itemList == null || itemList.isEmpty())
+        if (itemList.isEmpty()) {
             flNoInfo.setVisibility(View.VISIBLE);
+            inkPageIndicator.setVisibility(View.GONE);
+            spActionPlan.setVisibility(View.GONE);
+        }
         else {
+            spActionPlan.setVisibility(View.VISIBLE);
+            inkPageIndicator.setVisibility(View.VISIBLE);
             setupSpinner(itemList);
             flNoInfo.setVisibility(View.GONE);
         }
