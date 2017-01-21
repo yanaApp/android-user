@@ -62,7 +62,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     TextView btClear;
     private static String mType, mInfo;
 
-    public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
+    public static final String FULL_NAME = "full_name", EMAIL = "email", GENDER = "gender",
             LOCATION = "location", OCCUPATION = "occupation", MOTIVE = "motive";
 
     @Override
@@ -147,11 +147,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             case EMAIL:
                 updateBundle = new HashMap<>();
                 updateBundle.put("email", etField.getText().toString());
-                break;
-
-            case BIRTH_DATE:
-                updateBundle = new HashMap<>();
-                updateBundle.put("birth_date", etField.getText().toString());
                 break;
 
             case GENDER:
@@ -259,21 +254,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 spOptions.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_email);
                 break;
-            case BIRTH_DATE:
-                assert actionBar != null;
-                actionBar.setTitle(R.string.birth_date_title);
-                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                spOptions.setVisibility(View.GONE);
-                btSave.setVisibility(View.GONE);
-                tvDescription.setText(R.string.cupcake_ipsum);
-                etField.setOnClickListener(v -> {
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(UpdateProfileActivity.this,
-                            (view, year, month, dayOfMonth) ->
-                                    etField.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                            "MMM dd yy")), 1990, 0, 1);
-                    datePickerDialog.show();
-                });
-                break;
 
             case GENDER:
                 assert actionBar != null;
@@ -325,6 +305,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         motives);
                 spOptions.setAdapter(motivesAdapter);
+                etField.setVisibility(View.GONE);
                 btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
