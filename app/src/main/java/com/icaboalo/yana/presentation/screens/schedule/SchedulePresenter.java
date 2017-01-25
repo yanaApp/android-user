@@ -6,7 +6,7 @@ import com.icaboalo.yana.data.entities.realm_models.ScheduleRealmModel;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.Schedule;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.view_model.ScheduleViewModel;
+import com.icaboalo.yana.presentation.view_model.ScheduleViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;

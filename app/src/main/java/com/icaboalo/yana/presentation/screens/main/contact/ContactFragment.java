@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,13 +29,14 @@ import android.widget.RelativeLayout;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog;
 import com.icaboalo.yana.presentation.screens.main.contact.dialog.AddContactDialog.OnDialogClickListener;
 import com.icaboalo.yana.presentation.screens.main.contact.view_holder.ContactViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ContactViewModel;
+import com.icaboalo.yana.presentation.view_model.ContactViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -153,7 +155,7 @@ public class ContactFragment extends BaseFragment implements ContactView, OnDial
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, rvContact, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override

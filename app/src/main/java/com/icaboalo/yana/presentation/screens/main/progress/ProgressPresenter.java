@@ -7,10 +7,10 @@ import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.ActionPlan;
 import com.icaboalo.yana.presentation.screens.GenericListPresenter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.ArrayList;

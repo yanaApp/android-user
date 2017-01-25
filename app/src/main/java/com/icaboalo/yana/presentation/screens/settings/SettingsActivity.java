@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.settings.food_notifications.FoodNotificationsActivity;
 
@@ -108,7 +109,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, toolbar, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override
@@ -156,6 +157,7 @@ public class SettingsActivity extends BaseActivity implements SettingsView {
     @Override
     public void finalizePlanSuccessful() {
         showError("Plan finalizado con exito");
+        showSnackbarMessage(SnackbarFactory.TYPE_INFO, toolbar, "Plan finalizado con exito", Snackbar.LENGTH_SHORT);
     }
 
     @OnCheckedChanged({R.id.swFoodNotifications, R.id.swDayNotification, R.id.swNightNotification})

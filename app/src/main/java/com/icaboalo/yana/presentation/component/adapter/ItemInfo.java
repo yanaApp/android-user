@@ -1,8 +1,7 @@
-package com.icaboalo.yana.presentation.screens.component.adapter;
-
-import com.google.gson.annotations.SerializedName;
+package com.icaboalo.yana.presentation.component.adapter;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author icaboalo on 13/08/16.
@@ -12,6 +11,7 @@ public class ItemInfo<M> implements Serializable {
     public static final int HEADER = 1, FOOTER = 2, LOADING = 3, SECTION_HEADER = 4, SECTION_ITEM = 5,
             CARD_SECTION_HEADER = 6;
 
+    private static final AtomicInteger count = new AtomicInteger(0);
     private M data;
     private int layoutId;
     private long id;
@@ -20,6 +20,7 @@ public class ItemInfo<M> implements Serializable {
     public ItemInfo(M data, int layoutId) {
         this.data = data;
         this.layoutId = layoutId;
+        id = count.incrementAndGet();
     }
 
     public long getId() {

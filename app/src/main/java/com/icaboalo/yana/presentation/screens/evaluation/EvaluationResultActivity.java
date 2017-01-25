@@ -59,6 +59,6 @@ public class EvaluationResultActivity extends BaseActivity {
     }
 
     public static Intent getCallingIntent(Context context, int answerTotal) {
-        return new Intent(context, EvaluationResultActivity.class).putExtra("answerTotal", answerTotal);
+        return new Intent(context, EvaluationResultActivity.class).putExtra("answerTotal", answerTotal).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 }

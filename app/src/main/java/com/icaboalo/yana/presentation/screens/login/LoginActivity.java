@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -10,14 +11,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.ui.activity.EvaluationActivity;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
-import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.view_model.RecoverPasswordViewModel;
 
 import java.util.HashMap;
 
@@ -110,7 +111,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @Override
     public void showError(String message) {
-        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+//        showError(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, btLogin, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override
@@ -132,28 +134,28 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
 
     @OnTextChanged(value = R.id.et_password, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     void onPasswordTextChanged() {
-        if (etPassword.getText().length() <= 6) {
-            ivPassword.setVisibility(View.VISIBLE);
-            tlPassword.setErrorEnabled(true);
-            tlPassword.setError(getString(R.string.error_password_short));
-        }
-        else if (etPassword.getText().length() > 6) {
-            tlPassword.setError(null);
-            tlPassword.setErrorEnabled(false);
-            ivPassword.setVisibility(View.VISIBLE);
-        }
-        else {
-            tlPassword.setError(null);
-            tlPassword.setErrorEnabled(false);
-            ivPassword.setVisibility(View.GONE);
-        }
-
-        if (tlPassword.getError() != null) {
-            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
-        } else {
-            ivPassword.setVisibility(View.GONE);
-//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
-        }
+//        if (etPassword.getText().length() <= 6) {
+//            ivPassword.setVisibility(View.VISIBLE);
+//            tlPassword.setErrorEnabled(true);
+//            tlPassword.setError(getString(R.string.error_password_short));
+//        }
+//        else if (etPassword.getText().length() > 6) {
+//            tlPassword.setError(null);
+//            tlPassword.setErrorEnabled(false);
+//            ivPassword.setVisibility(View.VISIBLE);
+//        }
+//        else {
+//            tlPassword.setError(null);
+//            tlPassword.setErrorEnabled(false);
+//            ivPassword.setVisibility(View.GONE);
+//        }
+//
+//        if (tlPassword.getError() != null) {
+//            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+//        } else {
+//            ivPassword.setVisibility(View.GONE);
+////            ivPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+//        }
     }
 
     @OnClick(R.id.bt_login)
@@ -214,7 +216,8 @@ public class LoginActivity extends BaseActivity implements LoginView<LoginViewMo
     }
 
     private boolean isPasswordValid() {
-        return etPassword.getText().toString().length() > 6;
+//        return etPassword.getText().toString().length() > 6;
+        return !etPassword.getText().toString().isEmpty();
     }
 
     private boolean isEmailValid() {

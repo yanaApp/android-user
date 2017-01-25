@@ -7,7 +7,7 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.Contact;
 import com.icaboalo.yana.presentation.screens.GenericListPresenter;
 import com.icaboalo.yana.presentation.screens.main.contact.view_holder.ContactViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ContactViewModel;
+import com.icaboalo.yana.presentation.view_model.ContactViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;

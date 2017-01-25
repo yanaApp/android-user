@@ -7,9 +7,8 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
-import com.icaboalo.yana.presentation.screens.view_model.ContactViewModel;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.view_model.ContactViewModel;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -34,8 +33,8 @@ public class ContactViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
     public void bindData(Object data, int position, boolean isEnabled) {
         super.bindData(data, position, isEnabled);
         Context context = MyApplication.getInstance().getApplicationContext();
-        if (((ItemInfo) data).getData() instanceof ContactViewModel){
-            ContactViewModel contact = (ContactViewModel) ((ItemInfo) data).getData();
+        if (data instanceof ContactViewModel){
+            ContactViewModel contact = (ContactViewModel) data;
             tvContactName.setText(contact.getName());
             Picasso.with(context).load(contact.isValidated() ? R.drawable.check_validated_64 : R.drawable.check_64)
                     .into(ivContactValidated);

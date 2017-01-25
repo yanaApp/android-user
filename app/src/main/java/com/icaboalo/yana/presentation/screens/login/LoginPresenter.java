@@ -1,9 +1,5 @@
 package com.icaboalo.yana.presentation.screens.login;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import com.icaboalo.yana.PrefConstants;
 import com.icaboalo.yana.data.entities.LoginEntity;
 import com.icaboalo.yana.data.entities.RecoverPasswordEntity;
 import com.icaboalo.yana.domain.exception.DefaultErrorBundle;
@@ -14,8 +10,8 @@ import com.icaboalo.yana.domain.models.RecoverPassword;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.GenericPostPresenter;
-import com.icaboalo.yana.presentation.screens.view_model.LoginViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.view_model.LoginViewModel;
+import com.icaboalo.yana.presentation.view_model.RecoverPasswordViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.util.HashMap;

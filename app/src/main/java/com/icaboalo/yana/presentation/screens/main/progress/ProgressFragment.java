@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.progress;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.icaboalo.yana.MyApplication;
@@ -22,15 +24,16 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.old.domain.FragmentPagerModel;
 import com.icaboalo.yana.old.ui.adapter.ViewPagerAdapter;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.chart.ChartView;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown.PlanBreakdownView;
 import com.icaboalo.yana.presentation.screens.main.progress.view_holder.DayInfoViewHolder;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
@@ -57,6 +60,8 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
     InkPageIndicator inkPageIndicator;
     @BindView(R.id.rvDayProgress)
     RecyclerView rvDayProgress;
+    @BindView(R.id.fl_no_info)
+    FrameLayout flNoInfo;
     Spinner spActionPlan;
     PlanBreakdownView mPlanBreakdownView;
     GenericRecyclerViewAdapter<DayInfoViewHolder> mDayInfoRecyclerViewAdapter;
@@ -93,7 +98,17 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Override
     public void renderItemList(List<ActionPlanViewModel> itemList) {
-        setupSpinner(itemList);
+        if (itemList.isEmpty()) {
+            flNoInfo.setVisibility(View.VISIBLE);
+            inkPageIndicator.setVisibility(View.GONE);
+            spActionPlan.setVisibility(View.GONE);
+        }
+        else {
+            spActionPlan.setVisibility(View.VISIBLE);
+            inkPageIndicator.setVisibility(View.VISIBLE);
+            setupSpinner(itemList);
+            flNoInfo.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -119,7 +134,7 @@ public class ProgressFragment extends BaseFragment implements ProgressView {
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, viewPager, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.di.component;
 import com.icaboalo.yana.presentation.di.PerActivity;
 import com.icaboalo.yana.presentation.di.module.ActivityModule;
 import com.icaboalo.yana.presentation.di.module.UserModule;
+import com.icaboalo.yana.presentation.screens.chat_bot.ChatBotActivity;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
@@ -60,4 +61,6 @@ public interface UserComponent {
     void inject(ChangePasswordActivity changePasswordActivity);
 
     void inject(BirthDateActivity birthDateActivity);
+
+    void inject(ChatBotActivity chatBotActivity);
 }

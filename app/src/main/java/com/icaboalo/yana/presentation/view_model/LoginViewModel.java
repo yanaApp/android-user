@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.view_model;
+package com.icaboalo.yana.presentation.view_model;
 
 /**
  * @author icaboalo on 09/08/16.

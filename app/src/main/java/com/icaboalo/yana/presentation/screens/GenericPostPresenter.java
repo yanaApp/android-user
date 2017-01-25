@@ -86,10 +86,7 @@ public abstract class GenericPostPresenter<M> extends BasePresenter{
         public void onError(Throwable e) {
             hideViewLoading();
             showViewRetry();
-            if (TextUtils.isEmpty(getErrorMessage(e)))
-                showErrorMessage(new DefaultErrorBundle((Exception) e));
-            else
-                mGenericPostView.showError(getErrorMessage(e));
+            showErrorMessage(new DefaultErrorBundle((Exception) e));
             e.printStackTrace();
         }
 
@@ -97,18 +94,6 @@ public abstract class GenericPostPresenter<M> extends BasePresenter{
         public void onNext(M m) {
             postSuccess(m);
         }
-    }
-
-    private String getErrorMessage(Throwable e){
-        String message = "";
-        try {
-            JSONObject json = new JSONObject(((HttpException) e).response().errorBody().string());
-            message = (String) json.getJSONObject("error").get("message");
-        } catch (JSONException | IOException e1) {
-            e1.printStackTrace();
-        }
-
-        return message;
     }
 
 }

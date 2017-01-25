@@ -21,5 +21,9 @@
     <dimen name="size_small">6dp</dimen>
     <dimen name="size_unit">1dp</dimen>
     <dimen name="default_touch_area">48dp</dimen>
+    <dimen name="spacing_small">5dp</dimen>
+    <dimen name="spacing_medium">10dp</dimen>
+    <dimen name="spacing_xlarge">18dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
 
 </resources>

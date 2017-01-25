@@ -20,12 +20,13 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesRecyclerAdapter.ActivitiesListener;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
 import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -143,7 +144,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, rvActivity, message, Snackbar.LENGTH_SHORT);
+
     }
 
     @Override
@@ -160,7 +162,8 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void onSelect(ActivityViewModel activityViewModel, int answer) {
-        showSnackBar(activityViewModel, answer);
+        showSnackbarMessage(SnackbarFactory.TYPE_INFO, rvActivity, getString(R.string.snackbar_emotion, VUtil.answerToText(answer)),
+                Snackbar.LENGTH_SHORT);
     }
 
 //    TODO -> set texts
@@ -190,23 +193,5 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
         mActivitiesRecyclerAdapter.setOnEmotionSelectedListener(this);
         rvActivity.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvActivity.setAdapter(mActivitiesRecyclerAdapter);
-    }
-
-    private void showSnackBar(ActivityViewModel activityViewModel, int answer){
-        Snackbar.make(rvActivity, "Changed emotion from " + VUtil.answerToText(activityViewModel.getAnswer()) + " to " +
-                VUtil.answerToText(answer), Snackbar.LENGTH_SHORT).setAction("Undo", v -> {
-                }).setCallback(new Snackbar.Callback() {
-            @Override
-            public void onDismissed(Snackbar snackbar, int event) {
-                switch (event){
-                    case DISMISS_EVENT_ACTION:
-                        mActivitiesRecyclerAdapter.notifyDataSetChanged();
-                        break;
-                    default:
-                        mActivitiesPresenter.attemptSaveEmotion(activityViewModel, answer);
-                        break;
-                }
-            }
-        }).show();
     }
 }
