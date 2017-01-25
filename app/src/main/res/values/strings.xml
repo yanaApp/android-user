@@ -80,6 +80,7 @@
     <string name="confirm_password_input_hint">CONFIRM PASSWORD</string>
     <string name="old_password_input_hint">Old password</string>
     <string name="new_password_input_hint">New password</string>
+    <string name="hint_message_field">Respond here</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
@@ -164,6 +165,8 @@
     <string name="select_phone_number">Select a phone number</string>
     <string name="undo">Undo</string>
     <string name="snackbar_emotion">Changed emotion to %s</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="depression_motive_title">Depression Motive</string>
 
     <array name="beck_test">
         <!--1-->
@@ -372,5 +375,4 @@
         <item>Unknown Reason</item>
         <item>Other</item>
     </array>
-
 </resources>

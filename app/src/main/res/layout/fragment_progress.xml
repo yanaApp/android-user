@@ -1,29 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
-        android:layout_weight="1.2"
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1.2" />
 
     <com.pixelcan.inkpageindicator.InkPageIndicator
         android:id="@+id/inkPageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:animationDuration="320"
         app:currentPageIndicatorColor="@color/yana_green"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
-        app:pageIndicatorColor="#d3d3d3d3"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        app:pageIndicatorColor="#d3d3d3d3" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDayProgress"
         android:layout_width="match_parent"
-        android:layout_weight="1.8"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1.8" />
+
+    <FrameLayout
+        android:id="@+id/fl_no_info"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:text="No hay información para mostrar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </LinearLayout>

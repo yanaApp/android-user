@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,8 +19,10 @@ import com.icaboalo.yana.R;
 import com.icaboalo.yana.other.FilePreference;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
+import com.icaboalo.yana.presentation.screens.chat_bot.ChatBotActivity;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
@@ -28,7 +31,7 @@ import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
 import com.icaboalo.yana.presentation.screens.main.progress.ProgressFragment;
 import com.icaboalo.yana.presentation.screens.settings.SettingsActivity;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
@@ -192,7 +195,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, navigationView, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override
@@ -201,7 +204,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (data != null) {
             switch (requestCode) {
                 case EvaluationActivity.REQUEST_CODE:
-                    showError(data.getIntExtra("answer", 0) + "");
+                    showSnackbarMessage(SnackbarFactory.TYPE_INFO, navigationView, data.getIntExtra("answer", 0) + "", Snackbar.LENGTH_SHORT);
                     int answer = data.getIntExtra("answer", 0);
                     switch (data.getIntExtra("testNumber", 0)) {
                         case 1:
@@ -258,7 +261,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
 //                    createNotification();
-                    ManagerPreference.getInstance().set(YanaPreferences.FIRST_TEST_TAKEN, true);
+                    navigator.navigateTo(getApplicationContext(), ChatBotActivity.getCallingIntent(getApplicationContext()));
                     dialog.dismiss();
                 })
                 .create().show();

@@ -3,7 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.profile;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +12,13 @@ import android.widget.TextView;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.main.profile.birth_date.BirthDateActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.change_password.ChangePasswordActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.update.UpdateProfileActivity;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 
 import javax.inject.Inject;
@@ -111,7 +112,7 @@ public class ProfileFragment extends BaseFragment implements GenericDetailView<U
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, tvFullName, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override

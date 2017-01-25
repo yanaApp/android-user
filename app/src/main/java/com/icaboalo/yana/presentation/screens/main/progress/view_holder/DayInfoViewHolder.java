@@ -2,17 +2,15 @@ package com.icaboalo.yana.presentation.screens.main.progress.view_holder;
 
 import android.content.Context;
 import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
-import com.icaboalo.yana.presentation.screens.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.util.Utils;
 import com.icaboalo.yana.util.VUtil;
 
@@ -48,9 +46,8 @@ public class DayInfoViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
         completedCount = 0;
         incompleteCount = 0;
         answerTotal = 0;
-        if (data instanceof ItemInfo) {
-            ItemInfo item = (ItemInfo) data;
-            DayViewModel day = (DayViewModel) item.getData();
+        if (data instanceof DayViewModel) {
+            DayViewModel day = (DayViewModel) data;
             tvDate.setText(Html.fromHtml("<b>Día " + day.getDayNumber() + "</b>  |  " +
                     Utils.transformDateToText(day.getDate(), "dd-MM-yyyy", "MMMM dd, yyyy")));
 

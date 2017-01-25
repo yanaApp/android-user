@@ -1,7 +1,7 @@
 package com.icaboalo.yana.presentation.screens.main.progress.plan_breakdown;
 
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 
 /**
  * @author icaboalo on 23/08/16.

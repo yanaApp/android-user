@@ -3,8 +3,8 @@ package com.icaboalo.yana.presentation.screens.main.progress;
 import android.support.v7.widget.RecyclerView;
 
 import com.icaboalo.yana.presentation.screens.GenericListView;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
-import com.icaboalo.yana.presentation.screens.view_model.ActionPlanViewModel;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
+import com.icaboalo.yana.presentation.view_model.ActionPlanViewModel;
 
 import java.util.List;
 

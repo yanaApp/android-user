@@ -1,7 +1,7 @@
 package com.icaboalo.yana.presentation.screens.login;
 
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.view_model.RecoverPasswordViewModel;
+import com.icaboalo.yana.presentation.view_model.RecoverPasswordViewModel;
 
 /**
  * @author icaboalo on 10/08/16.

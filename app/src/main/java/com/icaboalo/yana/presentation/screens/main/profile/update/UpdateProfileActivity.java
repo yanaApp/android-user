@@ -3,6 +3,7 @@ package com.icaboalo.yana.presentation.screens.main.profile.update;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -19,9 +20,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
@@ -60,7 +62,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
     TextView btClear;
     private static String mType, mInfo;
 
-    public static final String FULL_NAME = "full_name", EMAIL = "email", BIRTH_DATE = "birth_date", GENDER = "gender",
+    public static final String FULL_NAME = "full_name", EMAIL = "email", GENDER = "gender",
             LOCATION = "location", OCCUPATION = "occupation", MOTIVE = "motive";
 
     @Override
@@ -111,7 +113,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, btSave, message, Snackbar.LENGTH_SHORT);
     }
 
     @Override
@@ -145,11 +147,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
             case EMAIL:
                 updateBundle = new HashMap<>();
                 updateBundle.put("email", etField.getText().toString());
-                break;
-
-            case BIRTH_DATE:
-                updateBundle = new HashMap<>();
-                updateBundle.put("birth_date", etField.getText().toString());
                 break;
 
             case GENDER:
@@ -257,21 +254,6 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 spOptions.setVisibility(View.GONE);
                 tvDescription.setText(R.string.description_email);
                 break;
-            case BIRTH_DATE:
-                assert actionBar != null;
-                actionBar.setTitle(R.string.birth_date_title);
-                this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                spOptions.setVisibility(View.GONE);
-                btSave.setVisibility(View.GONE);
-                tvDescription.setText(R.string.cupcake_ipsum);
-                etField.setOnClickListener(v -> {
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(UpdateProfileActivity.this,
-                            (view, year, month, dayOfMonth) ->
-                                    etField.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                            "MMM dd yy")), 1990, 0, 1);
-                    datePickerDialog.show();
-                });
-                break;
 
             case GENDER:
                 assert actionBar != null;
@@ -315,7 +297,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
 
             case MOTIVE:
                 assert actionBar != null;
-                actionBar.setTitle("Depression Motive");
+                actionBar.setTitle(R.string.depression_motive_title);
                 spOptions.setVisibility(View.VISIBLE);
                 String[] motives = getResources().getStringArray(R.array.motives);
                 if (mInfo != null && !mInfo.isEmpty())
@@ -323,6 +305,7 @@ public class UpdateProfileActivity extends BaseActivity implements GenericPostVi
                 ArrayAdapter<String> motivesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                         motives);
                 spOptions.setAdapter(motivesAdapter);
+                etField.setVisibility(View.GONE);
                 btSave.setVisibility(View.GONE);
                 tvDescription.setText(R.string.cupcake_ipsum);
                 break;
