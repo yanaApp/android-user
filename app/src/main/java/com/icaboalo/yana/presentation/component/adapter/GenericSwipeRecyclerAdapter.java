@@ -6,16 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
-import com.icaboalo.yana.R;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemBase;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.ButterKnife;
 
 /**
  * Created by icaboalo on 23/01/17.

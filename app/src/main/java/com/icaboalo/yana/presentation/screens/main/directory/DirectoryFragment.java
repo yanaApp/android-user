@@ -2,7 +2,6 @@ package com.icaboalo.yana.presentation.screens.main.directory;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -22,10 +21,10 @@ import com.daimajia.swipe.SwipeLayout;
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.component.adapter.GenericSwipeRecyclerAdapter;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.di.component.UserComponent;
 import com.icaboalo.yana.presentation.screens.BaseFragment;
 import com.icaboalo.yana.presentation.screens.GenericListView;
-import com.icaboalo.yana.presentation.screens.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.screens.main.directory.view_holder.DirectoryViewHolder;
 import com.icaboalo.yana.presentation.screens.view_model.PsychologistViewModel;
 
