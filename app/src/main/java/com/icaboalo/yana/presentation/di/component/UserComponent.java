@@ -8,6 +8,7 @@ import com.icaboalo.yana.presentation.screens.login.LoginActivity;
 import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
+import com.icaboalo.yana.presentation.screens.main.directory.DirectoryFragment;
 import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.loading.LoadingActivity;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
@@ -60,4 +61,6 @@ public interface UserComponent {
     void inject(ChangePasswordActivity changePasswordActivity);
 
     void inject(BirthDateActivity birthDateActivity);
+
+    void inject(DirectoryFragment directoryFragment);
 }
