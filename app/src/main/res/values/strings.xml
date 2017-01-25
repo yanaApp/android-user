@@ -80,6 +80,7 @@
     <string name="confirm_password_input_hint">CONFIRM PASSWORD</string>
     <string name="old_password_input_hint">Old password</string>
     <string name="new_password_input_hint">New password</string>
+    <string name="hint_message_field">Respond here</string>
 
     <!--Error-->
     <string name="error_empty_field">This field is required</string>
@@ -144,7 +145,7 @@
     <string name="food_notification_title">Food Notifications</string>
     <string name="hotline_title">Emergency Call</string>
     <string name="change_password_title">Change password</string>
-    <string name="contact_dialog_title">Add a new support contact</string>
+    <string name="contact_dialog_title">Add a new contact to support network</string>
 
     <!-- Exception messages -->
     <string name="exception_message_generic">There was a server error</string>
@@ -155,6 +156,17 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="other">Other</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_phone_number">Select a phone number</string>
+    <string name="undo">Undo</string>
+    <string name="snackbar_emotion">Changed emotion to %s</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="depression_motive_title">Depression Motive</string>
 
     <array name="beck_test">
         <!--1-->
@@ -363,9 +375,4 @@
         <item>Unknown Reason</item>
         <item>Other</item>
     </array>
-
-    <string name="man">Man</string>
-    <string name="woman">Woman</string>
-    <string name="other">Other</string>
-
 </resources>

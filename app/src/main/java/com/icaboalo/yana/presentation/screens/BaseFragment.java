@@ -2,12 +2,15 @@ package com.icaboalo.yana.presentation.screens;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.Toast;
 
 import com.icaboalo.yana.MyApplication;
 import com.icaboalo.yana.presentation.di.HasComponent;
 import com.icaboalo.yana.presentation.di.component.ApplicationComponent;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.navigation.Navigator;
 
 import javax.inject.Inject;
@@ -41,6 +44,15 @@ public abstract class BaseFragment extends Fragment{
      */
     protected ApplicationComponent getApplicationComponent(){
         return ((MyApplication) getContext().getApplicationContext()).getApplicationComponent();
+    }
+
+
+    public void showSnackbarMessage(@SnackbarFactory.SnackbarType String type, View view, String message, int duration) {
+        SnackbarFactory.getSnackbar(type, view, message, duration).show();
+    }
+
+    public void showSnackbarMessage(@SnackbarFactory.SnackbarType String type, View view, @StringRes int stringId, int duration) {
+        SnackbarFactory.getSnackbar(type, view, stringId, duration).show();
     }
 
     /**

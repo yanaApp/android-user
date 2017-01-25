@@ -1,8 +1,8 @@
 package com.icaboalo.yana.presentation.screens.main.activities;
 
 import com.icaboalo.yana.presentation.screens.GenericDetailView;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
 
 /**
  * @author icaboalo on 19/08/16.

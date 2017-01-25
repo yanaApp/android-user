@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.component.adapter;
+package com.icaboalo.yana.presentation.component.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * @author icaboalo on 13/08/16.
@@ -34,7 +33,7 @@ public abstract class GenericRecyclerViewAdapter<M extends GenericRecyclerViewAd
     @Override
     public void onBindViewHolder(M holder, int position) {
         ItemInfo itemInfo = mDataList.get(position);
-        holder.bindData(itemInfo, position, itemInfo.isEnabled());
+        holder.bindData(itemInfo.getData(), position, itemInfo.isEnabled());
         if (areItemsClickable && !(hasHeader() && position == 0 || hasFooter() && position == mDataList.size() -1)) {
             if (mOnItemClickListener != null)
                 holder.itemView.setOnClickListener(v -> mOnItemClickListener.onItemClicked(holder.getAdapterPosition(), itemInfo, holder));

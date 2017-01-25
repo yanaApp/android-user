@@ -2,6 +2,7 @@ package com.icaboalo.yana.presentation.screens.register;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
 import com.icaboalo.yana.presentation.screens.login.LoginActivity;
@@ -38,6 +40,8 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
     EditText etEmail;
     @BindView(R.id.tl_email)
     TextInputLayout tlEmail;
+    @BindView(R.id.iv_email)
+    ImageView ivEmail;
     @BindView(R.id.et_password)
     EditText etPassword;
     @BindView(R.id.tl_password)
@@ -101,7 +105,7 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, btRegister, message, Snackbar.LENGTH_SHORT);
     }
 
     @OnTextChanged(value = R.id.et_password, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -144,6 +148,28 @@ public class RegisterActivity extends BaseActivity implements GenericPostView<Re
             ivConfirmPassword.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
         else
             ivConfirmPassword.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
+    }
+
+    @OnTextChanged(value = R.id.et_email, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    void onEmailPasswordTextChanged() {
+        if (!isEmailValid()) {
+            tlEmail.setErrorEnabled(true);
+            ivEmail.setVisibility(View.VISIBLE);
+            tlEmail.setError(getString(R.string.error_invalid_email));
+        } else if (isEmailValid()) {
+            tlEmail.setError(null);
+            tlEmail.setErrorEnabled(false);
+            ivEmail.setVisibility(View.VISIBLE);
+        } else {
+            tlEmail.setError(null);
+            tlEmail.setErrorEnabled(false);
+            ivEmail.setVisibility(View.GONE);
+        }
+
+        if (tlEmail.getError() != null)
+            ivEmail.setImageDrawable(getResources().getDrawable(R.drawable.indicator_input_error));
+        else
+            ivEmail.setImageDrawable(getResources().getDrawable(R.drawable.password_valid_20dp));
     }
 
     @OnTextChanged(value = {R.id.et_password, R.id.et_confirm_password, R.id.et_email}, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)

@@ -64,7 +64,7 @@ public class AddContactDialog extends DialogFragment {
         setTexts(getArguments().getString(CONTACT_NAME), getArguments().getStringArrayList(PHONE_NUMBERS));
 
         alertDialog.setTitle(R.string.contact_dialog_title);
-        alertDialog.setPositiveButton("Add", (dialog, which) -> {
+        alertDialog.setPositiveButton(R.string.add, (dialog, which) -> {
             if (etFirstName.getText().toString().isEmpty() /* || spPhoneNumber.getSelectedItemPosition() == 0 */ ||
                     spRelation.getSelectedItemPosition() == 0)
                 Toast.makeText(getActivity(), R.string.error_incomplete_form, Toast.LENGTH_SHORT).show();
@@ -72,7 +72,7 @@ public class AddContactDialog extends DialogFragment {
                 mDialogClickListener.onPositiveClick(dialog, etFirstName.getText().toString(),
                         (String)spPhoneNumber.getSelectedItem(), (String)spRelation.getSelectedItem(), swLiveTogether.isChecked());
         });
-        alertDialog.setNegativeButton("Cancel", (dialog, which) -> mDialogClickListener.onNegativeClick(dialog));
+        alertDialog.setNegativeButton(R.string.cancel, (dialog, which) -> mDialogClickListener.onNegativeClick(dialog));
         return alertDialog.create();
     }
 
@@ -98,7 +98,7 @@ public class AddContactDialog extends DialogFragment {
     private void setTexts(String contactName, ArrayList<String> phoneNumber){
         etFirstName.setText(contactName);
         if (phoneNumber.size() > 1){
-            phoneNumber.add(0, "Select a phone number");
+            phoneNumber.add(0, getString(R.string.select_phone_number));
         }
         ArrayAdapter<String> nArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,
                 phoneNumber);

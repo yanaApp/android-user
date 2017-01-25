@@ -1,4 +1,4 @@
-package com.icaboalo.yana.presentation.screens.component.adapter;
+package com.icaboalo.yana.presentation.component.adapter;
 
 /**
  * @author icaboalo on 13/08/16.

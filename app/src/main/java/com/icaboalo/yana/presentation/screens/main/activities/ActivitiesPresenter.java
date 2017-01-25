@@ -8,8 +8,8 @@ import com.icaboalo.yana.domain.interactors.GenericUseCase;
 import com.icaboalo.yana.domain.models.action_plan.Activity;
 import com.icaboalo.yana.domain.models.action_plan.Day;
 import com.icaboalo.yana.presentation.screens.GenericDetailPresenter;
-import com.icaboalo.yana.presentation.screens.view_model.ActivityViewModel;
-import com.icaboalo.yana.presentation.screens.view_model.DayViewModel;
+import com.icaboalo.yana.presentation.view_model.ActivityViewModel;
+import com.icaboalo.yana.presentation.view_model.DayViewModel;
 import com.icaboalo.yana.util.Constants;
 
 import java.text.SimpleDateFormat;

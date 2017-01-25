@@ -3,22 +3,25 @@ package com.icaboalo.yana.presentation.screens.main.profile.birth_date;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.GenericPostView;
-import com.icaboalo.yana.presentation.screens.view_model.UserViewModel;
+import com.icaboalo.yana.presentation.view_model.UserViewModel;
+import com.icaboalo.yana.util.PrefUtils;
 import com.icaboalo.yana.util.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 
 import javax.inject.Inject;
 
@@ -48,6 +51,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
     public void initialize() {
         getComponent().inject(this);
         mBirthDatePresenter.setView(this);
+        mBirthDatePresenter.setUserId(PrefUtils.getUserId(getApplicationContext()));
     }
 
     @Override
@@ -61,7 +65,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
 
     @Override
     public void postSuccessful(UserViewModel item) {
-
+        finish();
     }
 
     @Override
@@ -90,7 +94,17 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
 
     @Override
     public void showError(String message) {
-        showToastMessage(message);
+        showSnackbarMessage(SnackbarFactory.TYPE_ERROR, btSave, message, Snackbar.LENGTH_SHORT);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnTextChanged(value = R.id.bt_birth_date, callback = OnTextChanged.Callback.TEXT_CHANGED)
@@ -109,12 +123,20 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
             showBirthDialog(btBirthDate.getText().toString());
     }
 
+    @OnClick(R.id.bt_save)
+    void onSaveClick() {
+        HashMap<String, Object> postBundle = new HashMap<>();
+        postBundle.put("birth_date", btBirthDate.getText().toString());
+        postBundle.put("date_format", "MMMM dd, yyyy");
+        mBirthDatePresenter.post(postBundle);
+    }
+
     private void showBirthDialog(String birthDate) {
         if (birthDate == null || birthDate.isEmpty()) {
             DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                     (view, year, month, dayOfMonth) ->
                             btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                    "MMM dd yy")), 1990, 0, 1);
+                                    "MMMM dd, yy")), 1990, 0, 1);
             datePickerDialog.show();
         }
         else {
@@ -124,10 +146,15 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
                 DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                         (view, year, month, dayOfMonth) ->
                                 btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                        "MMM dd yy")), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                                        "MMMM dd, yy")), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
             } catch (ParseException e) {
                 e.printStackTrace();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
+                        (view, year, month, dayOfMonth) ->
+                                btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
+                                        "MMMM dd, yy")), 1990, 0, 1);
+                datePickerDialog.show();
             }
         }
     }
