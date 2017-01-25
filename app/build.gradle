@@ -121,6 +121,9 @@ dependencies {
 //    graphs
     compile 'com.diogobernardino:williamchart:2.3.0'
 
+//    SwipeLayout
+    compile "com.daimajia.swipelayout:library:1.2.0@aar"
+
 }
 
 apply plugin: 'com.google.gms.google-services'
