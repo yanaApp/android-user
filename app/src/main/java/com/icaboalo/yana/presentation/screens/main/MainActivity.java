@@ -23,6 +23,7 @@ import com.icaboalo.yana.presentation.screens.GenericDetailView;
 import com.icaboalo.yana.presentation.screens.evaluation.EvaluationActivity;
 import com.icaboalo.yana.presentation.screens.main.activities.ActivitiesFragment;
 import com.icaboalo.yana.presentation.screens.main.contact.ContactFragment;
+import com.icaboalo.yana.presentation.screens.main.directory.DirectoryFragment;
 import com.icaboalo.yana.presentation.screens.main.help.HelpFragment;
 import com.icaboalo.yana.presentation.screens.main.hotline.HotlineFragment;
 import com.icaboalo.yana.presentation.screens.main.profile.ProfileFragment;
@@ -39,7 +40,7 @@ import butterknife.ButterKnife;
 /**
  * @author icaboalo on 13/08/16.
  */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, GenericDetailView<UserViewModel>{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, GenericDetailView<UserViewModel> {
 
     @Inject
     MainPresenter mMainPresenter;
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -91,12 +92,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         if (fragment == null)
             fragment = new Fragment();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_action_plan:
                 getSupportActionBar().setTitle(R.string.action_plan_title);
                 if (fragment instanceof ActivitiesFragment)
                     break;
-                else{
+                else {
                     fragment = new ActivitiesFragment();
                     replaceFragment(fragment);
                 }
@@ -105,7 +106,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 getSupportActionBar().setTitle(R.string.contacts_title);
                 if (fragment instanceof ContactFragment)
                     break;
-                else{
+                else {
                     fragment = new ContactFragment();
                     replaceFragment(fragment);
                 }
@@ -114,7 +115,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 getSupportActionBar().setTitle(R.string.progress_title);
                 if (fragment instanceof ProgressFragment)
                     break;
-                else{
+                else {
                     fragment = new ProgressFragment();
                     replaceFragment(fragment);
                 }
@@ -123,7 +124,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 getSupportActionBar().setTitle(R.string.profile_title);
                 if (fragment instanceof ProfileFragment)
                     break;
-                else{
+                else {
                     fragment = new ProfileFragment();
                     replaceFragment(fragment);
                 }
@@ -132,7 +133,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 getSupportActionBar().setTitle(R.string.hotline_title);
                 if (fragment instanceof HotlineFragment)
                     break;
-                else{
+                else {
                     fragment = new HotlineFragment();
                     replaceFragment(fragment);
                 }
@@ -147,11 +148,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 getSupportActionBar().setTitle(R.string.help_title);
                 if (fragment instanceof HelpFragment)
                     break;
-                else{
+                else {
                     fragment = new HelpFragment();
                     replaceFragment(fragment);
                 }
                 break;
+            case R.id.nav_directory:
+                getSupportActionBar().setTitle("Directory");
+                if (fragment instanceof DirectoryFragment)
+                    break;
+                else {
+                    fragment = new DirectoryFragment();
+                    replaceFragment(fragment);
+                }
         }
 
 //        if (fragment != null){
@@ -226,16 +235,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    public static Intent getCallingIntent(Context context){
+    public static Intent getCallingIntent(Context context) {
         return new Intent(context, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-    private void setHeaderInfo(String email, String fullName){
-        if (navigationView != null){
+    private void setHeaderInfo(String email, String fullName) {
+        if (navigationView != null) {
             View header = navigationView.getHeaderView(0);
             TextView tvFullName = (TextView) header.findViewById(R.id.tvFullName);
             TextView tvEmail = (TextView) header.findViewById(R.id.tvEmail);
@@ -273,8 +282,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                                 EvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
-        }
-        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 16
+        } else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 16
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.SECOND_TEST_TAKEN)) {
             showDialog("Segundo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
@@ -282,9 +290,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                                 EvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
-        }
-
-        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 24
+        } else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 24
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.THIRD_TEST_TAKEN)) {
             showDialog("Tercer examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {
@@ -292,9 +298,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                                 EvaluationActivity.REQUEST_CODE);
                         dialog.dismiss();
                     });
-        }
-
-        else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 30
+        } else if (ManagerPreference.getInstance().getInt(YanaPreferences.CURRENT_DAY) >= 30
                 && !ManagerPreference.getInstance().getBoolean(YanaPreferences.FOURTH_TEST_TAKEN)) {
             showDialog("Ultimo examen", "Ya completaste tu primera semana dentro de Yana! ahora necesitamos que tomes el examen de nuevo para obtener mejores datos sobre tu progreso",
                     (dialog, which) -> {

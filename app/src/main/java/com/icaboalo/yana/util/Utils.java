@@ -4,10 +4,12 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.icaboalo.yana.data.entities.mappers.ActionPlanEntityMapper;
@@ -52,6 +54,10 @@ public class Utils {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
     }
 
+    public static boolean hasM() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager nConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (hasLollipop()) {
@@ -76,6 +82,16 @@ public class Utils {
         }
 
         return false;
+    }
+
+    public static boolean hasPermissions(Context context, String... permissions) {
+        if (hasM() && context != null && permissions != null) {
+            for (String permission: permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED)
+                    return false;
+            }
+        }
+        return true;
     }
 
     public static final String getCurrentDate() {
