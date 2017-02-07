@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.screens.chat_bot;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
@@ -9,17 +11,20 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
+import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatAnswerViewHolder;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
-import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
+import com.icaboalo.yana.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.icaboalo.yana.presentation.component.adapter.ItemInfo.LOADING;
+import static com.icaboalo.yana.presentation.view_model.ChatBotViewModel.DATE;
+import static com.icaboalo.yana.presentation.view_model.ChatBotViewModel.HOUR;
+import static com.icaboalo.yana.presentation.view_model.ChatBotViewModel.WEEK_DAYS;
 
 public class ChatBotActivity extends BaseActivity implements ChatBotView {
 
@@ -91,7 +101,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
             }
 //            chatBotList = itemList;
             chatAdapter.notifyDataSetChanged();
-            chatLayoutManager.scrollToPosition(chatAdapter.getItemCount() - 1);
+            chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
         }
     }
 
@@ -125,16 +135,51 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
     }
 
     @Override
-    public void saveResponseSuccessful() {
+    public void saveInfoSuccessful() {
+    }
 
+    @Override
+    public void sendNextMessage(ChatBotViewModel chatBotViewModel) {
+        chatBotViewModel = chatBotViewModelList.get(lastQuestionPosition);
+        Log.d("question", chatBotViewModel.getQuestion());
+        chatAdapter.removeLoading();
+        if (chatBotViewModel.getSubQuestions() != null && !chatBotViewModel.getSubQuestions().isEmpty()) {
+            if (chatBotViewModel.getAnswer().contentEquals(chatBotViewModel.getAnswerForSubQuestions())) {
+                chatBotViewModelList.addAll(lastQuestionPosition + 1, chatBotViewModel.getSubQuestions());
+            } else if (chatBotViewModel.getSupportQuestion() != null) {
+                chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatBotViewModel.getSupportQuestion(), R.layout.layout_chat_left));
+            }
+        }
+        chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
+        rvAnswers.setVisibility(View.GONE);
+        rlTextAnswer.setVisibility(View.GONE);
+//        if (chatBotViewModel.isNeedsSave()) {
+//            mChatBotPresenter.attemptSaveResponse(chatBotViewModel);
+//        }
+        try {
+            addMessageToChat(chatBotViewModelList.get(lastQuestionPosition + 1));
+
+        } catch (IndexOutOfBoundsException exception) {
+            exception.printStackTrace();
+            showError("Se completó el chat");
+        }
+    }
+
+    @Override
+    public void errorSaveResponse() {
+        chatAdapter.removeLoading();
     }
 
     @OnClick(R.id.bt_send)
     void sendAnswer() {
-        if (!etResponse.getText().toString().isEmpty())
+        if (!etResponse.getText().toString().isEmpty()) {
             answerChat(etResponse.getText().toString());
-        else
+            etResponse.setText("");
+        } else
             showError(getString(R.string.error_empty_field));
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void setupChatRecycler() {
@@ -147,6 +192,9 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
 
                     case R.layout.layout_chat_right:
                         return new ChatLeftViewHolder(mLayoutInflater.inflate(R.layout.layout_chat_right, parent, false));
+
+                    case LOADING:
+                        return new ViewHolder(new ProgressBar(ChatBotActivity.this));
 
                     default:
                         return null;
@@ -176,41 +224,52 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
         rvAnswers.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
-    private void setChatAnswerOptions(ArrayList<String> answerOptions) {
+    private void setChatAnswerOptions(ChatBotViewModel chatBotViewModel) {
         ArrayList<ItemInfo> itemInfoList = new ArrayList<>();
-        for (String answer : answerOptions) {
+        for (String answer : chatBotViewModel.getAnswers()) {
             itemInfoList.add(new ItemInfo<>(answer, R.layout.layout_chat_answer));
+        }
+        switch (chatBotViewModel.getQuestionType()) {
+            case HOUR:
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) ->
+                        new TimePickerDialog(ChatBotActivity.this, (view, hourOfDay, minute) ->
+                                answerChat(Utils.transformTo24Hours(hourOfDay, minute)), 12, 0, true).show());
+                break;
+
+            case WEEK_DAYS:
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> SelectDaysDialog.newInstance(days -> {
+                    String answer = "";
+                    for (int i = 0; i < days.size(); i++) {
+                        if (i == 0)
+                            answer += days.get(i);
+                        else
+                            answer += ", " + days.get(i);
+                    }
+                    answerChat(answer);
+                }).show(getSupportFragmentManager(), ""));
+                break;
+
+            case DATE:
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) ->
+                        new DatePickerDialog(ChatBotActivity.this, (view, year, month, dayOfMonth) ->
+                                answerChat(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
+                                        "MMMM dd, yy")), 1990, 0, 1).show());
+                break;
+
+            default:
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> answerChat((String) viewModel.getData()));
+                break;
         }
         chatAnswerAdapter.setDataList(itemInfoList);
     }
 
     private void answerChat(String answer) {
         answerCount++;
-        ChatBotViewModel chatBotViewModel = (ChatBotViewModel) chatAdapter.getItem(chatAdapter.getItemCount()-1).getData();
-//        chatBotViewModel.setAnswer(answer);
+        ChatBotViewModel chatBotViewModel = (ChatBotViewModel) chatAdapter.getItem(chatAdapter.getItemCount() - 1).getData();
+        chatBotViewModel.setAnswer(answer);
         chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(answer, R.layout.layout_chat_right));
-        if (chatBotViewModel.getSubQuestions() != null && !chatBotViewModel.getSubQuestions().isEmpty()) {
-            if (answer.contentEquals(chatBotViewModel.getAnswerForSubQuestions())) {
-                chatBotViewModelList.addAll(lastQuestionPosition, chatBotViewModel.getSubQuestions());
-//                for (ChatBotViewModel subQuestion : chatBotViewModel.getSubQuestions()) {
-//                    if (!addMessageToChat(subQuestion))
-//                        break;
-//                }
-            }
-            else
-                chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatBotViewModel.getSupportQuestion(), R.layout.layout_chat_left));
-        }
-        chatLayoutManager.scrollToPosition(chatAdapter.getItemCount() - 1);
-        rvAnswers.setVisibility(View.GONE);
-        rlTextAnswer.setVisibility(View.GONE);
-        if (chatBotViewModel.isNeedsSave())
-            mChatBotPresenter.attemptSaveResponse(chatBotViewModel);
-        try {
-            addMessageToChat(chatBotViewModelList.get(lastQuestionPosition + 1));
-        }
-        catch (IndexOutOfBoundsException exception) {
-            showError("Se completó el chat");
-        }
+        chatAdapter.addLoading();
+        mChatBotPresenter.attemptSaveResponse(chatBotViewModel);
     }
 
     private boolean addMessageToChat(ChatBotViewModel chatBotViewModel) {
@@ -228,7 +287,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
 //                        }
                     }
                 }
-                lastQuestionPosition = (chatAdapter.getItemCount() -1) - answerCount;
+                lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
                 Log.d("LAST POS", String.valueOf(lastQuestionPosition));
                 Log.d("LAST POS", chatBotViewModelList.get(lastQuestionPosition).getQuestion());
                 return true;
@@ -242,16 +301,35 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                     case ChatBotViewModel.OPTIONS:
                         rlTextAnswer.setVisibility(View.GONE);
                         rvAnswers.setVisibility(View.VISIBLE);
-                        setChatAnswerOptions(chatBotViewModel.getAnswers());
+                        setChatAnswerOptions(chatBotViewModel);
+                        break;
+
+                    case ChatBotViewModel.HOUR:
+                        rlTextAnswer.setVisibility(View.GONE);
+                        rvAnswers.setVisibility(View.VISIBLE);
+                        setChatAnswerOptions(chatBotViewModel);
+                        break;
+
+                    case ChatBotViewModel.WEEK_DAYS:
+                        rlTextAnswer.setVisibility(View.GONE);
+                        rvAnswers.setVisibility(View.VISIBLE);
+                        setChatAnswerOptions(chatBotViewModel);
+                        break;
+
+                    case ChatBotViewModel.DATE:
+                        rlTextAnswer.setVisibility(View.GONE);
+                        rvAnswers.setVisibility(View.VISIBLE);
+                        setChatAnswerOptions(chatBotViewModel);
                         break;
                 }
-                lastQuestionPosition = (chatAdapter.getItemCount() -1) - answerCount;
-                Log.d("LAST POS", String.valueOf(lastQuestionPosition));
-                Log.d("LAST POS", chatBotViewModelList.get(lastQuestionPosition).getQuestion());
+                lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
                 return false;
             }
+        } else {
+            lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
+            addMessageToChat(chatBotViewModelList.get(lastQuestionPosition + 1));
+            return true;
         }
-        return true;
     }
 
     public static Intent getCallingIntent(Context context) {

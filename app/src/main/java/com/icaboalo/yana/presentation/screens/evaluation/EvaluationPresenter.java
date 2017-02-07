@@ -26,6 +26,6 @@ public class EvaluationPresenter extends GenericPostPresenter<ActionPlanViewMode
         hideViewRetry();
         showViewLoading();
         getGenericUseCase().executeDynamicPostObject(new PostSubscriber(), "plan/new/", postBundle, ActionPlan.class,
-                ActionPlanRealmModel.class, ActionPlanViewModel.class, false);
+                ActionPlanRealmModel.class, ActionPlanViewModel.class, true);
     }
 }
