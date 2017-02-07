@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.icaboalo.yana.R;
 import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
-import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,20 +31,20 @@ public class ChatLeftViewHolder extends GenericRecyclerViewAdapter.ViewHolder {
 
     @Override
     public void bindData(Object data, int position, boolean isEnabled) {
-        if (data instanceof ChatBotViewModel) {
-            ChatBotViewModel chatBotViewModel = (ChatBotViewModel) data;
-            tvMessage.setText(chatBotViewModel.getQuestion());
-            switch (chatBotViewModel.getQuestionType()) {
-                case ChatBotViewModel.OPTIONS:
+        if (data instanceof ChatbotMessageViewModel) {
+            ChatbotMessageViewModel chatbotMessageViewModel = (ChatbotMessageViewModel) data;
+            tvMessage.setText(chatbotMessageViewModel.getQuestion());
+            switch (chatbotMessageViewModel.getQuestionType()) {
+                case ChatbotMessageViewModel.OPTIONS:
                     etResponse.setVisibility(View.GONE);
                     break;
 
-                case ChatBotViewModel.KEYBOARD:
+                case ChatbotMessageViewModel.KEYBOARD:
 //                        etResponse.setVisibility(View.VISIBLE);
 //                        etResponse.setHint("Respuesta");
                     break;
 
-                case ChatBotViewModel.TEXT:
+                case ChatbotMessageViewModel.TEXT:
                     etResponse.setVisibility(View.GONE);
                     break;
             }

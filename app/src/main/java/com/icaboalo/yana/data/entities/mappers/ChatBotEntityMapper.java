@@ -4,8 +4,8 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.icaboalo.yana.data.entities.realm_models.ChatBotRealmModel;
-import com.icaboalo.yana.domain.models.ChatBot;
+import com.icaboalo.yana.data.entities.realm_models.ChatbotMessageRealmModel;
+import com.icaboalo.yana.domain.models.ChatbotMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +41,14 @@ public class ChatBotEntityMapper extends EntityDataMapper {
     @Override
     public Object transformToDomain(Object realmModel, Class domainClass) {
         if (realmModel != null){
-            if (realmModel instanceof ChatBotRealmModel){
-                ChatBotRealmModel userRealmModel = (ChatBotRealmModel) realmModel;
+            if (realmModel instanceof ChatbotMessageRealmModel){
+                ChatbotMessageRealmModel userRealmModel = (ChatbotMessageRealmModel) realmModel;
                 return transformToDomainHelper(userRealmModel);
             }
             return domainClass.cast(gson.fromJson(gson.toJson(realmModel), domainClass));
         }
 
-        return new ChatBot();
+        return new ChatbotMessage();
     }
 
     @Override
@@ -60,19 +60,19 @@ public class ChatBotEntityMapper extends EntityDataMapper {
         return list;
     }
 
-    public static ChatBot transformToDomainHelper(ChatBotRealmModel chatBotRealmModel) {
-        ChatBot chatBot = new ChatBot();
+    public static ChatbotMessage transformToDomainHelper(ChatbotMessageRealmModel chatbotMessageRealmModel) {
+        ChatbotMessage chatbotMessage = new ChatbotMessage();
 
-        chatBot.setAnswer(chatBotRealmModel.getAnswer());
-        chatBot.setSupportQuestion(chatBotRealmModel.getSupportQuestion());
-        chatBot.setSubQuestions(chatBotRealmModel.getSubQuestions());
-        chatBot.setSaveFieldName(chatBotRealmModel.getSaveFieldName());
-        chatBot.setQuestionType(chatBotRealmModel.getQuestionType());
-        chatBot.setNeedsSave(chatBotRealmModel.isNeedsSave());
-        chatBot.setNeedsAnswer(chatBotRealmModel.isNeedsAnswer());
-        chatBot.setCategory(chatBotRealmModel.getCategory());
-        chatBot.setAnswers(chatBotRealmModel.getAnswers());
+        chatbotMessage.setAnswer(chatbotMessageRealmModel.getAnswer());
+        chatbotMessage.setSupportQuestion(chatbotMessageRealmModel.getSupportQuestion());
+        chatbotMessage.setSubQuestion(transformToDomainHelper(chatbotMessageRealmModel.getSubQuestion()));
+        chatbotMessage.setSaveFieldName(chatbotMessageRealmModel.getSaveFieldName());
+        chatbotMessage.setQuestionType(chatbotMessageRealmModel.getQuestionType());
+        chatbotMessage.setNeedsSave(chatbotMessageRealmModel.isNeedsSave());
+        chatbotMessage.setNeedsAnswer(chatbotMessageRealmModel.isNeedsAnswer());
+        chatbotMessage.setCategory(chatbotMessageRealmModel.getCategory());
+        chatbotMessage.setAnswers(chatbotMessageRealmModel.getAnswers());
 
-        return chatBot;
+        return chatbotMessage;
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by icaboalo on 12/12/16.
  */
 
-public class ChatBotViewModel {
+public class ChatbotMessageViewModel {
 
     public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4, DATE = 5;
     public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
@@ -29,8 +29,14 @@ public class ChatBotViewModel {
     private String answerForSubQuestions;
     private ArrayList<String> answers;
 
-    @SerializedName("sub_questions")
-    private ArrayList<ChatBotViewModel> subQuestions;
+    @SerializedName("sub_question")
+    private ChatbotMessageViewModel subQuestion;
+
+    @SerializedName("next_question")
+    private ChatbotMessageViewModel nextQuestion;
+
+    @SerializedName("parent_question")
+    private ChatbotMessageViewModel parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -106,12 +112,16 @@ public class ChatBotViewModel {
         this.answers = answers;
     }
 
-    public ArrayList<ChatBotViewModel> getSubQuestions() {
-        return subQuestions;
+    public ChatbotMessageViewModel getSubQuestion() {
+        return subQuestion;
     }
 
-    public void setSubQuestions(ArrayList<ChatBotViewModel> subQuestions) {
-        this.subQuestions = subQuestions;
+    public ChatbotMessageViewModel getNextQuestion() {
+        return nextQuestion;
+    }
+
+    public ChatbotMessageViewModel getParentQuestion() {
+        return parentQuestion;
     }
 
     public void setNeedsAnswer(boolean needsAnswer) {

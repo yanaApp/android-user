@@ -1,17 +1,18 @@
 package com.icaboalo.yana.data.entities.realm_models;
 
 import com.google.gson.annotations.SerializedName;
-import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 
 import java.util.ArrayList;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
  * Created by icaboalo on 25/01/17.
  */
 
-public class ChatBotRealmModel {
+public class ChatbotMessageRealmModel  {
     public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4;
     public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
 
@@ -31,8 +32,14 @@ public class ChatBotRealmModel {
     private String answerForSubQuestions;
     private ArrayList<String> answers;
 
-    @SerializedName("sub_questions")
-    private ArrayList<ChatBotViewModel> subQuestions;
+    @SerializedName("sub_question")
+    private ChatbotMessageRealmModel subQuestion;
+
+    @SerializedName("next_question")
+    private ChatbotMessageRealmModel nextQuestion;
+
+    @SerializedName("parent_question")
+    private ChatbotMessageRealmModel parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -80,8 +87,15 @@ public class ChatBotRealmModel {
         return answers;
     }
 
-    public ArrayList<ChatBotViewModel> getSubQuestions() {
-        return subQuestions;
+    public ChatbotMessageRealmModel getSubQuestion() {
+        return subQuestion;
     }
 
+    public ChatbotMessageRealmModel getNextQuestion() {
+        return nextQuestion;
+    }
+
+    public ChatbotMessageRealmModel getParentQuestion() {
+        return parentQuestion;
+    }
 }

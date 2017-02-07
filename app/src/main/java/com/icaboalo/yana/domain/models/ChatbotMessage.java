@@ -1,7 +1,6 @@
 package com.icaboalo.yana.domain.models;
 
 import com.google.gson.annotations.SerializedName;
-import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
 
 import java.util.ArrayList;
 
@@ -9,7 +8,7 @@ import java.util.ArrayList;
  * Created by icaboalo on 25/01/17.
  */
 
-public class ChatBot {
+public class ChatbotMessage {
 
     private int category;
 
@@ -27,8 +26,14 @@ public class ChatBot {
     private String answerForSubQuestions;
     private ArrayList<String> answers;
 
-    @SerializedName("sub_questions")
-    private ArrayList<ChatBotViewModel> subQuestions;
+    @SerializedName("sub_question")
+    private ChatbotMessage subQuestion;
+
+    @SerializedName("next_question")
+    private ChatbotMessage nextQuestion;
+
+    @SerializedName("parent_question")
+    private ChatbotMessage parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -104,14 +109,6 @@ public class ChatBot {
         this.answers = answers;
     }
 
-    public ArrayList<ChatBotViewModel> getSubQuestions() {
-        return subQuestions;
-    }
-
-    public void setSubQuestions(ArrayList<ChatBotViewModel> subQuestions) {
-        this.subQuestions = subQuestions;
-    }
-
     public void setNeedsAnswer(boolean needsAnswer) {
         this.needsAnswer = needsAnswer;
     }
@@ -122,5 +119,29 @@ public class ChatBot {
 
     public void setSaveFieldName(String saveFieldName) {
         this.saveFieldName = saveFieldName;
+    }
+
+    public ChatbotMessage getSubQuestion() {
+        return subQuestion;
+    }
+
+    public void setSubQuestion(ChatbotMessage subQuestion) {
+        this.subQuestion = subQuestion;
+    }
+
+    public ChatbotMessage getNextQuestion() {
+        return nextQuestion;
+    }
+
+    public void setNextQuestion(ChatbotMessage nextQuestion) {
+        this.nextQuestion = nextQuestion;
+    }
+
+    public ChatbotMessage getParentQuestion() {
+        return parentQuestion;
+    }
+
+    public void setParentQuestion(ChatbotMessage parentQuestion) {
+        this.parentQuestion = parentQuestion;
     }
 }

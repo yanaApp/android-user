@@ -1,20 +1,20 @@
 package com.icaboalo.yana.presentation.screens.chat_bot;
 
 import com.icaboalo.yana.R;
-import com.icaboalo.yana.data.entities.realm_models.ChatBotRealmModel;
+import com.icaboalo.yana.data.entities.realm_models.ChatbotMessageRealmModel;
 import com.icaboalo.yana.data.entities.realm_models.ScheduleRealmModel;
 import com.icaboalo.yana.data.entities.realm_models.action_plan.UserRealmModel;
 import com.icaboalo.yana.domain.exception.DefaultErrorBundle;
 import com.icaboalo.yana.domain.interactors.DefaultSubscriber;
 import com.icaboalo.yana.domain.interactors.GenericUseCase;
-import com.icaboalo.yana.domain.models.ChatBot;
+import com.icaboalo.yana.domain.models.ChatbotMessage;
 import com.icaboalo.yana.domain.models.Schedule;
 import com.icaboalo.yana.domain.models.action_plan.User;
 import com.icaboalo.yana.other.ManagerPreference;
 import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.screens.GenericListPresenter;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
-import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
+import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 import com.icaboalo.yana.presentation.view_model.ScheduleViewModel;
 import com.icaboalo.yana.presentation.view_model.UserViewModel;
 import com.icaboalo.yana.util.Constants;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * Created by icaboalo on 12/12/16.
  */
 
-public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, ChatLeftViewHolder> {
+public class ChatBotPresenter extends GenericListPresenter<ChatbotMessageViewModel, ChatLeftViewHolder> {
 
     @Inject
     public ChatBotPresenter(GenericUseCase genericUseCase) {
@@ -38,32 +38,32 @@ public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, Cha
     @Override
     public void getItemList() {
         getGenericUseCase().executeDynamicGetList(new ItemListSubscriber(), Constants.API_BASE_URL + "chat/",
-                ChatBot.class, ChatBotRealmModel.class, ChatBotViewModel.class, false);
+                ChatbotMessage.class, ChatbotMessageRealmModel.class, ChatbotMessageViewModel.class, false);
     }
 
-    public void attemptSaveResponse(ChatBotViewModel chatBotViewModel) {
+    public void attemptSaveResponse(ChatbotMessageViewModel chatbotMessageViewModel) {
         HashMap<String, Object> responseBundle = new HashMap<>();
-        responseBundle.put("answer", chatBotViewModel.getAnswer());
+        responseBundle.put("answer", chatbotMessageViewModel.getAnswer());
         //TODO Change persist for true
         getGenericUseCase().executeDynamicPutObject(new SaveResponseSubscriber(), Constants.API_BASE_URL + "chatbot/",
-                responseBundle, ChatBot.class, ChatBotRealmModel.class, ChatBotViewModel.class, false);
+                responseBundle, ChatbotMessage.class, ChatbotMessageRealmModel.class, ChatbotMessageViewModel.class, false);
 
-        if (chatBotViewModel.isNeedsSave()) {
+        if (chatbotMessageViewModel.isNeedsSave()) {
             HashMap<String, Object> saveBundle = new HashMap<>();
-            switch (chatBotViewModel.getCategory()) {
-                case ChatBotViewModel.CATEGORY_PROFILE:
-                    saveBundle.put(chatBotViewModel.getSaveFieldName(), chatBotViewModel.getAnswer());
+            switch (chatbotMessageViewModel.getCategory()) {
+                case ChatbotMessageViewModel.CATEGORY_PROFILE:
+                    saveBundle.put(chatbotMessageViewModel.getSaveFieldName(), chatbotMessageViewModel.getAnswer());
                     saveInfo(saveBundle, User.class, UserRealmModel.class, UserViewModel.class, Constants.API_BASE_URL + "user/" +
                             ManagerPreference.getInstance().getInt(YanaPreferences.USER_ID) + "/");
                     break;
 
-                case ChatBotViewModel.CATEGORY_SCHEDULE:
-                    if (chatBotViewModel.getAnswer().contentEquals("Si"))
-                        saveBundle.put(chatBotViewModel.getSaveFieldName(), true);
-                    else if (chatBotViewModel.getAnswer().contentEquals("No"))
-                        saveBundle.put(chatBotViewModel.getSaveFieldName(), false);
-                    else if (chatBotViewModel.getSaveFieldName().contentEquals("work_days")) {
-                        String[] days = chatBotViewModel.getAnswer().split(", ");
+                case ChatbotMessageViewModel.CATEGORY_SCHEDULE:
+                    if (chatbotMessageViewModel.getAnswer().contentEquals("Si"))
+                        saveBundle.put(chatbotMessageViewModel.getSaveFieldName(), true);
+                    else if (chatbotMessageViewModel.getAnswer().contentEquals("No"))
+                        saveBundle.put(chatbotMessageViewModel.getSaveFieldName(), false);
+                    else if (chatbotMessageViewModel.getSaveFieldName().contentEquals("work_days")) {
+                        String[] days = chatbotMessageViewModel.getAnswer().split(", ");
                         for (String day : days) {
                             if (getGenericListView().getApplicationContext().getString(R.string.monday).contentEquals(day))
                                 saveBundle.put("work_monday", true);
@@ -80,8 +80,8 @@ public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, Cha
                             else if (getGenericListView().getApplicationContext().getString(R.string.sunday).contentEquals(day))
                                 saveBundle.put("work_sunday", true);
                         }
-                    } else if (chatBotViewModel.getSaveFieldName().contentEquals("study_days")) {
-                        String[] days = chatBotViewModel.getAnswer().split(", ");
+                    } else if (chatbotMessageViewModel.getSaveFieldName().contentEquals("study_days")) {
+                        String[] days = chatbotMessageViewModel.getAnswer().split(", ");
                         for (String day : days) {
                             if (getGenericListView().getApplicationContext().getString(R.string.monday).contentEquals(day))
                                 saveBundle.put("study_monday", true);
@@ -99,7 +99,7 @@ public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, Cha
                                 saveBundle.put("study_sunday", true);
                         }
                     } else
-                        saveBundle.put(chatBotViewModel.getSaveFieldName(), chatBotViewModel.getAnswer());
+                        saveBundle.put(chatbotMessageViewModel.getSaveFieldName(), chatbotMessageViewModel.getAnswer());
                     saveInfo(saveBundle, Schedule.class, ScheduleRealmModel.class, ScheduleViewModel.class, "");
                     break;
             }
@@ -131,7 +131,7 @@ public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, Cha
         }
     }
 
-    private class SaveResponseSubscriber extends DefaultSubscriber<ChatBotViewModel> {
+    private class SaveResponseSubscriber extends DefaultSubscriber<ChatbotMessageViewModel> {
         @Override
         public void onCompleted() {
             super.onCompleted();
@@ -147,8 +147,8 @@ public class ChatBotPresenter extends GenericListPresenter<ChatBotViewModel, Cha
         }
 
         @Override
-        public void onNext(ChatBotViewModel chatBotViewModel) {
-            ((ChatBotView) getGenericListView()).sendNextMessage(chatBotViewModel);
+        public void onNext(ChatbotMessageViewModel chatbotMessageViewModel) {
+            ((ChatBotView) getGenericListView()).sendNextMessage(chatbotMessageViewModel);
         }
     }
 }

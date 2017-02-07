@@ -43,7 +43,7 @@ public class Utils {
                 return new DayEntityMapper();
             case "com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel":
                 return new ContactEntityMapper();
-            case "com.icaboalo.yana.data.entities.realm_models.ChatBotRealmModel":
+            case "com.icaboalo.yana.data.entities.realm_models.ChatbotMessageRealmModel":
                 return new ChatBotEntityMapper();
             default:
                 return new EntityDataMapper();
