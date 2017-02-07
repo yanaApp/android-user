@@ -39,7 +39,7 @@ public class LoadingPresenter extends GenericDetailPresenter<UserViewModel> {
 
     @Override
     public void getSuccessful(UserViewModel userViewModel) {
-        PrefUtils.setUserId(getGenericDetailView().getApplicationContext(), userViewModel.getId());
+        ManagerPreference.getInstance().set(YanaPreferences.USER_ID, userViewModel.getId());
         PrefUtils.setUserEmail(getGenericDetailView().getApplicationContext(), userViewModel.getEmail());
 //        PrefUtils.setScheduleId(getGenericDetailView().getApplicationContext(), userViewModel.getSchedule.getId);
         ScheduleViewModel schedule = userViewModel.getSchedule();

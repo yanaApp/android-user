@@ -97,14 +97,15 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
                 itemList.add(new ItemInfo<>(activityViewModel, ItemInfo.SECTION_ITEM));
             }
             mActivitiesRecyclerAdapter.setDataList(itemList);
-            if (retryCount < 2) {
-                mActivitiesPresenter.getItemDetails();
-                retryCount ++;
-            }
+            retryCount = 0;
         }
         else {
             llContainer.setVisibility(View.GONE);
             llNoActionPlan.setVisibility(View.VISIBLE);
+            if (retryCount < 2) {
+                mActivitiesPresenter.getItemDetails();
+                retryCount ++;
+            }
         }
     }
 
@@ -162,8 +163,9 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
 
     @Override
     public void onSelect(ActivityViewModel activityViewModel, int answer) {
-        showSnackbarMessage(SnackbarFactory.TYPE_INFO, rvActivity, getString(R.string.snackbar_emotion, VUtil.answerToText(answer)),
-                Snackbar.LENGTH_SHORT);
+//        showSnackbarMessage(SnackbarFactory.TYPE_INFO, rvActivity, getString(R.string.snackbar_emotion, VUtil.answerToText(answer)),
+//                Snackbar.LENGTH_SHORT);
+        showSnackBar(activityViewModel, answer);
     }
 
 //    TODO -> set texts
@@ -193,5 +195,23 @@ public class ActivitiesFragment extends BaseFragment implements ActivityView, Ac
         mActivitiesRecyclerAdapter.setOnEmotionSelectedListener(this);
         rvActivity.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvActivity.setAdapter(mActivitiesRecyclerAdapter);
+    }
+
+    private void showSnackBar(ActivityViewModel activityViewModel, int answer){
+        Snackbar.make(rvActivity, "Changed emotion from " + VUtil.answerToText(activityViewModel.getAnswer()) + " to " +
+                VUtil.answerToText(answer), Snackbar.LENGTH_SHORT).setAction("Undo", v -> {
+        }).setCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                switch (event) {
+                    case DISMISS_EVENT_ACTION:
+                        mActivitiesRecyclerAdapter.notifyDataSetChanged();
+                        break;
+                    default:
+                        mActivitiesPresenter.attemptSaveEmotion(activityViewModel, answer);
+                        break;
+                }
+            }
+        }).show();
     }
 }

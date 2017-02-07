@@ -142,7 +142,7 @@ public class BirthDateActivity extends BaseActivity implements GenericPostView<U
         else {
             try {
                 Calendar cal = Calendar.getInstance();
-                cal.setTime(new SimpleDateFormat("MMM dd yy").parse(birthDate));
+                cal.setTime(new SimpleDateFormat("MMMM dd yy").parse(birthDate));
                 DatePickerDialog datePickerDialog = new DatePickerDialog(BirthDateActivity.this,
                         (view, year, month, dayOfMonth) ->
                                 btBirthDate.setText(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
