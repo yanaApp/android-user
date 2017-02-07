@@ -1,17 +1,15 @@
-package com.icaboalo.yana.presentation.view_model;
+package com.icaboalo.yana.domain.models;
 
 import com.google.gson.annotations.SerializedName;
+import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
 
 import java.util.ArrayList;
 
 /**
- * Created by icaboalo on 12/12/16.
+ * Created by icaboalo on 25/01/17.
  */
 
-public class ChatBotViewModel {
-
-    public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4, DATE = 5;
-    public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
+public class ChatBot {
 
     private int category;
 
@@ -124,10 +122,5 @@ public class ChatBotViewModel {
 
     public void setSaveFieldName(String saveFieldName) {
         this.saveFieldName = saveFieldName;
-    }
-
-    @Override
-    public String toString() {
-        return getQuestion();
     }
 }

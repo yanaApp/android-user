@@ -13,6 +13,7 @@ import android.util.Log;
 import com.icaboalo.yana.data.entities.mappers.ActionPlanEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.ActivityEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.CategoryEntityMapper;
+import com.icaboalo.yana.data.entities.mappers.ChatBotEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.ContactEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.DayEntityMapper;
 import com.icaboalo.yana.data.entities.mappers.EntityDataMapper;
@@ -42,6 +43,8 @@ public class Utils {
                 return new DayEntityMapper();
             case "com.icaboalo.yana.data.entities.realm_models.action_plan.ContactRealmModel":
                 return new ContactEntityMapper();
+            case "com.icaboalo.yana.data.entities.realm_models.ChatBotRealmModel":
+                return new ChatBotEntityMapper();
             default:
                 return new EntityDataMapper();
         }

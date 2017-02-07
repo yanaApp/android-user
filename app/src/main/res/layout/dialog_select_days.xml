@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llStudyInfo"
+    android:layout_width="match_parent"
+    android:padding="@dimen/size_normal"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:visibility="visible">-->
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<com.icaboalo.yana.old.ui.widget.CustomFontEditText-->
+                <!--android:id="@+id/etStudyFrom"-->
+                <!--style="@style/AppTheme.ScheduleEditText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/from_hint" />-->
+
+        <!--</android.support.design.widget.TextInputLayout>-->
+
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1">-->
+
+            <!--<com.icaboalo.yana.old.ui.widget.CustomFontEditText-->
+                <!--android:id="@+id/etStudyTo"-->
+                <!--style="@style/AppTheme.ScheduleEditText"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/to_hint" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <ToggleButton
+            android:tag="Lunes"
+            android:id="@+id/btMonday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:checked="true"
+            android:textOff="L"
+            android:textOn="L" />
+
+        <ToggleButton
+            android:tag="Martes"
+            android:id="@+id/btTuesday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:checked="true"
+            android:textOff="M"
+            android:textOn="M" />
+
+        <ToggleButton
+            android:tag="Miercoles"
+            android:id="@+id/btWednesday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:checked="true"
+            android:textOff="M"
+            android:textOn="M" />
+
+        <ToggleButton
+            android:tag="Jueves"
+            android:id="@+id/btThursday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:checked="true"
+            android:textOff="J"
+            android:textOn="J" />
+
+        <ToggleButton
+            android:tag="Viernes"
+            android:id="@+id/btFriday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:checked="true"
+            android:textOff="V"
+            android:textOn="V" />
+
+        <ToggleButton
+            android:tag="Sabado"
+            android:id="@+id/btSaturday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:textOff="S"
+            android:textOn="S" />
+
+        <ToggleButton
+            android:tag="Domingo"
+            android:id="@+id/btSunday"
+            style="@style/AppTheme.ButtonGreen.Cornered"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/selector_day_button"
+            android:textOff="D"
+            android:textOn="D" />
+    </LinearLayout>
+
+</LinearLayout>
