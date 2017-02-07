@@ -9,5 +9,7 @@ import com.icaboalo.yana.presentation.view_model.ChatBotViewModel;
  */
 
 public interface ChatBotView extends GenericListView<ChatBotViewModel, ChatLeftViewHolder> {
-    void saveResponseSuccessful();
+    void saveInfoSuccessful();
+    void sendNextMessage(ChatBotViewModel chatBotViewModel);
+    void errorSaveResponse();
 }

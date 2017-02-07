@@ -47,7 +47,7 @@
         android:gravity="center">
 
         <ToggleButton
-            android:tag="Lunes"
+            android:tag="@string/monday"
             android:id="@+id/btMonday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -59,7 +59,7 @@
             android:textOn="L" />
 
         <ToggleButton
-            android:tag="Martes"
+            android:tag="@string/tuesday"
             android:id="@+id/btTuesday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -71,7 +71,7 @@
             android:textOn="M" />
 
         <ToggleButton
-            android:tag="Miercoles"
+            android:tag="@string/wednesday"
             android:id="@+id/btWednesday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -83,7 +83,7 @@
             android:textOn="M" />
 
         <ToggleButton
-            android:tag="Jueves"
+            android:tag="@string/thursday"
             android:id="@+id/btThursday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -95,7 +95,7 @@
             android:textOn="J" />
 
         <ToggleButton
-            android:tag="Viernes"
+            android:tag="@string/friday"
             android:id="@+id/btFriday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -107,7 +107,7 @@
             android:textOn="V" />
 
         <ToggleButton
-            android:tag="Sabado"
+            android:tag="@string/saturday"
             android:id="@+id/btSaturday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="30dp"
@@ -118,7 +118,7 @@
             android:textOn="S" />
 
         <ToggleButton
-            android:tag="Domingo"
+            android:tag="@string/sunday"
             android:id="@+id/btSunday"
             style="@style/AppTheme.ButtonGreen.Cornered"
             android:layout_width="35dp"
