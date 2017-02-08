@@ -63,9 +63,10 @@ public class ChatBotEntityMapper extends EntityDataMapper {
     public static ChatbotMessage transformToDomainHelper(ChatbotMessageRealmModel chatbotMessageRealmModel) {
         ChatbotMessage chatbotMessage = new ChatbotMessage();
 
+        chatbotMessage.setId(chatbotMessageRealmModel.getId());
         chatbotMessage.setAnswer(chatbotMessageRealmModel.getAnswer());
         chatbotMessage.setSupportQuestion(chatbotMessageRealmModel.getSupportQuestion());
-        chatbotMessage.setSubQuestion(transformToDomainHelper(chatbotMessageRealmModel.getSubQuestion()));
+        chatbotMessage.setSubQuestion(chatbotMessageRealmModel.getSubQuestion());
         chatbotMessage.setSaveFieldName(chatbotMessageRealmModel.getSaveFieldName());
         chatbotMessage.setQuestionType(chatbotMessageRealmModel.getQuestionType());
         chatbotMessage.setNeedsSave(chatbotMessageRealmModel.isNeedsSave());

@@ -4,12 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by icaboalo on 25/01/17.
  */
 
 public class ChatbotMessage {
 
+    @PrimaryKey
+    private int id;
     private int category;
 
     @SerializedName("question_type")
@@ -27,19 +31,27 @@ public class ChatbotMessage {
     private ArrayList<String> answers;
 
     @SerializedName("sub_question")
-    private ChatbotMessage subQuestion;
+    private int subQuestion;
 
     @SerializedName("next_question")
-    private ChatbotMessage nextQuestion;
+    private int nextQuestion;
 
     @SerializedName("parent_question")
-    private ChatbotMessage parentQuestion;
+    private int parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
 
     @SerializedName("needs_save")
     private boolean needsSave;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getQuestionType() {
         return questionType;
@@ -55,10 +67,6 @@ public class ChatbotMessage {
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
     }
 
     public boolean isNeedsAnswer() {
@@ -81,16 +89,20 @@ public class ChatbotMessage {
         this.needsSave = needsSave;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
     public String getAnswerForSubQuestions() {
         return answerForSubQuestions;
     }
 
     public String getSupportQuestion() {
         return supportQuestion;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public void setSupportQuestion(String supportQuestion) {
@@ -121,27 +133,27 @@ public class ChatbotMessage {
         this.saveFieldName = saveFieldName;
     }
 
-    public ChatbotMessage getSubQuestion() {
+    public int getSubQuestion() {
         return subQuestion;
     }
 
-    public void setSubQuestion(ChatbotMessage subQuestion) {
+    public void setSubQuestion(int subQuestion) {
         this.subQuestion = subQuestion;
     }
 
-    public ChatbotMessage getNextQuestion() {
+    public int getNextQuestion() {
         return nextQuestion;
     }
 
-    public void setNextQuestion(ChatbotMessage nextQuestion) {
+    public void setNextQuestion(int nextQuestion) {
         this.nextQuestion = nextQuestion;
     }
 
-    public ChatbotMessage getParentQuestion() {
+    public int getParentQuestion() {
         return parentQuestion;
     }
 
-    public void setParentQuestion(ChatbotMessage parentQuestion) {
+    public void setParentQuestion(int parentQuestion) {
         this.parentQuestion = parentQuestion;
     }
 }

@@ -1,21 +1,21 @@
 package com.icaboalo.yana.data.entities.realm_models;
 
 import com.google.gson.annotations.SerializedName;
-import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 
 import java.util.ArrayList;
 
-import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by icaboalo on 25/01/17.
  */
 
-public class ChatbotMessageRealmModel  {
-    public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4;
-    public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
+public class ChatbotMessageRealmModel extends RealmObject{
 
+    @PrimaryKey
+    private int id;
     private int category;
 
     @SerializedName("question_type")
@@ -30,16 +30,18 @@ public class ChatbotMessageRealmModel  {
 
     @SerializedName("answer_for_sub_questions")
     private String answerForSubQuestions;
+
+    @Ignore
     private ArrayList<String> answers;
 
     @SerializedName("sub_question")
-    private ChatbotMessageRealmModel subQuestion;
+    private int subQuestion;
 
     @SerializedName("next_question")
-    private ChatbotMessageRealmModel nextQuestion;
+    private int nextQuestion;
 
     @SerializedName("parent_question")
-    private ChatbotMessageRealmModel parentQuestion;
+    private int parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -47,16 +49,20 @@ public class ChatbotMessageRealmModel  {
     @SerializedName("needs_save")
     private boolean needsSave;
 
+    public int getId() {
+        return id;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
     public int getQuestionType() {
         return questionType;
     }
 
     public String getQuestion() {
         return question;
-    }
-
-    public String getAnswer() {
-        return answer;
     }
 
     public boolean isNeedsAnswer() {
@@ -87,15 +93,15 @@ public class ChatbotMessageRealmModel  {
         return answers;
     }
 
-    public ChatbotMessageRealmModel getSubQuestion() {
+    public int getSubQuestion() {
         return subQuestion;
     }
 
-    public ChatbotMessageRealmModel getNextQuestion() {
+    public int getNextQuestion() {
         return nextQuestion;
     }
 
-    public ChatbotMessageRealmModel getParentQuestion() {
+    public int getParentQuestion() {
         return parentQuestion;
     }
 }
