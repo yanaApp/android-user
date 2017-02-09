@@ -59,10 +59,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
 
     GenericRecyclerViewAdapter<ChatAnswerViewHolder> chatAnswerAdapter;
     GenericRecyclerViewAdapter chatAdapter;
-    LinearLayoutManager chatLayoutManager;
-
-    int answerCount = 0, lastQuestionPosition = 0;
-    List<ChatbotMessageViewModel> chatbotMessageViewModelList;
 
     @Override
     public void initialize() {
@@ -78,8 +74,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
         setSupportActionBar(toolbar);
         setupChatRecycler();
         setupAnswerRecycler();
-        ArrayList<ItemInfo> bla = new ArrayList<>();
-        chatAnswerAdapter.setDataList(bla);
     }
 
     //    TODO remove hideLoading()
@@ -87,7 +81,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
     public void renderItemList(List<ChatbotMessageViewModel> itemList) {
         hideLoading();
         if (!itemList.isEmpty()) {
-            chatbotMessageViewModelList = itemList;
             for (int i = 0; i < itemList.size(); i++) {
                 if (itemList.get(i) != null) {
                     ChatbotMessageViewModel chatbotMessageViewModel = itemList.get(i);
@@ -101,7 +94,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
             }
 //            chatBotList = itemList;
             chatAdapter.notifyDataSetChanged();
-            chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
+            rvChat.getLayoutManager().scrollToPosition(chatAdapter.getItemCount() - 1);
         }
     }
 
@@ -111,14 +104,12 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
 
     @Override
     public void showLoading() {
-        if (rlProgress != null)
-            rlProgress.setVisibility(View.VISIBLE);
+        chatAdapter.addLoading();
     }
 
     @Override
     public void hideLoading() {
-        if (rlProgress != null)
-            rlProgress.setVisibility(View.GONE);
+        chatAdapter.removeLoading();
     }
 
     @Override
@@ -140,29 +131,28 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
 
     @Override
     public void sendNextMessage(ChatbotMessageViewModel chatbotMessageViewModel) {
-        chatbotMessageViewModel = chatbotMessageViewModelList.get(lastQuestionPosition);
-        Log.d("question", chatbotMessageViewModel.getQuestion());
-        chatAdapter.removeLoading();
-        if (chatbotMessageViewModel.getSubQuestions() != null && !chatbotMessageViewModel.getSubQuestions().isEmpty()) {
-            if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
-                chatbotMessageViewModelList.addAll(lastQuestionPosition + 1, chatbotMessageViewModel.getSubQuestions());
-            } else if (chatbotMessageViewModel.getSupportQuestion() != null) {
-                chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel.getSupportQuestion(), R.layout.layout_chat_left));
-            }
-        }
-        chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
-        rvAnswers.setVisibility(View.GONE);
-        rlTextAnswer.setVisibility(View.GONE);
+        addMessageToChat(chatbotMessageViewModel);
+//        if (chatbotMessageViewModel.getSubQuestion() != null) {
+//            if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
+//                chatbotMessageViewModelList.add(lastQuestionPosition + 1, chatbotMessageViewModel.getSubQuestion());
+//            } else if (chatbotMessageViewModel.getSupportQuestion() != null) {
+//                chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel.getSupportQuestion(), R.layout.layout_chat_left));
+//            }
+//        }
+
+//        chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
+//        rvAnswers.setVisibility(View.GONE);
+//        rlTextAnswer.setVisibility(View.GONE);
 //        if (chatbotMessageViewModel.isNeedsSave()) {
 //            mChatBotPresenter.attemptSaveResponse(chatbotMessageViewModel);
 //        }
-        try {
-            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
-
-        } catch (IndexOutOfBoundsException exception) {
-            exception.printStackTrace();
-            showError("Se completó el chat");
-        }
+//        try {
+//            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
+//
+//        } catch (IndexOutOfBoundsException exception) {
+//            exception.printStackTrace();
+//            showError("Se completó el chat");
+//        }
     }
 
     @Override
@@ -178,7 +168,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
         } else
             showError(getString(R.string.error_empty_field));
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
@@ -203,8 +192,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
         };
 
         rvChat.setAdapter(chatAdapter);
-        chatLayoutManager = new LinearLayoutManager(this);
-        rvChat.setLayoutManager(chatLayoutManager);
+        rvChat.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void setupAnswerRecycler() {
@@ -264,32 +252,28 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
     }
 
     private void answerChat(String answer) {
-        answerCount++;
         ChatbotMessageViewModel chatbotMessageViewModel = (ChatbotMessageViewModel) chatAdapter.getItem(chatAdapter.getItemCount() - 1).getData();
-        chatbotMessageViewModel.setAnswer(answer);
         chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(answer, R.layout.layout_chat_right));
+        rvChat.scrollToPosition(chatAdapter.getItemCount() - 1);
         chatAdapter.addLoading();
-        mChatBotPresenter.attemptSaveResponse(chatbotMessageViewModel);
+        mChatBotPresenter.attemptSaveResponse(chatbotMessageViewModel, answer);
     }
 
     private boolean addMessageToChat(ChatbotMessageViewModel chatbotMessageViewModel) {
         chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel, R.layout.layout_chat_left));
+        rvChat.scrollToPosition(chatAdapter.getItemCount() - 1);
         if (chatbotMessageViewModel.isNeedsAnswer()) {
             if (chatbotMessageViewModel.getAnswer() != null && !chatbotMessageViewModel.getAnswer().isEmpty()) {
                 chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel.getAnswer(),
                         R.layout.layout_chat_right));
-                answerCount++;
-                if (chatbotMessageViewModel.getSubQuestions() != null && !chatbotMessageViewModel.getSubQuestions().isEmpty()) {
-                    if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
+//                if (chatbotMessageViewModel.getSubQuestion() != null) {
+//                    if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
 //                        for (ChatbotMessageViewModel subQuestion : chatbotMessageViewModel.getSubQuestions()) {
 //                            if (!addMessageToChat(subQuestion))
 //                                break;
 //                        }
-                    }
-                }
-                lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
-                Log.d("LAST POS", String.valueOf(lastQuestionPosition));
-                Log.d("LAST POS", chatbotMessageViewModelList.get(lastQuestionPosition).getQuestion());
+//                    }
+//                }
                 return true;
             } else {
                 switch (chatbotMessageViewModel.getQuestionType()) {
@@ -322,12 +306,11 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                         setChatAnswerOptions(chatbotMessageViewModel);
                         break;
                 }
-                lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
                 return false;
             }
         } else {
-            lastQuestionPosition = (chatAdapter.getItemCount() - 1) - answerCount;
-            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
+//            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
+            mChatBotPresenter.getNextMessage(chatbotMessageViewModel.getNextQuestion());
             return true;
         }
     }
