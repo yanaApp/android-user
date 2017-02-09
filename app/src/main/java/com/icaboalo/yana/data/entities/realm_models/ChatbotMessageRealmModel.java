@@ -35,13 +35,13 @@ public class ChatbotMessageRealmModel extends RealmObject{
     private ArrayList<String> answers;
 
     @SerializedName("sub_question")
-    private int subQuestion;
+    private Integer subQuestion;
 
     @SerializedName("next_question")
-    private int nextQuestion;
+    private Integer nextQuestion;
 
     @SerializedName("parent_question")
-    private int parentQuestion;
+    private Integer parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -93,15 +93,15 @@ public class ChatbotMessageRealmModel extends RealmObject{
         return answers;
     }
 
-    public int getSubQuestion() {
+    public Integer getSubQuestion() {
         return subQuestion;
     }
 
-    public int getNextQuestion() {
+    public Integer getNextQuestion() {
         return nextQuestion;
     }
 
-    public int getParentQuestion() {
+    public Integer getParentQuestion() {
         return parentQuestion;
     }
 }

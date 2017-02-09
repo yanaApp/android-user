@@ -1,5 +1,7 @@
 package com.icaboalo.yana.presentation.view_model;
 
+import android.content.Intent;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -34,13 +36,13 @@ public class ChatbotMessageViewModel {
     private ArrayList<String> answers;
 
     @SerializedName("sub_question")
-    private int subQuestion;
+    private Integer subQuestion;
 
     @SerializedName("next_question")
-    private int nextQuestion;
+    private Integer nextQuestion;
 
     @SerializedName("parent_question")
-    private int parentQuestion;
+    private Integer parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -80,15 +82,15 @@ public class ChatbotMessageViewModel {
         return answers;
     }
 
-    public int getSubQuestion() {
+    public Integer getSubQuestion() {
         return subQuestion;
     }
 
-    public int getNextQuestion() {
+    public Integer getNextQuestion() {
         return nextQuestion;
     }
 
-    public int getParentQuestion() {
+    public Integer getParentQuestion() {
         return parentQuestion;
     }
 

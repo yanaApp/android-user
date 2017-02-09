@@ -73,6 +73,9 @@ public class ChatBotEntityMapper extends EntityDataMapper {
         chatbotMessage.setNeedsAnswer(chatbotMessageRealmModel.isNeedsAnswer());
         chatbotMessage.setCategory(chatbotMessageRealmModel.getCategory());
         chatbotMessage.setAnswers(chatbotMessageRealmModel.getAnswers());
+        chatbotMessage.setNextQuestion(chatbotMessageRealmModel.getNextQuestion());
+        chatbotMessage.setParentQuestion(chatbotMessageRealmModel.getParentQuestion());
+        chatbotMessage.setAnswerForSubQuestions(chatbotMessageRealmModel.getAnswerForSubQuestions());
 
         return chatbotMessage;
     }

@@ -31,13 +31,13 @@ public class ChatbotMessage {
     private ArrayList<String> answers;
 
     @SerializedName("sub_question")
-    private int subQuestion;
+    private Integer subQuestion;
 
     @SerializedName("next_question")
-    private int nextQuestion;
+    private Integer nextQuestion;
 
     @SerializedName("parent_question")
-    private int parentQuestion;
+    private Integer parentQuestion;
 
     @SerializedName("needs_answer")
     private boolean needsAnswer;
@@ -133,27 +133,27 @@ public class ChatbotMessage {
         this.saveFieldName = saveFieldName;
     }
 
-    public int getSubQuestion() {
+    public Integer getSubQuestion() {
         return subQuestion;
     }
 
-    public void setSubQuestion(int subQuestion) {
+    public void setSubQuestion(Integer subQuestion) {
         this.subQuestion = subQuestion;
     }
 
-    public int getNextQuestion() {
+    public Integer getNextQuestion() {
         return nextQuestion;
     }
 
-    public void setNextQuestion(int nextQuestion) {
+    public void setNextQuestion(Integer nextQuestion) {
         this.nextQuestion = nextQuestion;
     }
 
-    public int getParentQuestion() {
+    public Integer getParentQuestion() {
         return parentQuestion;
     }
 
-    public void setParentQuestion(int parentQuestion) {
+    public void setParentQuestion(Integer parentQuestion) {
         this.parentQuestion = parentQuestion;
     }
 }
