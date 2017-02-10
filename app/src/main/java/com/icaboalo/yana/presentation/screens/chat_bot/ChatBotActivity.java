@@ -17,12 +17,15 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.icaboalo.yana.R;
+import com.icaboalo.yana.other.ManagerPreference;
+import com.icaboalo.yana.other.YanaPreferences;
 import com.icaboalo.yana.presentation.component.adapter.GenericRecyclerViewAdapter;
 import com.icaboalo.yana.presentation.component.adapter.ItemInfo;
 import com.icaboalo.yana.presentation.factories.SnackbarFactory;
 import com.icaboalo.yana.presentation.screens.BaseActivity;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatAnswerViewHolder;
 import com.icaboalo.yana.presentation.screens.chat_bot.view_holder.ChatLeftViewHolder;
+import com.icaboalo.yana.presentation.screens.main.MainActivity;
 import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 import com.icaboalo.yana.util.Utils;
 
@@ -37,6 +40,7 @@ import butterknife.OnClick;
 
 import static com.icaboalo.yana.presentation.component.adapter.ItemInfo.LOADING;
 import static com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel.DATE;
+import static com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel.FINISH;
 import static com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel.HOUR;
 import static com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel.WEEK_DAYS;
 
@@ -218,6 +222,13 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                                         "MMMM dd, yy")), 1990, 0, 1).show());
                 break;
 
+            case FINISH:
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> {
+                    ManagerPreference.getInstance().set(YanaPreferences.INTRODUCTION_CHAT_COMPLETE, true);
+                    startActivity(MainActivity.getCallingIntent(getApplicationContext()));
+                    finish();
+                });
+
             default:
                 chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> answerChat((String) viewModel.getData()));
                 break;
@@ -248,25 +259,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                         rlTextAnswer.setVisibility(View.VISIBLE);
                         break;
 
-                    case ChatbotMessageViewModel.OPTIONS:
-                        rlTextAnswer.setVisibility(View.GONE);
-                        rvAnswers.setVisibility(View.VISIBLE);
-                        setChatAnswerOptions(chatbotMessageViewModel);
-                        break;
-
-                    case ChatbotMessageViewModel.HOUR:
-                        rlTextAnswer.setVisibility(View.GONE);
-                        rvAnswers.setVisibility(View.VISIBLE);
-                        setChatAnswerOptions(chatbotMessageViewModel);
-                        break;
-
-                    case ChatbotMessageViewModel.WEEK_DAYS:
-                        rlTextAnswer.setVisibility(View.GONE);
-                        rvAnswers.setVisibility(View.VISIBLE);
-                        setChatAnswerOptions(chatbotMessageViewModel);
-                        break;
-
-                    case ChatbotMessageViewModel.DATE:
+                    default:
                         rlTextAnswer.setVisibility(View.GONE);
                         rvAnswers.setVisibility(View.VISIBLE);
                         setChatAnswerOptions(chatbotMessageViewModel);
