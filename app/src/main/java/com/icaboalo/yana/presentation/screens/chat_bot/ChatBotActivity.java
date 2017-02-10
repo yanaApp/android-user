@@ -87,12 +87,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                     if (!addMessageToChat(chatbotMessageViewModel))
                         break;
                 }
-//                else if () {
-//                    ChatBotAnswerViewModel chatBotAnswerViewModel = (ChatBotAnswerViewModel) itemList.get(i);
-//                    chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatBotAnswerViewModel, R.layout.layout_chat_right));
-//                }
             }
-//            chatBotList = itemList;
             chatAdapter.notifyDataSetChanged();
             rvChat.getLayoutManager().scrollToPosition(chatAdapter.getItemCount() - 1);
         }
@@ -132,27 +127,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
     @Override
     public void sendNextMessage(ChatbotMessageViewModel chatbotMessageViewModel) {
         addMessageToChat(chatbotMessageViewModel);
-//        if (chatbotMessageViewModel.getSubQuestion() != null) {
-//            if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
-//                chatbotMessageViewModelList.add(lastQuestionPosition + 1, chatbotMessageViewModel.getSubQuestion());
-//            } else if (chatbotMessageViewModel.getSupportQuestion() != null) {
-//                chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel.getSupportQuestion(), R.layout.layout_chat_left));
-//            }
-//        }
-
-//        chatLayoutManager.scrollToPosition(chatAdapter.getItemCount());
-//        rvAnswers.setVisibility(View.GONE);
-//        rlTextAnswer.setVisibility(View.GONE);
-//        if (chatbotMessageViewModel.isNeedsSave()) {
-//            mChatBotPresenter.attemptSaveResponse(chatbotMessageViewModel);
-//        }
-//        try {
-//            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
-//
-//        } catch (IndexOutOfBoundsException exception) {
-//            exception.printStackTrace();
-//            showError("Se completó el chat");
-//        }
     }
 
     @Override
@@ -266,14 +240,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
             if (chatbotMessageViewModel.getAnswer() != null && !chatbotMessageViewModel.getAnswer().isEmpty()) {
                 chatAdapter.addItem(chatAdapter.getItemCount(), new ItemInfo<>(chatbotMessageViewModel.getAnswer(),
                         R.layout.layout_chat_right));
-//                if (chatbotMessageViewModel.getSubQuestion() != null) {
-//                    if (chatbotMessageViewModel.getAnswer().contentEquals(chatbotMessageViewModel.getAnswerForSubQuestions())) {
-//                        for (ChatbotMessageViewModel subQuestion : chatbotMessageViewModel.getSubQuestions()) {
-//                            if (!addMessageToChat(subQuestion))
-//                                break;
-//                        }
-//                    }
-//                }
                 return true;
             } else {
                 switch (chatbotMessageViewModel.getQuestionType()) {
@@ -309,7 +275,6 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                 return false;
             }
         } else {
-//            addMessageToChat(chatbotMessageViewModelList.get(lastQuestionPosition + 1));
             mChatBotPresenter.getNextMessage(chatbotMessageViewModel.getNextQuestion());
             return true;
         }
