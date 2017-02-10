@@ -15,6 +15,7 @@ public class YanaPreferences {
     public static PreferenceKey TOKEN = new PreferenceKey(PrefConstants.tokenPref, "");
     public static PreferenceKey LAST_UPDATE = new PreferenceKey(PrefConstants.LAST_UPDATE, new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
     public static PreferenceKey USER_ID = new PreferenceKey("user_id", 0);
+    public static PreferenceKey INTRODUCTION_CHAT_COMPLETE = new PreferenceKey("introduction_chat_complete", false);
 
 //    NOTIFICATIONS
     public static PreferenceKey NOTIFICATIONS_SET = new PreferenceKey(PrefConstants.NOTIFICATIONS_SET, false);

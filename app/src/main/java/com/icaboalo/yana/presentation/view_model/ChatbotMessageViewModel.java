@@ -14,7 +14,7 @@ import io.realm.annotations.PrimaryKey;
 
 public class ChatbotMessageViewModel {
 
-    public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4, DATE = 5;
+    public static final int KEYBOARD = 0, OPTIONS = 1, TEXT = 2, HOUR = 3, WEEK_DAYS = 4, DATE = 5, FINISH=6;
     public static final int CATEGORY_PROFILE = 0, CATEGORY_SCHEDULE = 1;
 
     @PrimaryKey
