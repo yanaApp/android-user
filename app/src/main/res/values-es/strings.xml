@@ -291,4 +291,11 @@
     <string name="snackbar_emotion">Cambio de respuesta a %s</string>
     <string name="unknown_error">Error desconocido</string>
     <string name="depression_motive_title">Motivo de Depresión</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="tuesday">Martes</string>
+    <string name="thursday">Jueves</string>
+    <string name="sunday">Domingo</string>
+    <string name="saturday">Sabado</string>
+    <string name="monday">Lunes</string>
+    <string name="friday">Viernes</string>
 </resources>
