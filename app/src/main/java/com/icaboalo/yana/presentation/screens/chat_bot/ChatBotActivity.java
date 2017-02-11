@@ -30,6 +30,7 @@ import com.icaboalo.yana.presentation.view_model.ChatbotMessageViewModel;
 import com.icaboalo.yana.util.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -85,6 +86,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
     public void renderItemList(List<ChatbotMessageViewModel> itemList) {
         hideLoading();
         if (!itemList.isEmpty()) {
+            Collections.sort(itemList, (lhs, rhs) -> lhs.getId() - (rhs.getId()));
             for (int i = 0; i < itemList.size(); i++) {
                 if (itemList.get(i) != null) {
                     ChatbotMessageViewModel chatbotMessageViewModel = itemList.get(i);
@@ -94,6 +96,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
             }
             chatAdapter.notifyDataSetChanged();
             rvChat.getLayoutManager().scrollToPosition(chatAdapter.getItemCount() - 1);
+            mChatBotPresenter.getNextMessage(itemList.get(itemList.size() -1).getNextQuestion());
         }
     }
 
@@ -161,7 +164,7 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                         return new ChatLeftViewHolder(mLayoutInflater.inflate(R.layout.layout_chat_right, parent, false));
 
                     case LOADING:
-                        return new ViewHolder(new ProgressBar(ChatBotActivity.this));
+                        return new ViewHolder(mLayoutInflater.inflate(R.layout.layout_chat_loading, parent, false));
 
                     default:
                         return null;
@@ -197,10 +200,13 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
         }
         switch (chatbotMessageViewModel.getQuestionType()) {
             case HOUR:
-                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) ->
-                        new TimePickerDialog(ChatBotActivity.this, (view, hourOfDay, minute) ->
-                                answerChat(Utils.transformTo24Hours(hourOfDay, minute)), 12, 0, true).show());
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> {
+                    new TimePickerDialog(ChatBotActivity.this, (view, hourOfDay, minute) ->
+                            answerChat(Utils.transformTo24Hours(hourOfDay, minute)), 12, 0, true).show();
+                    rvAnswers.setVisibility(View.GONE);
+                });
                 break;
+
 
             case WEEK_DAYS:
                 chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> SelectDaysDialog.newInstance(days -> {
@@ -212,25 +218,32 @@ public class ChatBotActivity extends BaseActivity implements ChatBotView {
                             answer += ", " + days.get(i);
                     }
                     answerChat(answer);
+                    rvAnswers.setVisibility(View.GONE);
                 }).show(getSupportFragmentManager(), ""));
                 break;
 
             case DATE:
-                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) ->
-                        new DatePickerDialog(ChatBotActivity.this, (view, year, month, dayOfMonth) ->
-                                answerChat(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
-                                        "MMMM dd, yy")), 1990, 0, 1).show());
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> {
+                    new DatePickerDialog(ChatBotActivity.this, (view, year, month, dayOfMonth) ->
+                            answerChat(Utils.transformDateToText(dayOfMonth + "-" + (month + 1) + "-" + year, "dd-MM-yyyy",
+                                    "MMMM dd, yy")), 1990, 0, 1).show();
+                    rvAnswers.setVisibility(View.GONE);
+                });
                 break;
 
             case FINISH:
                 chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> {
+                    rvAnswers.setVisibility(View.GONE);
                     ManagerPreference.getInstance().set(YanaPreferences.INTRODUCTION_CHAT_COMPLETE, true);
                     startActivity(MainActivity.getCallingIntent(getApplicationContext()));
                     finish();
                 });
 
             default:
-                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> answerChat((String) viewModel.getData()));
+                chatAnswerAdapter.setOnItemClickListener((position, viewModel, holder) -> {
+                    answerChat((String) viewModel.getData());
+                    rvAnswers.setVisibility(View.GONE);
+                });
                 break;
         }
         chatAnswerAdapter.setDataList(itemInfoList);
